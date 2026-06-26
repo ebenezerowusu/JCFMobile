@@ -1,0 +1,21 @@
+# Flutter / Dart monorepo root
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+pubspec_overrides.yaml
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+
+# Local env / secrets (never commit — see product doc §9)
+.env
+*.env
+**/google-services.json
+**/GoogleService-Info.plist
