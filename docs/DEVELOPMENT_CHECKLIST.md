@@ -3,9 +3,10 @@
 A follow-along checklist for building the JCF App (Flutter mobile + desktop)
 on top of the **JCFAdmin** Django backend.
 
-- **Today:** 2026-06-26 · **Hard deadline:** Retreat registration live by **2026-07-31**
+- **Updated:** 2026-06-27 · **No hard deadline** — the app is NOT used for 2026 retreat
+  registration (handled outside our scope); we build the feature properly for future years.
 - Repos: `ebenezerowusu/JCFMobile` (Flutter) · `janprince/JCFAdmin` (backend/API)
-- Tick `[x]` as you complete each item. Order matters — Track A is the deadline path.
+- Tick `[x]` as you complete each item.
 
 ---
 
@@ -26,67 +27,75 @@ on top of the **JCFAdmin** Django backend.
 
 ---
 
-## 🔴 DECISIONS TO MAKE FIRST (blockers)
+## ✅ DECISIONS (RESOLVED 2026-06-27)
 
-- [ ] **D1.** July-31 registration surface: Django page on JCFAdmin **/** page on existing Next.js site
-- [ ] **D2.** Auth for July 31: **guest registration** (faster) **/** full JWT login now
-- [ ] **D3.** Confirm 2026 seed values: adult GHS 400, child GHS 200, venue Windy Lodge, dates Jul 31–Aug 9, accommodation tiers
-- [ ] **D4.** Paystack: live business account + live/test API keys available?
-- [ ] **D5.** Firebase + Apple Developer + Google Play accounts — who owns them?
+- [x] **D1.** App NOT used for 2026 registration → build the feature for future years; no web-page rush.
+- [x] **D2.** Members/students-only — identity via **phone/email OTP matched to an approved
+  `Contact`** (no passwords, no guest registration).
+- [x] **D3.** No fixed seed values — fees/dates/tiers are **admin-authored per year** (dynamic).
+- [x] **D4.** Paystack: **reuse the existing JCF account/keys** (already powering donations).
+- [x] **D5.** Firebase / Apple Developer / Google Play: **none yet** — blocks Track B only.
+- [x] **Model.** Build a **generalized "Programs"** feature: audience flag (public/members/students)
+  + optional dynamic registration form + optional Paystack payment. Retreat = one members-only Program.
+
+### Infra status (done this session)
+- [x] Neon `dev` branch created from `production`; local `.env` targets `dev` (prod untouched)
+- [x] Cloudflare R2 connection fixed (`region_name: 'auto'` in `config/settings.py`) + verified
+- [x] Flutter 3.44.4 installed locally; both apps pass analyze + test on the Mac
 
 ---
 
-## 🟥 TRACK A — Retreat registration LIVE by July 31 (CRITICAL PATH)
+## 🟦 TRACK A — Generalized Programs + registration (no deadline; build properly)
 
-### A1. Retreat domain in JCFAdmin
-- [ ] Create `retreats` Django app
-- [ ] Models: `RetreatConfig`, `AccommodationTier`, `CostLineItem`, `RetreatRegistration`
-- [ ] `makemigrations` + `migrate`
-- [ ] Register models in Django admin (so staff can edit fees/tiers)
-- [ ] Seed 2026 `RetreatConfig` + accommodation tiers (per D3)
+### A0. Member identity (OTP) — prerequisite for members-only programs
+- [ ] OTP request endpoint: match phone/email → existing approved `Contact` (`is_member`/`is_student`)
+- [ ] Send OTP via Arkesel SMS / email (reuse `website/notifications.py`)
+- [ ] OTP verify endpoint → issue session/JWT bound to the Contact
+- [ ] Rate-limit + expiry on OTP codes
+
+### A1. Programs domain in JCFAdmin
+- [ ] Create `programs` Django app
+- [ ] Models: `Program` (audience: public/members/students; type/event), `RegistrationForm`/form
+      schema, `AccommodationTier`, `CostLineItem`, `Registration`
+- [ ] Dynamic per-year config — admins create a new Program + form each year (no hardcoded values)
+- [ ] `makemigrations` + `migrate` **against the Neon `dev` branch first**
+- [ ] Register models in Django admin (admins author programs, fees, tiers)
 
 ### A2. Registration + payment API
 - [ ] New mobile API namespace: `path('api/mobile/v1/', include('mobile_api.urls'))`
-- [ ] `GET /api/mobile/v1/retreat/active` → config + tiers (+ public Paystack key)
-- [ ] `POST /api/mobile/v1/registrations/initiate` → pending registration + Paystack ref `JCF-2026-#####`
+- [ ] `GET /api/mobile/v1/programs/` (filter by audience; gate members-only behind OTP auth)
+- [ ] `GET /api/mobile/v1/programs/<id>/` → program + dynamic form + tiers (+ public Paystack key)
+- [ ] `POST /api/mobile/v1/registrations/initiate` → pending registration + Paystack ref `JCF-{YEAR}-#####`
 - [ ] Extend Paystack webhook to handle **registration** charges (not just donations)
-- [ ] Atomic transaction + idempotency (`ON CONFLICT` / get_or_create on reference)
+- [ ] Atomic transaction + idempotency (get_or_create on reference)
 - [ ] Atomic room allocation (`UPDATE … WHERE rooms_confirmed < total_rooms`)
 - [ ] On success: send confirmation email + SMS (reuse `website/notifications.py`)
 - [ ] Generate QR ID card server-side → upload to R2
 
-### A3. Registration surface for July 31 (per D1)
-- [ ] Build registration form (multi-step: details → accommodation → cost summary → pay)
-- [ ] Wire Paystack inline/checkout on the page
+### A3. Registration UI (in the Flutter app, for future years)
+- [ ] OTP login screen (members/students)
+- [ ] Program list (public + members-only once authenticated)
+- [ ] Multi-step registration form (driven by the dynamic form schema) → cost summary → pay
 - [ ] Confirmation screen with QR + receipt
 
 ### A4. Test & go live
 - [ ] End-to-end test with Paystack **test** keys
 - [ ] Verify webhook idempotency (replay a charge) + room-sold-out path
 - [ ] Switch to Paystack **live** keys
-- [ ] Final dry run; registration LIVE ✅ (target: by ~Jul 24, 1-week buffer)
+- [ ] Final dry run on a future-year program, then enable for members
 
 ---
 
-## 🟦 TRACK B — Full JCF App (parallel + after July 31)
+## 🟦 TRACK B — Rest of the app (after Track A)
 
-### B1. Auth & members
-- [ ] Add `djangorestframework-simplejwt`; configure RS256
-- [ ] Decide Contact↔app-user link; add registration/login endpoints under `/api/mobile/v1/auth/`
-- [ ] Refresh-token rotation + `/auth/refresh`
-- [ ] Flutter: login + register screens
-- [ ] Flutter: JWT stored via `flutter_secure_storage`; refresh-on-401 in Dio interceptor
-- [ ] Flutter: profile screen
-- [ ] Auth-gated router shell (go_router redirect)
+> Member auth (OTP) and the program registration UI now live in **Track A** (A0/A2/A3).
+> Track B is everything else. `RegistrationProvider` should use Hive (config cache + in-progress
+> form state) and `flutter_paystack_max` when A3 is built.
 
-### B2. Retreat flow in Flutter
-- [ ] `RetreatConfigProvider` (Riverpod `AsyncNotifier`)
-- [ ] Hive cache for retreat config (1h TTL) + offline fallback
-- [ ] 4-step registration form widgets
-- [ ] Live cost summary (computed from Riverpod state)
-- [ ] `flutter_paystack_max` integration (card + MoMo)
-- [ ] Confirmation + QR screen
-- [ ] Persist in-progress form state across app restarts (Hive)
+### B1. Member profile & app shell
+- [ ] Flutter: profile screen for the logged-in member (from their `Contact`)
+- [ ] Auth-gated router shell (go_router redirect based on OTP session)
+- [ ] Refresh-on-401 in the Dio interceptor (`jcf_api_client`)
 
 ### B3. Teachings & content
 - [ ] Backend: teaching media URLs, `TeachingSeries`, `TeachingProgress`, `Bookmark`
