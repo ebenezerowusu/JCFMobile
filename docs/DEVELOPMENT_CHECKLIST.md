@@ -3,8 +3,9 @@
 A follow-along checklist for building the JCF App (Flutter mobile + desktop)
 on top of the **JCFAdmin** Django backend.
 
-- **Updated:** 2026-06-27 · **No hard deadline** — the app is NOT used for 2026 retreat
-  registration (handled outside our scope); we build the feature properly for future years.
+- **Updated:** 2026-06-27 · **Deadline: full app live by 2026-07-31.** Tiered-access app
+  (guests + members/students). 2026 retreat registration itself runs on the EXISTING web —
+  the app's retreat feature is built now, used as the channel from 2027.
 - Repos: `ebenezerowusu/JCFMobile` (Flutter) · `janprince/JCFAdmin` (backend/API)
 - Tick `[x]` as you complete each item.
 
@@ -29,14 +30,18 @@ on top of the **JCFAdmin** Django backend.
 
 ## ✅ DECISIONS (RESOLVED 2026-06-27)
 
-- [x] **D1.** App NOT used for 2026 registration → build the feature for future years; no web-page rush.
-- [x] **D2.** Members/students-only — identity via **phone/email OTP matched to an approved
-  `Contact`** (no passwords, no guest registration).
+- [x] **Deadline.** FULL app live by **2026-07-31** (tiered lessons + programs + retreat reg + payments + donations).
+- [x] **Access tiers.** App is for everyone: **guests browse general lessons with NO sign-in**;
+  **members/students log in via phone/email OTP** (matched to an approved `Contact`) to unlock
+  **premium lessons** and members-only programs. No passwords, no guest accounts.
+- [x] **D1 / 2026 retreat.** 2026 registration runs on the **existing web**, not the app. The app's
+  retreat feature is built now and becomes the channel from 2027.
 - [x] **D3.** No fixed seed values — fees/dates/tiers are **admin-authored per year** (dynamic).
 - [x] **D4.** Paystack: **reuse the existing JCF account/keys** (already powering donations).
-- [x] **D5.** Firebase / Apple Developer / Google Play: **none yet** — blocks Track B only.
+- [x] **D5.** Firebase / Apple Developer / Google Play: **none yet** — now URGENT (store lead time vs July 31).
 - [x] **Model.** Build a **generalized "Programs"** feature: audience flag (public/members/students)
   + optional dynamic registration form + optional Paystack payment. Retreat = one members-only Program.
+- [x] **Lessons.** Teachings get a tier flag (general vs premium); premium gated behind OTP membership.
 
 ### Infra status (done this session)
 - [x] Neon `dev` branch created from `production`; local `.env` targets `dev` (prod untouched)
