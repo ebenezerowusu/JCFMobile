@@ -1,34 +1,23 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:jcf_models/jcf_models.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:jcf_mobile/features/auth/auth_controller.dart';
-import 'package:jcf_mobile/features/engagement/engagement_repository.dart';
 import 'package:jcf_mobile/main.dart';
 
-/// Auth controller that reports a guest without touching secure storage.
-class _GuestAuth extends AuthController {
-  @override
-  Future<Member?> build() async => null;
-}
-
 void main() {
-  testWidgets('boots to Home with an empty announcements state', (tester) async {
-    await tester.pumpWidget(
-      ProviderScope(
-        overrides: [
-          authControllerProvider.overrideWith(_GuestAuth.new),
-          announcementsProvider.overrideWith(
-            (ref) async => const Paginated<Announcement>(count: 0, results: []),
-          ),
-        ],
-        child: const JcfApp(),
-      ),
-    );
+  testWidgets('first run shows splash then onboarding', (tester) async {
+    SharedPreferences.setMockInitialValues({}); // onboarding not seen
+
+    await tester.pumpWidget(const ProviderScope(child: JcfApp()));
+
+    // Splash is visible first.
+    expect(find.text('Jan Cosmic Foundation'), findsOneWidget);
+
+    // Advance past the splash delay -> onboarding.
+    await tester.pump(const Duration(seconds: 2));
     await tester.pumpAndSettle();
 
-    expect(find.text('Welcome'), findsOneWidget);
-    expect(find.text('No announcements yet.'), findsOneWidget);
-    expect(find.text('Home'), findsWidgets); // nav label
+    expect(find.text('Learn & grow'), findsOneWidget);
+    expect(find.text('Get started'), findsNothing); // not on the first page
   });
 }
