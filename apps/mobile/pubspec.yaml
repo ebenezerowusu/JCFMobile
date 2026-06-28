@@ -46,7 +46,7 @@ dependencies:
     path: ../../packages/jcf_models
   jcf_api_client:
     path: ../../packages/jcf_api_client
-  flutter_paystack_max: ^1.0.6
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:

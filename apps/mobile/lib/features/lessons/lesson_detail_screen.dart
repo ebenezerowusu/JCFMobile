@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/launch.dart';
 import 'lessons_repository.dart';
 
 class LessonDetailScreen extends ConsumerWidget {
@@ -55,12 +56,12 @@ class _MediaRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Opening the URL needs url_launcher (added with media playback later);
-    // for now show the available media affordance.
     return ListTile(
       contentPadding: EdgeInsets.zero,
       leading: Icon(icon),
       title: Text(label),
+      trailing: const Icon(Icons.open_in_new, size: 18),
+      onTap: () => openExternalUrl(url),
     );
   }
 }

@@ -7,3 +7,6 @@ export 'src/member.dart';
 export 'src/auth_session.dart';
 export 'src/teaching.dart';
 export 'src/paginated.dart';
+export 'src/cause.dart';
+export 'src/program.dart';
+export 'src/engagement.dart';

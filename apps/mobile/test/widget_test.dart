@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:jcf_models/jcf_models.dart';
 
 import 'package:jcf_mobile/features/auth/auth_controller.dart';
-import 'package:jcf_mobile/features/lessons/lessons_repository.dart';
+import 'package:jcf_mobile/features/engagement/engagement_repository.dart';
 import 'package:jcf_mobile/main.dart';
 
 /// Auth controller that reports a guest without touching secure storage.
@@ -13,13 +13,13 @@ class _GuestAuth extends AuthController {
 }
 
 void main() {
-  testWidgets('boots to the Lessons tab with an empty state', (tester) async {
+  testWidgets('boots to Home with an empty announcements state', (tester) async {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
           authControllerProvider.overrideWith(_GuestAuth.new),
-          lessonsListProvider.overrideWith(
-            (ref) async => const Paginated<Teaching>(count: 0, results: []),
+          announcementsProvider.overrideWith(
+            (ref) async => const Paginated<Announcement>(count: 0, results: []),
           ),
         ],
         child: const JcfApp(),
@@ -27,7 +27,8 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.text('Lessons'), findsWidgets); // app bar + nav label
-    expect(find.text('No lessons yet.'), findsOneWidget);
+    expect(find.text('Welcome'), findsOneWidget);
+    expect(find.text('No announcements yet.'), findsOneWidget);
+    expect(find.text('Home'), findsWidgets); // nav label
   });
 }
