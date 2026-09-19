@@ -50,6 +50,10 @@ detail) lives in `FEATURES.md`; architecture & conventions in `HANDOVER.md`.
       notification inbox with mark-read; appointments list + booking
 - [x] **Profile (v0)** — member details, centre, status badges, sign out
 - [x] **Onboarding** — splash + 3-page carousel (seen-once)
+- [x] **Groups (backend + admin + API)** — admin-created groups with
+      approval-gated join requests: dashboard pages (`/groups/`, request
+      queue, roster), `/api/mobile/v1/groups/` (+ `/mine/`, `/join/`),
+      capacity enforcement, in-app decision notifications
 
 ---
 
@@ -111,6 +115,8 @@ detail) lives in `FEATURES.md`; architecture & conventions in `HANDOVER.md`.
 - [ ] Centre finder — map, contact info, service times (centres data exists)
 - [ ] Volunteering — service tasks/opportunities, sign-up, hours logging
 - [ ] Testimonies — read + submit with staff moderation
+- [ ] Groups Flutter screens — browse groups, request to join (with note),
+      my groups, request-status states (API is live)
 
 ## 🟦 Track 5 — Give & shop
 

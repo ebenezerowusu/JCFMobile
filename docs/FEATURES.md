@@ -111,6 +111,12 @@ what makes the app a companion rather than a content shelf.
   members / students), pinned announcements, personal notification inbox.
 - **Centre finder** — all JCF centres on a map with contact info, service
   times, directions.
+- **Groups** — admin-created member/student groups (optionally tied to a
+  centre, with an optional member cap). Members browse active groups and
+  **request to join** (with an optional note); the request stays pending
+  until staff approve it — approval, not self-join, is what makes
+  membership. Declined members may request again; decisions arrive as in-app
+  notifications; "My groups" lists the groups you belong to.
 - **Volunteering** — see service opportunities/tasks, sign up, log service
   hours.
 - **Testimonies** — read (and submit) member testimonies, moderated by staff.
@@ -181,16 +187,24 @@ content) plus the new consoles below. Staff sign in with staff accounts (not
 member OTP), with role-based access. The separate Flutter desktop app is
 retired.
 
-## 1. Master's console
+## 1. Groups management
+- Create and manage member groups (name, description, centre, capacity,
+  active flag) at `/groups/`.
+- Per-group **approval queue**: pending join requests with the requester's
+  note — approve or decline; approved roster with remove; declined history.
+  Capacity enforced at approval; every decision records who and when, and
+  notifies the member in-app.
+
+## 2. Master's console
 - The spiritual master's day view: consultation calendar and the
   guidance-request queue (read, respond, mark answered).
 
-## 2. Content studio
+## 3. Content studio
 - Upload and manage teachings (bulk media upload to R2 with progress),
   organize series, schedule announcements and daily-inspiration entries ahead
   of time.
 
-## 3. Live session console
+## 4. Live session console
 - Run online streams and sessions: start/end the broadcast, monitor viewers,
   and manage the **Q&A question queue** — approve, merge duplicates, reorder,
   mark answered as the master responds on stream.
@@ -198,7 +212,7 @@ retired.
   and record attendance for online meetings.
 - Moderate live chat when enabled for a stream.
 
-## 4. Reports
+## 5. Reports
 - Dashboards: attendance trends, registrations, giving,
   shop sales, practice-adoption per centre; export to CSV/PDF.
 

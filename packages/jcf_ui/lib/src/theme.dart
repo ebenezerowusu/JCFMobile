@@ -12,6 +12,13 @@ class JcfColors {
   static const bodyText = Color(0xFF3E3B46); // paragraph + UI body
   static const mutedText = Color(0xFF626168); // dates, meta, secondary
   static const articleLink = Color(0xFF003A68); // article titles, links
+
+  // 2026 app design language (design/ folder): cosmic blues, light surfaces.
+  static const cosmicDeep = Color(0xFF060E4A); // space edges, darkest blue
+  static const cosmicBlue = Color(0xFF1230B4); // splash glow, logo globe field
+  static const skyPrimary = Color(0xFF2E6BF0); // CTAs, links, active states
+  static const skySurface = Color(0xFFEAF2FD); // light screen backgrounds
+  static const inkOnLight = Color(0xFF122B63); // headlines on light surfaces
 }
 
 class JcfRadii {

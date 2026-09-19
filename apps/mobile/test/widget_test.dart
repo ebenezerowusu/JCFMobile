@@ -11,10 +11,11 @@ void main() {
     await tester.pumpWidget(const ProviderScope(child: JcfApp()));
 
     // Splash is visible first.
-    expect(find.text('Jan Cosmic Foundation'), findsOneWidget);
+    expect(find.text('JAN COSMIC FOUNDATION'), findsOneWidget);
+    expect(find.text('Freedom. Awake and aware.'), findsOneWidget);
 
     // Advance past the splash delay -> onboarding.
-    await tester.pump(const Duration(seconds: 2));
+    await tester.pump(const Duration(milliseconds: 2100));
     await tester.pumpAndSettle();
 
     expect(find.text('Learn & grow'), findsOneWidget);

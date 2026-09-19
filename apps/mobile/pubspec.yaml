@@ -104,10 +104,10 @@ flutter:
 
 # --- Branding asset generation ---
 flutter_native_splash:
-  color: "#141667"
+  color: "#060E4A"
   image: assets/images/logo.png
   android_12:
-    color: "#141667"
+    color: "#060E4A"
     image: assets/images/logo.png
   android: true
   ios: true
@@ -117,5 +117,5 @@ flutter_launcher_icons:
   ios: true
   remove_alpha_ios: true
   image_path: "assets/images/logo.png"
-  adaptive_icon_background: "#141667"
+  adaptive_icon_background: "#060E4A"
   adaptive_icon_foreground: "assets/images/logo.png"
