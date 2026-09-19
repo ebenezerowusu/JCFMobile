@@ -7,19 +7,29 @@ import '../../core/brand.dart';
 import 'onboarding_prefs.dart';
 
 class _Page {
-  const _Page(this.icon, this.title, this.body);
-  final IconData icon;
+  const _Page(this.asset, this.title, this.body);
+  final String asset;
   final String title;
   final String body;
 }
 
+/// Onboarding carousel (designs/3-5): hero comp, headline, dots, Next/Skip.
 const _pages = <_Page>[
-  _Page(Icons.menu_book, 'Learn & grow',
-      'Watch and listen to teachings. Members unlock the full premium library.'),
-  _Page(Icons.event_available, 'Join programs',
-      'Discover retreats and programs, register, and pay securely in the app.'),
-  _Page(Icons.volunteer_activism, 'Support the mission',
-      'Give to causes and stay connected with announcements and appointments.'),
+  _Page(
+    'assets/images/onboard_wisdom.jpg',
+    'Wisdom for the journey',
+    'Watch, listen and read teachings that\nsupport awareness and conscious living.',
+  ),
+  _Page(
+    'assets/images/onboard_innerspace.jpg',
+    'Go deeper with InnerSpace',
+    'Build a steady practice. Follow your progress\nand move through a guided path of inner study.',
+  ),
+  _Page(
+    'assets/images/onboard_serve.jpg',
+    'Learn, gather and serve',
+    'Join programmes, connect with centres\nand help carry the work forward.',
+  ),
 ];
 
 class OnboardingScreen extends ConsumerStatefulWidget {
@@ -55,22 +65,51 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     }
   }
 
+  void _back() {
+    _controller.previousPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOut,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final isLast = _index == _pages.length - 1;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           children: [
-            Align(
-              alignment: Alignment.topRight,
-              child: TextButton(
-                onPressed: _finish,
-                child: const Text('Skip'),
+            // Top bar: brand mark left, page counter right.
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
+              child: Row(
+                children: [
+                  const JcfLogo(size: 44),
+                  const SizedBox(width: 10),
+                  const Text(
+                    'Jan Cosmic\nFoundation',
+                    style: TextStyle(
+                      color: JcfColors.inkOnLight,
+                      fontFamily: JcfTypography.bodyFamily,
+                      fontSize: 15,
+                      height: 1.15,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const Spacer(),
+                  Text(
+                    '${_index + 1} of ${_pages.length}',
+                    style: const TextStyle(
+                      color: JcfColors.inkOnLight,
+                      fontFamily: JcfTypography.bodyFamily,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 8),
-            const JcfLogo(size: 64),
             Expanded(
               child: PageView.builder(
                 controller: _controller,
@@ -78,30 +117,51 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                 itemCount: _pages.length,
                 itemBuilder: (context, i) {
                   final p = _pages[i];
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 32),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(p.icon, size: 96, color: JcfColors.gold),
-                        const SizedBox(height: 32),
-                        Text(
-                          p.title,
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.headlineMedium,
+                  return Column(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 8),
+                          child: Image.asset(p.asset, fit: BoxFit.contain),
                         ),
-                        const SizedBox(height: 16),
-                        Text(
-                          p.body,
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 28),
+                        child: Column(
+                          children: [
+                            Text(
+                              p.title,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                color: JcfColors.inkOnLight,
+                                fontFamily: JcfTypography.bodyFamily,
+                                fontSize: 30,
+                                fontWeight: FontWeight.w800,
+                                height: 1.15,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            Text(
+                              p.body,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                color: Color(0xFF54689B),
+                                fontFamily: JcfTypography.bodyFamily,
+                                fontSize: 16,
+                                height: 1.4,
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 16),
+                    ],
                   );
                 },
               ),
             ),
+            // Dots.
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -109,24 +169,53 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 250),
                     margin: const EdgeInsets.symmetric(horizontal: 4),
-                    height: 8,
-                    width: i == _index ? 24 : 8,
+                    height: 9,
+                    width: i == _index ? 9 : 9,
                     decoration: BoxDecoration(
-                      color: i == _index ? JcfColors.heroNavy : JcfColors.mutedText,
-                      borderRadius: BorderRadius.circular(4),
+                      color: i == _index
+                          ? JcfColors.skyPrimary
+                          : const Color(0xFFC6D6F2),
+                      borderRadius: BorderRadius.circular(5),
                     ),
                   ),
               ],
             ),
-            const SizedBox(height: 24),
+            // CTA + secondary action.
             Padding(
-              padding: const EdgeInsets.all(24),
-              child: SizedBox(
-                width: double.infinity,
-                child: FilledButton(
-                  onPressed: _next,
-                  child: Text(isLast ? 'Get started' : 'Next'),
-                ),
+              padding: const EdgeInsets.fromLTRB(24, 18, 24, 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  FilledButton(
+                    onPressed: _next,
+                    style: FilledButton.styleFrom(
+                      backgroundColor: JcfColors.skyPrimary,
+                      foregroundColor: Colors.white,
+                      minimumSize: const Size.fromHeight(56),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(28),
+                      ),
+                      textStyle: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: JcfTypography.bodyFamily,
+                      ),
+                    ),
+                    child: Text(isLast ? 'Continue' : 'Next'),
+                  ),
+                  TextButton(
+                    onPressed: isLast ? _back : _finish,
+                    child: Text(
+                      isLast ? 'Back' : 'Skip',
+                      style: const TextStyle(
+                        color: JcfColors.skyPrimary,
+                        fontFamily: JcfTypography.bodyFamily,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

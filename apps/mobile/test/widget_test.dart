@@ -26,7 +26,19 @@ void main() {
     // Begin -> onboarding carousel.
     await tester.tap(find.text('Begin'));
     await tester.pumpAndSettle();
-    expect(find.text('Learn & grow'), findsOneWidget);
-    expect(find.text('Get started'), findsNothing); // not on the first page
+    expect(find.text('Wisdom for the journey'), findsOneWidget);
+    expect(find.text('1 of 3'), findsOneWidget);
+    expect(find.text('Skip'), findsOneWidget);
+    expect(find.text('Continue'), findsNothing); // not on the first page
+
+    // Walk to the last page: Next label becomes Continue, Skip becomes Back.
+    await tester.tap(find.text('Next'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Next'));
+    await tester.pumpAndSettle();
+    expect(find.text('Learn, gather and serve'), findsOneWidget);
+    expect(find.text('3 of 3'), findsOneWidget);
+    expect(find.text('Continue'), findsOneWidget);
+    expect(find.text('Back'), findsOneWidget);
   });
 }
