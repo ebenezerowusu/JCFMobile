@@ -10,6 +10,7 @@ import '../features/lessons/lesson_detail_screen.dart';
 import '../features/lessons/lessons_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../features/onboarding/splash_screen.dart';
+import '../features/onboarding/welcome_screen.dart';
 import '../features/profile/profile_screen.dart';
 import '../features/programs/program_detail_screen.dart';
 import '../features/programs/programs_screen.dart';
@@ -26,6 +27,7 @@ GoRouter createRouter() {
     initialLocation: '/splash',
     routes: [
       GoRoute(path: '/splash', builder: (_, _) => const SplashScreen()),
+      GoRoute(path: '/welcome', builder: (_, _) => const WelcomeScreen()),
       GoRoute(path: '/onboarding', builder: (_, _) => const OnboardingScreen()),
       GoRoute(path: '/login', builder: (_, _) => const LoginScreen()),
       GoRoute(path: '/notifications', builder: (_, _) => const NotificationsScreen()),

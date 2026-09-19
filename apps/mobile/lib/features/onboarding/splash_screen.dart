@@ -32,7 +32,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     ]);
     if (!mounted) return;
     final seen = results.first as bool;
-    context.go(seen ? '/home' : '/onboarding');
+    context.go(seen ? '/home' : '/welcome');
   }
 
   @override
