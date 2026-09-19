@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -40,5 +41,25 @@ void main() {
     expect(find.text('3 of 3'), findsOneWidget);
     expect(find.text('Continue'), findsOneWidget);
     expect(find.text('Back'), findsOneWidget);
+
+    // Continue -> language chooser.
+    await tester.tap(find.text('Continue'));
+    await tester.pumpAndSettle();
+    expect(find.text('Choose your language'), findsOneWidget);
+    expect(find.text('English'), findsOneWidget);
+
+    // Select Français; it becomes the highlighted choice.
+    await tester.tap(find.text('Français'));
+    await tester.pump();
+    expect(find.byIcon(Icons.check), findsOneWidget);
+
+    // More languages reveals the coming-soon set (scroll down to it).
+    await tester.tap(find.text('More languages'));
+    await tester.pump();
+    await tester.dragUntilVisible(
+        find.text('Twi'), find.byType(ListView), const Offset(0, -200));
+    await tester.pump();
+    expect(find.text('Twi'), findsOneWidget);
+    expect(find.text('Coming soon'), findsWidgets);
   });
 }

@@ -49,14 +49,16 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     super.dispose();
   }
 
-  Future<void> _finish() async {
+  /// Skip drops straight to home; finishing the carousel continues the
+  /// designed flow into the language chooser (which marks onboarding seen).
+  Future<void> _skip() async {
     await ref.read(onboardingPrefsProvider).markSeen();
     if (mounted) context.go('/home');
   }
 
   void _next() {
     if (_index == _pages.length - 1) {
-      _finish();
+      context.go('/language');
     } else {
       _controller.nextPage(
         duration: const Duration(milliseconds: 300),
@@ -204,7 +206,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                     child: Text(isLast ? 'Continue' : 'Next'),
                   ),
                   TextButton(
-                    onPressed: isLast ? _back : _finish,
+                    onPressed: isLast ? _back : _skip,
                     child: Text(
                       isLast ? 'Back' : 'Skip',
                       style: const TextStyle(
