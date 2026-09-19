@@ -61,5 +61,18 @@ void main() {
     await tester.pump();
     expect(find.text('Twi'), findsOneWidget);
     expect(find.text('Coming soon'), findsWidgets);
+    await tester.pumpAndSettle(); // let list momentum die before tapping
+
+    // Continue -> path chooser.
+    await tester.tap(find.text('Continue'));
+    await tester.pumpAndSettle();
+    expect(find.text('How would you like\nto continue?'), findsOneWidget);
+    expect(find.text('Member or Student'), findsOneWidget);
+    expect(find.text('Continue as Guest'), findsOneWidget);
+
+    // Sign In -> OTP login screen.
+    await tester.tap(find.text('Sign In'));
+    await tester.pumpAndSettle();
+    expect(find.text('Member sign in'), findsOneWidget);
   });
 }

@@ -9,6 +9,7 @@ import '../features/home/home_screen.dart';
 import '../features/lessons/lesson_detail_screen.dart';
 import '../features/lessons/lessons_screen.dart';
 import '../features/onboarding/language_screen.dart';
+import '../features/onboarding/path_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../features/onboarding/splash_screen.dart';
 import '../features/onboarding/welcome_screen.dart';
@@ -31,6 +32,7 @@ GoRouter createRouter() {
       GoRoute(path: '/welcome', builder: (_, _) => const WelcomeScreen()),
       GoRoute(path: '/onboarding', builder: (_, _) => const OnboardingScreen()),
       GoRoute(path: '/language', builder: (_, _) => const LanguageScreen()),
+      GoRoute(path: '/path', builder: (_, _) => const PathScreen()),
       GoRoute(path: '/login', builder: (_, _) => const LoginScreen()),
       GoRoute(path: '/notifications', builder: (_, _) => const NotificationsScreen()),
       GoRoute(path: '/appointments', builder: (_, _) => const AppointmentsScreen()),
