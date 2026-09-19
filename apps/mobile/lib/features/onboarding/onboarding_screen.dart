@@ -23,7 +23,7 @@ const _pages = <_Page>[
   _Page(
     'assets/images/onboard_innerspace.jpg',
     'Go deeper with InnerSpace',
-    'Build a steady practice. Follow your progress\nand move through a guided path of inner study.',
+    'Build a steady practice, follow your progress\nand move through a guided path of inner study.',
   ),
   _Page(
     'assets/images/onboard_serve.jpg',

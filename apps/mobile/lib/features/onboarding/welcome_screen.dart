@@ -52,8 +52,8 @@ class WelcomeScreen extends ConsumerWidget {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        Colors.white.withValues(alpha: 0.86),
-                        JcfColors.skySurface.withValues(alpha: 0.96),
+                        Colors.white.withValues(alpha: 0.94),
+                        JcfColors.skySurface.withValues(alpha: 0.98),
                       ],
                     ),
                   ),
