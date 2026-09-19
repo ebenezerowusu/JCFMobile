@@ -8,6 +8,10 @@ The backend / API layer is the Django app **JCFAdmin** (DRF + PostgreSQL +
 Paystack). Flutter clients talk to it over HTTP and never connect to the
 database directly.
 
+**Docs:** [docs/FEATURES.md](docs/FEATURES.md) (detailed feature reference,
+built + planned) · [docs/DEVELOPMENT_CHECKLIST.md](docs/DEVELOPMENT_CHECKLIST.md)
+(build order) · [HANDOVER.md](HANDOVER.md) (architecture & conventions).
+
 ## Structure
 
 ```
