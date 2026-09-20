@@ -70,5 +70,14 @@
   "didntReceiveCode": "Não recebeu o código?",
   "resendHelpSub": "Verifique suas mensagens ou solicite um\nnovo código de verificação.",
   "resendCode": "Reenviar código",
-  "contactSupport": "Falar com o suporte"
+  "contactSupport": "Falar com o suporte",
+  "recordNotFoundTitle": "Não encontramos\nseu registro",
+  "recordNotFoundSub": "O telefone ou e-mail informado não está vinculado a\num registro aprovado de membro ou estudante da JCF.",
+  "tryAnotherDetail": "Tentar outro dado",
+  "approvalPendingChip": "Aprovação pendente",
+  "accessReviewTitle": "Seu acesso está\nsendo analisado",
+  "accessReviewSub": "Seu contato foi encontrado, mas seu acesso de\nmembro ou estudante ainda não foi aprovado.",
+  "browseWhileWaiting": "Você pode continuar navegando pelos\nensinamentos públicos enquanto espera.",
+  "checkAgain": "Verificar novamente",
+  "stillPending": "Ainda pendente — verifique novamente em breve."
 }

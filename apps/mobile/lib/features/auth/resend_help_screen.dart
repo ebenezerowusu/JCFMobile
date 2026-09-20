@@ -5,9 +5,8 @@ import 'package:jcf_ui/jcf_ui.dart';
 import '../../l10n/app_localizations.dart';
 import '../../core/launch.dart';
 import 'auth_controller.dart';
+import 'auth_outcome_screens.dart';
 import 'auth_widgets.dart';
-
-const _supportEmail = 'support@jancosmicfoundation.org';
 
 /// "Didn't receive the code?" (design/13). Pops with the new retry-after
 /// seconds when a code was resent.
@@ -86,7 +85,7 @@ class _ResendHelpScreenState extends ConsumerState<ResendHelpScreen> {
               AuthLink(
                 label: t.contactSupport,
                 underline: true,
-                onPressed: () => openExternalUrl('mailto:$_supportEmail'),
+                onPressed: () => openExternalUrl('mailto:$kSupportEmail'),
               ),
               const SizedBox(height: 16),
             ],

@@ -5,6 +5,7 @@ import 'package:jcf_ui/jcf_ui.dart';
 
 import '../../l10n/app_localizations.dart';
 import 'auth_controller.dart';
+import 'auth_outcome_screens.dart';
 import 'auth_widgets.dart';
 import 'verify_code_screen.dart';
 
@@ -74,14 +75,19 @@ class _SignInIdentifierScreenState
           .read(authControllerProvider.notifier)
           .requestCode(_identifier);
       if (!mounted) return;
-      await Navigator.of(context).push(MaterialPageRoute(
-        builder: (_) => VerifyCodeScreen(
-          identifier: _identifier,
-          isPhone: widget.isPhone,
-          maskedDestination: result.maskedDestination,
-          retryAfter: result.retryAfter,
-        ),
-      ));
+      final Widget next = switch (result.status) {
+        'not_found' => const RecordNotFoundScreen(),
+        'pending' => ApprovalPendingScreen(
+            identifier: _identifier, isPhone: widget.isPhone),
+        _ => VerifyCodeScreen(
+            identifier: _identifier,
+            isPhone: widget.isPhone,
+            maskedDestination: result.maskedDestination,
+            retryAfter: result.retryAfter,
+          ),
+      };
+      await Navigator.of(context)
+          .push(MaterialPageRoute(builder: (_) => next));
     } catch (_) {
       if (mounted) {
         setState(() => _error = AppLocalizations.of(context)!.genericError);

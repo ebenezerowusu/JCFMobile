@@ -529,6 +529,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Contact Support'**
   String get contactSupport;
+
+  /// No description provided for @recordNotFoundTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t find\nyour record'**
+  String get recordNotFoundTitle;
+
+  /// No description provided for @recordNotFoundSub.
+  ///
+  /// In en, this message translates to:
+  /// **'The phone number or email you entered is not\nlinked to an approved JCF member or student record.'**
+  String get recordNotFoundSub;
+
+  /// No description provided for @tryAnotherDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Try Another Detail'**
+  String get tryAnotherDetail;
+
+  /// No description provided for @approvalPendingChip.
+  ///
+  /// In en, this message translates to:
+  /// **'Approval pending'**
+  String get approvalPendingChip;
+
+  /// No description provided for @accessReviewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your access is\nbeing reviewed'**
+  String get accessReviewTitle;
+
+  /// No description provided for @accessReviewSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Your contact was found, but your member or\nstudent access has not been approved yet.'**
+  String get accessReviewSub;
+
+  /// No description provided for @browseWhileWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'You can continue browsing\npublic teachings while you wait.'**
+  String get browseWhileWaiting;
+
+  /// No description provided for @checkAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Check Again'**
+  String get checkAgain;
+
+  /// No description provided for @stillPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Still pending — please check back soon.'**
+  String get stillPending;
 }
 
 class _AppLocalizationsDelegate

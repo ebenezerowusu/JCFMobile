@@ -242,4 +242,35 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get contactSupport => 'Support kontaktieren';
+
+  @override
+  String get recordNotFoundTitle =>
+      'Wir konnten deinen\nDatensatz nicht finden';
+
+  @override
+  String get recordNotFoundSub =>
+      'Die eingegebene Telefonnummer oder E-Mail ist mit\nkeinem genehmigten JCF-Datensatz verknüpft.';
+
+  @override
+  String get tryAnotherDetail => 'Andere Angabe versuchen';
+
+  @override
+  String get approvalPendingChip => 'Genehmigung ausstehend';
+
+  @override
+  String get accessReviewTitle => 'Dein Zugang\nwird geprüft';
+
+  @override
+  String get accessReviewSub =>
+      'Dein Kontakt wurde gefunden, aber dein Mitglieds-\noder Studentenzugang wurde noch nicht genehmigt.';
+
+  @override
+  String get browseWhileWaiting =>
+      'Du kannst währenddessen weiter die\nöffentlichen Lehren durchstöbern.';
+
+  @override
+  String get checkAgain => 'Erneut prüfen';
+
+  @override
+  String get stillPending => 'Noch ausstehend — bitte später erneut prüfen.';
 }

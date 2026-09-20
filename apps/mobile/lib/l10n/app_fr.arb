@@ -70,5 +70,14 @@
   "didntReceiveCode": "Vous n'avez pas reçu le code ?",
   "resendHelpSub": "Vérifiez vos messages ou demandez un\nnouveau code de vérification.",
   "resendCode": "Renvoyer le code",
-  "contactSupport": "Contacter l'assistance"
+  "contactSupport": "Contacter l'assistance",
+  "recordNotFoundTitle": "Nous n'avons pas trouvé\nvotre dossier",
+  "recordNotFoundSub": "Le numéro de téléphone ou l'e-mail saisi n'est lié à\naucun dossier approuvé de membre ou d'étudiant JCF.",
+  "tryAnotherDetail": "Essayer une autre donnée",
+  "approvalPendingChip": "Approbation en attente",
+  "accessReviewTitle": "Votre accès est\nen cours d'examen",
+  "accessReviewSub": "Votre contact a été trouvé, mais votre accès membre\nou étudiant n'a pas encore été approuvé.",
+  "browseWhileWaiting": "Vous pouvez continuer à parcourir les\nenseignements publics en attendant.",
+  "checkAgain": "Vérifier à nouveau",
+  "stillPending": "Toujours en attente — revenez bientôt."
 }

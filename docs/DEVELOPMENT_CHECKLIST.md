@@ -63,6 +63,10 @@ detail) lives in `FEATURES.md`; architecture & conventions in `HANDOVER.md`.
       entry, six-box verify with masked destination + honest 30s resend
       countdown (server-enforced), didn't-receive/resend screen; API returns
       masked_destination/channel/retry_after
+- [x] **Auth outcomes designs 15-16** — record-not-found and
+      approval-pending screens; request-code now reports
+      sent/not_found/pending (per-IP throttled, 10/min, anti-enumeration)
+      with Check Again continuing into verification once approved
 - [x] **Groups (backend + admin + API)** — admin-created groups with
       approval-gated join requests: dashboard pages (`/groups/`, request
       queue, roster), `/api/mobile/v1/groups/` (+ `/mine/`, `/join/`),

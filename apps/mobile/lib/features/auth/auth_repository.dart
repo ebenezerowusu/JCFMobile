@@ -20,6 +20,7 @@ class AuthRepository {
     );
     final data = res.data ?? const {};
     return RequestCodeResult(
+      status: (data['status'] as String?) ?? 'sent',
       maskedDestination: data['masked_destination'] as String?,
       channel: data['channel'] as String?,
       retryAfter: (data['retry_after'] as num?)?.toInt() ?? 30,
@@ -66,9 +67,15 @@ final authRepositoryProvider = Provider<AuthRepository>(
 
 /// What request-code reported back (used by the verify screen).
 class RequestCodeResult {
-  const RequestCodeResult(
-      {this.maskedDestination, this.channel, required this.retryAfter});
+  const RequestCodeResult({
+    required this.status,
+    this.maskedDestination,
+    this.channel,
+    required this.retryAfter,
+  });
 
+  /// 'sent' | 'not_found' | 'pending' (designs 15/16).
+  final String status;
   final String? maskedDestination;
   final String? channel;
   final int retryAfter;

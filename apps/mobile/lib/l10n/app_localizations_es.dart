@@ -240,4 +240,34 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get contactSupport => 'Contactar con soporte';
+
+  @override
+  String get recordNotFoundTitle => 'No encontramos\ntu registro';
+
+  @override
+  String get recordNotFoundSub =>
+      'El teléfono o correo introducido no está vinculado a\nun registro aprobado de miembro o estudiante de JCF.';
+
+  @override
+  String get tryAnotherDetail => 'Probar con otro dato';
+
+  @override
+  String get approvalPendingChip => 'Aprobación pendiente';
+
+  @override
+  String get accessReviewTitle => 'Tu acceso está\nsiendo revisado';
+
+  @override
+  String get accessReviewSub =>
+      'Encontramos tu contacto, pero tu acceso de miembro\no estudiante aún no ha sido aprobado.';
+
+  @override
+  String get browseWhileWaiting =>
+      'Puedes seguir explorando las\nenseñanzas públicas mientras esperas.';
+
+  @override
+  String get checkAgain => 'Comprobar de nuevo';
+
+  @override
+  String get stillPending => 'Aún pendiente: vuelve a intentarlo pronto.';
 }

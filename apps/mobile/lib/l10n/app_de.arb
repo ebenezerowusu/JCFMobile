@@ -70,5 +70,14 @@
   "didntReceiveCode": "Code nicht erhalten?",
   "resendHelpSub": "Prüfe deine Nachrichten oder fordere einen\nneuen Bestätigungscode an.",
   "resendCode": "Code erneut senden",
-  "contactSupport": "Support kontaktieren"
+  "contactSupport": "Support kontaktieren",
+  "recordNotFoundTitle": "Wir konnten deinen\nDatensatz nicht finden",
+  "recordNotFoundSub": "Die eingegebene Telefonnummer oder E-Mail ist mit\nkeinem genehmigten JCF-Datensatz verknüpft.",
+  "tryAnotherDetail": "Andere Angabe versuchen",
+  "approvalPendingChip": "Genehmigung ausstehend",
+  "accessReviewTitle": "Dein Zugang\nwird geprüft",
+  "accessReviewSub": "Dein Kontakt wurde gefunden, aber dein Mitglieds-\noder Studentenzugang wurde noch nicht genehmigt.",
+  "browseWhileWaiting": "Du kannst währenddessen weiter die\nöffentlichen Lehren durchstöbern.",
+  "checkAgain": "Erneut prüfen",
+  "stillPending": "Noch ausstehend — bitte später erneut prüfen."
 }

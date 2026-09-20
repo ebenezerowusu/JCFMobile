@@ -243,4 +243,34 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get contactSupport => 'Contacter l\'assistance';
+
+  @override
+  String get recordNotFoundTitle => 'Nous n\'avons pas trouvé\nvotre dossier';
+
+  @override
+  String get recordNotFoundSub =>
+      'Le numéro de téléphone ou l\'e-mail saisi n\'est lié à\naucun dossier approuvé de membre ou d\'étudiant JCF.';
+
+  @override
+  String get tryAnotherDetail => 'Essayer une autre donnée';
+
+  @override
+  String get approvalPendingChip => 'Approbation en attente';
+
+  @override
+  String get accessReviewTitle => 'Votre accès est\nen cours d\'examen';
+
+  @override
+  String get accessReviewSub =>
+      'Votre contact a été trouvé, mais votre accès membre\nou étudiant n\'a pas encore été approuvé.';
+
+  @override
+  String get browseWhileWaiting =>
+      'Vous pouvez continuer à parcourir les\nenseignements publics en attendant.';
+
+  @override
+  String get checkAgain => 'Vérifier à nouveau';
+
+  @override
+  String get stillPending => 'Toujours en attente — revenez bientôt.';
 }
