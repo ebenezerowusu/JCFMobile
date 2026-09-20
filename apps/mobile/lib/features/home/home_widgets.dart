@@ -477,7 +477,7 @@ class SectionTitle extends StatelessWidget {
             style: const TextStyle(
               color: JcfColors.inkOnLight,
               fontFamily: JcfTypography.bodyFamily,
-              fontSize: 22,
+              fontSize: 18.5,
               fontWeight: FontWeight.w800,
             ),
           ),
@@ -485,13 +485,24 @@ class SectionTitle extends StatelessWidget {
         if (onSeeAll != null)
           TextButton(
             onPressed: onSeeAll,
-            child: Text(
-              t.seeAll,
-              style: const TextStyle(
-                color: JcfColors.skyPrimary,
-                fontFamily: JcfTypography.bodyFamily,
-                fontWeight: FontWeight.w700,
-              ),
+            style: TextButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 6),
+                visualDensity: VisualDensity.compact),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  t.seeAll,
+                  style: const TextStyle(
+                    color: JcfColors.skyPrimary,
+                    fontFamily: JcfTypography.bodyFamily,
+                    fontSize: 13.5,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const Icon(Icons.chevron_right_rounded,
+                    size: 17, color: JcfColors.skyPrimary),
+              ],
             ),
           ),
       ],
@@ -525,48 +536,71 @@ class JourneyCard extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(18),
         onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.all(12),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(18),
           child: Stack(
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CircleAvatar(
-                    radius: 20,
-                    backgroundColor: tint,
-                    child: Icon(icon, color: Colors.white, size: 22),
+              // Soft halo blob behind the icon, as in the comp.
+              PositionedDirectional(
+                start: 26,
+                top: -14,
+                child: Container(
+                  width: 84,
+                  height: 62,
+                  decoration: BoxDecoration(
+                    color: tint.withValues(alpha: .14),
+                    borderRadius: BorderRadius.circular(40),
                   ),
-                  const SizedBox(height: 10),
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      color: JcfColors.inkOnLight,
-                      fontFamily: JcfTypography.bodyFamily,
-                      fontSize: 13.5,
-                      height: 1.15,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    sub,
-                    style: const TextStyle(
-                      color: _sub,
-                      fontFamily: JcfTypography.bodyFamily,
-                      fontSize: 11.5,
-                      height: 1.2,
-                    ),
-                  ),
-                ],
+                ),
               ),
-              const PositionedDirectional(
-                end: 0,
-                top: 0,
-                bottom: 0,
-                child: Center(
-                  child: Icon(Icons.chevron_right_rounded,
-                      size: 16, color: _sub),
+              Padding(
+                padding: const EdgeInsets.all(9),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CircleAvatar(
+                      radius: 21,
+                      backgroundColor: tint,
+                      child: Icon(icon, color: Colors.white, size: 23),
+                    ),
+                    const SizedBox(height: 12),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: AlignmentDirectional.centerStart,
+                      child: Text(
+                        title,
+                        maxLines: 1,
+                        style: const TextStyle(
+                          color: JcfColors.inkOnLight,
+                          fontFamily: JcfTypography.bodyFamily,
+                          fontSize: 12.5,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            sub.replaceAll('\n', ' '),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              color: _sub,
+                              fontFamily: JcfTypography.bodyFamily,
+                              fontSize: 8.5,
+                              letterSpacing: -0.2,
+                              height: 1.35,
+                            ),
+                          ),
+                        ),
+                        const Icon(Icons.chevron_right_rounded,
+                            size: 15, color: JcfColors.skyPrimary),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -664,7 +698,7 @@ class LiveUpcomingCard extends StatelessWidget {
                       style: const TextStyle(
                         color: _sub,
                         fontFamily: JcfTypography.bodyFamily,
-                        fontSize: 13.5,
+                        fontSize: 12.5,
                         height: 1.3,
                       ),
                     ),
@@ -826,7 +860,7 @@ class TeachingCard extends StatelessWidget {
                       style: const TextStyle(
                         color: JcfColors.inkOnLight,
                         fontFamily: JcfTypography.bodyFamily,
-                        fontSize: 16,
+                        fontSize: 15,
                         height: 1.2,
                         fontWeight: FontWeight.w800,
                       ),
