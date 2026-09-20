@@ -736,4 +736,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noAnnouncements => 'No announcements yet. Check back soon.';
+
+  @override
+  String get headerTagline => 'Awareness for a Better Tomorrow';
+
+  @override
+  String get searchTitle => 'Search';
 }

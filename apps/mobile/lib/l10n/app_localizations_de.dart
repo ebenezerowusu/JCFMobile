@@ -745,4 +745,10 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get noAnnouncements =>
       'Noch keine Ankündigungen. Schau bald wieder vorbei.';
+
+  @override
+  String get headerTagline => 'Bewusstsein für ein besseres Morgen';
+
+  @override
+  String get searchTitle => 'Suche';
 }

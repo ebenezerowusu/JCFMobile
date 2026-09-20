@@ -338,5 +338,7 @@
   "chipMembers": "Members",
   "chipStudents": "Students",
   "pinnedAnnouncement": "Pinned Announcement",
-  "noAnnouncements": "No announcements yet. Check back soon."
+  "noAnnouncements": "No announcements yet. Check back soon.",
+  "headerTagline": "Awareness for a Better Tomorrow",
+  "searchTitle": "Search"
 }

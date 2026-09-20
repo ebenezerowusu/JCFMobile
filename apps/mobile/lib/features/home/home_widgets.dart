@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:jcf_models/jcf_models.dart';
 import 'package:jcf_ui/jcf_ui.dart';
 
 import '../../l10n/app_localizations.dart';
 import '../../core/brand.dart';
+import '../activities/activities_repository.dart';
 import '../inspiration/inspiration_detail_screen.dart';
 import '../inspiration/inspiration_repository.dart';
 
@@ -13,28 +15,75 @@ const _muted = Color(0xFF9AA7C7);
 
 /// Guest header: logo + wordmark (design/19).
 class BrandHeader extends StatelessWidget {
-  const BrandHeader({super.key});
+  const BrandHeader({super.key, this.onSearch, this.onBell});
+
+  final VoidCallback? onSearch;
+  final VoidCallback? onBell;
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
     return Row(
       children: [
-        const JcfLogo(size: 56),
+        const JcfLogo(size: 52),
         const SizedBox(width: 10),
-        const Expanded(
-          child: Text(
-            'JAN COSMIC\nFOUNDATION',
-            style: TextStyle(
-              color: JcfColors.inkOnLight,
-              fontFamily: JcfTypography.bodyFamily,
-              fontSize: 17,
-              height: 1.15,
-              letterSpacing: 1.5,
-              fontWeight: FontWeight.w800,
-            ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'JAN COSMIC\nFOUNDATION',
+                style: TextStyle(
+                  color: JcfColors.inkOnLight,
+                  fontFamily: JcfTypography.bodyFamily,
+                  fontSize: 16,
+                  height: 1.12,
+                  letterSpacing: 1.5,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                t.headerTagline,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  color: _sub,
+                  fontFamily: JcfTypography.bodyFamily,
+                  fontSize: 12,
+                ),
+              ),
+            ],
           ),
         ),
+        if (onSearch != null) _HeaderIconButton(
+            icon: Icons.search_rounded, onTap: onSearch!),
+        if (onBell != null) ...[
+          const SizedBox(width: 8),
+          _HeaderIconButton(
+              icon: Icons.notifications_none_rounded, onTap: onBell!),
+        ],
       ],
+    );
+  }
+}
+
+class _HeaderIconButton extends StatelessWidget {
+  const _HeaderIconButton({required this.icon, required this.onTap});
+
+  final IconData icon;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(23),
+      onTap: onTap,
+      child: CircleAvatar(
+        radius: 21,
+        backgroundColor: const Color(0xFFE3EEFF),
+        child: Icon(icon, color: JcfColors.inkOnLight, size: 22),
+      ),
     );
   }
 }
@@ -236,6 +285,178 @@ class InspirationHero extends StatelessWidget {
   }
 }
 
+/// Guest-home hero (design/19): cosmic photo card with the daily quote,
+/// swipeable through the last few inspirations, page dots below.
+class InspirationHeroCarousel extends StatefulWidget {
+  const InspirationHeroCarousel({super.key, required this.items});
+
+  final List<Inspiration> items;
+
+  @override
+  State<InspirationHeroCarousel> createState() =>
+      _InspirationHeroCarouselState();
+}
+
+class _InspirationHeroCarouselState extends State<InspirationHeroCarousel> {
+  int _page = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final items = widget.items;
+    return Column(
+      children: [
+        SizedBox(
+          height: 196,
+          child: items.isEmpty
+              ? const _HeroSlide(inspiration: null)
+              : PageView(
+                  onPageChanged: (i) => setState(() => _page = i),
+                  children: [
+                    for (final item in items) _HeroSlide(inspiration: item),
+                  ],
+                ),
+        ),
+        if (items.length > 1) ...[
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              for (var i = 0; i < items.length; i++)
+                Container(
+                  width: i == _page ? 10 : 8,
+                  height: i == _page ? 10 : 8,
+                  margin: const EdgeInsets.symmetric(horizontal: 4),
+                  decoration: BoxDecoration(
+                    color: i == _page
+                        ? JcfColors.skyPrimary
+                        : const Color(0xFFB9C9F5),
+                    shape: BoxShape.circle,
+                  ),
+                ),
+            ],
+          ),
+        ],
+      ],
+    );
+  }
+}
+
+class _HeroSlide extends StatelessWidget {
+  const _HeroSlide({required this.inspiration});
+
+  final Inspiration? inspiration;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
+    final quote =
+        inspiration == null ? t.defaultQuote : '“${inspiration!.quote}”';
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(22),
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          const DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [Color(0xFF0A1670), Color(0xFF1B3AB8)],
+              ),
+            ),
+          ),
+          // Cosmic earth-horizon artwork, fading into the gradient on the
+          // side the quote sits on.
+          PositionedDirectional(
+            end: 0,
+            top: 0,
+            bottom: 0,
+            child: ShaderMask(
+              shaderCallback: (rect) => const LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [Colors.transparent, Colors.white],
+                stops: [0.0, 0.45],
+              ).createShader(rect),
+              blendMode: BlendMode.dstIn,
+              child: Image.asset(
+                'assets/images/hero_cosmic.png',
+                fit: BoxFit.cover,
+                alignment: AlignmentDirectional.centerEnd,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(18),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  t.dailyInspirationEyebrow,
+                  style: const TextStyle(
+                    color: Color(0xFFB9C9F5),
+                    fontFamily: JcfTypography.bodyFamily,
+                    fontSize: 11.5,
+                    letterSpacing: 2,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Expanded(
+                  child: FractionallySizedBox(
+                    alignment: AlignmentDirectional.centerStart,
+                    widthFactor: 0.64,
+                    child: Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: Text(
+                        quote,
+                        maxLines: 4,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontFamily: JcfTypography.bodyFamily,
+                          fontSize: 17.5,
+                          height: 1.22,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                FilledButton.icon(
+                  onPressed: inspiration == null
+                      ? null
+                      : () => Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => InspirationDetailScreen(
+                                inspiration: inspiration!),
+                          )),
+                  icon: const Icon(Icons.chevron_right),
+                  iconAlignment: IconAlignment.end,
+                  label: Text(t.readReflection),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: JcfColors.skyPrimary,
+                    disabledBackgroundColor: Colors.white70,
+                    disabledForegroundColor: JcfColors.skyPrimary,
+                    visualDensity: VisualDensity.compact,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(22)),
+                    textStyle: const TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontFamily: JcfTypography.bodyFamily,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class SectionTitle extends StatelessWidget {
   const SectionTitle({super.key, required this.title, this.onSeeAll});
 
@@ -303,35 +524,161 @@ class JourneyCard extends StatelessWidget {
         onTap: onTap,
         child: Padding(
           padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Stack(
             children: [
-              CircleAvatar(
-                radius: 20,
-                backgroundColor: tint,
-                child: Icon(icon, color: Colors.white, size: 22),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    radius: 20,
+                    backgroundColor: tint,
+                    child: Icon(icon, color: Colors.white, size: 22),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      color: JcfColors.inkOnLight,
+                      fontFamily: JcfTypography.bodyFamily,
+                      fontSize: 13.5,
+                      height: 1.15,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    sub,
+                    style: const TextStyle(
+                      color: _sub,
+                      fontFamily: JcfTypography.bodyFamily,
+                      fontSize: 11.5,
+                      height: 1.2,
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 10),
-              Text(
-                title,
-                style: const TextStyle(
-                  color: JcfColors.inkOnLight,
-                  fontFamily: JcfTypography.bodyFamily,
-                  fontSize: 13.5,
-                  height: 1.15,
-                  fontWeight: FontWeight.w800,
+              const PositionedDirectional(
+                end: 0,
+                top: 0,
+                bottom: 0,
+                child: Center(
+                  child: Icon(Icons.chevron_right_rounded,
+                      size: 16, color: _sub),
                 ),
               ),
-              const SizedBox(height: 4),
-              Text(
-                sub,
-                style: const TextStyle(
-                  color: _sub,
-                  fontFamily: JcfTypography.bodyFamily,
-                  fontSize: 11.5,
-                  height: 1.2,
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Live & Upcoming card (design/19): first item of the activities feed,
+/// with a LIVE SOON eyebrow when a live session is imminent.
+class LiveUpcomingCard extends StatelessWidget {
+  const LiveUpcomingCard({super.key, required this.item});
+
+  final ActivityItem item;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
+    final locale = Localizations.localeOf(context).toString();
+    final when = item.allDay
+        ? DateFormat('EEE, d MMM', locale).format(item.startsAt)
+        : DateFormat.jm(locale).format(item.startsAt);
+    final sub = item.description.isNotEmpty
+        ? item.description
+        : (item.venue.isEmpty ? t.onlineLabel : item.venue);
+
+    return Material(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(20),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(20),
+        onTap: () => item.programSlug != null
+            ? context.push('/programs/${item.programSlug}')
+            : context.push('/activities'),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Row(
+            children: [
+              const CircleAvatar(
+                radius: 22,
+                backgroundColor: Color(0xFFE3EEFF),
+                child: Icon(Icons.calendar_month_rounded,
+                    color: JcfColors.skyPrimary, size: 22),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (item.liveSoon) ...[
+                      Row(
+                        children: [
+                          Container(
+                            width: 9,
+                            height: 9,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFFE25563),
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            t.liveSoonBadge.toUpperCase(),
+                            style: const TextStyle(
+                              color: Color(0xFFE25563),
+                              fontFamily: JcfTypography.bodyFamily,
+                              fontSize: 11.5,
+                              letterSpacing: 1,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 4),
+                    ],
+                    Text(
+                      '${item.title} • $when',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        color: JcfColors.inkOnLight,
+                        fontFamily: JcfTypography.bodyFamily,
+                        fontSize: 14.5,
+                        height: 1.2,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      sub,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        color: _sub,
+                        fontFamily: JcfTypography.bodyFamily,
+                        fontSize: 13.5,
+                        height: 1.3,
+                      ),
+                    ),
+                  ],
                 ),
               ),
+              const SizedBox(width: 10),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.asset(
+                  'assets/images/live_upcoming.png',
+                  width: 82,
+                  height: 60,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              const Icon(Icons.chevron_right_rounded, color: _sub, size: 22),
             ],
           ),
         ),
@@ -427,24 +774,22 @@ class TeachingCard extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(12),
                     child: teaching.thumbnailUrl.isEmpty
-                        ? Container(
+                        ? Image.asset(
+                            'assets/images/teaching_thumb.png',
                             height: 74,
                             width: 110,
-                            color: const Color(0xFF0E1D8F),
-                            child: const Icon(Icons.play_circle_fill,
-                                color: Colors.white, size: 34),
+                            fit: BoxFit.cover,
                           )
                         : Image.network(
                             teaching.thumbnailUrl,
                             height: 74,
                             width: 110,
                             fit: BoxFit.cover,
-                            errorBuilder: (_, _, _) => Container(
+                            errorBuilder: (_, _, _) => Image.asset(
+                              'assets/images/teaching_thumb.png',
                               height: 74,
                               width: 110,
-                              color: const Color(0xFF0E1D8F),
-                              child: const Icon(Icons.play_circle_fill,
-                                  color: Colors.white, size: 34),
+                              fit: BoxFit.cover,
                             ),
                           ),
                   ),
@@ -483,17 +828,33 @@ class TeachingCard extends StatelessWidget {
                         fontWeight: FontWeight.w800,
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 3),
                     Text(
-                      teaching.format,
+                      teaching.author.isNotEmpty
+                          ? teaching.author
+                          : teaching.format,
                       style: const TextStyle(
                           color: _sub,
                           fontFamily: JcfTypography.bodyFamily,
                           fontSize: 13),
                     ),
+                    if (teaching.description.isNotEmpty) ...[
+                      const SizedBox(height: 3),
+                      Text(
+                        teaching.description,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            color: _sub,
+                            fontFamily: JcfTypography.bodyFamily,
+                            fontSize: 12.5,
+                            height: 1.3),
+                      ),
+                    ],
                   ],
                 ),
               ),
+              const Icon(Icons.more_vert_rounded, color: _muted, size: 20),
             ],
           ),
         ),
@@ -520,6 +881,13 @@ class SignInBanner extends StatelessWidget {
       ),
       child: Row(
         children: [
+          const CircleAvatar(
+            radius: 24,
+            backgroundColor: Color(0xFFCFE0FB),
+            child: Icon(Icons.groups_rounded,
+                color: JcfColors.skyPrimary, size: 26),
+          ),
+          const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

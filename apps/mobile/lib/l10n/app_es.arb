@@ -224,5 +224,7 @@
   "chipMembers": "Miembros",
   "chipStudents": "Estudiantes",
   "pinnedAnnouncement": "Anuncio fijado",
-  "noAnnouncements": "No hay anuncios todavía. Vuelve pronto."
+  "noAnnouncements": "No hay anuncios todavía. Vuelve pronto.",
+  "headerTagline": "Conciencia para un mañana mejor",
+  "searchTitle": "Buscar"
 }

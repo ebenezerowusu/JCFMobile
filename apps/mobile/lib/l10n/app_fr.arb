@@ -224,5 +224,7 @@
   "chipMembers": "Membres",
   "chipStudents": "Étudiants",
   "pinnedAnnouncement": "Annonce épinglée",
-  "noAnnouncements": "Aucune annonce pour l'instant. Revenez bientôt."
+  "noAnnouncements": "Aucune annonce pour l'instant. Revenez bientôt.",
+  "headerTagline": "La conscience pour un avenir meilleur",
+  "searchTitle": "Recherche"
 }

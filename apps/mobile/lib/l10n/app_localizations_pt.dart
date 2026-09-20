@@ -741,4 +741,10 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get noAnnouncements => 'Ainda não há comunicados. Volte em breve.';
+
+  @override
+  String get headerTagline => 'Consciência para um amanhã melhor';
+
+  @override
+  String get searchTitle => 'Pesquisar';
 }

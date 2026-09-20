@@ -5,8 +5,10 @@ import 'package:jcf_models/jcf_models.dart';
 import 'package:jcf_ui/jcf_ui.dart';
 
 import '../../l10n/app_localizations.dart';
+import '../activities/activities_repository.dart';
 import '../auth/auth_controller.dart';
 import '../engagement/engagement_repository.dart';
+import '../../core/coming_soon_screen.dart';
 import '../inspiration/inspiration_repository.dart';
 import '../lessons/lessons_repository.dart';
 import '../practice/practice_repository.dart';
@@ -38,6 +40,8 @@ class HomeScreen extends ConsumerWidget {
             ref.invalidate(lessonsListProvider);
             ref.invalidate(programsListProvider);
             ref.invalidate(inspirationTodayProvider);
+            ref.invalidate(inspirationRecentProvider);
+            ref.invalidate(upcomingActivitiesProvider);
             ref.invalidate(continueLearningProvider);
             ref.invalidate(practiceSummaryProvider);
           },
@@ -59,25 +63,33 @@ class GuestHome extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = AppLocalizations.of(context)!;
     final lessons = ref.watch(lessonsListProvider);
-    final programs = ref.watch(programsListProvider);
-    final inspiration = ref.watch(inspirationTodayProvider).asData?.value;
+    final inspirations =
+        ref.watch(inspirationRecentProvider).asData?.value ?? const [];
+    final activities =
+        ref.watch(upcomingActivitiesProvider).asData?.value ?? const [];
 
     final publicTeaching = lessons.asData?.value.results
         .where((l) => !l.isLocked)
         .cast<Teaching?>()
         .firstWhere((_) => true, orElse: () => null);
-    final nextProgram = programs.asData?.value.results
-        .cast<Program?>()
-        .firstWhere((_) => true, orElse: () => null);
+    // Lead with an imminent live session when there is one.
+    final nextActivity = activities.isEmpty
+        ? null
+        : activities.firstWhere((a) => a.liveSoon, orElse: () => activities.first);
 
     return ListView(
       padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
       children: [
-        const BrandHeader(),
+        BrandHeader(
+          onSearch: () => Navigator.of(context)
+              .push(ComingSoonScreen.route(t.searchTitle,
+                  icon: Icons.search_rounded)),
+          onBell: () => context.push('/announcements'),
+        ),
         const SizedBox(height: 14),
-        InspirationHero(inspiration: inspiration),
+        InspirationHeroCarousel(items: inspirations),
         const SizedBox(height: 22),
-        SectionTitle(title: t.beginYourJourney),
+        SectionTitle(title: t.beginYourJourney, onSeeAll: () => context.go('/more')),
         const SizedBox(height: 10),
         Row(
           children: [
@@ -115,17 +127,19 @@ class GuestHome extends ConsumerWidget {
             ),
           ],
         ),
-        if (nextProgram != null) ...[
+        if (nextActivity != null) ...[
           const SizedBox(height: 22),
           SectionTitle(
               title: t.liveUpcoming,
               onSeeAll: () => context.push('/activities')),
           const SizedBox(height: 10),
-          UpcomingProgramCard(program: nextProgram),
+          LiveUpcomingCard(item: nextActivity),
         ],
         if (publicTeaching != null) ...[
           const SizedBox(height: 22),
-          SectionTitle(title: t.latestPublicTeachings),
+          SectionTitle(
+              title: t.latestPublicTeachings,
+              onSeeAll: () => context.go('/lessons')),
           const SizedBox(height: 10),
           TeachingCard(teaching: publicTeaching),
         ],

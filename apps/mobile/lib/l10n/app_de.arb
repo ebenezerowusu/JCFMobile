@@ -224,5 +224,7 @@
   "chipMembers": "Mitglieder",
   "chipStudents": "Studierende",
   "pinnedAnnouncement": "Angeheftete Ankündigung",
-  "noAnnouncements": "Noch keine Ankündigungen. Schau bald wieder vorbei."
+  "noAnnouncements": "Noch keine Ankündigungen. Schau bald wieder vorbei.",
+  "headerTagline": "Bewusstsein für ein besseres Morgen",
+  "searchTitle": "Suche"
 }

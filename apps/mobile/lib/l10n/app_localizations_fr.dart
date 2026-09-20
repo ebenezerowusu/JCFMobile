@@ -747,4 +747,10 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get noAnnouncements =>
       'Aucune annonce pour l\'instant. Revenez bientôt.';
+
+  @override
+  String get headerTagline => 'La conscience pour un avenir meilleur';
+
+  @override
+  String get searchTitle => 'Recherche';
 }

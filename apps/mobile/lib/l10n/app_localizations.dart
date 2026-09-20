@@ -1453,6 +1453,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No announcements yet. Check back soon.'**
   String get noAnnouncements;
+
+  /// No description provided for @headerTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Awareness for a Better Tomorrow'**
+  String get headerTagline;
+
+  /// No description provided for @searchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get searchTitle;
 }
 
 class _AppLocalizationsDelegate

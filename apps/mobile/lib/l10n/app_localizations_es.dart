@@ -739,4 +739,10 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get noAnnouncements => 'No hay anuncios todavía. Vuelve pronto.';
+
+  @override
+  String get headerTagline => 'Conciencia para un mañana mejor';
+
+  @override
+  String get searchTitle => 'Buscar';
 }

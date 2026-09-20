@@ -38,6 +38,18 @@ class Inspiration {
   }
 }
 
+/// The last few published inspirations for the Home hero carousel
+/// (design 19). Newest first; today's entry is the first slide.
+final inspirationRecentProvider =
+    FutureProvider<List<Inspiration>>((ref) async {
+  final dio = ref.watch(dioProvider);
+  final res = await dio.get<Map<String, dynamic>>('inspiration/recent/');
+  return [
+    for (final row in (res.data?['results'] as List? ?? []))
+      Inspiration.fromJson(row as Map<String, dynamic>)
+  ];
+});
+
 final inspirationTodayProvider = FutureProvider<Inspiration?>((ref) async {
   final dio = ref.watch(dioProvider);
   final res = await dio.get<Map<String, dynamic>>('inspiration/today/');
