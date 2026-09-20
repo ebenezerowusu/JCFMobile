@@ -5,6 +5,7 @@ import 'package:jcf_ui/jcf_ui.dart';
 
 import 'app/router.dart';
 import 'core/locale_prefs.dart';
+import 'l10n/app_localizations.dart';
 
 void main() {
   runApp(const ProviderScope(child: JcfApp()));
@@ -27,6 +28,7 @@ class JcfApp extends ConsumerWidget {
       locale: locale, // null -> follow the device locale
       supportedLocales: supportedAppLocales,
       localizationsDelegates: const [
+        AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,

@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jcf_ui/jcf_ui.dart';
 
+import '../../l10n/app_localizations.dart';
+
 import 'onboarding_prefs.dart';
 
 /// Welcome (design/2): sunrise hero with the JCF mark, a frosted panel with
@@ -19,6 +21,7 @@ class WelcomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final t = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: JcfColors.skySurface,
       body: Stack(
@@ -65,7 +68,7 @@ class WelcomeScreen extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          'A Path of Freedom and Awareness',
+                          t.welcomeHeadline,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: JcfColors.inkOnLight,
@@ -76,9 +79,8 @@ class WelcomeScreen extends ConsumerWidget {
                           ),
                         ),
                         const SizedBox(height: 10),
-                        const Text(
-                          'Teachings, practice and service for\n'
-                          'sincere seekers ready to turn inward.',
+                        Text(
+                          t.welcomeSub,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Color(0xFF54689B),
@@ -103,7 +105,7 @@ class WelcomeScreen extends ConsumerWidget {
                               fontFamily: JcfTypography.bodyFamily,
                             ),
                           ),
-                          child: const Text('Begin'),
+                          child: Text(t.begin),
                         ),
                         const SizedBox(height: 12),
                         OutlinedButton(
@@ -124,14 +126,14 @@ class WelcomeScreen extends ConsumerWidget {
                               fontFamily: JcfTypography.bodyFamily,
                             ),
                           ),
-                          child: const Text('Continue as Guest'),
+                          child: Text(t.continueAsGuest),
                         ),
                         const SizedBox(height: 10),
                         TextButton(
                           onPressed: () => context.push('/login'),
                           child: Text.rich(
                             TextSpan(
-                              text: 'Already a member or student?  ',
+                              text: '${t.alreadyMemberPrompt}  ',
                               style: const TextStyle(
                                 color: Color(0xFF54689B),
                                 fontFamily: JcfTypography.bodyFamily,
@@ -139,7 +141,7 @@ class WelcomeScreen extends ConsumerWidget {
                               ),
                               children: [
                                 TextSpan(
-                                  text: 'Sign In',
+                                  text: t.signIn,
                                   style: TextStyle(
                                     color: JcfColors.skyPrimary,
                                     fontWeight: FontWeight.w700,

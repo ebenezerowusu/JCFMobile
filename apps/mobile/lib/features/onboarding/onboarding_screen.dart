@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jcf_ui/jcf_ui.dart';
 
+import '../../l10n/app_localizations.dart';
+
 import '../../core/brand.dart';
 import 'onboarding_prefs.dart';
 
@@ -14,23 +16,11 @@ class _Page {
 }
 
 /// Onboarding carousel (designs/3-5): hero comp, headline, dots, Next/Skip.
-const _pages = <_Page>[
-  _Page(
-    'assets/images/onboard_wisdom.jpg',
-    'Wisdom for the journey',
-    'Watch, listen and read teachings that\nsupport awareness and conscious living.',
-  ),
-  _Page(
-    'assets/images/onboard_innerspace.jpg',
-    'Go deeper with InnerSpace',
-    'Build a steady practice, follow your progress\nand move through a guided path of inner study.',
-  ),
-  _Page(
-    'assets/images/onboard_serve.jpg',
-    'Learn, gather and serve',
-    'Join programmes, connect with centres\nand help carry the work forward.',
-  ),
-];
+List<_Page> _buildPages(AppLocalizations t) => [
+      _Page('assets/images/onboard_wisdom.jpg', t.onboardTitle1, t.onboardBody1),
+      _Page('assets/images/onboard_innerspace.jpg', t.onboardTitle2, t.onboardBody2),
+      _Page('assets/images/onboard_serve.jpg', t.onboardTitle3, t.onboardBody3),
+    ];
 
 class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key});
@@ -57,7 +47,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 
   void _next() {
-    if (_index == _pages.length - 1) {
+    if (_index == 2) {
       context.go('/language');
     } else {
       _controller.nextPage(
@@ -76,7 +66,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isLast = _index == _pages.length - 1;
+    final t = AppLocalizations.of(context)!;
+    final pages = _buildPages(t);
+    final isLast = _index == pages.length - 1;
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -101,7 +93,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   ),
                   const Spacer(),
                   Text(
-                    '${_index + 1} of ${_pages.length}',
+                    t.pageCounter(_index + 1, pages.length),
                     style: const TextStyle(
                       color: JcfColors.inkOnLight,
                       fontFamily: JcfTypography.bodyFamily,
@@ -116,9 +108,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               child: PageView.builder(
                 controller: _controller,
                 onPageChanged: (i) => setState(() => _index = i),
-                itemCount: _pages.length,
+                itemCount: pages.length,
                 itemBuilder: (context, i) {
-                  final p = _pages[i];
+                  final p = pages[i];
                   return Column(
                     children: [
                       // Full-bleed hero, top-anchored — the comps run
@@ -173,7 +165,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                for (var i = 0; i < _pages.length; i++)
+                for (var i = 0; i < pages.length; i++)
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 250),
                     margin: const EdgeInsets.symmetric(horizontal: 4),
@@ -209,12 +201,12 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                         fontFamily: JcfTypography.bodyFamily,
                       ),
                     ),
-                    child: Text(isLast ? 'Continue' : 'Next'),
+                    child: Text(isLast ? t.continueLabel : t.next),
                   ),
                   TextButton(
                     onPressed: isLast ? _back : _skip,
                     child: Text(
-                      isLast ? 'Back' : 'Skip',
+                      isLast ? t.back : t.skip,
                       style: const TextStyle(
                         color: JcfColors.skyPrimary,
                         fontFamily: JcfTypography.bodyFamily,

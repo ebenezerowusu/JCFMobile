@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jcf_ui/jcf_ui.dart';
 
+import '../../l10n/app_localizations.dart';
+
 import '../../core/brand.dart';
 import '../../core/locale_prefs.dart';
 import 'onboarding_prefs.dart';
@@ -65,6 +67,7 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
     final q = _query.trim().toLowerCase();
     final visible = [
       ..._languages,
@@ -79,8 +82,8 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
             const SizedBox(height: 18),
             const JcfLogo(size: 96),
             const SizedBox(height: 14),
-            const Text(
-              'Choose your language',
+            Text(
+              t.chooseLanguage,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: JcfColors.inkOnLight,
@@ -90,8 +93,8 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
               ),
             ),
             const SizedBox(height: 6),
-            const Text(
-              'You can change this anytime in Settings.',
+            Text(
+              t.changeAnytimeSettings,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Color(0xFF54689B),
@@ -105,7 +108,7 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
               child: TextField(
                 onChanged: (v) => setState(() => _query = v),
                 decoration: InputDecoration(
-                  hintText: 'Search languages',
+                  hintText: t.searchLanguages,
                   hintStyle: const TextStyle(color: Color(0xFF7C8DB5)),
                   prefixIcon:
                       const Icon(Icons.search, color: Color(0xFF7C8DB5)),
@@ -165,11 +168,11 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
                             ),
                           ),
                           if (!lang.available)
-                            const Padding(
-                              padding: EdgeInsets.only(right: 10),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 10),
                               child: Text(
-                                'Coming soon',
-                                style: TextStyle(
+                                t.comingSoon,
+                                style: const TextStyle(
                                   color: Color(0xFF9AA7C7),
                                   fontFamily: JcfTypography.bodyFamily,
                                   fontSize: 13,
@@ -220,12 +223,12 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
                         fontFamily: JcfTypography.bodyFamily,
                       ),
                     ),
-                    child: const Text('Continue'),
+                    child: Text(t.continueLabel),
                   ),
                   TextButton(
                     onPressed: () => setState(() => _showMore = !_showMore),
                     child: Text(
-                      _showMore ? 'Fewer languages' : 'More languages',
+                      _showMore ? t.fewerLanguages : t.moreLanguages,
                       style: const TextStyle(
                         color: JcfColors.skyPrimary,
                         fontFamily: JcfTypography.bodyFamily,

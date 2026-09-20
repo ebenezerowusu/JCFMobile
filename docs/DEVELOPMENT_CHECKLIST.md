@@ -139,10 +139,12 @@ detail) lives in `FEATURES.md`; architecture & conventions in `HANDOVER.md`.
 
 ## 🟦 Track 7 — Multi-language (worldwide)
 
-- [ ] Flutter l10n scaffolding (ARB) + directional widgets/RTL-safe layout
-      from the start
-- [ ] Language picker in onboarding + Settings (device-locale default)
-- [ ] Wave 1 UI translations: EN, FR, ES, DE, PT
+- [x] Flutter l10n scaffolding (ARB + gen-l10n, delegate wired) — RTL layout
+      audit still pending
+- [x] Language picker in onboarding (device-locale default; Settings entry
+      pending)
+- [x] Wave 1 UI translations (EN, FR, ES, DE, PT) for the onboarding flow —
+      remaining screens (home, lessons, give, programs, profile) pending
 - [ ] Content language preferences + filtering + per-teaching language
       switcher; English fallback everywhere
 - [ ] API `Accept-Language` for server text (errors, templates, form labels);

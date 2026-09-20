@@ -12,6 +12,7 @@ import '../features/onboarding/language_screen.dart';
 import '../features/onboarding/path_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../features/onboarding/splash_screen.dart';
+import '../features/onboarding/stay_connected_screen.dart';
 import '../features/onboarding/welcome_screen.dart';
 import '../features/profile/profile_screen.dart';
 import '../features/programs/program_detail_screen.dart';
@@ -33,6 +34,7 @@ GoRouter createRouter() {
       GoRoute(path: '/onboarding', builder: (_, _) => const OnboardingScreen()),
       GoRoute(path: '/language', builder: (_, _) => const LanguageScreen()),
       GoRoute(path: '/path', builder: (_, _) => const PathScreen()),
+      GoRoute(path: '/stay-connected', builder: (_, _) => const StayConnectedScreen()),
       GoRoute(path: '/login', builder: (_, _) => const LoginScreen()),
       GoRoute(path: '/notifications', builder: (_, _) => const NotificationsScreen()),
       GoRoute(path: '/appointments', builder: (_, _) => const AppointmentsScreen()),

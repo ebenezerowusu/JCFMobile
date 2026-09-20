@@ -63,16 +63,31 @@ void main() {
     expect(find.text('Coming soon'), findsWidgets);
     await tester.pumpAndSettle(); // let list momentum die before tapping
 
-    // Continue -> path chooser.
+    // Continue -> path chooser. Having picked Français, the app now renders
+    // in French — proving the l10n foundation end to end.
     await tester.tap(find.text('Continue'));
     await tester.pumpAndSettle();
-    expect(find.text('How would you like\nto continue?'), findsOneWidget);
-    expect(find.text('Member or Student'), findsOneWidget);
-    expect(find.text('Continue as Guest'), findsOneWidget);
+    expect(find.text('Comment souhaitez-vous\ncontinuer ?'), findsOneWidget);
+    expect(find.text('Membre ou étudiant'), findsOneWidget);
+    expect(find.text('Continuer en invité'), findsOneWidget);
 
-    // Sign In -> OTP login screen.
-    await tester.tap(find.text('Sign In'));
+    // Sign In -> OTP login screen, then back to the path chooser.
+    await tester.tap(find.text('Se connecter'));
     await tester.pumpAndSettle();
-    expect(find.text('Member sign in'), findsOneWidget);
+    expect(find.text('Member sign in'), findsOneWidget); // not yet localized
+    await tester.tap(find.byType(BackButton));
+    await tester.pumpAndSettle();
+
+    // Continue as Guest -> notification opt-in (scroll it into view first).
+    await tester.ensureVisible(find.text('Continuer en invité'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Continuer en invité'));
+    await tester.pumpAndSettle();
+    expect(find.text('Restez connecté'), findsOneWidget);
+    expect(find.text('Inspiration quotidienne'), findsOneWidget);
+    expect(find.text('Rappels de pratique'), findsOneWidget);
+    expect(find.text('Actualités des programmes'), findsOneWidget);
+    expect(find.text('Activer les notifications'), findsOneWidget);
+    expect(find.text('Pas maintenant'), findsOneWidget);
   });
 }

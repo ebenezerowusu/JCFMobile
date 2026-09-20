@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jcf_ui/jcf_ui.dart';
 
+import '../../l10n/app_localizations.dart';
+
 import '../../core/brand.dart';
 import '../auth/auth_controller.dart';
 
@@ -12,14 +14,16 @@ class PathScreen extends ConsumerWidget {
 
   Future<void> _signIn(BuildContext context, WidgetRef ref) async {
     await context.push('/login');
-    // Back from the login flow: if the code was verified, continue home.
+    // Back from the login flow: if the code was verified, continue the
+    // designed flow into the notification opt-in.
     if (context.mounted && ref.read(isLoggedInProvider)) {
-      context.go('/home');
+      context.go('/stay-connected');
     }
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final t = AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: JcfColors.skySurface,
       body: SafeArea(
@@ -42,8 +46,8 @@ class PathScreen extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 4),
-              const Text(
-                'CONSCIOUS LIVING FOR A BRIGHTER HUMANITY',
+              Text(
+                t.brandTagline,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0xFF54689B),
@@ -54,8 +58,8 @@ class PathScreen extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 26),
-              const Text(
-                'How would you like\nto continue?',
+              Text(
+                t.howToContinue,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: JcfColors.inkOnLight,
@@ -66,9 +70,8 @@ class PathScreen extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              const Text(
-                'Explore public teachings as a guest, or sign in\n'
-                'for your member or student experience.',
+              Text(
+                t.pathSubtitle,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0xFF54689B),
@@ -81,13 +84,13 @@ class PathScreen extends ConsumerWidget {
               _PathCard(
                 icon: Icons.badge_rounded,
                 iconTint: JcfColors.skyPrimary,
-                title: 'Member or Student',
-                body: 'Access your learning, practice and activity.',
+                title: t.memberOrStudent,
+                body: t.memberCardBody,
                 button: FilledButton.icon(
                   onPressed: () => _signIn(context, ref),
                   icon: const Icon(Icons.arrow_forward, size: 20),
                   iconAlignment: IconAlignment.end,
-                  label: const Text('Sign In', overflow: TextOverflow.ellipsis),
+                  label: Text(t.signIn, overflow: TextOverflow.ellipsis),
                   style: FilledButton.styleFrom(
                     backgroundColor: JcfColors.skyPrimary,
                     foregroundColor: Colors.white,
@@ -107,13 +110,13 @@ class PathScreen extends ConsumerWidget {
               _PathCard(
                 icon: Icons.meeting_room_rounded,
                 iconTint: const Color(0xFF3F7BFF),
-                title: 'Guest',
-                body: 'Browse public teachings and programmes.',
+                title: t.guest,
+                body: t.guestCardBody,
                 button: OutlinedButton.icon(
-                  onPressed: () => context.go('/home'),
+                  onPressed: () => context.go('/stay-connected'),
                   icon: const Icon(Icons.arrow_forward, size: 20),
                   iconAlignment: IconAlignment.end,
-                  label: const Text('Continue as Guest',
+                  label: Text(t.continueAsGuest,
                       overflow: TextOverflow.ellipsis),
                   style: OutlinedButton.styleFrom(
                     foregroundColor: JcfColors.skyPrimary,
@@ -132,8 +135,8 @@ class PathScreen extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 18),
-              const Text(
-                "No password needed. We'll send a one-time code.",
+              Text(
+                t.otpNote,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0xFF7C8DB5),
