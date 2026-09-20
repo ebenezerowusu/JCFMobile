@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -493,6 +495,29 @@ class SectionTitle extends StatelessWidget {
   }
 }
 
+/// One shared title size for the three journey cards: the largest size at
+/// which the longest title still fits one line, so the cards stay uniform.
+double journeyTitleSize(List<String> titles, double innerWidth) {
+  var size = 12.5;
+  for (final title in titles) {
+    final painter = TextPainter(
+      text: TextSpan(
+        text: title,
+        style: const TextStyle(
+          fontFamily: JcfTypography.bodyFamily,
+          fontWeight: FontWeight.w800,
+          fontSize: 100,
+        ),
+      ),
+      maxLines: 1,
+      textDirection: ui.TextDirection.ltr,
+    )..layout();
+    final fit = 100 * (innerWidth - 2) / painter.width;
+    if (fit < size) size = fit;
+  }
+  return size;
+}
+
 class JourneyCard extends StatelessWidget {
   const JourneyCard({
     super.key,
@@ -500,6 +525,7 @@ class JourneyCard extends StatelessWidget {
     required this.tint,
     required this.bg,
     required this.title,
+    required this.titleSize,
     required this.sub,
     required this.onTap,
   });
@@ -508,6 +534,7 @@ class JourneyCard extends StatelessWidget {
   final Color tint;
   final Color bg;
   final String title;
+  final double titleSize;
   final String sub;
   final VoidCallback onTap;
 
@@ -546,18 +573,16 @@ class JourneyCard extends StatelessWidget {
                         width: double.infinity,
                         child: Center(child: leading)),
                     const SizedBox(height: 12),
-                    FittedBox(
-                      fit: BoxFit.scaleDown,
-                      alignment: AlignmentDirectional.centerStart,
-                      child: Text(
-                        title,
-                        maxLines: 1,
-                        style: const TextStyle(
-                          color: JcfColors.inkOnLight,
-                          fontFamily: JcfTypography.bodyFamily,
-                          fontSize: 12.5,
-                          fontWeight: FontWeight.w800,
-                        ),
+                    Text(
+                      title,
+                      maxLines: 1,
+                      overflow: TextOverflow.visible,
+                      softWrap: false,
+                      style: TextStyle(
+                        color: JcfColors.inkOnLight,
+                        fontFamily: JcfTypography.bodyFamily,
+                        fontSize: titleSize,
+                        fontWeight: FontWeight.w800,
                       ),
                     ),
                     const SizedBox(height: 4),

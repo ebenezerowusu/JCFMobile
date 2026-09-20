@@ -91,7 +91,12 @@ class GuestHome extends ConsumerWidget {
         const SizedBox(height: 22),
         SectionTitle(title: t.beginYourJourney, onSeeAll: () => context.go('/more')),
         const SizedBox(height: 10),
-        Row(
+        LayoutBuilder(builder: (context, constraints) {
+          // Card inner width: three cards, two 10pt gaps, 9pt card padding.
+          final inner = (constraints.maxWidth - 20) / 3 - 18;
+          final titleSize = journeyTitleSize(
+              [t.watchATeaching, t.tryAPractice, t.findAProgramme], inner);
+          return Row(
           children: [
             Expanded(
               child: JourneyCard(
@@ -108,6 +113,7 @@ class GuestHome extends ConsumerWidget {
                 tint: const Color(0xFF2E6BF0),
                 bg: const Color(0xFFE3EEFF),
                 title: t.watchATeaching,
+                titleSize: titleSize,
                 sub: t.watchTeachingSub,
                 onTap: () => context.go('/lessons'),
               ),
@@ -120,6 +126,7 @@ class GuestHome extends ConsumerWidget {
                 tint: const Color(0xFFF08A24),
                 bg: const Color(0xFFFDEED9),
                 title: t.tryAPractice,
+                titleSize: titleSize,
                 sub: t.tryPracticeSub,
                 onTap: () => context.go('/practice'),
               ),
@@ -132,12 +139,14 @@ class GuestHome extends ConsumerWidget {
                 tint: const Color(0xFF2E9E5B),
                 bg: const Color(0xFFDDF3E4),
                 title: t.findAProgramme,
+                titleSize: titleSize,
                 sub: t.findProgrammeSub,
                 onTap: () => context.go('/programs'),
               ),
             ),
           ],
-        ),
+        );
+        }),
         if (nextActivity != null) ...[
           const SizedBox(height: 22),
           SectionTitle(
