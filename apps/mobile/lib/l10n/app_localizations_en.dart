@@ -267,4 +267,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get stillPending => 'Still pending — please check back soon.';
+
+  @override
+  String get memberStudentContent => 'MEMBER & STUDENT CONTENT';
+
+  @override
+  String get signInToContinue => 'Sign in to continue';
+
+  @override
+  String get premiumTeachingSub =>
+      'This teaching is available to approved\nJCF members and students.';
+
+  @override
+  String get returnToPublicTeachings => 'Return to Public Teachings';
 }

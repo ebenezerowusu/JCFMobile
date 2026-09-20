@@ -583,6 +583,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Still pending — please check back soon.'**
   String get stillPending;
+
+  /// No description provided for @memberStudentContent.
+  ///
+  /// In en, this message translates to:
+  /// **'MEMBER & STUDENT CONTENT'**
+  String get memberStudentContent;
+
+  /// No description provided for @signInToContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to continue'**
+  String get signInToContinue;
+
+  /// No description provided for @premiumTeachingSub.
+  ///
+  /// In en, this message translates to:
+  /// **'This teaching is available to approved\nJCF members and students.'**
+  String get premiumTeachingSub;
+
+  /// No description provided for @returnToPublicTeachings.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to Public Teachings'**
+  String get returnToPublicTeachings;
 }
 
 class _AppLocalizationsDelegate

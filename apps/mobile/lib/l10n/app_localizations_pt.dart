@@ -270,4 +270,17 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get stillPending => 'Ainda pendente — verifique novamente em breve.';
+
+  @override
+  String get memberStudentContent => 'CONTEÚDO PARA MEMBROS E ESTUDANTES';
+
+  @override
+  String get signInToContinue => 'Entre para continuar';
+
+  @override
+  String get premiumTeachingSub =>
+      'Este ensinamento está disponível para membros\ne estudantes aprovados da JCF.';
+
+  @override
+  String get returnToPublicTeachings => 'Voltar aos ensinamentos públicos';
 }

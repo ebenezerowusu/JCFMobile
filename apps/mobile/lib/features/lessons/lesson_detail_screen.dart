@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../core/launch.dart';
 import 'lessons_repository.dart';
+import 'premium_gate.dart';
 
 class LessonDetailScreen extends ConsumerWidget {
   const LessonDetailScreen({super.key, required this.slug});
@@ -19,7 +19,13 @@ class LessonDetailScreen extends ConsumerWidget {
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (e, _) {
           final locked = e is DioException && e.response?.statusCode == 403;
-          return _Locked(locked: locked);
+          if (!locked) {
+            return const Center(child: Text("Couldn't load this lesson."));
+          }
+          // Premium gate (design/14); refetch once signed in to unlock.
+          return PremiumGate(
+            onSignedIn: () => ref.invalidate(lessonDetailProvider(slug)),
+          );
         },
         data: (l) => SingleChildScrollView(
           padding: const EdgeInsets.all(24),
@@ -62,39 +68,6 @@ class _MediaRow extends StatelessWidget {
       title: Text(label),
       trailing: const Icon(Icons.open_in_new, size: 18),
       onTap: () => openExternalUrl(url),
-    );
-  }
-}
-
-class _Locked extends StatelessWidget {
-  const _Locked({required this.locked});
-  final bool locked;
-
-  @override
-  Widget build(BuildContext context) {
-    if (!locked) {
-      return const Center(child: Text("Couldn't load this lesson."));
-    }
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(Icons.lock, size: 48),
-            const SizedBox(height: 12),
-            const Text(
-              'This is a premium lesson for registered members and students.',
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 16),
-            FilledButton(
-              onPressed: () => context.push('/login'),
-              child: const Text('Sign in as a member'),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

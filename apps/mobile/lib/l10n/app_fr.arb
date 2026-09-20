@@ -79,5 +79,9 @@
   "accessReviewSub": "Votre contact a été trouvé, mais votre accès membre\nou étudiant n'a pas encore été approuvé.",
   "browseWhileWaiting": "Vous pouvez continuer à parcourir les\nenseignements publics en attendant.",
   "checkAgain": "Vérifier à nouveau",
-  "stillPending": "Toujours en attente — revenez bientôt."
+  "stillPending": "Toujours en attente — revenez bientôt.",
+  "memberStudentContent": "CONTENU MEMBRES ET ÉTUDIANTS",
+  "signInToContinue": "Connectez-vous pour continuer",
+  "premiumTeachingSub": "Cet enseignement est réservé aux membres\net étudiants JCF approuvés.",
+  "returnToPublicTeachings": "Retour aux enseignements publics"
 }

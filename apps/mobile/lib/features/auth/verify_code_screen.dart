@@ -6,6 +6,8 @@ import 'package:go_router/go_router.dart';
 import 'package:jcf_ui/jcf_ui.dart';
 
 import '../../l10n/app_localizations.dart';
+import '../onboarding/notification_prefs.dart';
+
 import 'auth_controller.dart';
 import 'auth_widgets.dart';
 import 'resend_help_screen.dart';
@@ -78,7 +80,20 @@ class _VerifyCodeScreenState extends ConsumerState<VerifyCodeScreen> {
           .verify(widget.identifier, _code.text);
       if (!mounted) return;
       if (ref.read(isLoggedInProvider)) {
-        context.go('/stay-connected');
+        final prompted =
+            await ref.read(notificationPrefsProvider).wasPrompted();
+        if (!mounted) return;
+        if (prompted) {
+          // Post-first-run sign-in (e.g. the premium gate): unwind the auth
+          // stack — verify, identifier, then the /login options route — so
+          // the user lands back where they started.
+          final nav = Navigator.of(context);
+          nav.pop();
+          if (nav.canPop()) nav.pop();
+          if (context.canPop()) context.pop();
+        } else {
+          context.go('/stay-connected');
+        }
       } else {
         setState(() => _error = AppLocalizations.of(context)!.invalidCode);
       }

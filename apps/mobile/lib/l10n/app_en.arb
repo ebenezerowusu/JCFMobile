@@ -103,5 +103,9 @@
   "accessReviewSub": "Your contact was found, but your member or\nstudent access has not been approved yet.",
   "browseWhileWaiting": "You can continue browsing\npublic teachings while you wait.",
   "checkAgain": "Check Again",
-  "stillPending": "Still pending — please check back soon."
+  "stillPending": "Still pending — please check back soon.",
+  "memberStudentContent": "MEMBER & STUDENT CONTENT",
+  "signInToContinue": "Sign in to continue",
+  "premiumTeachingSub": "This teaching is available to approved\nJCF members and students.",
+  "returnToPublicTeachings": "Return to Public Teachings"
 }

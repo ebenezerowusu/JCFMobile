@@ -79,5 +79,9 @@
   "accessReviewSub": "Seu contato foi encontrado, mas seu acesso de\nmembro ou estudante ainda não foi aprovado.",
   "browseWhileWaiting": "Você pode continuar navegando pelos\nensinamentos públicos enquanto espera.",
   "checkAgain": "Verificar novamente",
-  "stillPending": "Ainda pendente — verifique novamente em breve."
+  "stillPending": "Ainda pendente — verifique novamente em breve.",
+  "memberStudentContent": "CONTEÚDO PARA MEMBROS E ESTUDANTES",
+  "signInToContinue": "Entre para continuar",
+  "premiumTeachingSub": "Este ensinamento está disponível para membros\ne estudantes aprovados da JCF.",
+  "returnToPublicTeachings": "Voltar aos ensinamentos públicos"
 }

@@ -67,6 +67,10 @@ detail) lives in `FEATURES.md`; architecture & conventions in `HANDOVER.md`.
       approval-pending screens; request-code now reports
       sent/not_found/pending (per-IP throttled, 10/min, anti-enumeration)
       with Check Again continuing into verification once approved
+- [x] **Premium gate (design 14)** — modal card on locked lessons (sign in
+      -> returns to the lesson and refetches unlocked); post-first-run
+      sign-ins now unwind back to their origin instead of restarting at
+      stay-connected
 - [x] **Groups (backend + admin + API)** — admin-created groups with
       approval-gated join requests: dashboard pages (`/groups/`, request
       queue, roster), `/api/mobile/v1/groups/` (+ `/mine/`, `/join/`),

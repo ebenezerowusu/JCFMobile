@@ -273,4 +273,17 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get stillPending => 'Toujours en attente — revenez bientôt.';
+
+  @override
+  String get memberStudentContent => 'CONTENU MEMBRES ET ÉTUDIANTS';
+
+  @override
+  String get signInToContinue => 'Connectez-vous pour continuer';
+
+  @override
+  String get premiumTeachingSub =>
+      'Cet enseignement est réservé aux membres\net étudiants JCF approuvés.';
+
+  @override
+  String get returnToPublicTeachings => 'Retour aux enseignements publics';
 }

@@ -79,5 +79,9 @@
   "accessReviewSub": "Dein Kontakt wurde gefunden, aber dein Mitglieds-\noder Studentenzugang wurde noch nicht genehmigt.",
   "browseWhileWaiting": "Du kannst währenddessen weiter die\nöffentlichen Lehren durchstöbern.",
   "checkAgain": "Erneut prüfen",
-  "stillPending": "Noch ausstehend — bitte später erneut prüfen."
+  "stillPending": "Noch ausstehend — bitte später erneut prüfen.",
+  "memberStudentContent": "INHALTE FÜR MITGLIEDER & STUDENTEN",
+  "signInToContinue": "Melde dich an, um fortzufahren",
+  "premiumTeachingSub": "Diese Lehre ist genehmigten JCF-Mitgliedern\nund -Studenten vorbehalten.",
+  "returnToPublicTeachings": "Zurück zu den öffentlichen Lehren"
 }
