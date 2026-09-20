@@ -53,5 +53,22 @@
   "verifySignIn": "Bestätigen und anmelden",
   "invalidCode": "Ungültiger oder abgelaufener Code.",
   "startOver": "Andere Telefonnummer oder E-Mail verwenden",
-  "genericError": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+  "genericError": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+  "signInWithPhone": "Melde dich mit deinem Telefon an",
+  "signInWithEmail": "Melde dich mit deiner E-Mail an",
+  "oneTimeCodeSub": "Wir senden dir einen einmaligen Bestätigungscode.",
+  "useEmailInstead": "Stattdessen E-Mail verwenden",
+  "usePhoneInstead": "Stattdessen Telefon verwenden",
+  "phoneMatchNote": "Deine Nummer muss mit deinem JCF-Mitglieds-\noder Studentendatensatz übereinstimmen.",
+  "emailMatchNote": "Deine E-Mail muss mit deinem JCF-Mitglieds-\noder Studentendatensatz übereinstimmen.",
+  "enterVerificationCode": "Gib den Bestätigungscode ein",
+  "codeSentToMasked": "Wir haben einen 6-stelligen Code an {destination} gesendet.",
+  "verifyAndContinue": "Bestätigen und fortfahren",
+  "resendCodeIn": "Code erneut senden in {time}",
+  "changePhoneNumber": "Telefonnummer ändern",
+  "changeEmailAddress": "E-Mail-Adresse ändern",
+  "didntReceiveCode": "Code nicht erhalten?",
+  "resendHelpSub": "Prüfe deine Nachrichten oder fordere einen\nneuen Bestätigungscode an.",
+  "resendCode": "Code erneut senden",
+  "contactSupport": "Support kontaktieren"
 }

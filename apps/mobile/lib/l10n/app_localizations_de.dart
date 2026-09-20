@@ -183,4 +183,63 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get genericError =>
       'Etwas ist schiefgelaufen. Bitte versuche es erneut.';
+
+  @override
+  String get signInWithPhone => 'Melde dich mit deinem Telefon an';
+
+  @override
+  String get signInWithEmail => 'Melde dich mit deiner E-Mail an';
+
+  @override
+  String get oneTimeCodeSub =>
+      'Wir senden dir einen einmaligen Bestätigungscode.';
+
+  @override
+  String get useEmailInstead => 'Stattdessen E-Mail verwenden';
+
+  @override
+  String get usePhoneInstead => 'Stattdessen Telefon verwenden';
+
+  @override
+  String get phoneMatchNote =>
+      'Deine Nummer muss mit deinem JCF-Mitglieds-\noder Studentendatensatz übereinstimmen.';
+
+  @override
+  String get emailMatchNote =>
+      'Deine E-Mail muss mit deinem JCF-Mitglieds-\noder Studentendatensatz übereinstimmen.';
+
+  @override
+  String get enterVerificationCode => 'Gib den Bestätigungscode ein';
+
+  @override
+  String codeSentToMasked(String destination) {
+    return 'Wir haben einen 6-stelligen Code an $destination gesendet.';
+  }
+
+  @override
+  String get verifyAndContinue => 'Bestätigen und fortfahren';
+
+  @override
+  String resendCodeIn(String time) {
+    return 'Code erneut senden in $time';
+  }
+
+  @override
+  String get changePhoneNumber => 'Telefonnummer ändern';
+
+  @override
+  String get changeEmailAddress => 'E-Mail-Adresse ändern';
+
+  @override
+  String get didntReceiveCode => 'Code nicht erhalten?';
+
+  @override
+  String get resendHelpSub =>
+      'Prüfe deine Nachrichten oder fordere einen\nneuen Bestätigungscode an.';
+
+  @override
+  String get resendCode => 'Code erneut senden';
+
+  @override
+  String get contactSupport => 'Support kontaktieren';
 }

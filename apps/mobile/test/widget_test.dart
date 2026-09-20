@@ -85,6 +85,15 @@ void main() {
     expect(find.text('Adresse e-mail'), findsOneWidget);
     expect(find.text('Envoyer le code'), findsOneWidget);
 
+    // Switch to the phone screen: country dial code + phone field.
+    await tester.ensureVisible(find.text('Utiliser le téléphone'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Utiliser le téléphone'));
+    await tester.pumpAndSettle();
+    expect(find.text('+233'), findsOneWidget);
+    expect(find.text('Numéro de téléphone'), findsOneWidget);
+    expect(find.text('Utiliser l\'e-mail'), findsOneWidget);
+
     // Back out to the path chooser.
     await tester.tap(find.byIcon(Icons.arrow_back));
     await tester.pumpAndSettle();

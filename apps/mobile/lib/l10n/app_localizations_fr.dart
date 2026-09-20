@@ -184,4 +184,63 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get genericError => 'Une erreur s\'est produite. Veuillez réessayer.';
+
+  @override
+  String get signInWithPhone => 'Connectez-vous avec votre téléphone';
+
+  @override
+  String get signInWithEmail => 'Connectez-vous avec votre e-mail';
+
+  @override
+  String get oneTimeCodeSub =>
+      'Nous vous enverrons un code de vérification à usage unique.';
+
+  @override
+  String get useEmailInstead => 'Utiliser l\'e-mail';
+
+  @override
+  String get usePhoneInstead => 'Utiliser le téléphone';
+
+  @override
+  String get phoneMatchNote =>
+      'Votre numéro doit correspondre à votre dossier\nde membre ou d\'étudiant JCF.';
+
+  @override
+  String get emailMatchNote =>
+      'Votre e-mail doit correspondre à votre dossier\nde membre ou d\'étudiant JCF.';
+
+  @override
+  String get enterVerificationCode => 'Saisissez le code de vérification';
+
+  @override
+  String codeSentToMasked(String destination) {
+    return 'Nous avons envoyé un code à 6 chiffres à $destination.';
+  }
+
+  @override
+  String get verifyAndContinue => 'Vérifier et continuer';
+
+  @override
+  String resendCodeIn(String time) {
+    return 'Renvoyer le code dans $time';
+  }
+
+  @override
+  String get changePhoneNumber => 'Changer de numéro de téléphone';
+
+  @override
+  String get changeEmailAddress => 'Changer d\'adresse e-mail';
+
+  @override
+  String get didntReceiveCode => 'Vous n\'avez pas reçu le code ?';
+
+  @override
+  String get resendHelpSub =>
+      'Vérifiez vos messages ou demandez un\nnouveau code de vérification.';
+
+  @override
+  String get resendCode => 'Renvoyer le code';
+
+  @override
+  String get contactSupport => 'Contacter l\'assistance';
 }

@@ -63,5 +63,36 @@
   "verifySignIn": "Verify & sign in",
   "invalidCode": "Invalid or expired code.",
   "startOver": "Use a different phone or email",
-  "genericError": "Something went wrong. Please try again."
+  "genericError": "Something went wrong. Please try again.",
+  "signInWithPhone": "Sign in with your phone",
+  "signInWithEmail": "Sign in with your email",
+  "oneTimeCodeSub": "We'll send a one-time verification code.",
+  "useEmailInstead": "Use Email Instead",
+  "usePhoneInstead": "Use Phone Instead",
+  "phoneMatchNote": "Your number must match your JCF membership\nor student record.",
+  "emailMatchNote": "Your email must match your JCF membership\nor student record.",
+  "enterVerificationCode": "Enter verification code",
+  "codeSentToMasked": "We sent a 6-digit code to {destination}.",
+  "@codeSentToMasked": {
+    "placeholders": {
+      "destination": {
+        "type": "String"
+      }
+    }
+  },
+  "verifyAndContinue": "Verify and Continue",
+  "resendCodeIn": "Resend code in {time}",
+  "@resendCodeIn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "changePhoneNumber": "Change phone number",
+  "changeEmailAddress": "Change email address",
+  "didntReceiveCode": "Didn't receive the code?",
+  "resendHelpSub": "Check your messages or request a new\nverification code.",
+  "resendCode": "Resend Code",
+  "contactSupport": "Contact Support"
 }

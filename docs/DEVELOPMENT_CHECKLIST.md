@@ -59,6 +59,10 @@ detail) lives in `FEATURES.md`; architecture & conventions in `HANDOVER.md`.
 - [x] **Sign-in options (design 9)** — Welcome back screen (phone / email /
       guest), restyled localized OTP entry per channel; backend delivers the
       code by SMS (Arkesel) for phone with email fallback
+- [x] **Auth flow designs 10-13** — phone entry w/ dial-code picker, email
+      entry, six-box verify with masked destination + honest 30s resend
+      countdown (server-enforced), didn't-receive/resend screen; API returns
+      masked_destination/channel/retry_after
 - [x] **Groups (backend + admin + API)** — admin-created groups with
       approval-gated join requests: dashboard pages (`/groups/`, request
       queue, roster), `/api/mobile/v1/groups/` (+ `/mine/`, `/join/`),

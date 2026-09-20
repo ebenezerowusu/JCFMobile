@@ -53,5 +53,22 @@
   "verifySignIn": "Verificar e iniciar sesión",
   "invalidCode": "Código no válido o caducado.",
   "startOver": "Usar otro teléfono o correo",
-  "genericError": "Algo salió mal. Inténtalo de nuevo."
+  "genericError": "Algo salió mal. Inténtalo de nuevo.",
+  "signInWithPhone": "Inicia sesión con tu teléfono",
+  "signInWithEmail": "Inicia sesión con tu correo",
+  "oneTimeCodeSub": "Te enviaremos un código de verificación de un solo uso.",
+  "useEmailInstead": "Usar el correo",
+  "usePhoneInstead": "Usar el teléfono",
+  "phoneMatchNote": "Tu número debe coincidir con tu registro de\nmiembro o estudiante de JCF.",
+  "emailMatchNote": "Tu correo debe coincidir con tu registro de\nmiembro o estudiante de JCF.",
+  "enterVerificationCode": "Introduce el código de verificación",
+  "codeSentToMasked": "Enviamos un código de 6 dígitos a {destination}.",
+  "verifyAndContinue": "Verificar y continuar",
+  "resendCodeIn": "Reenviar código en {time}",
+  "changePhoneNumber": "Cambiar número de teléfono",
+  "changeEmailAddress": "Cambiar correo electrónico",
+  "didntReceiveCode": "¿No recibiste el código?",
+  "resendHelpSub": "Revisa tus mensajes o solicita un nuevo\ncódigo de verificación.",
+  "resendCode": "Reenviar código",
+  "contactSupport": "Contactar con soporte"
 }

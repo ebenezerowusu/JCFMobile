@@ -53,5 +53,22 @@
   "verifySignIn": "Vérifier et se connecter",
   "invalidCode": "Code invalide ou expiré.",
   "startOver": "Utiliser un autre téléphone ou e-mail",
-  "genericError": "Une erreur s'est produite. Veuillez réessayer."
+  "genericError": "Une erreur s'est produite. Veuillez réessayer.",
+  "signInWithPhone": "Connectez-vous avec votre téléphone",
+  "signInWithEmail": "Connectez-vous avec votre e-mail",
+  "oneTimeCodeSub": "Nous vous enverrons un code de vérification à usage unique.",
+  "useEmailInstead": "Utiliser l'e-mail",
+  "usePhoneInstead": "Utiliser le téléphone",
+  "phoneMatchNote": "Votre numéro doit correspondre à votre dossier\nde membre ou d'étudiant JCF.",
+  "emailMatchNote": "Votre e-mail doit correspondre à votre dossier\nde membre ou d'étudiant JCF.",
+  "enterVerificationCode": "Saisissez le code de vérification",
+  "codeSentToMasked": "Nous avons envoyé un code à 6 chiffres à {destination}.",
+  "verifyAndContinue": "Vérifier et continuer",
+  "resendCodeIn": "Renvoyer le code dans {time}",
+  "changePhoneNumber": "Changer de numéro de téléphone",
+  "changeEmailAddress": "Changer d'adresse e-mail",
+  "didntReceiveCode": "Vous n'avez pas reçu le code ?",
+  "resendHelpSub": "Vérifiez vos messages ou demandez un\nnouveau code de vérification.",
+  "resendCode": "Renvoyer le code",
+  "contactSupport": "Contacter l'assistance"
 }

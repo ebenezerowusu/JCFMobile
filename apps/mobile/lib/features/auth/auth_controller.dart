@@ -10,7 +10,7 @@ class AuthController extends AsyncNotifier<Member?> {
     return ref.read(authRepositoryProvider).currentMember();
   }
 
-  Future<void> requestCode(String identifier) {
+  Future<RequestCodeResult> requestCode(String identifier) {
     return ref.read(authRepositoryProvider).requestCode(identifier);
   }
 

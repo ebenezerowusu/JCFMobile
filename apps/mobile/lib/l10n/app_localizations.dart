@@ -427,6 +427,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Something went wrong. Please try again.'**
   String get genericError;
+
+  /// No description provided for @signInWithPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with your phone'**
+  String get signInWithPhone;
+
+  /// No description provided for @signInWithEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with your email'**
+  String get signInWithEmail;
+
+  /// No description provided for @oneTimeCodeSub.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll send a one-time verification code.'**
+  String get oneTimeCodeSub;
+
+  /// No description provided for @useEmailInstead.
+  ///
+  /// In en, this message translates to:
+  /// **'Use Email Instead'**
+  String get useEmailInstead;
+
+  /// No description provided for @usePhoneInstead.
+  ///
+  /// In en, this message translates to:
+  /// **'Use Phone Instead'**
+  String get usePhoneInstead;
+
+  /// No description provided for @phoneMatchNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Your number must match your JCF membership\nor student record.'**
+  String get phoneMatchNote;
+
+  /// No description provided for @emailMatchNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Your email must match your JCF membership\nor student record.'**
+  String get emailMatchNote;
+
+  /// No description provided for @enterVerificationCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter verification code'**
+  String get enterVerificationCode;
+
+  /// No description provided for @codeSentToMasked.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a 6-digit code to {destination}.'**
+  String codeSentToMasked(String destination);
+
+  /// No description provided for @verifyAndContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify and Continue'**
+  String get verifyAndContinue;
+
+  /// No description provided for @resendCodeIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend code in {time}'**
+  String resendCodeIn(String time);
+
+  /// No description provided for @changePhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Change phone number'**
+  String get changePhoneNumber;
+
+  /// No description provided for @changeEmailAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Change email address'**
+  String get changeEmailAddress;
+
+  /// No description provided for @didntReceiveCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Didn\'t receive the code?'**
+  String get didntReceiveCode;
+
+  /// No description provided for @resendHelpSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your messages or request a new\nverification code.'**
+  String get resendHelpSub;
+
+  /// No description provided for @resendCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend Code'**
+  String get resendCode;
+
+  /// No description provided for @contactSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Support'**
+  String get contactSupport;
 }
 
 class _AppLocalizationsDelegate

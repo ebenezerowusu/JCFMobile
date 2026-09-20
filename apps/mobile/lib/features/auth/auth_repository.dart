@@ -11,9 +11,19 @@ class AuthRepository {
   final JcfApiClient _client;
   Dio get _dio => _client.dio;
 
-  /// Ask the backend to email a one-time code to the matching member.
-  Future<void> requestCode(String identifier) async {
-    await _dio.post('auth/request-code/', data: {'identifier': identifier});
+  /// Ask the backend to send a one-time code (SMS for phone identifiers,
+  /// email otherwise). Returns masked-destination/cooldown info when known.
+  Future<RequestCodeResult> requestCode(String identifier) async {
+    final res = await _dio.post<Map<String, dynamic>>(
+      'auth/request-code/',
+      data: {'identifier': identifier},
+    );
+    final data = res.data ?? const {};
+    return RequestCodeResult(
+      maskedDestination: data['masked_destination'] as String?,
+      channel: data['channel'] as String?,
+      retryAfter: (data['retry_after'] as num?)?.toInt() ?? 30,
+    );
   }
 
   /// Verify the code; on success tokens are persisted and the member returned.
@@ -52,3 +62,14 @@ class AuthRepository {
 final authRepositoryProvider = Provider<AuthRepository>(
   (ref) => AuthRepository(ref.watch(apiClientProvider)),
 );
+
+
+/// What request-code reported back (used by the verify screen).
+class RequestCodeResult {
+  const RequestCodeResult(
+      {this.maskedDestination, this.channel, required this.retryAfter});
+
+  final String? maskedDestination;
+  final String? channel;
+  final int retryAfter;
+}

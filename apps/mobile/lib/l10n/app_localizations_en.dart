@@ -179,4 +179,62 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get genericError => 'Something went wrong. Please try again.';
+
+  @override
+  String get signInWithPhone => 'Sign in with your phone';
+
+  @override
+  String get signInWithEmail => 'Sign in with your email';
+
+  @override
+  String get oneTimeCodeSub => 'We\'ll send a one-time verification code.';
+
+  @override
+  String get useEmailInstead => 'Use Email Instead';
+
+  @override
+  String get usePhoneInstead => 'Use Phone Instead';
+
+  @override
+  String get phoneMatchNote =>
+      'Your number must match your JCF membership\nor student record.';
+
+  @override
+  String get emailMatchNote =>
+      'Your email must match your JCF membership\nor student record.';
+
+  @override
+  String get enterVerificationCode => 'Enter verification code';
+
+  @override
+  String codeSentToMasked(String destination) {
+    return 'We sent a 6-digit code to $destination.';
+  }
+
+  @override
+  String get verifyAndContinue => 'Verify and Continue';
+
+  @override
+  String resendCodeIn(String time) {
+    return 'Resend code in $time';
+  }
+
+  @override
+  String get changePhoneNumber => 'Change phone number';
+
+  @override
+  String get changeEmailAddress => 'Change email address';
+
+  @override
+  String get didntReceiveCode => 'Didn\'t receive the code?';
+
+  @override
+  String get resendHelpSub =>
+      'Check your messages or request a new\nverification code.';
+
+  @override
+  String get resendCode => 'Resend Code';
+
+  @override
+  String get contactSupport => 'Contact Support';
 }
