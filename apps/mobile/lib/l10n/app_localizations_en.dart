@@ -601,4 +601,66 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get nothingInProgress =>
       'Nothing in progress yet.\nOpen a lesson to begin your journey.';
+
+  @override
+  String get continuePracticeTitle => 'Continue Practice';
+
+  @override
+  String get practiceTagline => 'A more conscious you, a brighter world.';
+
+  @override
+  String dayStreak(int days) {
+    return '$days day streak';
+  }
+
+  @override
+  String get keepGoing => 'Keep going!';
+
+  @override
+  String practicesCount(int count) {
+    return '$count practices';
+  }
+
+  @override
+  String get thisWeekShort => 'this week';
+
+  @override
+  String get todaysPracticeEyebrow => 'TODAY\'S PRACTICE';
+
+  @override
+  String get guidedAudio => 'Guided audio';
+
+  @override
+  String minutesShort(int min) {
+    return '$min min';
+  }
+
+  @override
+  String get thisWeekTitle => 'This Week';
+
+  @override
+  String get yourProgress => 'Your Progress';
+
+  @override
+  String get weeklyGoal => 'Weekly Goal';
+
+  @override
+  String nOfGoalPractices(int done, int goal) {
+    return '$done of $goal practices';
+  }
+
+  @override
+  String get yourPractices => 'Your Practices';
+
+  @override
+  String get viewPracticeHistory => 'View Practice History';
+
+  @override
+  String get playAudio => 'Play audio';
+
+  @override
+  String get markDone => 'Mark as done';
+
+  @override
+  String get doneToday => 'Done for today';
 }

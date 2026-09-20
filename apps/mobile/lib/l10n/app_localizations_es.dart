@@ -604,4 +604,66 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get nothingInProgress =>
       'Nada en curso todavía.\nAbre una lección para comenzar tu camino.';
+
+  @override
+  String get continuePracticeTitle => 'Continuar la práctica';
+
+  @override
+  String get practiceTagline => 'Un tú más consciente, un mundo más luminoso.';
+
+  @override
+  String dayStreak(int days) {
+    return 'Racha de $days días';
+  }
+
+  @override
+  String get keepGoing => '¡Sigue así!';
+
+  @override
+  String practicesCount(int count) {
+    return '$count prácticas';
+  }
+
+  @override
+  String get thisWeekShort => 'esta semana';
+
+  @override
+  String get todaysPracticeEyebrow => 'PRÁCTICA DE HOY';
+
+  @override
+  String get guidedAudio => 'Audio guiado';
+
+  @override
+  String minutesShort(int min) {
+    return '$min min';
+  }
+
+  @override
+  String get thisWeekTitle => 'Esta semana';
+
+  @override
+  String get yourProgress => 'Tu progreso';
+
+  @override
+  String get weeklyGoal => 'Meta semanal';
+
+  @override
+  String nOfGoalPractices(int done, int goal) {
+    return '$done de $goal prácticas';
+  }
+
+  @override
+  String get yourPractices => 'Tus prácticas';
+
+  @override
+  String get viewPracticeHistory => 'Ver historial de prácticas';
+
+  @override
+  String get playAudio => 'Reproducir audio';
+
+  @override
+  String get markDone => 'Marcar como hecha';
+
+  @override
+  String get doneToday => 'Hecha por hoy';
 }

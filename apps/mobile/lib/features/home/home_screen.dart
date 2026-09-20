@@ -9,6 +9,7 @@ import '../auth/auth_controller.dart';
 import '../engagement/engagement_repository.dart';
 import '../inspiration/inspiration_repository.dart';
 import '../lessons/lessons_repository.dart';
+import '../practice/practice_repository.dart';
 import '../programs/programs_repository.dart';
 import 'home_widgets.dart';
 
@@ -38,6 +39,7 @@ class HomeScreen extends ConsumerWidget {
             ref.invalidate(programsListProvider);
             ref.invalidate(inspirationTodayProvider);
             ref.invalidate(continueLearningProvider);
+            ref.invalidate(practiceSummaryProvider);
           },
           child: body,
         ),
@@ -245,6 +247,7 @@ class StudentHome extends ConsumerWidget {
     final announcement = announcements.asData?.value.results
         .cast<Announcement?>()
         .firstWhere((_) => true, orElse: () => null);
+    final practice = ref.watch(practiceSummaryProvider).asData?.value;
 
     return ListView(
       padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
@@ -264,7 +267,9 @@ class StudentHome extends ConsumerWidget {
         ),
         const SizedBox(height: 14),
         TodaysPracticeCard(
-          title: t.todaysPractice,
+          title: practice?.todaysPractice?.title ?? t.todaysPractice,
+          streakLabel:
+              practice == null ? null : t.dayStreak(practice.streakDays),
           cta: t.startLabel,
           onTap: () => context.go('/practice'),
         ),

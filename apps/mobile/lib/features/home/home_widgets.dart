@@ -890,11 +890,12 @@ class JourneyHero extends StatelessWidget {
 class TodaysPracticeCard extends StatelessWidget {
   const TodaysPracticeCard(
       {super.key, required this.title, required this.cta,
-      required this.onTap});
+      required this.onTap, this.streakLabel});
 
   final String title;
   final String cta;
   final VoidCallback onTap;
+  final String? streakLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -914,14 +915,29 @@ class TodaysPracticeCard extends StatelessWidget {
           ),
           const SizedBox(width: 12),
           Expanded(
-            child: Text(
-              title,
-              style: const TextStyle(
-                color: JcfColors.inkOnLight,
-                fontFamily: JcfTypography.bodyFamily,
-                fontSize: 18,
-                fontWeight: FontWeight.w800,
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    color: JcfColors.inkOnLight,
+                    fontFamily: JcfTypography.bodyFamily,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                if (streakLabel != null)
+                  Text(
+                    streakLabel!,
+                    style: const TextStyle(
+                      color: Color(0xFFF08A24),
+                      fontFamily: JcfTypography.bodyFamily,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+              ],
             ),
           ),
           FilledButton.icon(

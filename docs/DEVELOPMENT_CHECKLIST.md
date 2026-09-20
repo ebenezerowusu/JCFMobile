@@ -101,9 +101,12 @@ prerequisites YES ("Complete Level 2 to unlock").
       small series progress cards, Resume, recently-viewed w/ media filters;
       lesson detail gains Mark-as-complete (explicit until the in-app
       player reports playback); member home card + student hero -> /learning
-- [ ] 4. Continue Practice (#27): Practice + PracticeLog models, streaks,
-      weekly-goal ring, today's practice, practice library + history;
-      student-home hero (level %, next-step lock)
+- [x] 4. Continue Practice (#27): Practice + PracticeLog models, streaks,
+      weekly-goal ring, today's practice, practice library + logging;
+      student-home Today's Practice card shows real practice + streak.
+      Notes: "Mark as done" stands in until an in-app audio player reports
+      playback; practice history screen and student-home level %/next-step
+      lock still pending (need the journey/levels backend)
 - [ ] 5. Upcoming Activities (#25): unified feed (programs+live+practice)
       w/ filters, audience chips, per-item reminders
 - [ ] 6. Announcements screen restyle (#28): audience filter chips, pinned,

@@ -1201,6 +1201,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Nothing in progress yet.\nOpen a lesson to begin your journey.'**
   String get nothingInProgress;
+
+  /// No description provided for @continuePracticeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Practice'**
+  String get continuePracticeTitle;
+
+  /// No description provided for @practiceTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'A more conscious you, a brighter world.'**
+  String get practiceTagline;
+
+  /// No description provided for @dayStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'{days} day streak'**
+  String dayStreak(int days);
+
+  /// No description provided for @keepGoing.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep going!'**
+  String get keepGoing;
+
+  /// No description provided for @practicesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} practices'**
+  String practicesCount(int count);
+
+  /// No description provided for @thisWeekShort.
+  ///
+  /// In en, this message translates to:
+  /// **'this week'**
+  String get thisWeekShort;
+
+  /// No description provided for @todaysPracticeEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'TODAY\'S PRACTICE'**
+  String get todaysPracticeEyebrow;
+
+  /// No description provided for @guidedAudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Guided audio'**
+  String get guidedAudio;
+
+  /// No description provided for @minutesShort.
+  ///
+  /// In en, this message translates to:
+  /// **'{min} min'**
+  String minutesShort(int min);
+
+  /// No description provided for @thisWeekTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This Week'**
+  String get thisWeekTitle;
+
+  /// No description provided for @yourProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Progress'**
+  String get yourProgress;
+
+  /// No description provided for @weeklyGoal.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly Goal'**
+  String get weeklyGoal;
+
+  /// No description provided for @nOfGoalPractices.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {goal} practices'**
+  String nOfGoalPractices(int done, int goal);
+
+  /// No description provided for @yourPractices.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Practices'**
+  String get yourPractices;
+
+  /// No description provided for @viewPracticeHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'View Practice History'**
+  String get viewPracticeHistory;
+
+  /// No description provided for @playAudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Play audio'**
+  String get playAudio;
+
+  /// No description provided for @markDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as done'**
+  String get markDone;
+
+  /// No description provided for @doneToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Done for today'**
+  String get doneToday;
 }
 
 class _AppLocalizationsDelegate

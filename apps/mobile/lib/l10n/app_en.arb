@@ -265,5 +265,54 @@
   },
   "markComplete": "Mark as complete",
   "completedLabel": "Completed",
-  "nothingInProgress": "Nothing in progress yet.\nOpen a lesson to begin your journey."
+  "nothingInProgress": "Nothing in progress yet.\nOpen a lesson to begin your journey.",
+  "continuePracticeTitle": "Continue Practice",
+  "practiceTagline": "A more conscious you, a brighter world.",
+  "dayStreak": "{days} day streak",
+  "@dayStreak": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "keepGoing": "Keep going!",
+  "practicesCount": "{count} practices",
+  "@practicesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "thisWeekShort": "this week",
+  "todaysPracticeEyebrow": "TODAY'S PRACTICE",
+  "guidedAudio": "Guided audio",
+  "minutesShort": "{min} min",
+  "@minutesShort": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      }
+    }
+  },
+  "thisWeekTitle": "This Week",
+  "yourProgress": "Your Progress",
+  "weeklyGoal": "Weekly Goal",
+  "nOfGoalPractices": "{done} of {goal} practices",
+  "@nOfGoalPractices": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "goal": {
+        "type": "int"
+      }
+    }
+  },
+  "yourPractices": "Your Practices",
+  "viewPracticeHistory": "View Practice History",
+  "playAudio": "Play audio",
+  "markDone": "Mark as done",
+  "doneToday": "Done for today"
 }
