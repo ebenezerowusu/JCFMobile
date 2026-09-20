@@ -172,6 +172,14 @@ detail) lives in `FEATURES.md`; architecture & conventions in `HANDOVER.md`.
 
 ## Cross-cutting / always-on
 
+- [ ] **Translation-first development**: every new screen ships with its
+      strings in ARB (all Wave-1 languages) from day one — never hardcoded
+      copy "to localize later"; direction-aware widgets (`start`/`end`) only;
+      new server-side text (errors, templates, form labels) must honour
+      `Accept-Language`
+- [ ] **API hand-in-hand**: every mobile feature is built together with its
+      JCFAdmin API in the same pass — Django tests + Flutter screen against
+      the real endpoint, tested end to end before moving on
 - [ ] Keep `flutter analyze` + `flutter test` green on every change
 - [ ] No hardcoded fees/dates/tiers/strings in Flutter — all from API/l10n
 - [ ] Secrets never in Flutter (Paystack secret, R2, signing keys — server only)
