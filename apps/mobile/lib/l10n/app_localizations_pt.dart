@@ -719,4 +719,26 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get noUpcoming => 'Nada agendado ainda. Volte em breve.';
+
+  @override
+  String get announcementsTitle => 'Comunicados';
+
+  @override
+  String get announcementsTagline =>
+      'Fique por dentro das novidades da comunidade JCF.';
+
+  @override
+  String get chipGeneral => 'Geral';
+
+  @override
+  String get chipMembers => 'Membros';
+
+  @override
+  String get chipStudents => 'Estudantes';
+
+  @override
+  String get pinnedAnnouncement => 'Comunicado fixado';
+
+  @override
+  String get noAnnouncements => 'Ainda não há comunicados. Volte em breve.';
 }

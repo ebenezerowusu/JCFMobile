@@ -714,4 +714,26 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noUpcoming => 'Nothing scheduled yet. Check back soon.';
+
+  @override
+  String get announcementsTitle => 'Announcements';
+
+  @override
+  String get announcementsTagline =>
+      'Stay updated with the latest from the JCF community.';
+
+  @override
+  String get chipGeneral => 'General';
+
+  @override
+  String get chipMembers => 'Members';
+
+  @override
+  String get chipStudents => 'Students';
+
+  @override
+  String get pinnedAnnouncement => 'Pinned Announcement';
+
+  @override
+  String get noAnnouncements => 'No announcements yet. Check back soon.';
 }

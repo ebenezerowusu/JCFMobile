@@ -724,4 +724,27 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get noUpcoming => 'Rien de prévu pour l\'instant. Revenez bientôt.';
+
+  @override
+  String get announcementsTitle => 'Annonces';
+
+  @override
+  String get announcementsTagline =>
+      'Restez informé des dernières nouvelles de la communauté JCF.';
+
+  @override
+  String get chipGeneral => 'Général';
+
+  @override
+  String get chipMembers => 'Membres';
+
+  @override
+  String get chipStudents => 'Étudiants';
+
+  @override
+  String get pinnedAnnouncement => 'Annonce épinglée';
+
+  @override
+  String get noAnnouncements =>
+      'Aucune annonce pour l\'instant. Revenez bientôt.';
 }

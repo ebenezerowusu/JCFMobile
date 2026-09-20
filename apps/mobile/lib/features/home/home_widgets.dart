@@ -767,34 +767,7 @@ class AnnouncementCard extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: FilledButton.icon(
-              onPressed: () => showModalBottomSheet<void>(
-                context: context,
-                showDragHandle: true,
-                builder: (_) => Padding(
-                  padding: const EdgeInsets.fromLTRB(24, 0, 24, 32),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(announcement.title,
-                            style: const TextStyle(
-                              color: JcfColors.inkOnLight,
-                              fontFamily: JcfTypography.bodyFamily,
-                              fontSize: 22,
-                              fontWeight: FontWeight.w800,
-                            )),
-                        const SizedBox(height: 10),
-                        Text(announcement.body,
-                            style: const TextStyle(
-                                color: _sub,
-                                fontFamily: JcfTypography.bodyFamily,
-                                fontSize: 16,
-                                height: 1.4)),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              onPressed: () => context.push('/announcements'),
               icon: const Icon(Icons.chevron_right, size: 18),
               iconAlignment: IconAlignment.end,
               label: Text(t.learnMore),

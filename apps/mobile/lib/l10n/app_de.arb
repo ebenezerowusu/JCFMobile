@@ -217,5 +217,12 @@
   "reminderOnSnack": "Erinnerung gesetzt – wir benachrichtigen dich.",
   "reminderOffSnack": "Erinnerung entfernt.",
   "signInForReminders": "Melde dich an, um Erinnerungen zu setzen.",
-  "noUpcoming": "Noch nichts geplant. Schau bald wieder vorbei."
+  "noUpcoming": "Noch nichts geplant. Schau bald wieder vorbei.",
+  "announcementsTitle": "Ankündigungen",
+  "announcementsTagline": "Bleibe auf dem Laufenden über Neuigkeiten aus der JCF-Gemeinschaft.",
+  "chipGeneral": "Allgemein",
+  "chipMembers": "Mitglieder",
+  "chipStudents": "Studierende",
+  "pinnedAnnouncement": "Angeheftete Ankündigung",
+  "noAnnouncements": "Noch keine Ankündigungen. Schau bald wieder vorbei."
 }

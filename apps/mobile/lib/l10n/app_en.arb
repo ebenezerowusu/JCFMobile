@@ -331,5 +331,12 @@
   "reminderOnSnack": "Reminder set — we'll notify you.",
   "reminderOffSnack": "Reminder removed.",
   "signInForReminders": "Sign in to set reminders.",
-  "noUpcoming": "Nothing scheduled yet. Check back soon."
+  "noUpcoming": "Nothing scheduled yet. Check back soon.",
+  "announcementsTitle": "Announcements",
+  "announcementsTagline": "Stay updated with the latest from the JCF community.",
+  "chipGeneral": "General",
+  "chipMembers": "Members",
+  "chipStudents": "Students",
+  "pinnedAnnouncement": "Pinned Announcement",
+  "noAnnouncements": "No announcements yet. Check back soon."
 }

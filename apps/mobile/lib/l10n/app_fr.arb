@@ -217,5 +217,12 @@
   "reminderOnSnack": "Rappel activé — nous vous préviendrons.",
   "reminderOffSnack": "Rappel supprimé.",
   "signInForReminders": "Connectez-vous pour définir des rappels.",
-  "noUpcoming": "Rien de prévu pour l'instant. Revenez bientôt."
+  "noUpcoming": "Rien de prévu pour l'instant. Revenez bientôt.",
+  "announcementsTitle": "Annonces",
+  "announcementsTagline": "Restez informé des dernières nouvelles de la communauté JCF.",
+  "chipGeneral": "Général",
+  "chipMembers": "Membres",
+  "chipStudents": "Étudiants",
+  "pinnedAnnouncement": "Annonce épinglée",
+  "noAnnouncements": "Aucune annonce pour l'instant. Revenez bientôt."
 }

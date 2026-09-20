@@ -717,4 +717,26 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get noUpcoming => 'No hay nada programado todavía. Vuelve pronto.';
+
+  @override
+  String get announcementsTitle => 'Anuncios';
+
+  @override
+  String get announcementsTagline =>
+      'Mantente al día con lo último de la comunidad JCF.';
+
+  @override
+  String get chipGeneral => 'General';
+
+  @override
+  String get chipMembers => 'Miembros';
+
+  @override
+  String get chipStudents => 'Estudiantes';
+
+  @override
+  String get pinnedAnnouncement => 'Anuncio fijado';
+
+  @override
+  String get noAnnouncements => 'No hay anuncios todavía. Vuelve pronto.';
 }

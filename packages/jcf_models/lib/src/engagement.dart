@@ -7,6 +7,7 @@ class Announcement {
     required this.audience,
     this.imageUrl = '',
     this.pinned = false,
+    this.isRead = true,
     this.createdAt,
   });
 
@@ -16,6 +17,7 @@ class Announcement {
   final String audience;
   final String imageUrl;
   final bool pinned;
+  final bool isRead;
   final String? createdAt;
 
   factory Announcement.fromJson(Map<String, dynamic> json) => Announcement(
@@ -25,6 +27,7 @@ class Announcement {
         audience: json['audience'] as String? ?? 'public',
         imageUrl: json['image_url'] as String? ?? '',
         pinned: json['pinned'] as bool? ?? false,
+        isRead: json['is_read'] as bool? ?? true,
         createdAt: json['created_at'] as String?,
       );
 }

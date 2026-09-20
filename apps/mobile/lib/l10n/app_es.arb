@@ -217,5 +217,12 @@
   "reminderOnSnack": "Recordatorio activado: te avisaremos.",
   "reminderOffSnack": "Recordatorio eliminado.",
   "signInForReminders": "Inicia sesión para crear recordatorios.",
-  "noUpcoming": "No hay nada programado todavía. Vuelve pronto."
+  "noUpcoming": "No hay nada programado todavía. Vuelve pronto.",
+  "announcementsTitle": "Anuncios",
+  "announcementsTagline": "Mantente al día con lo último de la comunidad JCF.",
+  "chipGeneral": "General",
+  "chipMembers": "Miembros",
+  "chipStudents": "Estudiantes",
+  "pinnedAnnouncement": "Anuncio fijado",
+  "noAnnouncements": "No hay anuncios todavía. Vuelve pronto."
 }

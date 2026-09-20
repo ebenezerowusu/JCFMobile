@@ -217,5 +217,12 @@
   "reminderOnSnack": "Lembrete ativado — vamos avisá-lo.",
   "reminderOffSnack": "Lembrete removido.",
   "signInForReminders": "Inicie sessão para definir lembretes.",
-  "noUpcoming": "Nada agendado ainda. Volte em breve."
+  "noUpcoming": "Nada agendado ainda. Volte em breve.",
+  "announcementsTitle": "Comunicados",
+  "announcementsTagline": "Fique por dentro das novidades da comunidade JCF.",
+  "chipGeneral": "Geral",
+  "chipMembers": "Membros",
+  "chipStudents": "Estudantes",
+  "pinnedAnnouncement": "Comunicado fixado",
+  "noAnnouncements": "Ainda não há comunicados. Volte em breve."
 }

@@ -1411,6 +1411,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Nothing scheduled yet. Check back soon.'**
   String get noUpcoming;
+
+  /// No description provided for @announcementsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Announcements'**
+  String get announcementsTitle;
+
+  /// No description provided for @announcementsTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay updated with the latest from the JCF community.'**
+  String get announcementsTagline;
+
+  /// No description provided for @chipGeneral.
+  ///
+  /// In en, this message translates to:
+  /// **'General'**
+  String get chipGeneral;
+
+  /// No description provided for @chipMembers.
+  ///
+  /// In en, this message translates to:
+  /// **'Members'**
+  String get chipMembers;
+
+  /// No description provided for @chipStudents.
+  ///
+  /// In en, this message translates to:
+  /// **'Students'**
+  String get chipStudents;
+
+  /// No description provided for @pinnedAnnouncement.
+  ///
+  /// In en, this message translates to:
+  /// **'Pinned Announcement'**
+  String get pinnedAnnouncement;
+
+  /// No description provided for @noAnnouncements.
+  ///
+  /// In en, this message translates to:
+  /// **'No announcements yet. Check back soon.'**
+  String get noAnnouncements;
 }
 
 class _AppLocalizationsDelegate

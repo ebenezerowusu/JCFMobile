@@ -111,8 +111,10 @@ prerequisites YES ("Complete Level 2 to unlock").
       +gatherings) w/ filters, audience chips, per-item reminders; entry
       points on guest/member home + More tile. Notes: reminders are stored
       server-side; push delivery lands with the FCM track
-- [ ] 6. Announcements screen restyle (#28): audience filter chips, pinned,
-      unread dots (API exists)
+- [x] 6. Announcements screen restyle (#28): /announcements with audience
+      filter chips, pinned card, unread dots backed by AnnouncementRead
+      (cleared on open); detail bottom sheet; home announcement card links
+      through. Guests see no dots (read state is per-member)
 - [ ] 7. Global search (#30-31): endpoint across teachings/practices/
       programmes/events/centres/announcements, popular searches, typed
       result cards; client recent searches

@@ -23,6 +23,10 @@ class EngagementRepository {
     await _dio.post('notifications/$id/read/');
   }
 
+  Future<void> markAnnouncementRead(int id) async {
+    await _dio.post('announcements/$id/read/');
+  }
+
   Future<Paginated<Appointment>> appointments() async {
     final res = await _dio.get<Map<String, dynamic>>('appointments/');
     return Paginated.fromJson(res.data!, Appointment.fromJson);

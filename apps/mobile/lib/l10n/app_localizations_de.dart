@@ -722,4 +722,27 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get noUpcoming => 'Noch nichts geplant. Schau bald wieder vorbei.';
+
+  @override
+  String get announcementsTitle => 'Ankündigungen';
+
+  @override
+  String get announcementsTagline =>
+      'Bleibe auf dem Laufenden über Neuigkeiten aus der JCF-Gemeinschaft.';
+
+  @override
+  String get chipGeneral => 'Allgemein';
+
+  @override
+  String get chipMembers => 'Mitglieder';
+
+  @override
+  String get chipStudents => 'Studierende';
+
+  @override
+  String get pinnedAnnouncement => 'Angeheftete Ankündigung';
+
+  @override
+  String get noAnnouncements =>
+      'Noch keine Ankündigungen. Schau bald wieder vorbei.';
 }
