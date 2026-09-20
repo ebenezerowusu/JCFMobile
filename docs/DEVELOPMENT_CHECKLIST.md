@@ -54,6 +54,8 @@ detail) lives in `FEATURES.md`; architecture & conventions in `HANDOVER.md`.
       JSON, fees, tiers, registrations table with cancel/room-free) and
       Engagement (announcements CRUD w/ audience+pin, Send Notification to
       audience or one contact -> mobile inbox); 14 hand-in-hand tests
+- [x] **Teachings admin completeness** — tier/series/media/thumbnail
+      authoring + Series dashboard pages, matching the Lessons API
 - [x] **Groups (backend + admin + API)** — admin-created groups with
       approval-gated join requests: dashboard pages (`/groups/`, request
       queue, roster), `/api/mobile/v1/groups/` (+ `/mine/`, `/join/`),
@@ -151,8 +153,11 @@ detail) lives in `FEATURES.md`; architecture & conventions in `HANDOVER.md`.
       remaining screens (home, lessons, give, programs, profile) pending
 - [ ] Content language preferences + filtering + per-teaching language
       switcher; English fallback everywhere
-- [ ] API `Accept-Language` for server text (errors, templates, form labels);
-      translatable fields authored in JCFAdmin
+- [x] API honours `Accept-Language` (LocaleMiddleware + LANGUAGES; built-in
+      Django/DRF messages translate; custom API strings gettext-wrapped —
+      .po files pending); app sends the header from the chosen locale
+- [ ] Translatable content fields authored in JCFAdmin (announcements,
+      daily inspiration, program form labels)
 - [ ] Wave 2 UI: IT, RU, NL, AR (RTL), HI, ZH · Home: Twi, Ewe, Ga,
       Dagbani, Hausa
 - [ ] Translation sourcing per owner decision 7
