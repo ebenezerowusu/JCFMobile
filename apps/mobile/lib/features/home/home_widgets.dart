@@ -306,7 +306,7 @@ class _InspirationHeroCarouselState extends State<InspirationHeroCarousel> {
     return Column(
       children: [
         SizedBox(
-          height: 196,
+          height: 162,
           child: items.isEmpty
               ? const _HeroSlide(inspiration: null)
               : PageView(
@@ -367,27 +367,30 @@ class _HeroSlide extends StatelessWidget {
           ),
           // Cosmic earth-horizon artwork, fading into the gradient on the
           // side the quote sits on.
-          PositionedDirectional(
-            end: 0,
-            top: 0,
-            bottom: 0,
-            child: ShaderMask(
-              shaderCallback: (rect) => const LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [Colors.transparent, Colors.white],
-                stops: [0.0, 0.45],
-              ).createShader(rect),
-              blendMode: BlendMode.dstIn,
-              child: Image.asset(
-                'assets/images/hero_cosmic.png',
-                fit: BoxFit.cover,
-                alignment: AlignmentDirectional.centerEnd,
+          Align(
+            alignment: AlignmentDirectional.centerEnd,
+            child: FractionallySizedBox(
+              alignment: AlignmentDirectional.centerEnd,
+              widthFactor: 0.55,
+              heightFactor: 1,
+              child: ShaderMask(
+                shaderCallback: (rect) => const LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [Colors.transparent, Colors.white],
+                  stops: [0.0, 0.4],
+                ).createShader(rect),
+                blendMode: BlendMode.dstIn,
+                child: Image.asset(
+                  'assets/images/hero_cosmic.png',
+                  fit: BoxFit.cover,
+                  alignment: AlignmentDirectional.centerEnd,
+                ),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(18),
+            padding: const EdgeInsets.fromLTRB(18, 14, 18, 14),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -410,12 +413,12 @@ class _HeroSlide extends StatelessWidget {
                       alignment: AlignmentDirectional.centerStart,
                       child: Text(
                         quote,
-                        maxLines: 4,
+                        maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                           color: Colors.white,
                           fontFamily: JcfTypography.bodyFamily,
-                          fontSize: 17.5,
+                          fontSize: 15.5,
                           height: 1.22,
                           fontWeight: FontWeight.w800,
                         ),
@@ -882,10 +885,10 @@ class SignInBanner extends StatelessWidget {
       child: Row(
         children: [
           const CircleAvatar(
-            radius: 24,
+            radius: 22,
             backgroundColor: Color(0xFFCFE0FB),
             child: Icon(Icons.groups_rounded,
-                color: JcfColors.skyPrimary, size: 26),
+                color: JcfColors.skyPrimary, size: 24),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -894,20 +897,26 @@ class SignInBanner extends StatelessWidget {
               children: [
                 Text(
                   title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     color: JcfColors.inkOnLight,
                     fontFamily: JcfTypography.bodyFamily,
-                    fontSize: 15.5,
+                    fontSize: 14,
+                    height: 1.2,
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 3),
                 Text(
                   sub,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                       color: _sub,
                       fontFamily: JcfTypography.bodyFamily,
-                      fontSize: 12.5),
+                      fontSize: 11.5,
+                      height: 1.25),
                 ),
               ],
             ),
@@ -915,15 +924,18 @@ class SignInBanner extends StatelessWidget {
           const SizedBox(width: 10),
           FilledButton.icon(
             onPressed: () => context.push('/login'),
-            icon: const Icon(Icons.arrow_forward, size: 18),
+            icon: const Icon(Icons.arrow_forward, size: 16),
             iconAlignment: IconAlignment.end,
             label: Text(cta),
             style: FilledButton.styleFrom(
               backgroundColor: JcfColors.skyPrimary,
               foregroundColor: Colors.white,
+              visualDensity: VisualDensity.compact,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(22)),
               textStyle: const TextStyle(
+                fontSize: 13.5,
                 fontWeight: FontWeight.w700,
                 fontFamily: JcfTypography.bodyFamily,
               ),
