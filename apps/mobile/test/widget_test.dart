@@ -111,5 +111,21 @@ void main() {
     expect(find.text('Actualités des programmes'), findsOneWidget);
     expect(find.text('Activer les notifications'), findsOneWidget);
     expect(find.text('Pas maintenant'), findsOneWidget);
+
+    // Not Now -> the new role-adaptive guest Home (design 19) in the new
+    // 5-tab shell (Home · Learn · Practice · Programs · More).
+    await tester.ensureVisible(find.text('Pas maintenant'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Pas maintenant'));
+    await tester.pumpAndSettle();
+    expect(find.text('Commencez votre voyage'), findsOneWidget);
+    expect(find.text('Pratique'), findsOneWidget); // tab
+    expect(find.text('Plus'), findsOneWidget); // tab
+
+    // More tab -> Quick Actions (design 29).
+    await tester.tap(find.text('Plus'));
+    await tester.pumpAndSettle();
+    expect(find.text('Actions rapides'), findsOneWidget);
+    expect(find.text('Boutique'), findsOneWidget);
   });
 }

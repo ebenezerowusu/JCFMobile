@@ -309,4 +309,222 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get staySignedIn => 'Rester connecté';
+
+  @override
+  String get tabHome => 'Accueil';
+
+  @override
+  String get tabLearn => 'Apprendre';
+
+  @override
+  String get tabPractice => 'Pratique';
+
+  @override
+  String get tabPrograms => 'Programmes';
+
+  @override
+  String get tabMore => 'Plus';
+
+  @override
+  String get dailyInspirationEyebrow => 'INSPIRATION DU JOUR';
+
+  @override
+  String get defaultQuote =>
+      '« La liberté commence quand la conscience devient votre façon de vivre. »';
+
+  @override
+  String get readReflection => 'Lire la réflexion';
+
+  @override
+  String get beginYourJourney => 'Commencez votre voyage';
+
+  @override
+  String get seeAll => 'Tout voir';
+
+  @override
+  String get watchATeaching => 'Regarder un enseignement';
+
+  @override
+  String get watchTeachingSub => 'Des éclairages pour un\nlendemain meilleur';
+
+  @override
+  String get tryAPractice => 'Essayer une pratique';
+
+  @override
+  String get tryPracticeSub => 'Des outils simples\npour la vie quotidienne';
+
+  @override
+  String get findAProgramme => 'Trouver un programme';
+
+  @override
+  String get findProgrammeSub => 'Aller plus loin\nà votre rythme';
+
+  @override
+  String get liveUpcoming => 'En direct et à venir';
+
+  @override
+  String get latestPublicTeachings => 'Derniers enseignements publics';
+
+  @override
+  String get signInBanner => 'Connectez-vous à votre espace membre ou étudiant';
+
+  @override
+  String get signInBannerSub =>
+      'Accédez aux pratiques guidées, programmes, événements en direct et plus.';
+
+  @override
+  String greetingMorning(String name) {
+    return 'Bonjour, $name';
+  }
+
+  @override
+  String greetingAfternoon(String name) {
+    return 'Bon après-midi, $name';
+  }
+
+  @override
+  String greetingEvening(String name) {
+    return 'Bonsoir, $name';
+  }
+
+  @override
+  String welcomeBackName(String name) {
+    return 'Bon retour,\n$name';
+  }
+
+  @override
+  String get memberChip => 'Membre';
+
+  @override
+  String get studentChip => 'Étudiant';
+
+  @override
+  String get memberTagline =>
+      'Une conscience plus vive crée un lendemain meilleur.';
+
+  @override
+  String get studentTagline => 'Un esprit plus calme. Un vous plus lumineux.';
+
+  @override
+  String get continueLearningEyebrow => 'REPRENDRE L\'APPRENTISSAGE';
+
+  @override
+  String get resume => 'Reprendre';
+
+  @override
+  String get upcomingEyebrow => 'À VENIR';
+
+  @override
+  String get viewDetails => 'Voir les détails';
+
+  @override
+  String get announcementEyebrow => 'ANNONCE';
+
+  @override
+  String get learnMore => 'En savoir plus';
+
+  @override
+  String get myCard => 'Ma carte';
+
+  @override
+  String get myCardSub => 'Votre adhésion';
+
+  @override
+  String get consultationAction => 'Consultation';
+
+  @override
+  String get consultationSub => 'Demander conseil';
+
+  @override
+  String get giveAction => 'Donner';
+
+  @override
+  String get giveSub => 'Soutenir notre œuvre';
+
+  @override
+  String get myGroups => 'Mes groupes';
+
+  @override
+  String get myGroupsSub => 'Se connecter et grandir';
+
+  @override
+  String get innerspaceJourneyEyebrow => 'PARCOURS INNERSPACE';
+
+  @override
+  String get continueLesson => 'Continuer la leçon';
+
+  @override
+  String get todaysPractice => 'La pratique du jour';
+
+  @override
+  String get startLabel => 'Commencer';
+
+  @override
+  String get quickActions => 'Actions rapides';
+
+  @override
+  String get quickActionsSub => 'Tout ce qu\'il vous faut, à portée de main.';
+
+  @override
+  String get membershipCardTitle => 'Ma carte de membre';
+
+  @override
+  String get membershipCardSub => 'Votre identité Jan Cosmic';
+
+  @override
+  String get bookConsultation => 'Réserver une consultation';
+
+  @override
+  String get bookConsultationSub => 'Échanger avec nos guides';
+
+  @override
+  String get giveTileSub => 'Soutenir un lendemain meilleur';
+
+  @override
+  String get myGroupsTileSub => 'Trouver votre communauté';
+
+  @override
+  String get guidanceRequest => 'Demande de guidance';
+
+  @override
+  String get guidanceRequestSub => 'Demander. Explorer. Évoluer.';
+
+  @override
+  String get findCentre => 'Trouver un centre';
+
+  @override
+  String get findCentreSub =>
+      'Localisez un centre Jan Cosmic près de chez vous';
+
+  @override
+  String get myRegistrations => 'Mes inscriptions';
+
+  @override
+  String get myRegistrationsSub =>
+      'Les événements et programmes auxquels vous participez';
+
+  @override
+  String get shopTitle => 'Boutique';
+
+  @override
+  String get shopSub => 'Des choix conscients pour un monde meilleur';
+
+  @override
+  String get downloadsTitle => 'Téléchargements';
+
+  @override
+  String get downloadsSub => 'Des ressources pour votre chemin';
+
+  @override
+  String get settingsTitle => 'Réglages';
+
+  @override
+  String get settingsSub => 'Personnalisez votre expérience';
+
+  @override
+  String get comingSoonTitle => 'Bientôt disponible';
+
+  @override
+  String get comingSoonBody =>
+      'Cette partie de l\'application arrive.\nRevenez bientôt.';
 }

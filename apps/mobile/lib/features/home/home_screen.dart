@@ -1,76 +1,273 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jcf_models/jcf_models.dart';
+import 'package:jcf_ui/jcf_ui.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../auth/auth_controller.dart';
 import '../engagement/engagement_repository.dart';
+import '../lessons/lessons_repository.dart';
+import '../programs/programs_repository.dart';
+import 'home_widgets.dart';
 
+/// Role-adaptive Home: guest (design/19), member (design/20), student
+/// (design/21). One route, three layouts, chosen by auth state.
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final member = ref.watch(authControllerProvider).asData?.value;
-    final announcements = ref.watch(announcementsProvider);
+    final Widget body;
+    if (member == null) {
+      body = const GuestHome();
+    } else if (member.isStudent) {
+      body = StudentHome(member: member);
+    } else {
+      body = MemberHome(member: member);
+    }
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('JCF'),
-        actions: [
-          if (member != null)
-            IconButton(
-              icon: const Icon(Icons.notifications_none),
-              onPressed: () => context.push('/notifications'),
-            ),
-        ],
-      ),
-      body: RefreshIndicator(
-        onRefresh: () async => ref.invalidate(announcementsProvider),
-        child: ListView(
-          padding: const EdgeInsets.all(16),
-          children: [
-            Text(
-              member == null ? 'Welcome' : 'Welcome, ${member.fullName.split(' ').first}',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              member == null
-                  ? 'Explore lessons and the foundation. Sign in to unlock more.'
-                  : 'Jan Cosmic Foundation',
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            const SizedBox(height: 24),
-            Text('Announcements', style: Theme.of(context).textTheme.titleMedium),
-            const SizedBox(height: 8),
-            announcements.when(
-              loading: () => const Center(child: Padding(
-                padding: EdgeInsets.all(16), child: CircularProgressIndicator())),
-              error: (_, _) => const Text('Could not load announcements.'),
-              data: (page) => page.results.isEmpty
-                  ? const Text('No announcements yet.')
-                  : Column(
-                      children: [
-                        for (final a in page.results.take(5))
-                          Card(
-                            child: ListTile(
-                              leading: a.pinned ? const Icon(Icons.push_pin) : const Icon(Icons.campaign),
-                              title: Text(a.title),
-                              subtitle: Text(a.body, maxLines: 2, overflow: TextOverflow.ellipsis),
-                            ),
-                          ),
-                      ],
-                    ),
-            ),
-            const SizedBox(height: 16),
-            if (member != null)
-              OutlinedButton.icon(
-                onPressed: () => context.push('/appointments'),
-                icon: const Icon(Icons.event),
-                label: const Text('My appointments'),
-              ),
-          ],
+      backgroundColor: JcfColors.skySurface,
+      body: SafeArea(
+        child: RefreshIndicator(
+          onRefresh: () async {
+            ref.invalidate(announcementsProvider);
+            ref.invalidate(lessonsListProvider);
+            ref.invalidate(programsListProvider);
+          },
+          child: body,
         ),
       ),
     );
   }
+}
+
+// ---------------------------------------------------------------------------
+// Guest (design/19)
+// ---------------------------------------------------------------------------
+
+class GuestHome extends ConsumerWidget {
+  const GuestHome({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = AppLocalizations.of(context)!;
+    final lessons = ref.watch(lessonsListProvider);
+    final programs = ref.watch(programsListProvider);
+
+    final publicTeaching = lessons.asData?.value.results
+        .where((l) => !l.isLocked)
+        .cast<Teaching?>()
+        .firstWhere((_) => true, orElse: () => null);
+    final nextProgram = programs.asData?.value.results
+        .cast<Program?>()
+        .firstWhere((_) => true, orElse: () => null);
+
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
+      children: [
+        const BrandHeader(),
+        const SizedBox(height: 14),
+        const InspirationHero(),
+        const SizedBox(height: 22),
+        SectionTitle(title: t.beginYourJourney),
+        const SizedBox(height: 10),
+        Row(
+          children: [
+            Expanded(
+              child: JourneyCard(
+                icon: Icons.play_arrow_rounded,
+                tint: const Color(0xFF2E6BF0),
+                bg: const Color(0xFFE3EEFF),
+                title: t.watchATeaching,
+                sub: t.watchTeachingSub,
+                onTap: () => context.go('/lessons'),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: JourneyCard(
+                icon: Icons.self_improvement_rounded,
+                tint: const Color(0xFFF08A24),
+                bg: const Color(0xFFFDEED9),
+                title: t.tryAPractice,
+                sub: t.tryPracticeSub,
+                onTap: () => context.go('/practice'),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: JourneyCard(
+                icon: Icons.menu_book_rounded,
+                tint: const Color(0xFF2E9E5B),
+                bg: const Color(0xFFDDF3E4),
+                title: t.findAProgramme,
+                sub: t.findProgrammeSub,
+                onTap: () => context.go('/programs'),
+              ),
+            ),
+          ],
+        ),
+        if (nextProgram != null) ...[
+          const SizedBox(height: 22),
+          SectionTitle(title: t.liveUpcoming),
+          const SizedBox(height: 10),
+          UpcomingProgramCard(program: nextProgram),
+        ],
+        if (publicTeaching != null) ...[
+          const SizedBox(height: 22),
+          SectionTitle(title: t.latestPublicTeachings),
+          const SizedBox(height: 10),
+          TeachingCard(teaching: publicTeaching),
+        ],
+        const SizedBox(height: 22),
+        SignInBanner(
+          title: t.signInBanner,
+          sub: t.signInBannerSub,
+          cta: t.signIn,
+        ),
+      ],
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Member (design/20)
+// ---------------------------------------------------------------------------
+
+class MemberHome extends ConsumerWidget {
+  const MemberHome({super.key, required this.member});
+
+  final Member member;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = AppLocalizations.of(context)!;
+    final announcements = ref.watch(announcementsProvider);
+    final lessons = ref.watch(lessonsListProvider);
+    final programs = ref.watch(programsListProvider);
+
+    final latestLesson = lessons.asData?.value.results
+        .cast<Teaching?>()
+        .firstWhere((_) => true, orElse: () => null);
+    final nextProgram = programs.asData?.value.results
+        .cast<Program?>()
+        .firstWhere((_) => true, orElse: () => null);
+    final announcement = announcements.asData?.value.results
+        .cast<Announcement?>()
+        .firstWhere((_) => true, orElse: () => null);
+
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
+      children: [
+        MemberHeader(member: member, chip: t.memberChip),
+        const SizedBox(height: 12),
+        GreetingBlock(name: _firstName(member), tagline: t.memberTagline),
+        const SizedBox(height: 14),
+        const InspirationHero(compact: true),
+        const SizedBox(height: 14),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: EyebrowCard(
+                eyebrow: t.continueLearningEyebrow,
+                icon: Icons.menu_book_rounded,
+                title: latestLesson?.topic ?? t.tabLearn,
+                ctaLabel: t.resume,
+                onTap: () => latestLesson == null
+                    ? context.go('/lessons')
+                    : context.push('/lessons/${latestLesson.slug}'),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: EyebrowCard(
+                eyebrow: t.upcomingEyebrow,
+                icon: Icons.calendar_month_rounded,
+                title: nextProgram?.title ?? t.tabPrograms,
+                ctaLabel: t.viewDetails,
+                onTap: () => nextProgram == null
+                    ? context.go('/programs')
+                    : context.push('/programs/${nextProgram.slug}'),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 18),
+        QuickActionRow(items: [
+          QuickAction(Icons.badge_rounded, const Color(0xFF2E6BF0),
+              const Color(0xFFE3EEFF), t.myCard, t.myCardSub,
+              () => context.go('/more')),
+          QuickAction(Icons.people_alt_rounded, const Color(0xFFF08A24),
+              const Color(0xFFFDEED9), t.consultationAction, t.consultationSub,
+              () => context.push('/appointments')),
+          QuickAction(Icons.favorite_rounded, const Color(0xFF2E9E5B),
+              const Color(0xFFDDF3E4), t.giveAction, t.giveSub,
+              () => context.push('/give')),
+          QuickAction(Icons.groups_rounded, const Color(0xFF7B5BD6),
+              const Color(0xFFEAE3FA), t.myGroups, t.myGroupsSub,
+              () => context.go('/more')),
+        ]),
+        if (announcement != null) ...[
+          const SizedBox(height: 18),
+          AnnouncementCard(announcement: announcement),
+        ],
+      ],
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Student (design/21) — journey hero fills with real data in later slices.
+// ---------------------------------------------------------------------------
+
+class StudentHome extends ConsumerWidget {
+  const StudentHome({super.key, required this.member});
+
+  final Member member;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = AppLocalizations.of(context)!;
+    final announcements = ref.watch(announcementsProvider);
+    final announcement = announcements.asData?.value.results
+        .cast<Announcement?>()
+        .firstWhere((_) => true, orElse: () => null);
+
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
+      children: [
+        MemberHeader(member: member, chip: t.studentChip, studentStyle: true),
+        const SizedBox(height: 12),
+        GreetingBlock(
+          name: '',
+          headline: t.welcomeBackName(_firstName(member)),
+          tagline: t.studentTagline,
+        ),
+        const SizedBox(height: 14),
+        JourneyHero(
+          eyebrow: t.innerspaceJourneyEyebrow,
+          cta: t.continueLesson,
+          onTap: () => context.go('/lessons'),
+        ),
+        const SizedBox(height: 14),
+        TodaysPracticeCard(
+          title: t.todaysPractice,
+          cta: t.startLabel,
+          onTap: () => context.go('/practice'),
+        ),
+        if (announcement != null) ...[
+          const SizedBox(height: 14),
+          AnnouncementCard(announcement: announcement),
+        ],
+      ],
+    );
+  }
+}
+
+String _firstName(Member member) {
+  final parts = member.fullName.trim().split(' ');
+  return parts.isEmpty ? member.fullName : parts.first;
 }

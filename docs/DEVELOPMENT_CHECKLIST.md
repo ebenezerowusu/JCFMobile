@@ -86,8 +86,11 @@ hint in design 18; "More" = the Quick Actions screen, design 29). The comps
 confirm three owner decisions: live chat YES, live giving YES, level
 prerequisites YES ("Complete Level 2 to unlock").
 
-- [ ] 1. New shell: 5-tab nav + **role-adaptive Home** (guest #19 /
-      member #20 / student #21) + Quick Actions "More" screen (#29)
+- [x] 1. New shell: 5-tab nav + **role-adaptive Home** (guest #19 /
+      member #20 / student #21) + Quick Actions "More" screen (#29) —
+      v1: inspiration hero carries a built-in quote until step 2; member
+      Continue-Learning card shows latest lesson until step 3; student
+      journey hero fills with level data in step 4
 - [ ] 2. Daily Inspiration (#22-23): model+admin+API (quote, author,
       reflection, schedule, related teaching) -> Home hero carousel,
       detail screen, share-card generator (Light/Cosmic/Minimal) w/

@@ -649,6 +649,414 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Stay Signed In'**
   String get staySignedIn;
+
+  /// No description provided for @tabHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get tabHome;
+
+  /// No description provided for @tabLearn.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn'**
+  String get tabLearn;
+
+  /// No description provided for @tabPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice'**
+  String get tabPractice;
+
+  /// No description provided for @tabPrograms.
+  ///
+  /// In en, this message translates to:
+  /// **'Programs'**
+  String get tabPrograms;
+
+  /// No description provided for @tabMore.
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get tabMore;
+
+  /// No description provided for @dailyInspirationEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'DAILY INSPIRATION'**
+  String get dailyInspirationEyebrow;
+
+  /// No description provided for @defaultQuote.
+  ///
+  /// In en, this message translates to:
+  /// **'“Freedom begins when awareness becomes your way of living.”'**
+  String get defaultQuote;
+
+  /// No description provided for @readReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Read Reflection'**
+  String get readReflection;
+
+  /// No description provided for @beginYourJourney.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin Your Journey'**
+  String get beginYourJourney;
+
+  /// No description provided for @seeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'See All'**
+  String get seeAll;
+
+  /// No description provided for @watchATeaching.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch a Teaching'**
+  String get watchATeaching;
+
+  /// No description provided for @watchTeachingSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Insights for a\nbrighter tomorrow'**
+  String get watchTeachingSub;
+
+  /// No description provided for @tryAPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Try a Practice'**
+  String get tryAPractice;
+
+  /// No description provided for @tryPracticeSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Simple tools\nfor everyday life'**
+  String get tryPracticeSub;
+
+  /// No description provided for @findAProgramme.
+  ///
+  /// In en, this message translates to:
+  /// **'Find a Programme'**
+  String get findAProgramme;
+
+  /// No description provided for @findProgrammeSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Go deeper\nat your own pace'**
+  String get findProgrammeSub;
+
+  /// No description provided for @liveUpcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Live & Upcoming'**
+  String get liveUpcoming;
+
+  /// No description provided for @latestPublicTeachings.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest Public Teachings'**
+  String get latestPublicTeachings;
+
+  /// No description provided for @signInBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in for your member or student experience'**
+  String get signInBanner;
+
+  /// No description provided for @signInBannerSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Access guided practices, programmes, live events and more.'**
+  String get signInBannerSub;
+
+  /// No description provided for @greetingMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Good morning, {name}'**
+  String greetingMorning(String name);
+
+  /// No description provided for @greetingAfternoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Good afternoon, {name}'**
+  String greetingAfternoon(String name);
+
+  /// No description provided for @greetingEvening.
+  ///
+  /// In en, this message translates to:
+  /// **'Good evening, {name}'**
+  String greetingEvening(String name);
+
+  /// No description provided for @welcomeBackName.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back,\n{name}'**
+  String welcomeBackName(String name);
+
+  /// No description provided for @memberChip.
+  ///
+  /// In en, this message translates to:
+  /// **'Member'**
+  String get memberChip;
+
+  /// No description provided for @studentChip.
+  ///
+  /// In en, this message translates to:
+  /// **'Student'**
+  String get studentChip;
+
+  /// No description provided for @memberTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'A more conscious you creates a brighter tomorrow.'**
+  String get memberTagline;
+
+  /// No description provided for @studentTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'A calmer mind. A brighter you.'**
+  String get studentTagline;
+
+  /// No description provided for @continueLearningEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'CONTINUE LEARNING'**
+  String get continueLearningEyebrow;
+
+  /// No description provided for @resume.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get resume;
+
+  /// No description provided for @upcomingEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'UPCOMING'**
+  String get upcomingEyebrow;
+
+  /// No description provided for @viewDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'View Details'**
+  String get viewDetails;
+
+  /// No description provided for @announcementEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'ANNOUNCEMENT'**
+  String get announcementEyebrow;
+
+  /// No description provided for @learnMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn More'**
+  String get learnMore;
+
+  /// No description provided for @myCard.
+  ///
+  /// In en, this message translates to:
+  /// **'My Card'**
+  String get myCard;
+
+  /// No description provided for @myCardSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Your membership'**
+  String get myCardSub;
+
+  /// No description provided for @consultationAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Consultation'**
+  String get consultationAction;
+
+  /// No description provided for @consultationSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Seek guidance'**
+  String get consultationSub;
+
+  /// No description provided for @giveAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Give'**
+  String get giveAction;
+
+  /// No description provided for @giveSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Support our work'**
+  String get giveSub;
+
+  /// No description provided for @myGroups.
+  ///
+  /// In en, this message translates to:
+  /// **'My Groups'**
+  String get myGroups;
+
+  /// No description provided for @myGroupsSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect & grow'**
+  String get myGroupsSub;
+
+  /// No description provided for @innerspaceJourneyEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'INNERSPACE JOURNEY'**
+  String get innerspaceJourneyEyebrow;
+
+  /// No description provided for @continueLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Lesson'**
+  String get continueLesson;
+
+  /// No description provided for @todaysPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s Practice'**
+  String get todaysPractice;
+
+  /// No description provided for @startLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get startLabel;
+
+  /// No description provided for @quickActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Actions'**
+  String get quickActions;
+
+  /// No description provided for @quickActionsSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything you need, close at hand.'**
+  String get quickActionsSub;
+
+  /// No description provided for @membershipCardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My Membership Card'**
+  String get membershipCardTitle;
+
+  /// No description provided for @membershipCardSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Jan Cosmic identity'**
+  String get membershipCardSub;
+
+  /// No description provided for @bookConsultation.
+  ///
+  /// In en, this message translates to:
+  /// **'Book Consultation'**
+  String get bookConsultation;
+
+  /// No description provided for @bookConsultationSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect with our guides'**
+  String get bookConsultationSub;
+
+  /// No description provided for @giveTileSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Support a brighter tomorrow'**
+  String get giveTileSub;
+
+  /// No description provided for @myGroupsTileSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Find your community'**
+  String get myGroupsTileSub;
+
+  /// No description provided for @guidanceRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'Guidance Request'**
+  String get guidanceRequest;
+
+  /// No description provided for @guidanceRequestSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask. Explore. Evolve.'**
+  String get guidanceRequestSub;
+
+  /// No description provided for @findCentre.
+  ///
+  /// In en, this message translates to:
+  /// **'Find a Centre'**
+  String get findCentre;
+
+  /// No description provided for @findCentreSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Locate a Jan Cosmic Centre near you'**
+  String get findCentreSub;
+
+  /// No description provided for @myRegistrations.
+  ///
+  /// In en, this message translates to:
+  /// **'My Registrations'**
+  String get myRegistrations;
+
+  /// No description provided for @myRegistrationsSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Events and programs you\'re part of'**
+  String get myRegistrationsSub;
+
+  /// No description provided for @shopTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop'**
+  String get shopTitle;
+
+  /// No description provided for @shopSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Conscious choices for a better world'**
+  String get shopSub;
+
+  /// No description provided for @downloadsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloads'**
+  String get downloadsTitle;
+
+  /// No description provided for @downloadsSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Resources for your journey'**
+  String get downloadsSub;
+
+  /// No description provided for @settingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settingsTitle;
+
+  /// No description provided for @settingsSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Personalize your experience'**
+  String get settingsSub;
+
+  /// No description provided for @comingSoonTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming soon'**
+  String get comingSoonTitle;
+
+  /// No description provided for @comingSoonBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This part of the app is on its way.\nCheck back shortly.'**
+  String get comingSoonBody;
 }
 
 class _AppLocalizationsDelegate

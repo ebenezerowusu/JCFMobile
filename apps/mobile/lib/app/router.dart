@@ -10,7 +10,9 @@ import '../features/engagement/notifications_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/lessons/lesson_detail_screen.dart';
 import '../features/lessons/lessons_screen.dart';
+import '../features/more/quick_actions_screen.dart';
 import '../features/onboarding/language_screen.dart';
+import '../features/practice/practice_screen.dart';
 import '../features/onboarding/path_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../features/onboarding/splash_screen.dart';
@@ -23,9 +25,9 @@ import 'shell.dart';
 
 final _homeNav = GlobalKey<NavigatorState>();
 final _lessonsNav = GlobalKey<NavigatorState>();
-final _giveNav = GlobalKey<NavigatorState>();
+final _practiceNav = GlobalKey<NavigatorState>();
 final _programsNav = GlobalKey<NavigatorState>();
-final _profileNav = GlobalKey<NavigatorState>();
+final _moreNav = GlobalKey<NavigatorState>();
 
 /// The app's router. Module-level so non-widget code (e.g. the session-
 /// expired handler) can navigate; created once — recreating it on rebuild
@@ -48,6 +50,8 @@ GoRouter createRouter() {
       GoRoute(path: '/login/email', builder: (_, _) => const SignInIdentifierScreen(isPhone: false)),
       GoRoute(path: '/notifications', builder: (_, _) => const NotificationsScreen()),
       GoRoute(path: '/appointments', builder: (_, _) => const AppointmentsScreen()),
+      GoRoute(path: '/give', builder: (_, _) => const CausesScreen()),
+      GoRoute(path: '/profile', builder: (_, _) => const ProfileScreen()),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) =>
             HomeShell(navigationShell: navigationShell),
@@ -73,8 +77,8 @@ GoRouter createRouter() {
             ],
           ),
           StatefulShellBranch(
-            navigatorKey: _giveNav,
-            routes: [GoRoute(path: '/give', builder: (_, _) => const CausesScreen())],
+            navigatorKey: _practiceNav,
+            routes: [GoRoute(path: '/practice', builder: (_, _) => const PracticeScreen())],
           ),
           StatefulShellBranch(
             navigatorKey: _programsNav,
@@ -93,8 +97,8 @@ GoRouter createRouter() {
             ],
           ),
           StatefulShellBranch(
-            navigatorKey: _profileNav,
-            routes: [GoRoute(path: '/profile', builder: (_, _) => const ProfileScreen())],
+            navigatorKey: _moreNav,
+            routes: [GoRoute(path: '/more', builder: (_, _) => const QuickActionsScreen())],
           ),
         ],
       ),

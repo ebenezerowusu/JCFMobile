@@ -114,5 +114,101 @@
   "signOutQuestion": "Sign out?",
   "signOutWarning": "You'll need a new verification code\nto access your member or student\naccount again.",
   "signOutConfirm": "Sign Out",
-  "staySignedIn": "Stay Signed In"
+  "staySignedIn": "Stay Signed In",
+  "tabHome": "Home",
+  "tabLearn": "Learn",
+  "tabPractice": "Practice",
+  "tabPrograms": "Programs",
+  "tabMore": "More",
+  "dailyInspirationEyebrow": "DAILY INSPIRATION",
+  "defaultQuote": "“Freedom begins when awareness becomes your way of living.”",
+  "readReflection": "Read Reflection",
+  "beginYourJourney": "Begin Your Journey",
+  "seeAll": "See All",
+  "watchATeaching": "Watch a Teaching",
+  "watchTeachingSub": "Insights for a\nbrighter tomorrow",
+  "tryAPractice": "Try a Practice",
+  "tryPracticeSub": "Simple tools\nfor everyday life",
+  "findAProgramme": "Find a Programme",
+  "findProgrammeSub": "Go deeper\nat your own pace",
+  "liveUpcoming": "Live & Upcoming",
+  "latestPublicTeachings": "Latest Public Teachings",
+  "signInBanner": "Sign in for your member or student experience",
+  "signInBannerSub": "Access guided practices, programmes, live events and more.",
+  "greetingMorning": "Good morning, {name}",
+  "@greetingMorning": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "greetingAfternoon": "Good afternoon, {name}",
+  "@greetingAfternoon": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "greetingEvening": "Good evening, {name}",
+  "@greetingEvening": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "welcomeBackName": "Welcome back,\n{name}",
+  "@welcomeBackName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "memberChip": "Member",
+  "studentChip": "Student",
+  "memberTagline": "A more conscious you creates a brighter tomorrow.",
+  "studentTagline": "A calmer mind. A brighter you.",
+  "continueLearningEyebrow": "CONTINUE LEARNING",
+  "resume": "Resume",
+  "upcomingEyebrow": "UPCOMING",
+  "viewDetails": "View Details",
+  "announcementEyebrow": "ANNOUNCEMENT",
+  "learnMore": "Learn More",
+  "myCard": "My Card",
+  "myCardSub": "Your membership",
+  "consultationAction": "Consultation",
+  "consultationSub": "Seek guidance",
+  "giveAction": "Give",
+  "giveSub": "Support our work",
+  "myGroups": "My Groups",
+  "myGroupsSub": "Connect & grow",
+  "innerspaceJourneyEyebrow": "INNERSPACE JOURNEY",
+  "continueLesson": "Continue Lesson",
+  "todaysPractice": "Today's Practice",
+  "startLabel": "Start",
+  "quickActions": "Quick Actions",
+  "quickActionsSub": "Everything you need, close at hand.",
+  "membershipCardTitle": "My Membership Card",
+  "membershipCardSub": "Your Jan Cosmic identity",
+  "bookConsultation": "Book Consultation",
+  "bookConsultationSub": "Connect with our guides",
+  "giveTileSub": "Support a brighter tomorrow",
+  "myGroupsTileSub": "Find your community",
+  "guidanceRequest": "Guidance Request",
+  "guidanceRequestSub": "Ask. Explore. Evolve.",
+  "findCentre": "Find a Centre",
+  "findCentreSub": "Locate a Jan Cosmic Centre near you",
+  "myRegistrations": "My Registrations",
+  "myRegistrationsSub": "Events and programs you're part of",
+  "shopTitle": "Shop",
+  "shopSub": "Conscious choices for a better world",
+  "downloadsTitle": "Downloads",
+  "downloadsSub": "Resources for your journey",
+  "settingsTitle": "Settings",
+  "settingsSub": "Personalize your experience",
+  "comingSoonTitle": "Coming soon",
+  "comingSoonBody": "This part of the app is on its way.\nCheck back shortly."
 }
