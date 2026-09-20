@@ -1057,6 +1057,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This part of the app is on its way.\nCheck back shortly.'**
   String get comingSoonBody;
+
+  /// No description provided for @exploreRelated.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore Related Teaching'**
+  String get exploreRelated;
+
+  /// No description provided for @shareLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get shareLabel;
+
+  /// No description provided for @shareInspirationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Share Inspiration'**
+  String get shareInspirationTitle;
+
+  /// No description provided for @shareInspirationSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Create and share a message that uplifts.\nSpread awareness. Inspire a better tomorrow.'**
+  String get shareInspirationSub;
+
+  /// No description provided for @chooseStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a style'**
+  String get chooseStyle;
+
+  /// No description provided for @differentLooks.
+  ///
+  /// In en, this message translates to:
+  /// **'Different looks. Same message.'**
+  String get differentLooks;
+
+  /// No description provided for @styleLight.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get styleLight;
+
+  /// No description provided for @styleCosmic.
+  ///
+  /// In en, this message translates to:
+  /// **'Cosmic'**
+  String get styleCosmic;
+
+  /// No description provided for @styleMinimal.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimal'**
+  String get styleMinimal;
 }
 
 class _AppLocalizationsDelegate

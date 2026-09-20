@@ -522,4 +522,32 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get comingSoonBody =>
       'Esta parte de la app está en camino.\nVuelve pronto.';
+
+  @override
+  String get exploreRelated => 'Explorar la enseñanza relacionada';
+
+  @override
+  String get shareLabel => 'Compartir';
+
+  @override
+  String get shareInspirationTitle => 'Compartir inspiración';
+
+  @override
+  String get shareInspirationSub =>
+      'Crea y comparte un mensaje que eleva.\nDifunde consciencia. Inspira un mañana mejor.';
+
+  @override
+  String get chooseStyle => 'Elige un estilo';
+
+  @override
+  String get differentLooks => 'Distintos estilos. El mismo mensaje.';
+
+  @override
+  String get styleLight => 'Claro';
+
+  @override
+  String get styleCosmic => 'Cósmico';
+
+  @override
+  String get styleMinimal => 'Minimalista';
 }

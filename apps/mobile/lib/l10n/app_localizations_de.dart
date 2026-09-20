@@ -525,4 +525,32 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get comingSoonBody =>
       'Dieser Teil der App ist unterwegs.\nSchau bald wieder vorbei.';
+
+  @override
+  String get exploreRelated => 'Zur verbundenen Lehre';
+
+  @override
+  String get shareLabel => 'Teilen';
+
+  @override
+  String get shareInspirationTitle => 'Inspiration teilen';
+
+  @override
+  String get shareInspirationSub =>
+      'Erstelle und teile eine Botschaft, die aufrichtet.\nVerbreite Bewusstsein. Inspiriere ein besseres Morgen.';
+
+  @override
+  String get chooseStyle => 'Wähle einen Stil';
+
+  @override
+  String get differentLooks => 'Verschiedene Looks. Dieselbe Botschaft.';
+
+  @override
+  String get styleLight => 'Hell';
+
+  @override
+  String get styleCosmic => 'Kosmisch';
+
+  @override
+  String get styleMinimal => 'Minimal';
 }

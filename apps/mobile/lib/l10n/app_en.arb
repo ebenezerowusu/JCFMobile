@@ -210,5 +210,14 @@
   "settingsTitle": "Settings",
   "settingsSub": "Personalize your experience",
   "comingSoonTitle": "Coming soon",
-  "comingSoonBody": "This part of the app is on its way.\nCheck back shortly."
+  "comingSoonBody": "This part of the app is on its way.\nCheck back shortly.",
+  "exploreRelated": "Explore Related Teaching",
+  "shareLabel": "Share",
+  "shareInspirationTitle": "Share Inspiration",
+  "shareInspirationSub": "Create and share a message that uplifts.\nSpread awareness. Inspire a better tomorrow.",
+  "chooseStyle": "Choose a style",
+  "differentLooks": "Different looks. Same message.",
+  "styleLight": "Light",
+  "styleCosmic": "Cosmic",
+  "styleMinimal": "Minimal"
 }

@@ -158,5 +158,14 @@
   "settingsTitle": "Configurações",
   "settingsSub": "Personalize a sua experiência",
   "comingSoonTitle": "Em breve",
-  "comingSoonBody": "Esta parte do aplicativo está a caminho.\nVolte em breve."
+  "comingSoonBody": "Esta parte do aplicativo está a caminho.\nVolte em breve.",
+  "exploreRelated": "Explorar o ensinamento relacionado",
+  "shareLabel": "Compartilhar",
+  "shareInspirationTitle": "Compartilhar inspiração",
+  "shareInspirationSub": "Crie e compartilhe uma mensagem que eleva.\nEspalhe consciência. Inspire um amanhã melhor.",
+  "chooseStyle": "Escolha um estilo",
+  "differentLooks": "Visuais diferentes. A mesma mensagem.",
+  "styleLight": "Claro",
+  "styleCosmic": "Cósmico",
+  "styleMinimal": "Minimalista"
 }

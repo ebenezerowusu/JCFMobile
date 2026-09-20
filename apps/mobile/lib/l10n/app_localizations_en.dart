@@ -519,4 +519,32 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get comingSoonBody =>
       'This part of the app is on its way.\nCheck back shortly.';
+
+  @override
+  String get exploreRelated => 'Explore Related Teaching';
+
+  @override
+  String get shareLabel => 'Share';
+
+  @override
+  String get shareInspirationTitle => 'Share Inspiration';
+
+  @override
+  String get shareInspirationSub =>
+      'Create and share a message that uplifts.\nSpread awareness. Inspire a better tomorrow.';
+
+  @override
+  String get chooseStyle => 'Choose a style';
+
+  @override
+  String get differentLooks => 'Different looks. Same message.';
+
+  @override
+  String get styleLight => 'Light';
+
+  @override
+  String get styleCosmic => 'Cosmic';
+
+  @override
+  String get styleMinimal => 'Minimal';
 }

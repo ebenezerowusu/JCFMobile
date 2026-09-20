@@ -7,6 +7,7 @@ import 'package:jcf_ui/jcf_ui.dart';
 import '../../l10n/app_localizations.dart';
 import '../auth/auth_controller.dart';
 import '../engagement/engagement_repository.dart';
+import '../inspiration/inspiration_repository.dart';
 import '../lessons/lessons_repository.dart';
 import '../programs/programs_repository.dart';
 import 'home_widgets.dart';
@@ -35,6 +36,7 @@ class HomeScreen extends ConsumerWidget {
             ref.invalidate(announcementsProvider);
             ref.invalidate(lessonsListProvider);
             ref.invalidate(programsListProvider);
+            ref.invalidate(inspirationTodayProvider);
           },
           child: body,
         ),
@@ -55,6 +57,7 @@ class GuestHome extends ConsumerWidget {
     final t = AppLocalizations.of(context)!;
     final lessons = ref.watch(lessonsListProvider);
     final programs = ref.watch(programsListProvider);
+    final inspiration = ref.watch(inspirationTodayProvider).asData?.value;
 
     final publicTeaching = lessons.asData?.value.results
         .where((l) => !l.isLocked)
@@ -69,7 +72,7 @@ class GuestHome extends ConsumerWidget {
       children: [
         const BrandHeader(),
         const SizedBox(height: 14),
-        const InspirationHero(),
+        InspirationHero(inspiration: inspiration),
         const SizedBox(height: 22),
         SectionTitle(title: t.beginYourJourney),
         const SizedBox(height: 10),
@@ -147,6 +150,7 @@ class MemberHome extends ConsumerWidget {
     final announcements = ref.watch(announcementsProvider);
     final lessons = ref.watch(lessonsListProvider);
     final programs = ref.watch(programsListProvider);
+    final inspiration = ref.watch(inspirationTodayProvider).asData?.value;
 
     final latestLesson = lessons.asData?.value.results
         .cast<Teaching?>()
@@ -165,7 +169,7 @@ class MemberHome extends ConsumerWidget {
         const SizedBox(height: 12),
         GreetingBlock(name: _firstName(member), tagline: t.memberTagline),
         const SizedBox(height: 14),
-        const InspirationHero(compact: true),
+        InspirationHero(compact: true, inspiration: inspiration),
         const SizedBox(height: 14),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,

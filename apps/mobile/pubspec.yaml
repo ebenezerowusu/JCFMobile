@@ -50,6 +50,8 @@ dependencies:
     path: ../../packages/jcf_api_client
   url_launcher: ^6.3.2
   shared_preferences: ^2.5.5
+  share_plus: ^13.3.0
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:

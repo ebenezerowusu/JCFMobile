@@ -158,5 +158,14 @@
   "settingsTitle": "Ajustes",
   "settingsSub": "Personaliza tu experiencia",
   "comingSoonTitle": "Próximamente",
-  "comingSoonBody": "Esta parte de la app está en camino.\nVuelve pronto."
+  "comingSoonBody": "Esta parte de la app está en camino.\nVuelve pronto.",
+  "exploreRelated": "Explorar la enseñanza relacionada",
+  "shareLabel": "Compartir",
+  "shareInspirationTitle": "Compartir inspiración",
+  "shareInspirationSub": "Crea y comparte un mensaje que eleva.\nDifunde consciencia. Inspira un mañana mejor.",
+  "chooseStyle": "Elige un estilo",
+  "differentLooks": "Distintos estilos. El mismo mensaje.",
+  "styleLight": "Claro",
+  "styleCosmic": "Cósmico",
+  "styleMinimal": "Minimalista"
 }

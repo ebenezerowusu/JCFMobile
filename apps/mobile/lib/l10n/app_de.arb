@@ -158,5 +158,14 @@
   "settingsTitle": "Einstellungen",
   "settingsSub": "Gestalte dein Erlebnis",
   "comingSoonTitle": "Bald verfügbar",
-  "comingSoonBody": "Dieser Teil der App ist unterwegs.\nSchau bald wieder vorbei."
+  "comingSoonBody": "Dieser Teil der App ist unterwegs.\nSchau bald wieder vorbei.",
+  "exploreRelated": "Zur verbundenen Lehre",
+  "shareLabel": "Teilen",
+  "shareInspirationTitle": "Inspiration teilen",
+  "shareInspirationSub": "Erstelle und teile eine Botschaft, die aufrichtet.\nVerbreite Bewusstsein. Inspiriere ein besseres Morgen.",
+  "chooseStyle": "Wähle einen Stil",
+  "differentLooks": "Verschiedene Looks. Dieselbe Botschaft.",
+  "styleLight": "Hell",
+  "styleCosmic": "Kosmisch",
+  "styleMinimal": "Minimal"
 }

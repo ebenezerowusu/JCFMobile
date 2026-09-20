@@ -158,5 +158,14 @@
   "settingsTitle": "Réglages",
   "settingsSub": "Personnalisez votre expérience",
   "comingSoonTitle": "Bientôt disponible",
-  "comingSoonBody": "Cette partie de l'application arrive.\nRevenez bientôt."
+  "comingSoonBody": "Cette partie de l'application arrive.\nRevenez bientôt.",
+  "exploreRelated": "Explorer l'enseignement lié",
+  "shareLabel": "Partager",
+  "shareInspirationTitle": "Partager l'inspiration",
+  "shareInspirationSub": "Créez et partagez un message qui élève.\nDiffusez la conscience. Inspirez un lendemain meilleur.",
+  "chooseStyle": "Choisissez un style",
+  "differentLooks": "Des styles différents. Le même message.",
+  "styleLight": "Clair",
+  "styleCosmic": "Cosmique",
+  "styleMinimal": "Minimal"
 }

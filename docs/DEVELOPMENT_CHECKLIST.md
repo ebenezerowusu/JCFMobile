@@ -91,10 +91,11 @@ prerequisites YES ("Complete Level 2 to unlock").
       v1: inspiration hero carries a built-in quote until step 2; member
       Continue-Learning card shows latest lesson until step 3; student
       journey hero fills with level data in step 4
-- [ ] 2. Daily Inspiration (#22-23): model+admin+API (quote, author,
-      reflection, schedule, related teaching) -> Home hero carousel,
-      detail screen, share-card generator (Light/Cosmic/Minimal) w/
-      download+share
+- [x] 2. Daily Inspiration (#22-23): model+admin+API -> live Home hero,
+      detail screen (dated quote card, reflection, related-teaching link),
+      share-card generator (Light/Cosmic/Minimal, rendered in-app and
+      shared as PNG via the share sheet — download rides the share sheet's
+      Save Image)
 - [ ] 3. Continue Learning (#26): TeachingProgress + recently-viewed API,
       author field on Teaching, view/listen counts; series progress cards
 - [ ] 4. Continue Practice (#27): Practice + PracticeLog models, streaks,

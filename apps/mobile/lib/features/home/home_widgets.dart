@@ -5,6 +5,8 @@ import 'package:jcf_ui/jcf_ui.dart';
 
 import '../../l10n/app_localizations.dart';
 import '../../core/brand.dart';
+import '../inspiration/inspiration_detail_screen.dart';
+import '../inspiration/inspiration_repository.dart';
 
 const _sub = Color(0xFF54689B);
 const _muted = Color(0xFF9AA7C7);
@@ -143,16 +145,19 @@ class GreetingBlock extends StatelessWidget {
   }
 }
 
-/// Daily Inspiration hero — carries a built-in quote until the Daily
-/// Inspiration backend (redesign step 2) feeds it.
+/// Daily Inspiration hero — live from /inspiration/today/, with a built-in
+/// fallback quote when nothing is scheduled or the network is down.
 class InspirationHero extends StatelessWidget {
-  const InspirationHero({super.key, this.compact = false});
+  const InspirationHero({super.key, this.compact = false, this.inspiration});
 
   final bool compact;
+  final Inspiration? inspiration;
 
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
+    final quote =
+        inspiration == null ? t.defaultQuote : '“${inspiration!.quote}”';
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -178,7 +183,7 @@ class InspirationHero extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Text(
-            t.defaultQuote,
+            quote,
             style: TextStyle(
               color: Colors.white,
               fontFamily: JcfTypography.bodyFamily,
@@ -187,10 +192,27 @@ class InspirationHero extends StatelessWidget {
               fontWeight: FontWeight.w800,
             ),
           ),
+          if (compact && inspiration != null) ...[
+            const SizedBox(height: 8),
+            Text(
+              '— ${inspiration!.author}',
+              style: const TextStyle(
+                color: Color(0xFFB9C9F5),
+                fontFamily: JcfTypography.bodyFamily,
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
           if (!compact) ...[
             const SizedBox(height: 16),
             FilledButton.icon(
-              onPressed: null, // live in redesign step 2 (design/22)
+              onPressed: inspiration == null
+                  ? null
+                  : () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => InspirationDetailScreen(
+                            inspiration: inspiration!),
+                      )),
               icon: const Icon(Icons.chevron_right),
               iconAlignment: IconAlignment.end,
               label: Text(t.readReflection),
