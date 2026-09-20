@@ -71,11 +71,24 @@ void main() {
     expect(find.text('Membre ou étudiant'), findsOneWidget);
     expect(find.text('Continuer en invité'), findsOneWidget);
 
-    // Sign In -> OTP login screen, then back to the path chooser.
+    // Sign In -> the sign-in options screen (design 9), in French.
     await tester.tap(find.text('Se connecter'));
     await tester.pumpAndSettle();
-    expect(find.text('Member sign in'), findsOneWidget); // not yet localized
-    await tester.tap(find.byType(BackButton));
+    expect(find.text('Bon retour'), findsOneWidget);
+    expect(find.text('Continuer avec le téléphone'), findsOneWidget);
+
+    // Continue with Email -> OTP entry with the email field.
+    await tester.ensureVisible(find.text("Continuer avec l'e-mail"));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text("Continuer avec l'e-mail"));
+    await tester.pumpAndSettle();
+    expect(find.text('Adresse e-mail'), findsOneWidget);
+    expect(find.text('Envoyer le code'), findsOneWidget);
+
+    // Back out to the path chooser.
+    await tester.tap(find.byIcon(Icons.arrow_back));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byIcon(Icons.arrow_back));
     await tester.pumpAndSettle();
 
     // Continue as Guest -> notification opt-in (scroll it into view first).

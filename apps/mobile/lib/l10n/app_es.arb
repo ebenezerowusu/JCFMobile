@@ -37,5 +37,21 @@
   "practiceReminders": "Recordatorios de práctica",
   "programmeUpdates": "Novedades de programas",
   "enableNotifications": "Activar notificaciones",
-  "notNow": "Ahora no"
+  "notNow": "Ahora no",
+  "welcomeBack": "Bienvenido de nuevo",
+  "signInOptionsSub": "Inicia sesión con el número de teléfono o el correo\nregistrados en la Jan Cosmic Foundation.",
+  "secureAndPrivate": "SEGURO Y PRIVADO",
+  "continueWithPhone": "Continuar con el teléfono",
+  "continueWithEmail": "Continuar con el correo",
+  "noPasswordNeeded": "No se necesita contraseña.",
+  "phoneNumber": "Número de teléfono",
+  "emailAddress": "Correo electrónico",
+  "sendCode": "Enviar código",
+  "codeSentPhone": "Te enviamos un código de 6 dígitos a tu teléfono.",
+  "codeSentEmail": "Te enviamos un código de 6 dígitos a tu correo.",
+  "verificationCode": "Código de 6 dígitos",
+  "verifySignIn": "Verificar e iniciar sesión",
+  "invalidCode": "Código no válido o caducado.",
+  "startOver": "Usar otro teléfono o correo",
+  "genericError": "Algo salió mal. Inténtalo de nuevo."
 }

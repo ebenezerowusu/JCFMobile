@@ -131,4 +131,56 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get notNow => 'Jetzt nicht';
+
+  @override
+  String get welcomeBack => 'Willkommen zurück';
+
+  @override
+  String get signInOptionsSub =>
+      'Melde dich mit der Telefonnummer oder E-Mail-Adresse an,\ndie bei der Jan Cosmic Foundation hinterlegt ist.';
+
+  @override
+  String get secureAndPrivate => 'SICHER UND PRIVAT';
+
+  @override
+  String get continueWithPhone => 'Mit Telefon fortfahren';
+
+  @override
+  String get continueWithEmail => 'Mit E-Mail fortfahren';
+
+  @override
+  String get noPasswordNeeded => 'Kein Passwort nötig.';
+
+  @override
+  String get phoneNumber => 'Telefonnummer';
+
+  @override
+  String get emailAddress => 'E-Mail-Adresse';
+
+  @override
+  String get sendCode => 'Code senden';
+
+  @override
+  String get codeSentPhone =>
+      'Wir haben einen 6-stelligen Code an dein Telefon gesendet.';
+
+  @override
+  String get codeSentEmail =>
+      'Wir haben einen 6-stelligen Code an deine E-Mail-Adresse gesendet.';
+
+  @override
+  String get verificationCode => '6-stelliger Code';
+
+  @override
+  String get verifySignIn => 'Bestätigen und anmelden';
+
+  @override
+  String get invalidCode => 'Ungültiger oder abgelaufener Code.';
+
+  @override
+  String get startOver => 'Andere Telefonnummer oder E-Mail verwenden';
+
+  @override
+  String get genericError =>
+      'Etwas ist schiefgelaufen. Bitte versuche es erneut.';
 }

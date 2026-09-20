@@ -56,6 +56,9 @@ detail) lives in `FEATURES.md`; architecture & conventions in `HANDOVER.md`.
       audience or one contact -> mobile inbox); 14 hand-in-hand tests
 - [x] **Teachings admin completeness** — tier/series/media/thumbnail
       authoring + Series dashboard pages, matching the Lessons API
+- [x] **Sign-in options (design 9)** — Welcome back screen (phone / email /
+      guest), restyled localized OTP entry per channel; backend delivers the
+      code by SMS (Arkesel) for phone with email fallback
 - [x] **Groups (backend + admin + API)** — admin-created groups with
       approval-gated join requests: dashboard pages (`/groups/`, request
       queue, roster), `/api/mobile/v1/groups/` (+ `/mine/`, `/join/`),

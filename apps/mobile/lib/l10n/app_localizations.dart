@@ -331,6 +331,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Not Now'**
   String get notNow;
+
+  /// No description provided for @welcomeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back'**
+  String get welcomeBack;
+
+  /// No description provided for @signInOptionsSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in using the phone number or email\naddress registered with Jan Cosmic Foundation.'**
+  String get signInOptionsSub;
+
+  /// No description provided for @secureAndPrivate.
+  ///
+  /// In en, this message translates to:
+  /// **'SECURE AND PRIVATE'**
+  String get secureAndPrivate;
+
+  /// No description provided for @continueWithPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Phone'**
+  String get continueWithPhone;
+
+  /// No description provided for @continueWithEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Email'**
+  String get continueWithEmail;
+
+  /// No description provided for @noPasswordNeeded.
+  ///
+  /// In en, this message translates to:
+  /// **'No password needed.'**
+  String get noPasswordNeeded;
+
+  /// No description provided for @phoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get phoneNumber;
+
+  /// No description provided for @emailAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Email address'**
+  String get emailAddress;
+
+  /// No description provided for @sendCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Send code'**
+  String get sendCode;
+
+  /// No description provided for @codeSentPhone.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a 6-digit code to your phone.'**
+  String get codeSentPhone;
+
+  /// No description provided for @codeSentEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a 6-digit code to your email.'**
+  String get codeSentEmail;
+
+  /// No description provided for @verificationCode.
+  ///
+  /// In en, this message translates to:
+  /// **'6-digit code'**
+  String get verificationCode;
+
+  /// No description provided for @verifySignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify & sign in'**
+  String get verifySignIn;
+
+  /// No description provided for @invalidCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid or expired code.'**
+  String get invalidCode;
+
+  /// No description provided for @startOver.
+  ///
+  /// In en, this message translates to:
+  /// **'Use a different phone or email'**
+  String get startOver;
+
+  /// No description provided for @genericError.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get genericError;
 }
 
 class _AppLocalizationsDelegate

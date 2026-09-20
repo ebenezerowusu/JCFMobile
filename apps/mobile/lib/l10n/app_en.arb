@@ -19,8 +19,12 @@
   "pageCounter": "{current} of {total}",
   "@pageCounter": {
     "placeholders": {
-      "current": {"type": "int"},
-      "total": {"type": "int"}
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
     }
   },
   "chooseLanguage": "Choose your language",
@@ -43,5 +47,21 @@
   "practiceReminders": "Practice reminders",
   "programmeUpdates": "Programme updates",
   "enableNotifications": "Enable Notifications",
-  "notNow": "Not Now"
+  "notNow": "Not Now",
+  "welcomeBack": "Welcome back",
+  "signInOptionsSub": "Sign in using the phone number or email\naddress registered with Jan Cosmic Foundation.",
+  "secureAndPrivate": "SECURE AND PRIVATE",
+  "continueWithPhone": "Continue with Phone",
+  "continueWithEmail": "Continue with Email",
+  "noPasswordNeeded": "No password needed.",
+  "phoneNumber": "Phone number",
+  "emailAddress": "Email address",
+  "sendCode": "Send code",
+  "codeSentPhone": "We sent a 6-digit code to your phone.",
+  "codeSentEmail": "We sent a 6-digit code to your email.",
+  "verificationCode": "6-digit code",
+  "verifySignIn": "Verify & sign in",
+  "invalidCode": "Invalid or expired code.",
+  "startOver": "Use a different phone or email",
+  "genericError": "Something went wrong. Please try again."
 }

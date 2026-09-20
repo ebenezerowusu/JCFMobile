@@ -37,5 +37,21 @@
   "practiceReminders": "Praxis-Erinnerungen",
   "programmeUpdates": "Programm-Neuigkeiten",
   "enableNotifications": "Benachrichtigungen aktivieren",
-  "notNow": "Jetzt nicht"
+  "notNow": "Jetzt nicht",
+  "welcomeBack": "Willkommen zurück",
+  "signInOptionsSub": "Melde dich mit der Telefonnummer oder E-Mail-Adresse an,\ndie bei der Jan Cosmic Foundation hinterlegt ist.",
+  "secureAndPrivate": "SICHER UND PRIVAT",
+  "continueWithPhone": "Mit Telefon fortfahren",
+  "continueWithEmail": "Mit E-Mail fortfahren",
+  "noPasswordNeeded": "Kein Passwort nötig.",
+  "phoneNumber": "Telefonnummer",
+  "emailAddress": "E-Mail-Adresse",
+  "sendCode": "Code senden",
+  "codeSentPhone": "Wir haben einen 6-stelligen Code an dein Telefon gesendet.",
+  "codeSentEmail": "Wir haben einen 6-stelligen Code an deine E-Mail-Adresse gesendet.",
+  "verificationCode": "6-stelliger Code",
+  "verifySignIn": "Bestätigen und anmelden",
+  "invalidCode": "Ungültiger oder abgelaufener Code.",
+  "startOver": "Andere Telefonnummer oder E-Mail verwenden",
+  "genericError": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
 }

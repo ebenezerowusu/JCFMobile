@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../features/auth/login_screen.dart';
+import '../features/auth/otp_login_screen.dart';
+import '../features/auth/signin_options_screen.dart';
 import '../features/donations/causes_screen.dart';
 import '../features/engagement/appointments_screen.dart';
 import '../features/engagement/notifications_screen.dart';
@@ -35,7 +36,9 @@ GoRouter createRouter() {
       GoRoute(path: '/language', builder: (_, _) => const LanguageScreen()),
       GoRoute(path: '/path', builder: (_, _) => const PathScreen()),
       GoRoute(path: '/stay-connected', builder: (_, _) => const StayConnectedScreen()),
-      GoRoute(path: '/login', builder: (_, _) => const LoginScreen()),
+      GoRoute(path: '/login', builder: (_, _) => const SignInOptionsScreen()),
+      GoRoute(path: '/login/phone', builder: (_, _) => const OtpLoginScreen(isPhone: true)),
+      GoRoute(path: '/login/email', builder: (_, _) => const OtpLoginScreen(isPhone: false)),
       GoRoute(path: '/notifications', builder: (_, _) => const NotificationsScreen()),
       GoRoute(path: '/appointments', builder: (_, _) => const AppointmentsScreen()),
       StatefulShellRoute.indexedStack(

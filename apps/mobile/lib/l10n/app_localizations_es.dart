@@ -131,4 +131,54 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get notNow => 'Ahora no';
+
+  @override
+  String get welcomeBack => 'Bienvenido de nuevo';
+
+  @override
+  String get signInOptionsSub =>
+      'Inicia sesión con el número de teléfono o el correo\nregistrados en la Jan Cosmic Foundation.';
+
+  @override
+  String get secureAndPrivate => 'SEGURO Y PRIVADO';
+
+  @override
+  String get continueWithPhone => 'Continuar con el teléfono';
+
+  @override
+  String get continueWithEmail => 'Continuar con el correo';
+
+  @override
+  String get noPasswordNeeded => 'No se necesita contraseña.';
+
+  @override
+  String get phoneNumber => 'Número de teléfono';
+
+  @override
+  String get emailAddress => 'Correo electrónico';
+
+  @override
+  String get sendCode => 'Enviar código';
+
+  @override
+  String get codeSentPhone =>
+      'Te enviamos un código de 6 dígitos a tu teléfono.';
+
+  @override
+  String get codeSentEmail => 'Te enviamos un código de 6 dígitos a tu correo.';
+
+  @override
+  String get verificationCode => 'Código de 6 dígitos';
+
+  @override
+  String get verifySignIn => 'Verificar e iniciar sesión';
+
+  @override
+  String get invalidCode => 'Código no válido o caducado.';
+
+  @override
+  String get startOver => 'Usar otro teléfono o correo';
+
+  @override
+  String get genericError => 'Algo salió mal. Inténtalo de nuevo.';
 }
