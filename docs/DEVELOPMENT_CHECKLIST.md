@@ -78,6 +78,35 @@ detail) lives in `FEATURES.md`; architecture & conventions in `HANDOVER.md`.
 
 ---
 
+## 🟦 Track 0R — Main-app redesign epic (designs 19-31)
+
+Studied 2026-09-20. Canonical bottom nav from the comps: **Home · Learn ·
+Practice · Programs · More** (supersedes the current 5 tabs and the 4-tab
+hint in design 18; "More" = the Quick Actions screen, design 29). The comps
+confirm three owner decisions: live chat YES, live giving YES, level
+prerequisites YES ("Complete Level 2 to unlock").
+
+- [ ] 1. New shell: 5-tab nav + **role-adaptive Home** (guest #19 /
+      member #20 / student #21) + Quick Actions "More" screen (#29)
+- [ ] 2. Daily Inspiration (#22-23): model+admin+API (quote, author,
+      reflection, schedule, related teaching) -> Home hero carousel,
+      detail screen, share-card generator (Light/Cosmic/Minimal) w/
+      download+share
+- [ ] 3. Continue Learning (#26): TeachingProgress + recently-viewed API,
+      author field on Teaching, view/listen counts; series progress cards
+- [ ] 4. Continue Practice (#27): Practice + PracticeLog models, streaks,
+      weekly-goal ring, today's practice, practice library + history;
+      student-home hero (level %, next-step lock)
+- [ ] 5. Upcoming Activities (#25): unified feed (programs+live+practice)
+      w/ filters, audience chips, per-item reminders
+- [ ] 6. Announcements screen restyle (#28): audience filter chips, pinned,
+      unread dots (API exists)
+- [ ] 7. Global search (#30-31): endpoint across teachings/practices/
+      programmes/events/centres/announcements, popular searches, typed
+      result cards; client recent searches
+- [ ] 8. Live Now (#24): rides Track 3 backend — player, Remind Me/Share/
+      Give, moderated live chat, Submit a Question (500 chars)
+
 ## 🟦 Track 1 — Learn & Practice (recommended lead pillar)
 
 ### 1A. Teachings depth (backend + JCFAdmin)
