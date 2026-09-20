@@ -5,10 +5,14 @@ import 'token_store.dart';
 /// Injects the access token as a Bearer header, and transparently refreshes it
 /// once on a 401 using the stored refresh token.
 class AuthInterceptor extends QueuedInterceptor {
-  AuthInterceptor(this._tokens, {required this.baseUrl});
+  AuthInterceptor(this._tokens, {required this.baseUrl, this.onSessionExpired});
 
   final TokenStore _tokens;
   final String baseUrl;
+
+  /// Fired when a refresh token existed but could not be renewed — the
+  /// signed-in session is over and the UI should say so (design/17).
+  final void Function()? onSessionExpired;
 
   @override
   Future<void> onRequest(
@@ -40,6 +44,7 @@ class AuthInterceptor extends QueuedInterceptor {
     final newAccess = await _refresh(refresh);
     if (newAccess == null) {
       await _tokens.clear();
+      onSessionExpired?.call();
       return handler.next(err);
     }
 

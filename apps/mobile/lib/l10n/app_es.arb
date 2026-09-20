@@ -83,5 +83,8 @@
   "memberStudentContent": "CONTENIDO PARA MIEMBROS Y ESTUDIANTES",
   "signInToContinue": "Inicia sesión para continuar",
   "premiumTeachingSub": "Esta enseñanza está disponible para miembros\ny estudiantes aprobados de JCF.",
-  "returnToPublicTeachings": "Volver a las enseñanzas públicas"
+  "returnToPublicTeachings": "Volver a las enseñanzas públicas",
+  "sessionExpiredTitle": "Tu sesión ha expirado",
+  "sessionExpiredSub": "Por tu seguridad, verifica de nuevo\ntu identidad para continuar.",
+  "signInAgain": "Iniciar sesión de nuevo"
 }

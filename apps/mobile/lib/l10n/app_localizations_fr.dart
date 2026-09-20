@@ -286,4 +286,14 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get returnToPublicTeachings => 'Retour aux enseignements publics';
+
+  @override
+  String get sessionExpiredTitle => 'Votre session a expiré';
+
+  @override
+  String get sessionExpiredSub =>
+      'Pour votre sécurité, veuillez vérifier à\nnouveau votre identité pour continuer.';
+
+  @override
+  String get signInAgain => 'Se reconnecter';
 }

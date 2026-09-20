@@ -112,7 +112,10 @@ detail) lives in `FEATURES.md`; architecture & conventions in `HANDOVER.md`.
 - [ ] Events calendar (backend events exist) — list + add-to-calendar +
       reminders
 - [ ] Live cost summary in the register sheet as choices change
-- [ ] Refresh-on-401 in the Dio interceptor; auth-gated router redirects
+- [x] Refresh-on-401 in the Dio interceptor (was already implemented) +
+      session-expired UX (design 17): onSessionExpired hook -> auth state
+      reset -> /session-expired screen; backend 401-on-invalid-refresh
+      covered by tests
 - [ ] Online programs (paid multi-session courses on series + payment infra)
 
 ## 🟦 Track 3 — Streaming & online sessions (pending owner decisions 9–12)

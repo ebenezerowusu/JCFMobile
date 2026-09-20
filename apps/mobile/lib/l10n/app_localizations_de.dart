@@ -286,4 +286,14 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get returnToPublicTeachings => 'Zurück zu den öffentlichen Lehren';
+
+  @override
+  String get sessionExpiredTitle => 'Deine Sitzung ist abgelaufen';
+
+  @override
+  String get sessionExpiredSub =>
+      'Bitte bestätige zu deiner Sicherheit\nerneut deine Identität.';
+
+  @override
+  String get signInAgain => 'Erneut anmelden';
 }

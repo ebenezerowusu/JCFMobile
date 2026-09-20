@@ -11,10 +11,6 @@ void main() {
   runApp(const ProviderScope(child: JcfApp()));
 }
 
-// Created once — rebuilding JcfApp (e.g. on a locale change) must not
-// recreate the router, or navigation state resets to the splash screen.
-final _router = createRouter();
-
 class JcfApp extends ConsumerWidget {
   const JcfApp({super.key});
 
@@ -33,7 +29,7 @@ class JcfApp extends ConsumerWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      routerConfig: _router,
+      routerConfig: appRouter,
     );
   }
 }

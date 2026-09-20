@@ -13,6 +13,7 @@ class JcfApiClient {
     required String baseUrl,
     TokenStore? tokenStore,
     Dio? dio,
+    void Function()? onSessionExpired,
   })  : tokens = tokenStore ?? TokenStore(),
         dio = dio ?? Dio() {
     this.dio.options
@@ -20,7 +21,8 @@ class JcfApiClient {
       ..connectTimeout = const Duration(seconds: 15)
       ..receiveTimeout = const Duration(seconds: 20)
       ..headers['Accept'] = 'application/json';
-    this.dio.interceptors.add(AuthInterceptor(tokens, baseUrl: baseUrl));
+    this.dio.interceptors.add(AuthInterceptor(tokens,
+        baseUrl: baseUrl, onSessionExpired: onSessionExpired));
   }
 
   final Dio dio;

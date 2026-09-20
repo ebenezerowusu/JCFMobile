@@ -607,6 +607,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Return to Public Teachings'**
   String get returnToPublicTeachings;
+
+  /// No description provided for @sessionExpiredTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your session has expired'**
+  String get sessionExpiredTitle;
+
+  /// No description provided for @sessionExpiredSub.
+  ///
+  /// In en, this message translates to:
+  /// **'For your security, please verify your\nidentity again to continue.'**
+  String get sessionExpiredSub;
+
+  /// No description provided for @signInAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign In Again'**
+  String get signInAgain;
 }
 
 class _AppLocalizationsDelegate

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/auth/session_expired_screen.dart';
 import '../features/auth/signin_identifier_screen.dart';
 import '../features/auth/signin_options_screen.dart';
 import '../features/donations/causes_screen.dart';
@@ -26,6 +27,11 @@ final _giveNav = GlobalKey<NavigatorState>();
 final _programsNav = GlobalKey<NavigatorState>();
 final _profileNav = GlobalKey<NavigatorState>();
 
+/// The app's router. Module-level so non-widget code (e.g. the session-
+/// expired handler) can navigate; created once — recreating it on rebuild
+/// would reset navigation to the splash screen.
+final appRouter = createRouter();
+
 GoRouter createRouter() {
   return GoRouter(
     initialLocation: '/splash',
@@ -36,6 +42,7 @@ GoRouter createRouter() {
       GoRoute(path: '/language', builder: (_, _) => const LanguageScreen()),
       GoRoute(path: '/path', builder: (_, _) => const PathScreen()),
       GoRoute(path: '/stay-connected', builder: (_, _) => const StayConnectedScreen()),
+      GoRoute(path: '/session-expired', builder: (_, _) => const SessionExpiredScreen()),
       GoRoute(path: '/login', builder: (_, _) => const SignInOptionsScreen()),
       GoRoute(path: '/login/phone', builder: (_, _) => const SignInIdentifierScreen(isPhone: true)),
       GoRoute(path: '/login/email', builder: (_, _) => const SignInIdentifierScreen(isPhone: false)),

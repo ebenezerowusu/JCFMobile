@@ -83,5 +83,8 @@
   "memberStudentContent": "INHALTE FÜR MITGLIEDER & STUDENTEN",
   "signInToContinue": "Melde dich an, um fortzufahren",
   "premiumTeachingSub": "Diese Lehre ist genehmigten JCF-Mitgliedern\nund -Studenten vorbehalten.",
-  "returnToPublicTeachings": "Zurück zu den öffentlichen Lehren"
+  "returnToPublicTeachings": "Zurück zu den öffentlichen Lehren",
+  "sessionExpiredTitle": "Deine Sitzung ist abgelaufen",
+  "sessionExpiredSub": "Bitte bestätige zu deiner Sicherheit\nerneut deine Identität.",
+  "signInAgain": "Erneut anmelden"
 }
