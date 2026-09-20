@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:jcf_mobile/features/onboarding/splash_screen.dart';
 import 'package:jcf_mobile/main.dart';
 
 void main() {
@@ -12,9 +13,8 @@ void main() {
 
     await tester.pumpWidget(const ProviderScope(child: JcfApp()));
 
-    // Splash is visible first.
-    expect(find.text('JAN COSMIC FOUNDATION'), findsOneWidget);
-    expect(find.text('Freedom. Awake and aware.'), findsOneWidget);
+    // Splash is visible first (the comp image carries the branding).
+    expect(find.byType(SplashScreen), findsOneWidget);
 
     // Advance past the splash delay -> welcome.
     await tester.pump(const Duration(milliseconds: 2100));

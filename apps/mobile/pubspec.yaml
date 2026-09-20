@@ -106,9 +106,10 @@ flutter:
 
 # --- Branding asset generation ---
 flutter_native_splash:
-  color: "#060E4A"
-  image: assets/images/logo.png
+  # Same comp as the in-app SplashScreen -> pixel-identical launch frame.
+  background_image: assets/images/splash_bg.jpg
   android_12:
+    # Android 12+ only allows an icon on a colour; match the comp's base.
     color: "#060E4A"
     image: assets/images/logo.png
   android: true

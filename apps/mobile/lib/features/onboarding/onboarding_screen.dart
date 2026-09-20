@@ -121,11 +121,17 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   final p = _pages[i];
                   return Column(
                     children: [
+                      // Full-bleed hero, top-anchored — the comps run
+                      // edge to edge with no framing whitespace.
                       Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 8),
-                          child: Image.asset(p.asset, fit: BoxFit.contain),
+                        child: ClipRect(
+                          child: SizedBox.expand(
+                            child: Image.asset(
+                              p.asset,
+                              fit: BoxFit.cover,
+                              alignment: Alignment.topCenter,
+                            ),
+                          ),
                         ),
                       ),
                       Padding(
