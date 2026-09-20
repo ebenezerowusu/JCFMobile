@@ -50,6 +50,10 @@ detail) lives in `FEATURES.md`; architecture & conventions in `HANDOVER.md`.
       notification inbox with mark-read; appointments list + booking
 - [x] **Profile (v0)** — member details, centre, status badges, sign out
 - [x] **Onboarding** — splash + 3-page carousel (seen-once)
+- [x] **JCFAdmin mobile-app dashboards** — Programs authoring (form-schema
+      JSON, fees, tiers, registrations table with cancel/room-free) and
+      Engagement (announcements CRUD w/ audience+pin, Send Notification to
+      audience or one contact -> mobile inbox); 14 hand-in-hand tests
 - [x] **Groups (backend + admin + API)** — admin-created groups with
       approval-gated join requests: dashboard pages (`/groups/`, request
       queue, roster), `/api/mobile/v1/groups/` (+ `/mine/`, `/join/`),
