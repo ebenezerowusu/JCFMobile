@@ -293,4 +293,17 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get signInAgain => 'Entrar novamente';
+
+  @override
+  String get signOutQuestion => 'Sair?';
+
+  @override
+  String get signOutWarning =>
+      'Você precisará de um novo código de\nverificação para acessar novamente sua\nconta de membro ou estudante.';
+
+  @override
+  String get signOutConfirm => 'Sair';
+
+  @override
+  String get staySignedIn => 'Permanecer conectado';
 }

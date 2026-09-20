@@ -296,4 +296,17 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get signInAgain => 'Erneut anmelden';
+
+  @override
+  String get signOutQuestion => 'Abmelden?';
+
+  @override
+  String get signOutWarning =>
+      'Du benötigst einen neuen Bestätigungscode,\num wieder auf dein Mitglieds- oder\nStudentenkonto zuzugreifen.';
+
+  @override
+  String get signOutConfirm => 'Abmelden';
+
+  @override
+  String get staySignedIn => 'Angemeldet bleiben';
 }

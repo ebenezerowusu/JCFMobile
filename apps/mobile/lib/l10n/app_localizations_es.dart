@@ -293,4 +293,17 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get signInAgain => 'Iniciar sesión de nuevo';
+
+  @override
+  String get signOutQuestion => '¿Cerrar sesión?';
+
+  @override
+  String get signOutWarning =>
+      'Necesitarás un nuevo código de verificación\npara volver a acceder a tu cuenta de\nmiembro o estudiante.';
+
+  @override
+  String get signOutConfirm => 'Cerrar sesión';
+
+  @override
+  String get staySignedIn => 'Seguir conectado';
 }

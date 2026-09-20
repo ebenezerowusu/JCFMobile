@@ -110,5 +110,9 @@
   "returnToPublicTeachings": "Return to Public Teachings",
   "sessionExpiredTitle": "Your session has expired",
   "sessionExpiredSub": "For your security, please verify your\nidentity again to continue.",
-  "signInAgain": "Sign In Again"
+  "signInAgain": "Sign In Again",
+  "signOutQuestion": "Sign out?",
+  "signOutWarning": "You'll need a new verification code\nto access your member or student\naccount again.",
+  "signOutConfirm": "Sign Out",
+  "staySignedIn": "Stay Signed In"
 }

@@ -296,4 +296,17 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get signInAgain => 'Se reconnecter';
+
+  @override
+  String get signOutQuestion => 'Se déconnecter ?';
+
+  @override
+  String get signOutWarning =>
+      'Vous aurez besoin d\'un nouveau code de\nvérification pour accéder à nouveau à votre\ncompte membre ou étudiant.';
+
+  @override
+  String get signOutConfirm => 'Se déconnecter';
+
+  @override
+  String get staySignedIn => 'Rester connecté';
 }

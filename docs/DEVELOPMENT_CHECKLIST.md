@@ -116,6 +116,10 @@ detail) lives in `FEATURES.md`; architecture & conventions in `HANDOVER.md`.
       session-expired UX (design 17): onSessionExpired hook -> auth state
       reset -> /session-expired screen; backend 401-on-invalid-refresh
       covered by tests
+- [x] **Sign-out confirmation (design 18)** — dialog with the
+      new-code-needed warning, destructive Sign Out (revokes the token via
+      the existing logout endpoint) vs Stay Signed In; wired into Profile.
+      Auth design family 9-18 COMPLETE
 - [ ] Online programs (paid multi-session courses on series + payment infra)
 
 ## 🟦 Track 3 — Streaming & online sessions (pending owner decisions 9–12)

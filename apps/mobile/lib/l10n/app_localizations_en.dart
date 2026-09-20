@@ -290,4 +290,17 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get signInAgain => 'Sign In Again';
+
+  @override
+  String get signOutQuestion => 'Sign out?';
+
+  @override
+  String get signOutWarning =>
+      'You\'ll need a new verification code\nto access your member or student\naccount again.';
+
+  @override
+  String get signOutConfirm => 'Sign Out';
+
+  @override
+  String get staySignedIn => 'Stay Signed In';
 }

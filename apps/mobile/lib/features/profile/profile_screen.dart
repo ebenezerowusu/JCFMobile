@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../auth/auth_controller.dart';
+import 'sign_out_dialog.dart';
 
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
@@ -61,9 +63,12 @@ class ProfileScreen extends ConsumerWidget {
               ),
               const Divider(),
               ListTile(
-                leading: const Icon(Icons.logout),
-                title: const Text('Sign out'),
-                onTap: () => ref.read(authControllerProvider.notifier).logout(),
+                leading: const Icon(Icons.logout, color: Color(0xFFD64545)),
+                title: Text(
+                  AppLocalizations.of(context)!.signOutConfirm,
+                  style: const TextStyle(color: Color(0xFFD64545)),
+                ),
+                onTap: () => showSignOutDialog(context, ref),
               ),
             ],
           );

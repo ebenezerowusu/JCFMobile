@@ -86,5 +86,9 @@
   "returnToPublicTeachings": "Zurück zu den öffentlichen Lehren",
   "sessionExpiredTitle": "Deine Sitzung ist abgelaufen",
   "sessionExpiredSub": "Bitte bestätige zu deiner Sicherheit\nerneut deine Identität.",
-  "signInAgain": "Erneut anmelden"
+  "signInAgain": "Erneut anmelden",
+  "signOutQuestion": "Abmelden?",
+  "signOutWarning": "Du benötigst einen neuen Bestätigungscode,\num wieder auf dein Mitglieds- oder\nStudentenkonto zuzugreifen.",
+  "signOutConfirm": "Abmelden",
+  "staySignedIn": "Angemeldet bleiben"
 }

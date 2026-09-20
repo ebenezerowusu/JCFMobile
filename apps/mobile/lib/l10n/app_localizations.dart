@@ -625,6 +625,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sign In Again'**
   String get signInAgain;
+
+  /// No description provided for @signOutQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out?'**
+  String get signOutQuestion;
+
+  /// No description provided for @signOutWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ll need a new verification code\nto access your member or student\naccount again.'**
+  String get signOutWarning;
+
+  /// No description provided for @signOutConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Out'**
+  String get signOutConfirm;
+
+  /// No description provided for @staySignedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay Signed In'**
+  String get staySignedIn;
 }
 
 class _AppLocalizationsDelegate

@@ -86,5 +86,9 @@
   "returnToPublicTeachings": "Retour aux enseignements publics",
   "sessionExpiredTitle": "Votre session a expiré",
   "sessionExpiredSub": "Pour votre sécurité, veuillez vérifier à\nnouveau votre identité pour continuer.",
-  "signInAgain": "Se reconnecter"
+  "signInAgain": "Se reconnecter",
+  "signOutQuestion": "Se déconnecter ?",
+  "signOutWarning": "Vous aurez besoin d'un nouveau code de\nvérification pour accéder à nouveau à votre\ncompte membre ou étudiant.",
+  "signOutConfirm": "Se déconnecter",
+  "staySignedIn": "Rester connecté"
 }
