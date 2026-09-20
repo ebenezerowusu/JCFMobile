@@ -314,5 +314,22 @@
   "viewPracticeHistory": "View Practice History",
   "playAudio": "Play audio",
   "markDone": "Mark as done",
-  "doneToday": "Done for today"
+  "doneToday": "Done for today",
+  "upcomingActivitiesTitle": "Upcoming Activities",
+  "upcomingActivitiesTagline": "Join, learn and grow together",
+  "filterProgrammes": "Programmes",
+  "filterLive": "Live",
+  "filterPractice": "Practice",
+  "todaySection": "Today",
+  "tomorrowSection": "Tomorrow",
+  "laterSection": "Later",
+  "liveSoonBadge": "Live Soon",
+  "onlineLabel": "Online",
+  "audiencePublic": "All are welcome",
+  "audienceMembers": "Members & students",
+  "audienceStudents": "Students only",
+  "reminderOnSnack": "Reminder set — we'll notify you.",
+  "reminderOffSnack": "Reminder removed.",
+  "signInForReminders": "Sign in to set reminders.",
+  "noUpcoming": "Nothing scheduled yet. Check back soon."
 }

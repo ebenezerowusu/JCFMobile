@@ -200,5 +200,22 @@
   "viewPracticeHistory": "Ver histórico de práticas",
   "playAudio": "Reproduzir áudio",
   "markDone": "Marcar como feita",
-  "doneToday": "Feita por hoje"
+  "doneToday": "Feita por hoje",
+  "upcomingActivitiesTitle": "Próximas atividades",
+  "upcomingActivitiesTagline": "Participe, aprenda e cresça em comunidade",
+  "filterProgrammes": "Programas",
+  "filterLive": "Ao vivo",
+  "filterPractice": "Prática",
+  "todaySection": "Hoje",
+  "tomorrowSection": "Amanhã",
+  "laterSection": "Mais tarde",
+  "liveSoonBadge": "Em breve ao vivo",
+  "onlineLabel": "Online",
+  "audiencePublic": "Todos são bem-vindos",
+  "audienceMembers": "Membros e estudantes",
+  "audienceStudents": "Apenas estudantes",
+  "reminderOnSnack": "Lembrete ativado — vamos avisá-lo.",
+  "reminderOffSnack": "Lembrete removido.",
+  "signInForReminders": "Inicie sessão para definir lembretes.",
+  "noUpcoming": "Nada agendado ainda. Volte em breve."
 }

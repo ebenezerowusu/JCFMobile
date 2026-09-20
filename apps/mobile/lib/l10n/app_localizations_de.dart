@@ -669,4 +669,57 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get doneToday => 'Für heute erledigt';
+
+  @override
+  String get upcomingActivitiesTitle => 'Kommende Aktivitäten';
+
+  @override
+  String get upcomingActivitiesTagline =>
+      'Gemeinsam teilnehmen, lernen und wachsen';
+
+  @override
+  String get filterProgrammes => 'Programme';
+
+  @override
+  String get filterLive => 'Live';
+
+  @override
+  String get filterPractice => 'Praxis';
+
+  @override
+  String get todaySection => 'Heute';
+
+  @override
+  String get tomorrowSection => 'Morgen';
+
+  @override
+  String get laterSection => 'Später';
+
+  @override
+  String get liveSoonBadge => 'Bald live';
+
+  @override
+  String get onlineLabel => 'Online';
+
+  @override
+  String get audiencePublic => 'Alle sind willkommen';
+
+  @override
+  String get audienceMembers => 'Mitglieder & Studierende';
+
+  @override
+  String get audienceStudents => 'Nur Studierende';
+
+  @override
+  String get reminderOnSnack =>
+      'Erinnerung gesetzt – wir benachrichtigen dich.';
+
+  @override
+  String get reminderOffSnack => 'Erinnerung entfernt.';
+
+  @override
+  String get signInForReminders => 'Melde dich an, um Erinnerungen zu setzen.';
+
+  @override
+  String get noUpcoming => 'Noch nichts geplant. Schau bald wieder vorbei.';
 }

@@ -117,7 +117,9 @@ class GuestHome extends ConsumerWidget {
         ),
         if (nextProgram != null) ...[
           const SizedBox(height: 22),
-          SectionTitle(title: t.liveUpcoming),
+          SectionTitle(
+              title: t.liveUpcoming,
+              onSeeAll: () => context.push('/activities')),
           const SizedBox(height: 10),
           UpcomingProgramCard(program: nextProgram),
         ],
@@ -198,11 +200,9 @@ class MemberHome extends ConsumerWidget {
               child: EyebrowCard(
                 eyebrow: t.upcomingEyebrow,
                 icon: Icons.calendar_month_rounded,
-                title: nextProgram?.title ?? t.tabPrograms,
-                ctaLabel: t.viewDetails,
-                onTap: () => nextProgram == null
-                    ? context.go('/programs')
-                    : context.push('/programs/${nextProgram.slug}'),
+                title: nextProgram?.title ?? t.upcomingActivitiesTitle,
+                ctaLabel: t.seeAll,
+                onTap: () => context.push('/activities'),
               ),
             ),
           ],

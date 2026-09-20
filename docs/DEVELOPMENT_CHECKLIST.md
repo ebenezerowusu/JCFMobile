@@ -107,8 +107,10 @@ prerequisites YES ("Complete Level 2 to unlock").
       Notes: "Mark as done" stands in until an in-app audio player reports
       playback; practice history screen and student-home level %/next-step
       lock still pending (need the journey/levels backend)
-- [ ] 5. Upcoming Activities (#25): unified feed (programs+live+practice)
-      w/ filters, audience chips, per-item reminders
+- [x] 5. Upcoming Activities (#25): unified feed (programmes+live+practice
+      +gatherings) w/ filters, audience chips, per-item reminders; entry
+      points on guest/member home + More tile. Notes: reminders are stored
+      server-side; push delivery lands with the FCM track
 - [ ] 6. Announcements screen restyle (#28): audience filter chips, pinned,
       unread dots (API exists)
 - [ ] 7. Global search (#30-31): endpoint across teachings/practices/

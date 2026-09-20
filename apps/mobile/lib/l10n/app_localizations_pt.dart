@@ -667,4 +667,56 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get doneToday => 'Feita por hoje';
+
+  @override
+  String get upcomingActivitiesTitle => 'Próximas atividades';
+
+  @override
+  String get upcomingActivitiesTagline =>
+      'Participe, aprenda e cresça em comunidade';
+
+  @override
+  String get filterProgrammes => 'Programas';
+
+  @override
+  String get filterLive => 'Ao vivo';
+
+  @override
+  String get filterPractice => 'Prática';
+
+  @override
+  String get todaySection => 'Hoje';
+
+  @override
+  String get tomorrowSection => 'Amanhã';
+
+  @override
+  String get laterSection => 'Mais tarde';
+
+  @override
+  String get liveSoonBadge => 'Em breve ao vivo';
+
+  @override
+  String get onlineLabel => 'Online';
+
+  @override
+  String get audiencePublic => 'Todos são bem-vindos';
+
+  @override
+  String get audienceMembers => 'Membros e estudantes';
+
+  @override
+  String get audienceStudents => 'Apenas estudantes';
+
+  @override
+  String get reminderOnSnack => 'Lembrete ativado — vamos avisá-lo.';
+
+  @override
+  String get reminderOffSnack => 'Lembrete removido.';
+
+  @override
+  String get signInForReminders => 'Inicie sessão para definir lembretes.';
+
+  @override
+  String get noUpcoming => 'Nada agendado ainda. Volte em breve.';
 }

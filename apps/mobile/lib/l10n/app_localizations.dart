@@ -1309,6 +1309,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Done for today'**
   String get doneToday;
+
+  /// No description provided for @upcomingActivitiesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming Activities'**
+  String get upcomingActivitiesTitle;
+
+  /// No description provided for @upcomingActivitiesTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Join, learn and grow together'**
+  String get upcomingActivitiesTagline;
+
+  /// No description provided for @filterProgrammes.
+  ///
+  /// In en, this message translates to:
+  /// **'Programmes'**
+  String get filterProgrammes;
+
+  /// No description provided for @filterLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Live'**
+  String get filterLive;
+
+  /// No description provided for @filterPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice'**
+  String get filterPractice;
+
+  /// No description provided for @todaySection.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get todaySection;
+
+  /// No description provided for @tomorrowSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomorrow'**
+  String get tomorrowSection;
+
+  /// No description provided for @laterSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Later'**
+  String get laterSection;
+
+  /// No description provided for @liveSoonBadge.
+  ///
+  /// In en, this message translates to:
+  /// **'Live Soon'**
+  String get liveSoonBadge;
+
+  /// No description provided for @onlineLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Online'**
+  String get onlineLabel;
+
+  /// No description provided for @audiencePublic.
+  ///
+  /// In en, this message translates to:
+  /// **'All are welcome'**
+  String get audiencePublic;
+
+  /// No description provided for @audienceMembers.
+  ///
+  /// In en, this message translates to:
+  /// **'Members & students'**
+  String get audienceMembers;
+
+  /// No description provided for @audienceStudents.
+  ///
+  /// In en, this message translates to:
+  /// **'Students only'**
+  String get audienceStudents;
+
+  /// No description provided for @reminderOnSnack.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder set — we\'ll notify you.'**
+  String get reminderOnSnack;
+
+  /// No description provided for @reminderOffSnack.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder removed.'**
+  String get reminderOffSnack;
+
+  /// No description provided for @signInForReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to set reminders.'**
+  String get signInForReminders;
+
+  /// No description provided for @noUpcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing scheduled yet. Check back soon.'**
+  String get noUpcoming;
 }
 
 class _AppLocalizationsDelegate

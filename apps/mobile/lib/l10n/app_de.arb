@@ -200,5 +200,22 @@
   "viewPracticeHistory": "Praxis-Verlauf ansehen",
   "playAudio": "Audio abspielen",
   "markDone": "Als erledigt markieren",
-  "doneToday": "Für heute erledigt"
+  "doneToday": "Für heute erledigt",
+  "upcomingActivitiesTitle": "Kommende Aktivitäten",
+  "upcomingActivitiesTagline": "Gemeinsam teilnehmen, lernen und wachsen",
+  "filterProgrammes": "Programme",
+  "filterLive": "Live",
+  "filterPractice": "Praxis",
+  "todaySection": "Heute",
+  "tomorrowSection": "Morgen",
+  "laterSection": "Später",
+  "liveSoonBadge": "Bald live",
+  "onlineLabel": "Online",
+  "audiencePublic": "Alle sind willkommen",
+  "audienceMembers": "Mitglieder & Studierende",
+  "audienceStudents": "Nur Studierende",
+  "reminderOnSnack": "Erinnerung gesetzt – wir benachrichtigen dich.",
+  "reminderOffSnack": "Erinnerung entfernt.",
+  "signInForReminders": "Melde dich an, um Erinnerungen zu setzen.",
+  "noUpcoming": "Noch nichts geplant. Schau bald wieder vorbei."
 }

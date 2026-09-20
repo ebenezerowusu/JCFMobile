@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/activities/activities_screen.dart';
 import '../features/auth/session_expired_screen.dart';
 import '../features/auth/signin_identifier_screen.dart';
 import '../features/auth/signin_options_screen.dart';
@@ -54,6 +55,7 @@ GoRouter createRouter() {
       GoRoute(path: '/give', builder: (_, _) => const CausesScreen()),
       GoRoute(path: '/profile', builder: (_, _) => const ProfileScreen()),
       GoRoute(path: '/learning', builder: (_, _) => const ContinueLearningScreen()),
+      GoRoute(path: '/activities', builder: (_, _) => const ActivitiesScreen()),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) =>
             HomeShell(navigationShell: navigationShell),
