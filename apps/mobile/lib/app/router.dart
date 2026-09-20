@@ -8,6 +8,7 @@ import '../features/donations/causes_screen.dart';
 import '../features/engagement/appointments_screen.dart';
 import '../features/engagement/notifications_screen.dart';
 import '../features/home/home_screen.dart';
+import '../features/lessons/continue_learning_screen.dart';
 import '../features/lessons/lesson_detail_screen.dart';
 import '../features/lessons/lessons_screen.dart';
 import '../features/more/quick_actions_screen.dart';
@@ -52,6 +53,7 @@ GoRouter createRouter() {
       GoRoute(path: '/appointments', builder: (_, _) => const AppointmentsScreen()),
       GoRoute(path: '/give', builder: (_, _) => const CausesScreen()),
       GoRoute(path: '/profile', builder: (_, _) => const ProfileScreen()),
+      GoRoute(path: '/learning', builder: (_, _) => const ContinueLearningScreen()),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) =>
             HomeShell(navigationShell: navigationShell),

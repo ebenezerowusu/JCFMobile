@@ -219,5 +219,51 @@
   "differentLooks": "Different looks. Same message.",
   "styleLight": "Light",
   "styleCosmic": "Cosmic",
-  "styleMinimal": "Minimal"
+  "styleMinimal": "Minimal",
+  "continueLearningTitle": "Continue Learning",
+  "activeSeriesCount": "{count} active series",
+  "@activeSeriesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "lessonsCompletedCount": "{count} lessons completed",
+  "@lessonsCompletedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "resumeLesson": "Resume Lesson",
+  "lessonXofY": "Lesson {x} of {y}",
+  "@lessonXofY": {
+    "placeholders": {
+      "x": {
+        "type": "int"
+      },
+      "y": {
+        "type": "int"
+      }
+    }
+  },
+  "recentlyViewed": "Recently Viewed",
+  "filterAll": "All",
+  "filterVideo": "Video",
+  "filterAudio": "Audio",
+  "viewedToday": "Viewed today",
+  "viewedYesterday": "Viewed yesterday",
+  "viewedDaysAgo": "Viewed {days} days ago",
+  "@viewedDaysAgo": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "markComplete": "Mark as complete",
+  "completedLabel": "Completed",
+  "nothingInProgress": "Nothing in progress yet.\nOpen a lesson to begin your journey."
 }

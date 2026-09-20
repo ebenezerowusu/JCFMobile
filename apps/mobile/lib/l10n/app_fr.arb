@@ -167,5 +167,20 @@
   "differentLooks": "Des styles différents. Le même message.",
   "styleLight": "Clair",
   "styleCosmic": "Cosmique",
-  "styleMinimal": "Minimal"
+  "styleMinimal": "Minimal",
+  "continueLearningTitle": "Reprendre l'apprentissage",
+  "activeSeriesCount": "{count} séries en cours",
+  "lessonsCompletedCount": "{count} leçons terminées",
+  "resumeLesson": "Reprendre la leçon",
+  "lessonXofY": "Leçon {x} sur {y}",
+  "recentlyViewed": "Vu récemment",
+  "filterAll": "Tout",
+  "filterVideo": "Vidéo",
+  "filterAudio": "Audio",
+  "viewedToday": "Vu aujourd'hui",
+  "viewedYesterday": "Vu hier",
+  "viewedDaysAgo": "Vu il y a {days} jours",
+  "markComplete": "Marquer comme terminé",
+  "completedLabel": "Terminé",
+  "nothingInProgress": "Rien en cours pour l'instant.\nOuvrez une leçon pour commencer votre chemin."
 }

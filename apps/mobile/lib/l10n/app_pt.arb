@@ -167,5 +167,20 @@
   "differentLooks": "Visuais diferentes. A mesma mensagem.",
   "styleLight": "Claro",
   "styleCosmic": "Cósmico",
-  "styleMinimal": "Minimalista"
+  "styleMinimal": "Minimalista",
+  "continueLearningTitle": "Continuar aprendendo",
+  "activeSeriesCount": "{count} séries ativas",
+  "lessonsCompletedCount": "{count} lições concluídas",
+  "resumeLesson": "Retomar lição",
+  "lessonXofY": "Lição {x} de {y}",
+  "recentlyViewed": "Vistos recentemente",
+  "filterAll": "Tudo",
+  "filterVideo": "Vídeo",
+  "filterAudio": "Áudio",
+  "viewedToday": "Visto hoje",
+  "viewedYesterday": "Visto ontem",
+  "viewedDaysAgo": "Visto há {days} dias",
+  "markComplete": "Marcar como concluída",
+  "completedLabel": "Concluída",
+  "nothingInProgress": "Nada em andamento ainda.\nAbra uma lição para começar a sua jornada."
 }

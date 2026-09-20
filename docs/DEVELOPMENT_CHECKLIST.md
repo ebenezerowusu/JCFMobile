@@ -96,8 +96,11 @@ prerequisites YES ("Complete Level 2 to unlock").
       share-card generator (Light/Cosmic/Minimal, rendered in-app and
       shared as PNG via the share sheet — download rides the share sheet's
       Save Image)
-- [ ] 3. Continue Learning (#26): TeachingProgress + recently-viewed API,
-      author field on Teaching, view/listen counts; series progress cards
+- [x] 3. Continue Learning (#26): TeachingProgress + recently-viewed API,
+      author on Teaching, view counts; screen with stats header, featured +
+      small series progress cards, Resume, recently-viewed w/ media filters;
+      lesson detail gains Mark-as-complete (explicit until the in-app
+      player reports playback); member home card + student hero -> /learning
 - [ ] 4. Continue Practice (#27): Practice + PracticeLog models, streaks,
       weekly-goal ring, today's practice, practice library + history;
       student-home hero (level %, next-step lock)

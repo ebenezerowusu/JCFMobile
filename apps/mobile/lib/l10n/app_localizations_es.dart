@@ -550,4 +550,58 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get styleMinimal => 'Minimalista';
+
+  @override
+  String get continueLearningTitle => 'Continuar aprendiendo';
+
+  @override
+  String activeSeriesCount(int count) {
+    return '$count series activas';
+  }
+
+  @override
+  String lessonsCompletedCount(int count) {
+    return '$count lecciones completadas';
+  }
+
+  @override
+  String get resumeLesson => 'Reanudar lección';
+
+  @override
+  String lessonXofY(int x, int y) {
+    return 'Lección $x de $y';
+  }
+
+  @override
+  String get recentlyViewed => 'Visto recientemente';
+
+  @override
+  String get filterAll => 'Todo';
+
+  @override
+  String get filterVideo => 'Vídeo';
+
+  @override
+  String get filterAudio => 'Audio';
+
+  @override
+  String get viewedToday => 'Visto hoy';
+
+  @override
+  String get viewedYesterday => 'Visto ayer';
+
+  @override
+  String viewedDaysAgo(int days) {
+    return 'Visto hace $days días';
+  }
+
+  @override
+  String get markComplete => 'Marcar como completada';
+
+  @override
+  String get completedLabel => 'Completada';
+
+  @override
+  String get nothingInProgress =>
+      'Nada en curso todavía.\nAbre una lección para comenzar tu camino.';
 }

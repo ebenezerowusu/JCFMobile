@@ -4,6 +4,7 @@ class Teaching {
     required this.id,
     required this.slug,
     required this.topic,
+    this.author = '',
     required this.format,
     required this.language,
     required this.tier,
@@ -20,6 +21,7 @@ class Teaching {
   final int id;
   final String slug;
   final String topic;
+  final String author;
   final String format;
   final String language;
   final String tier; // 'general' | 'premium'
@@ -40,6 +42,7 @@ class Teaching {
         id: json['id'] as int,
         slug: json['slug'] as String,
         topic: json['topic'] as String,
+        author: json['author'] as String? ?? '',
         format: json['format'] as String? ?? '',
         language: json['language'] as String? ?? '',
         tier: json['tier'] as String? ?? 'general',

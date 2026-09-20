@@ -167,5 +167,20 @@
   "differentLooks": "Verschiedene Looks. Dieselbe Botschaft.",
   "styleLight": "Hell",
   "styleCosmic": "Kosmisch",
-  "styleMinimal": "Minimal"
+  "styleMinimal": "Minimal",
+  "continueLearningTitle": "Weiterlernen",
+  "activeSeriesCount": "{count} aktive Serien",
+  "lessonsCompletedCount": "{count} Lektionen abgeschlossen",
+  "resumeLesson": "Lektion fortsetzen",
+  "lessonXofY": "Lektion {x} von {y}",
+  "recentlyViewed": "Zuletzt angesehen",
+  "filterAll": "Alle",
+  "filterVideo": "Video",
+  "filterAudio": "Audio",
+  "viewedToday": "Heute angesehen",
+  "viewedYesterday": "Gestern angesehen",
+  "viewedDaysAgo": "Vor {days} Tagen angesehen",
+  "markComplete": "Als abgeschlossen markieren",
+  "completedLabel": "Abgeschlossen",
+  "nothingInProgress": "Noch nichts in Arbeit.\nÖffne eine Lektion, um deine Reise zu beginnen."
 }

@@ -1111,6 +1111,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Minimal'**
   String get styleMinimal;
+
+  /// No description provided for @continueLearningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Learning'**
+  String get continueLearningTitle;
+
+  /// No description provided for @activeSeriesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} active series'**
+  String activeSeriesCount(int count);
+
+  /// No description provided for @lessonsCompletedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} lessons completed'**
+  String lessonsCompletedCount(int count);
+
+  /// No description provided for @resumeLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume Lesson'**
+  String get resumeLesson;
+
+  /// No description provided for @lessonXofY.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson {x} of {y}'**
+  String lessonXofY(int x, int y);
+
+  /// No description provided for @recentlyViewed.
+  ///
+  /// In en, this message translates to:
+  /// **'Recently Viewed'**
+  String get recentlyViewed;
+
+  /// No description provided for @filterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get filterAll;
+
+  /// No description provided for @filterVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Video'**
+  String get filterVideo;
+
+  /// No description provided for @filterAudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio'**
+  String get filterAudio;
+
+  /// No description provided for @viewedToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Viewed today'**
+  String get viewedToday;
+
+  /// No description provided for @viewedYesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Viewed yesterday'**
+  String get viewedYesterday;
+
+  /// No description provided for @viewedDaysAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'Viewed {days} days ago'**
+  String viewedDaysAgo(int days);
+
+  /// No description provided for @markComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as complete'**
+  String get markComplete;
+
+  /// No description provided for @completedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get completedLabel;
+
+  /// No description provided for @nothingInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing in progress yet.\nOpen a lesson to begin your journey.'**
+  String get nothingInProgress;
 }
 
 class _AppLocalizationsDelegate

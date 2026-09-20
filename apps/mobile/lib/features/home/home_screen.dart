@@ -37,6 +37,7 @@ class HomeScreen extends ConsumerWidget {
             ref.invalidate(lessonsListProvider);
             ref.invalidate(programsListProvider);
             ref.invalidate(inspirationTodayProvider);
+            ref.invalidate(continueLearningProvider);
           },
           child: body,
         ),
@@ -155,6 +156,9 @@ class MemberHome extends ConsumerWidget {
     final latestLesson = lessons.asData?.value.results
         .cast<Teaching?>()
         .firstWhere((_) => true, orElse: () => null);
+    final learning = ref.watch(continueLearningProvider).asData?.value;
+    final featuredSeries =
+        (learning?.series.isNotEmpty ?? false) ? learning!.series.first : null;
     final nextProgram = programs.asData?.value.results
         .cast<Program?>()
         .firstWhere((_) => true, orElse: () => null);
@@ -178,11 +182,13 @@ class MemberHome extends ConsumerWidget {
               child: EyebrowCard(
                 eyebrow: t.continueLearningEyebrow,
                 icon: Icons.menu_book_rounded,
-                title: latestLesson?.topic ?? t.tabLearn,
+                title: featuredSeries?.title ?? latestLesson?.topic ?? t.tabLearn,
                 ctaLabel: t.resume,
-                onTap: () => latestLesson == null
-                    ? context.go('/lessons')
-                    : context.push('/lessons/${latestLesson.slug}'),
+                onTap: () => featuredSeries != null
+                    ? context.push('/learning')
+                    : latestLesson == null
+                        ? context.go('/lessons')
+                        : context.push('/lessons/${latestLesson.slug}'),
               ),
             ),
             const SizedBox(width: 12),
@@ -254,7 +260,7 @@ class StudentHome extends ConsumerWidget {
         JourneyHero(
           eyebrow: t.innerspaceJourneyEyebrow,
           cta: t.continueLesson,
-          onTap: () => context.go('/lessons'),
+          onTap: () => context.push('/learning'),
         ),
         const SizedBox(height: 14),
         TodaysPracticeCard(
