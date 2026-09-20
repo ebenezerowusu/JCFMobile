@@ -305,8 +305,8 @@ class _InspirationHeroCarouselState extends State<InspirationHeroCarousel> {
     final items = widget.items;
     return Column(
       children: [
-        SizedBox(
-          height: 162,
+        AspectRatio(
+          aspectRatio: 877 / 334,
           child: items.isEmpty
               ? const _HeroSlide(inspiration: null)
               : PageView(
@@ -323,8 +323,8 @@ class _InspirationHeroCarouselState extends State<InspirationHeroCarousel> {
             children: [
               for (var i = 0; i < items.length; i++)
                 Container(
-                  width: i == _page ? 10 : 8,
-                  height: i == _page ? 10 : 8,
+                  width: i == _page ? 8 : 7,
+                  height: i == _page ? 8 : 7,
                   margin: const EdgeInsets.symmetric(horizontal: 4),
                   decoration: BoxDecoration(
                     color: i == _page
@@ -350,111 +350,94 @@ class _HeroSlide extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
     final quote =
-        inspiration == null ? t.defaultQuote : '“${inspiration!.quote}”';
+        inspiration == null ? t.defaultQuote : '\u201c${inspiration!.quote}\u201d';
     return ClipRRect(
       borderRadius: BorderRadius.circular(22),
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          const DecoratedBox(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [Color(0xFF0A1670), Color(0xFF1B3AB8)],
-              ),
-            ),
-          ),
-          // Cosmic earth-horizon artwork, fading into the gradient on the
-          // side the quote sits on.
-          Align(
-            alignment: AlignmentDirectional.centerEnd,
-            child: FractionallySizedBox(
-              alignment: AlignmentDirectional.centerEnd,
-              widthFactor: 0.55,
-              heightFactor: 1,
-              child: ShaderMask(
-                shaderCallback: (rect) => const LinearGradient(
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                  colors: [Colors.transparent, Colors.white],
-                  stops: [0.0, 0.4],
-                ).createShader(rect),
-                blendMode: BlendMode.dstIn,
-                child: Image.asset(
-                  'assets/images/hero_cosmic.png',
-                  fit: BoxFit.cover,
-                  alignment: AlignmentDirectional.centerEnd,
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(18, 14, 18, 14),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          // The comp's hero card is 310pt wide; k scales every measurement
+          // so the overlays land exactly where the comp drew them.
+          final k = constraints.maxWidth / 310;
+          return Stack(
+            fit: StackFit.expand,
+            children: [
+              Image.asset('assets/images/hero_full.png', fit: BoxFit.cover),
+              PositionedDirectional(
+                start: 13 * k,
+                top: 11 * k,
+                child: Text(
                   t.dailyInspirationEyebrow,
-                  style: const TextStyle(
-                    color: Color(0xFFB9C9F5),
+                  style: TextStyle(
+                    color: const Color(0xFFB9C9F5),
                     fontFamily: JcfTypography.bodyFamily,
-                    fontSize: 11.5,
-                    letterSpacing: 2,
+                    fontSize: 7.5 * k,
+                    letterSpacing: 2.4 * k,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                const SizedBox(height: 8),
-                Expanded(
-                  child: FractionallySizedBox(
-                    alignment: AlignmentDirectional.centerStart,
-                    widthFactor: 0.64,
-                    child: Align(
-                      alignment: AlignmentDirectional.centerStart,
-                      child: Text(
-                        quote,
-                        maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontFamily: JcfTypography.bodyFamily,
-                          fontSize: 15.5,
-                          height: 1.22,
-                          fontWeight: FontWeight.w800,
-                        ),
+              ),
+              PositionedDirectional(
+                start: 5 * k,
+                top: 23 * k,
+                width: 166 * k,
+                height: 56 * k,
+                child: Center(
+                  child: Text(
+                    quote,
+                    textAlign: TextAlign.center,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: JcfTypography.bodyFamily,
+                      fontSize: 13 * k,
+                      height: 1.18,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+              ),
+              PositionedDirectional(
+                start: 12 * k,
+                bottom: 8 * k,
+                child: Material(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15 * k),
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(15 * k),
+                    onTap: inspiration == null
+                        ? null
+                        : () => Navigator.of(context).push(MaterialPageRoute(
+                              builder: (_) => InspirationDetailScreen(
+                                  inspiration: inspiration!),
+                            )),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 13 * k, vertical: 7 * k),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            t.readReflection,
+                            style: TextStyle(
+                              color: JcfColors.skyPrimary,
+                              fontFamily: JcfTypography.bodyFamily,
+                              fontSize: 10.5 * k,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          SizedBox(width: 5 * k),
+                          Icon(Icons.chevron_right_rounded,
+                              size: 12 * k, color: JcfColors.skyPrimary),
+                        ],
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
-                FilledButton.icon(
-                  onPressed: inspiration == null
-                      ? null
-                      : () => Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) => InspirationDetailScreen(
-                                inspiration: inspiration!),
-                          )),
-                  icon: const Icon(Icons.chevron_right),
-                  iconAlignment: IconAlignment.end,
-                  label: Text(t.readReflection),
-                  style: FilledButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: JcfColors.skyPrimary,
-                    disabledBackgroundColor: Colors.white70,
-                    disabledForegroundColor: JcfColors.skyPrimary,
-                    visualDensity: VisualDensity.compact,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(22)),
-                    textStyle: const TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontFamily: JcfTypography.bodyFamily,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+              ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -513,7 +496,7 @@ class SectionTitle extends StatelessWidget {
 class JourneyCard extends StatelessWidget {
   const JourneyCard({
     super.key,
-    required this.icon,
+    required this.leading,
     required this.tint,
     required this.bg,
     required this.title,
@@ -521,7 +504,7 @@ class JourneyCard extends StatelessWidget {
     required this.onTap,
   });
 
-  final IconData icon;
+  final Widget leading;
   final Color tint;
   final Color bg;
   final String title;
@@ -542,14 +525,14 @@ class JourneyCard extends StatelessWidget {
             children: [
               // Soft halo blob behind the icon, as in the comp.
               PositionedDirectional(
-                start: 26,
-                top: -14,
+                start: 10,
+                top: -18,
                 child: Container(
-                  width: 84,
-                  height: 62,
+                  width: 104,
+                  height: 74,
                   decoration: BoxDecoration(
-                    color: tint.withValues(alpha: .14),
-                    borderRadius: BorderRadius.circular(40),
+                    color: tint.withValues(alpha: .13),
+                    borderRadius: BorderRadius.circular(48),
                   ),
                 ),
               ),
@@ -558,11 +541,10 @@ class JourneyCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CircleAvatar(
-                      radius: 21,
-                      backgroundColor: tint,
-                      child: Icon(icon, color: Colors.white, size: 23),
-                    ),
+                    SizedBox(
+                        height: 42,
+                        width: double.infinity,
+                        child: Center(child: leading)),
                     const SizedBox(height: 12),
                     FittedBox(
                       fit: BoxFit.scaleDown,
@@ -597,7 +579,7 @@ class JourneyCard extends StatelessWidget {
                           ),
                         ),
                         const Icon(Icons.chevron_right_rounded,
-                            size: 15, color: JcfColors.skyPrimary),
+                            size: 15, color: Color(0xFF122B63)),
                       ],
                     ),
                   ],
@@ -612,7 +594,8 @@ class JourneyCard extends StatelessWidget {
 }
 
 /// Live & Upcoming card (design/19): first item of the activities feed,
-/// with a LIVE SOON eyebrow when a live session is imminent.
+/// with a LIVE SOON eyebrow when a live session is imminent. The sunset
+/// artwork bleeds in from the right edge like the comp.
 class LiveUpcomingCard extends StatelessWidget {
   const LiveUpcomingCard({super.key, required this.item});
 
@@ -629,93 +612,123 @@ class LiveUpcomingCard extends StatelessWidget {
         ? item.description
         : (item.venue.isEmpty ? t.onlineLabel : item.venue);
 
-    return Material(
-      color: Colors.white,
+    return ClipRRect(
       borderRadius: BorderRadius.circular(20),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(20),
-        onTap: () => item.programSlug != null
-            ? context.push('/programs/${item.programSlug}')
-            : context.push('/activities'),
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Row(
+      child: Material(
+        color: Colors.white,
+        child: InkWell(
+          onTap: () => item.programSlug != null
+              ? context.push('/programs/${item.programSlug}')
+              : context.push('/activities'),
+          child: Stack(
             children: [
-              const CircleAvatar(
-                radius: 22,
-                backgroundColor: Color(0xFFE3EEFF),
-                child: Icon(Icons.calendar_month_rounded,
-                    color: JcfColors.skyPrimary, size: 22),
+              // Sunset artwork bleeding in from the trailing edge.
+              Positioned.fill(
+                child: Align(
+                  alignment: AlignmentDirectional.centerEnd,
+                  child: FractionallySizedBox(
+                    alignment: AlignmentDirectional.centerEnd,
+                    widthFactor: 0.52,
+                    heightFactor: 1,
+                    child: ShaderMask(
+                      shaderCallback: (rect) => const LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [Colors.transparent, Colors.white],
+                        stops: [0.0, 0.45],
+                      ).createShader(rect),
+                      blendMode: BlendMode.dstIn,
+                      child: Image.asset(
+                        'assets/images/live_upcoming.png',
+                        fit: BoxFit.cover,
+                        alignment: AlignmentDirectional.centerEnd,
+                      ),
+                    ),
+                  ),
+                ),
               ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              Padding(
+                padding: const EdgeInsets.all(14),
+                child: Row(
                   children: [
-                    if (item.liveSoon) ...[
-                      Row(
+                    const CircleAvatar(
+                      radius: 22,
+                      backgroundColor: Color(0xFFE3EEFF),
+                      child: Icon(Icons.calendar_month_rounded,
+                          color: JcfColors.skyPrimary, size: 22),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            width: 9,
-                            height: 9,
-                            decoration: const BoxDecoration(
-                              color: Color(0xFFE25563),
-                              shape: BoxShape.circle,
+                          if (item.liveSoon) ...[
+                            Row(
+                              children: [
+                                Container(
+                                  width: 9,
+                                  height: 9,
+                                  decoration: const BoxDecoration(
+                                    color: Color(0xFFE02D3C),
+                                    shape: BoxShape.circle,
+                                  ),
+                                ),
+                                const SizedBox(width: 6),
+                                Text(
+                                  t.liveSoonBadge.toUpperCase(),
+                                  style: const TextStyle(
+                                    color: Color(0xFFE02D3C),
+                                    fontFamily: JcfTypography.bodyFamily,
+                                    fontSize: 11,
+                                    letterSpacing: 1,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 3),
+                          ],
+                          Text(
+                            '${item.title} \u2022 $when',
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              color: JcfColors.inkOnLight,
+                              fontFamily: JcfTypography.bodyFamily,
+                              fontSize: 14,
+                              height: 1.2,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
-                          const SizedBox(width: 6),
+                          const SizedBox(height: 3),
                           Text(
-                            t.liveSoonBadge.toUpperCase(),
+                            sub,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
-                              color: Color(0xFFE25563),
+                              color: _sub,
                               fontFamily: JcfTypography.bodyFamily,
-                              fontSize: 11.5,
-                              letterSpacing: 1,
-                              fontWeight: FontWeight.w800,
+                              fontSize: 12,
+                              height: 1.3,
                             ),
                           ),
                         ],
                       ),
-                      const SizedBox(height: 4),
-                    ],
-                    Text(
-                      '${item.title} • $when',
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: JcfColors.inkOnLight,
-                        fontFamily: JcfTypography.bodyFamily,
-                        fontSize: 14.5,
-                        height: 1.2,
-                        fontWeight: FontWeight.w800,
-                      ),
                     ),
-                    const SizedBox(height: 4),
-                    Text(
-                      sub,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: _sub,
-                        fontFamily: JcfTypography.bodyFamily,
-                        fontSize: 12.5,
-                        height: 1.3,
-                      ),
-                    ),
+                    // Keep the text clear of the baked caption + chevron.
+                    const SizedBox(width: 104),
                   ],
                 ),
               ),
-              const SizedBox(width: 10),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  'assets/images/live_upcoming.png',
-                  width: 82,
-                  height: 60,
-                  fit: BoxFit.cover,
+              const PositionedDirectional(
+                end: 6,
+                top: 0,
+                bottom: 0,
+                child: Center(
+                  child: Icon(Icons.chevron_right_rounded,
+                      color: Color(0xFF122B63), size: 22),
                 ),
               ),
-              const Icon(Icons.chevron_right_rounded, color: _sub, size: 22),
             ],
           ),
         ),

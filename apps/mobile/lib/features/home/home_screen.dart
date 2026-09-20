@@ -95,7 +95,16 @@ class GuestHome extends ConsumerWidget {
           children: [
             Expanded(
               child: JourneyCard(
-                icon: Icons.play_arrow_rounded,
+                leading: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF2E6BF0),
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: const Icon(Icons.play_arrow_rounded,
+                      color: Colors.white, size: 26),
+                ),
                 tint: const Color(0xFF2E6BF0),
                 bg: const Color(0xFFE3EEFF),
                 title: t.watchATeaching,
@@ -106,7 +115,8 @@ class GuestHome extends ConsumerWidget {
             const SizedBox(width: 10),
             Expanded(
               child: JourneyCard(
-                icon: Icons.self_improvement_rounded,
+                leading: const Icon(Icons.self_improvement_rounded,
+                    color: Color(0xFFE87F1E), size: 42),
                 tint: const Color(0xFFF08A24),
                 bg: const Color(0xFFFDEED9),
                 title: t.tryAPractice,
@@ -117,7 +127,8 @@ class GuestHome extends ConsumerWidget {
             const SizedBox(width: 10),
             Expanded(
               child: JourneyCard(
-                icon: Icons.menu_book_rounded,
+                leading: const Icon(Icons.menu_book_rounded,
+                    color: Color(0xFF23934E), size: 40),
                 tint: const Color(0xFF2E9E5B),
                 bg: const Color(0xFFDDF3E4),
                 title: t.findAProgramme,
