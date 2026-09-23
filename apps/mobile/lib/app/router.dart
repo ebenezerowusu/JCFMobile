@@ -24,6 +24,7 @@ import '../features/onboarding/welcome_screen.dart';
 import '../features/profile/profile_screen.dart';
 import '../features/programs/program_detail_screen.dart';
 import '../features/programs/programs_screen.dart';
+import '../features/search/search_screen.dart';
 import 'shell.dart';
 
 final _homeNav = GlobalKey<NavigatorState>();
@@ -58,6 +59,7 @@ GoRouter createRouter() {
       GoRoute(path: '/learning', builder: (_, _) => const ContinueLearningScreen()),
       GoRoute(path: '/activities', builder: (_, _) => const ActivitiesScreen()),
       GoRoute(path: '/announcements', builder: (_, _) => const AnnouncementsScreen()),
+      GoRoute(path: '/search', builder: (_, _) => const SearchScreen()),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) =>
             HomeShell(navigationShell: navigationShell),

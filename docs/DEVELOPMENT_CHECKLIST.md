@@ -115,9 +115,13 @@ prerequisites YES ("Complete Level 2 to unlock").
       filter chips, pinned card, unread dots backed by AnnouncementRead
       (cleared on open); detail bottom sheet; home announcement card links
       through. Guests see no dots (read state is per-member)
-- [ ] 7. Global search (#30-31): endpoint across teachings/practices/
-      programmes/events/centres/announcements, popular searches, typed
-      result cards; client recent searches
+- [x] 7. Global search (#30-31): GET /search/ across teachings/practices/
+      programmes/events(activities)/centres/announcements (audience-
+      filtered, premium flagged locked), logged queries power
+      /search/popular/; /search screen with recent chips (on-device),
+      category grid, popular list, typed result cards + kind filters.
+      Notes: centres open an info sheet until a Find a Centre screen
+      exists; "Most Relevant" sort dropdown omitted (single relevance)
 - [ ] 8. Live Now (#24): rides Track 3 backend — player, Remind Me/Share/
       Give, moderated live chat, Submit a Question (500 chars)
 

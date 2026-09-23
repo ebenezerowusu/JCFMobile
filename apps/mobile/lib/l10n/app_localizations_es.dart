@@ -745,4 +745,77 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get searchTitle => 'Buscar';
+
+  @override
+  String get searchJcfTitle => 'Buscar en JCF';
+
+  @override
+  String get searchHint => 'Enseñanzas, programas y más';
+
+  @override
+  String get recentSearches => 'Búsquedas recientes';
+
+  @override
+  String get clearLabel => 'Borrar';
+
+  @override
+  String get browseByCategory => 'Explorar por categoría';
+
+  @override
+  String get categoryTeachings => 'Enseñanzas';
+
+  @override
+  String get categoryPractices => 'Prácticas';
+
+  @override
+  String get categoryProgrammes => 'Programas';
+
+  @override
+  String get categoryEvents => 'Eventos';
+
+  @override
+  String get categoryCentres => 'Centros';
+
+  @override
+  String get popularSearches => 'Búsquedas populares';
+
+  @override
+  String resultsFor(int count, String query) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count resultados',
+      one: '1 resultado',
+    );
+    return '$_temp0 para “$query”';
+  }
+
+  @override
+  String noResults(String query) {
+    return 'Sin resultados para “$query”. Prueba con otra palabra.';
+  }
+
+  @override
+  String get allLevelsChip => 'Todos los niveles';
+
+  @override
+  String get kindVideo => 'Vídeo';
+
+  @override
+  String get kindAudio => 'Audio';
+
+  @override
+  String get kindPractice => 'Práctica';
+
+  @override
+  String get kindProgramme => 'Programa';
+
+  @override
+  String get kindEvent => 'Evento';
+
+  @override
+  String get kindCentre => 'Centro';
+
+  @override
+  String get kindAnnouncement => 'Anuncio';
 }

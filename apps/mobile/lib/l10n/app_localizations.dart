@@ -1465,6 +1465,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Search'**
   String get searchTitle;
+
+  /// No description provided for @searchJcfTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search JCF'**
+  String get searchJcfTitle;
+
+  /// No description provided for @searchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search teachings, programmes and more'**
+  String get searchHint;
+
+  /// No description provided for @recentSearches.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent Searches'**
+  String get recentSearches;
+
+  /// No description provided for @clearLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get clearLabel;
+
+  /// No description provided for @browseByCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse by Category'**
+  String get browseByCategory;
+
+  /// No description provided for @categoryTeachings.
+  ///
+  /// In en, this message translates to:
+  /// **'Teachings'**
+  String get categoryTeachings;
+
+  /// No description provided for @categoryPractices.
+  ///
+  /// In en, this message translates to:
+  /// **'Practices'**
+  String get categoryPractices;
+
+  /// No description provided for @categoryProgrammes.
+  ///
+  /// In en, this message translates to:
+  /// **'Programmes'**
+  String get categoryProgrammes;
+
+  /// No description provided for @categoryEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'Events'**
+  String get categoryEvents;
+
+  /// No description provided for @categoryCentres.
+  ///
+  /// In en, this message translates to:
+  /// **'Centres'**
+  String get categoryCentres;
+
+  /// No description provided for @popularSearches.
+  ///
+  /// In en, this message translates to:
+  /// **'Popular Searches'**
+  String get popularSearches;
+
+  /// No description provided for @resultsFor.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 result} other{{count} results}} for “{query}”'**
+  String resultsFor(int count, String query);
+
+  /// No description provided for @noResults.
+  ///
+  /// In en, this message translates to:
+  /// **'No results for “{query}”. Try another word.'**
+  String noResults(String query);
+
+  /// No description provided for @allLevelsChip.
+  ///
+  /// In en, this message translates to:
+  /// **'All Levels'**
+  String get allLevelsChip;
+
+  /// No description provided for @kindVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Video'**
+  String get kindVideo;
+
+  /// No description provided for @kindAudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio'**
+  String get kindAudio;
+
+  /// No description provided for @kindPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice'**
+  String get kindPractice;
+
+  /// No description provided for @kindProgramme.
+  ///
+  /// In en, this message translates to:
+  /// **'Programme'**
+  String get kindProgramme;
+
+  /// No description provided for @kindEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'Event'**
+  String get kindEvent;
+
+  /// No description provided for @kindCentre.
+  ///
+  /// In en, this message translates to:
+  /// **'Centre'**
+  String get kindCentre;
+
+  /// No description provided for @kindAnnouncement.
+  ///
+  /// In en, this message translates to:
+  /// **'Announcement'**
+  String get kindAnnouncement;
 }
 
 class _AppLocalizationsDelegate

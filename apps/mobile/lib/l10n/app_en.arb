@@ -340,5 +340,43 @@
   "pinnedAnnouncement": "Pinned Announcement",
   "noAnnouncements": "No announcements yet. Check back soon.",
   "headerTagline": "Awareness for a Better Tomorrow",
-  "searchTitle": "Search"
+  "searchTitle": "Search",
+  "searchJcfTitle": "Search JCF",
+  "searchHint": "Search teachings, programmes and more",
+  "recentSearches": "Recent Searches",
+  "clearLabel": "Clear",
+  "browseByCategory": "Browse by Category",
+  "categoryTeachings": "Teachings",
+  "categoryPractices": "Practices",
+  "categoryProgrammes": "Programmes",
+  "categoryEvents": "Events",
+  "categoryCentres": "Centres",
+  "popularSearches": "Popular Searches",
+  "resultsFor": "{count, plural, =1{1 result} other{{count} results}} for “{query}”",
+  "@resultsFor": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "noResults": "No results for “{query}”. Try another word.",
+  "@noResults": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "allLevelsChip": "All Levels",
+  "kindVideo": "Video",
+  "kindAudio": "Audio",
+  "kindPractice": "Practice",
+  "kindProgramme": "Programme",
+  "kindEvent": "Event",
+  "kindCentre": "Centre",
+  "kindAnnouncement": "Announcement"
 }

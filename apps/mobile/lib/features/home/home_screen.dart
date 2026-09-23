@@ -8,7 +8,6 @@ import '../../l10n/app_localizations.dart';
 import '../activities/activities_repository.dart';
 import '../auth/auth_controller.dart';
 import '../engagement/engagement_repository.dart';
-import '../../core/coming_soon_screen.dart';
 import '../inspiration/inspiration_repository.dart';
 import '../lessons/lessons_repository.dart';
 import '../practice/practice_repository.dart';
@@ -81,9 +80,7 @@ class GuestHome extends ConsumerWidget {
       padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
       children: [
         BrandHeader(
-          onSearch: () => Navigator.of(context)
-              .push(ComingSoonScreen.route(t.searchTitle,
-                  icon: Icons.search_rounded)),
+          onSearch: () => context.push('/search'),
           onBell: () => context.push('/announcements'),
         ),
         const SizedBox(height: 14),
