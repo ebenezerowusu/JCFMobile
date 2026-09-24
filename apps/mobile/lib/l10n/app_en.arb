@@ -378,5 +378,10 @@
   "kindProgramme": "Programme",
   "kindEvent": "Event",
   "kindCentre": "Centre",
-  "kindAnnouncement": "Announcement"
+  "kindAnnouncement": "Announcement",
+  "alreadyPartOfJcf": "Already part of JCF?",
+  "statusLive": "Live",
+  "statusStartingSoon": "Starting soon",
+  "statusUpcoming": "Upcoming",
+  "joinLive": "Join Live"
 }

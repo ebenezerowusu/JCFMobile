@@ -17,6 +17,7 @@ class ActivityItem {
     required this.audience,
     required this.liveSoon,
     required this.reminderSet,
+    this.durationMinutes,
     this.activityId,
     this.programSlug,
   });
@@ -30,8 +31,21 @@ class ActivityItem {
   final String audience; // public | members | students
   final bool liveSoon;
   final bool reminderSet;
+  final int? durationMinutes;
   final int? activityId;
   final String? programSlug;
+
+  /// live | starting_soon | upcoming — derived, so a cached item can never
+  /// claim to be live after it has ended.
+  String status(DateTime now) {
+    // All-day items (programmes) are dated, not broadcast — never "live".
+    if (allDay) return 'upcoming';
+    final ends =
+        startsAt.add(Duration(minutes: durationMinutes ?? 60));
+    if (!now.isBefore(startsAt) && now.isBefore(ends)) return 'live';
+    if (liveSoon && now.isBefore(startsAt)) return 'starting_soon';
+    return 'upcoming';
+  }
 
   factory ActivityItem.fromJson(Map<String, dynamic> json) => ActivityItem(
         kind: json['kind'] as String,
@@ -43,6 +57,7 @@ class ActivityItem {
         audience: json['audience'] as String? ?? 'public',
         liveSoon: json['live_soon'] as bool? ?? false,
         reminderSet: json['reminder_set'] as bool? ?? false,
+        durationMinutes: json['duration_minutes'] as int?,
         activityId: json['activity_id'] as int?,
         programSlug: json['program_slug'] as String?,
       );

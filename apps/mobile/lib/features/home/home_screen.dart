@@ -88,62 +88,51 @@ class GuestHome extends ConsumerWidget {
         const SizedBox(height: 22),
         SectionTitle(title: t.beginYourJourney, onSeeAll: () => context.go('/more')),
         const SizedBox(height: 10),
-        LayoutBuilder(builder: (context, constraints) {
-          // Card inner width: three cards, two 10pt gaps, 9pt card padding.
-          final inner = (constraints.maxWidth - 20) / 3 - 18;
-          final titleSize = journeyTitleSize(
-              [t.watchATeaching, t.tryAPractice, t.findAProgramme], inner);
-          return Row(
-          children: [
-            Expanded(
-              child: JourneyCard(
-                leading: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF2E6BF0),
-                    borderRadius: BorderRadius.circular(14),
-                  ),
-                  child: const Icon(Icons.play_arrow_rounded,
-                      color: Colors.white, size: 26),
+        SizedBox(
+          height: 168,
+          child: LayoutBuilder(builder: (context, constraints) {
+            // ~44% viewport cards so the next card peeks (scroll affordance).
+            final cardWidth = constraints.maxWidth * 0.44;
+            final titleSize = journeyTitleSize(
+                [t.watchATeaching, t.tryAPractice, t.findAProgramme],
+                cardWidth - 20);
+            final cards = [
+              (
+                'assets/images/guest_watch_teaching.webp',
+                t.watchATeaching,
+                t.watchTeachingSub,
+                () => context.go('/lessons'),
+              ),
+              (
+                'assets/images/guest_try_practice.webp',
+                t.tryAPractice,
+                t.tryPracticeSub,
+                () => context.go('/practice'),
+              ),
+              (
+                'assets/images/guest_find_programme.webp',
+                t.findAProgramme,
+                t.findProgrammeSub,
+                () => context.go('/programs'),
+              ),
+            ];
+            return ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemCount: cards.length,
+              separatorBuilder: (_, _) => const SizedBox(width: 10),
+              itemBuilder: (context, i) => SizedBox(
+                width: cardWidth,
+                child: JourneyCard(
+                  image: cards[i].$1,
+                  title: cards[i].$2,
+                  titleSize: titleSize,
+                  sub: cards[i].$3,
+                  onTap: cards[i].$4,
                 ),
-                tint: const Color(0xFF2E6BF0),
-                bg: const Color(0xFFE3EEFF),
-                title: t.watchATeaching,
-                titleSize: titleSize,
-                sub: t.watchTeachingSub,
-                onTap: () => context.go('/lessons'),
               ),
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: JourneyCard(
-                leading: const Icon(Icons.self_improvement_rounded,
-                    color: Color(0xFFE87F1E), size: 42),
-                tint: const Color(0xFFF08A24),
-                bg: const Color(0xFFFDEED9),
-                title: t.tryAPractice,
-                titleSize: titleSize,
-                sub: t.tryPracticeSub,
-                onTap: () => context.go('/practice'),
-              ),
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: JourneyCard(
-                leading: const Icon(Icons.menu_book_rounded,
-                    color: Color(0xFF23934E), size: 40),
-                tint: const Color(0xFF2E9E5B),
-                bg: const Color(0xFFDDF3E4),
-                title: t.findAProgramme,
-                titleSize: titleSize,
-                sub: t.findProgrammeSub,
-                onTap: () => context.go('/programs'),
-              ),
-            ),
-          ],
-        );
-        }),
+            );
+          }),
+        ),
         if (nextActivity != null) ...[
           const SizedBox(height: 22),
           SectionTitle(
@@ -162,7 +151,7 @@ class GuestHome extends ConsumerWidget {
         ],
         const SizedBox(height: 22),
         SignInBanner(
-          title: t.signInBanner,
+          title: t.alreadyPartOfJcf,
           sub: t.signInBannerSub,
           cta: t.signIn,
         ),

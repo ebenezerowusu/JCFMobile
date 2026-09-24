@@ -824,4 +824,19 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get kindAnnouncement => 'Ankündigung';
+
+  @override
+  String get alreadyPartOfJcf => 'Schon Teil der JCF?';
+
+  @override
+  String get statusLive => 'Live';
+
+  @override
+  String get statusStartingSoon => 'Beginnt bald';
+
+  @override
+  String get statusUpcoming => 'Demnächst';
+
+  @override
+  String get joinLive => 'Live beitreten';
 }

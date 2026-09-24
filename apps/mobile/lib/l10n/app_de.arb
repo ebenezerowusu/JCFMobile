@@ -247,5 +247,10 @@
   "kindProgramme": "Programm",
   "kindEvent": "Veranstaltung",
   "kindCentre": "Zentrum",
-  "kindAnnouncement": "Ankündigung"
+  "kindAnnouncement": "Ankündigung",
+  "alreadyPartOfJcf": "Schon Teil der JCF?",
+  "statusLive": "Live",
+  "statusStartingSoon": "Beginnt bald",
+  "statusUpcoming": "Demnächst",
+  "joinLive": "Live beitreten"
 }

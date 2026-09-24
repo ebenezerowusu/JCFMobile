@@ -818,4 +818,19 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get kindAnnouncement => 'Anuncio';
+
+  @override
+  String get alreadyPartOfJcf => '¿Ya formas parte de JCF?';
+
+  @override
+  String get statusLive => 'En vivo';
+
+  @override
+  String get statusStartingSoon => 'Comienza pronto';
+
+  @override
+  String get statusUpcoming => 'Próximamente';
+
+  @override
+  String get joinLive => 'Unirse en vivo';
 }

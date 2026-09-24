@@ -1591,6 +1591,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Announcement'**
   String get kindAnnouncement;
+
+  /// No description provided for @alreadyPartOfJcf.
+  ///
+  /// In en, this message translates to:
+  /// **'Already part of JCF?'**
+  String get alreadyPartOfJcf;
+
+  /// No description provided for @statusLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Live'**
+  String get statusLive;
+
+  /// No description provided for @statusStartingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting soon'**
+  String get statusStartingSoon;
+
+  /// No description provided for @statusUpcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Upcoming'**
+  String get statusUpcoming;
+
+  /// No description provided for @joinLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Join Live'**
+  String get joinLive;
 }
 
 class _AppLocalizationsDelegate
