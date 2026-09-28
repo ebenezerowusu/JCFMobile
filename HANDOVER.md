@@ -1,226 +1,309 @@
 # JCF App — Session Handover
 
-> For a fresh Claude Code session continuing this work with zero prior context.
-> Written 2026-06-27. Both repos are on branch `claude/jcf-app-handoff-pgom2q`
-> with **clean working trees — everything is committed and pushed**.
+> For a fresh session (human or Claude Code) continuing this work with zero prior
+> context. **Updated 2026-09-28.** Replaces the June 27 handover, which predated
+> the auth, programs and redesign work and is no longer accurate.
+>
+> Both repos work on branch **`feature/mobile-app`** (renamed from
+> `claude/jcf-app-handoff-pgom2q`, which no longer exists on GitHub).
 
 This project spans **two repos**:
-- **JCFMobile** (`ebenezerowusu/JCFMobile`) — the Flutter app monorepo (this repo).
-- **JCFAdmin** (`janprince/JCFAdmin`) — the existing Django backend that IS the API layer.
+- **JCFMobile** (`ebenezerowusu/JCFMobile`): the Flutter app (this repo). It is
+  now **mobile-only** (iOS + Android); the desktop app was retired and deleted.
+- **JCFAdmin** (`janprince/JCFAdmin`): the Django backend. It is the API layer
+  **and** the staff admin dashboard for the app.
+
+Source of truth, in order: the code and git log, then
+`docs/DEVELOPMENT_CHECKLIST.md` (the live TODO list), then this file.
 
 ---
 
 ## 1. Project overview
 
-The **JCF App** is a cross-platform Flutter application (iOS + Android mobile, and a
-Windows/macOS/Linux admin desktop app) for the **Jan Cosmic Foundation (JCF)**, a
-spiritual foundation in Ghana. It unifies retreat registration + Paystack payment,
-member management, teachings/content, donations, and engagement into one platform,
-replacing fragmented WhatsApp/YouTube/web-form workflows. The hard near-term goal is
-having **retreat registration with Paystack payment live before the 2026 retreat on
-July 31**.
+The **JCF App** is a Flutter app for the **Jan Cosmic Foundation (JCF)**, a
+spiritual foundation in Ghana. It brings teachings, daily practice, programs
+(retreats) with Paystack payment, donations, announcements and search into one
+app, replacing WhatsApp/YouTube/web-form workflows.
 
-## 2. Tech stack & key decisions (settled — do not relitigate)
+**Access model (tiered):**
+- **Guests** use the app without signing in and see general content.
+- **Members and students** sign in with a one-time code sent to the phone
+  number or email on their approved `Contact` record in JCFAdmin. Signing in
+  unlocks premium lessons and member/student-only content.
+- Home changes by role: guest (design 19), member (20), student (21).
+
+**Timeline:** there is **no hard deadline**. The 2026 retreat ran on the
+existing website. The app becomes the registration channel from 2027, so the
+goal is to build it properly.
+
+**Designs:** 31 numbered comps live in `design/` (1–18 onboarding and auth,
+19–31 the main app). Code comments and commits cite them as "design NN".
+
+## 2. Tech stack & settled decisions (do not relitigate)
 
 ### JCFMobile (Flutter)
-- **Flutter 3.44.4 / Dart 3.12.2**, Material 3 — single codebase for mobile + desktop.
-- **Riverpod** (`flutter_riverpod`) for state — compile-safe, testable, `AsyncNotifier`.
-- **Dio** for HTTP — interceptors for JWT header injection + logging.
-- **Hive** for offline cache (retreat config 1h TTL, form state, downloads).
-- **flutter_secure_storage** for JWT tokens (iOS Keychain / Android Keystore).
-- **go_router** for navigation.
-- **flutter_paystack_max** for payments — NOTE: handoff doc named `flutter_paystack`,
-  but that package is unmaintained / not null-safe, so we substituted the maintained
-  `flutter_paystack_max` (card + MTN MoMo). Swap freely if you prefer another fork.
-- **Monorepo layout** (`apps/*`, `packages/*`) — shared design system, models, API client.
+- **Flutter 3.44.4 / Dart 3.12.2**, Material 3. Locally installed at
+  `~/development/flutter` (not on the default shell PATH).
+- **Riverpod 3** for state (repository providers + FutureProviders per
+  feature), **Dio** for HTTP, **go_router 17** for navigation.
+- **flutter_secure_storage** for tokens; **shared_preferences** for small
+  local prefs (locale, onboarding seen, notification prefs, recent searches).
+- **Hive** is a dependency but **not used yet** (no offline cache).
+- **Payments:** Paystack **browser flow**. The backend initializes the
+  transaction and returns an `authorization_url`; the app opens it with
+  `url_launcher`, then the user taps "I have paid" and the app calls verify.
+  No Paystack SDK and no secrets in the app. (The June plan's
+  `flutter_paystack_max` is not used.)
+- **Media:** no in-app player yet. YouTube/R2 links and practice audio open
+  externally; "Mark as done/complete" buttons stand in for playback tracking.
+- **l10n:** gen-l10n with ARB files for en, fr, es, de, pt. The app sends
+  `Accept-Language`.
+- **Monorepo:** `apps/mobile` plus `packages/jcf_ui`, `jcf_models`,
+  `jcf_api_client` (path dependencies, `publish_to: 'none'`).
 
-### JCFAdmin (backend / API layer) — already exists, mature
-- **Django 6.0.3 + Django REST Framework 3.16.1** on **PostgreSQL** (Render/Railway).
-  Requires **Python ≥ 3.12** (Django 6). Verified locally on 3.13.
-- **Cloudflare R2** media storage via `django-storages` + `boto3` (S3-compatible).
-- **Paystack** payments — `causes/paystack.py` (verify + HMAC-SHA512 webhook).
-- **Email** Gmail SMTP; **SMS** Arkesel (`website/notifications.py`).
-- Custom user model `accounts.User` (email login), DRF default permission `AllowAny`.
+### JCFAdmin (backend / API / admin)
+- **Django 6.0.3 + DRF 3.16.1**, Python 3.13, PostgreSQL (Neon; a `dev`
+  branch for local work).
+- **Cloudflare R2** media via `django-storages` + `boto3`; whitenoise for
+  static files.
+- **Paystack** in `causes/paystack.py` (`initialize_transaction`,
+  `verify_transaction`, `validate_webhook_signature`; uses `requests`).
+- **Email:** Gmail SMTP. **SMS:** Arkesel (`website/notifications.py`).
+- Deployed on **Railway**. `Procfile` runs gunicorn and applies migrations on
+  release.
+- A second, unmanaged database (`innerspace` alias) belongs to the
+  drbaffourjan.com student platform. See JCFAdmin `CLAUDE.md`; Django never
+  migrates it.
 
-### CRITICAL architectural finding (corrects the original handoff doc)
-The original planning doc (`JCF_App_Product_Documentation.docx`) assumed a *separate,
-TBD API repo* and a *new Neon Postgres project*. **That is wrong / outdated.** In
-reality **JCFAdmin is the backend** and already implements ~60% of what the doc lists
-as "not started": Postgres, DRF API, Paystack, R2, email, SMS are all live. So:
-- Mobile APIs are **added to JCFAdmin**, not a new repo.
-- DB changes are **Django migrations**, NOT raw Neon SQL / dbmate.
-- Flutter → Django (HTTP) → Postgres. Flutter NEVER touches Postgres directly.
-  Secrets (Paystack secret, R2, JWT private key) live only on the server, never in Flutter.
+### Architecture rules
+- **Three tiers only:** Flutter → Django API → Postgres. Flutter never touches
+  the database.
+- **Mobile API is isolated** under `/api/mobile/v1/` (`mobile_api` app). The
+  website API under `/api/` stays untouched.
+- **Auth is custom OTP + opaque tokens, not JWT** (simplejwt is not installed):
+  - `POST auth/request-code/` → status `sent` / `not_found` / `pending`, plus
+    `channel`, `masked_destination`, `retry_after` (and `dev_code` when
+    `DEBUG`). Phone identifiers get SMS, with email as fallback. Throttled
+    10/min per IP.
+  - Codes are 6 digits, stored hashed, valid 10 minutes, 5 attempts.
+  - `POST auth/verify-code/` → `access` (7 days) + `refresh` (30 days) +
+    `member`. `POST auth/refresh/` issues a new access token (refresh is not
+    rotated). `GET auth/me/` returns the profile; `DELETE auth/me/` logs out
+    (revokes the token).
+  - Requests send `Authorization: Bearer <access>`; `MobileTokenAuthentication`
+    sets `request.member` (a `members.Contact`).
+- **JCFAdmin is the admin surface** for the app. All staff features (programs
+  and fees, content, announcements, inspiration, groups) are built as Django
+  dashboard pages, not in Flutter.
 
 ## 3. Current state
 
-### Done & working
-- **JCFMobile monorepo scaffolded** with real `flutter create`. `flutter analyze` clean
-  and `flutter test` passing for BOTH `apps/mobile` and `apps/desktop`.
-- `packages/jcf_ui` — JCF design tokens + Material 3 theme (`src/theme.dart`).
-- `packages/jcf_api_client` — Dio client + JWT `AuthInterceptor` + secure `TokenStore`.
-- `packages/jcf_models` — `RetreatConfig`, `AccommodationTier` models.
-- Both app shells wired with `ProviderScope` + `MaterialApp.router` + `JcfTheme.light()`.
-- `.claude/hooks/session-start.sh` + `.claude/settings.json` — SessionStart hook that
-  auto-installs Flutter on web sessions (async mode, idempotent).
-- `docs/DEVELOPMENT_CHECKLIST.md` — full follow-along checklist (Track A / Track B).
-- **JCFAdmin** verified runnable locally: venv (py3.13), `migrate`, `check`, and the
-  API serves (`GET /api/events/` → 200). `.env.example` committed.
+### Backend (JCFAdmin) — done
+About 40 mobile endpoints under `/api/mobile/v1/`, each with a matching
+dashboard page:
+- **Auth:** request-code, verify-code, refresh, me/logout (`mobile_api`:
+  `LoginCode`, `MobileToken`).
+- **Teachings:** lessons + series with premium gating by tier; progress and
+  Continue Learning (design 26) via `TeachingProgress`.
+- **Programs:** `Program`, `AccommodationTier`, `CostLineItem`,
+  `Registration`. Dynamic form schema, register → Paystack initialize/verify,
+  atomic room allocation, QR code to R2 (`programs/services.py`).
+- **Donations:** causes, server-side Paystack init, verify, my donations.
+- **Engagement:** announcements with read tracking (design 28), in-app
+  notifications, device-token registration, Daily Inspiration (designs 19/22).
+- **Practices** (design 27), **activities** feed with reminders (design 25),
+  **appointments** (uses `consultations.Consultation`), **groups** with
+  approval-gated joins, **global search** + popular searches (designs 30/31).
+- **Tests:** 106 Django tests (54 in `mobile_api`). They need a running
+  Postgres (`DATABASE_URL`); there is no SQLite test setting.
 
-### Partially done
-- Shared packages are skeletons — need more models, real typed endpoints, widgets.
-- `jcf_api_client` has no refresh-on-401 yet; `baseUrl` not yet wired to a config flag.
-- Hive added to deps but not initialized/used.
-- Routing is a single placeholder route per app (no auth-gated shell, no real screens).
+### Mobile (JCFMobile) — done
+- First run: splash, welcome, 3-page onboarding, language picker, path choice,
+  stay-connected.
+- Auth designs 9–18 complete: sign-in options, phone/email entry, six-box
+  verify with resend countdown, resend help, not-found/pending outcomes,
+  premium gate, session expired (refresh-on-401 in `AuthInterceptor`), sign-out
+  dialog.
+- 5-tab shell (Home · Learn · Practice · Programs · More) with role-adaptive
+  Home.
+- Daily Inspiration detail + share card (PNG), lessons + detail, Continue
+  Learning, Practice tab, programs list/detail/register sheet with payment,
+  causes + donate sheet, announcements, notifications, appointments,
+  activities, search, profile, Quick Actions (More).
+- App name "Jan Cosmic Foundation", logo, native splash and launcher icons.
+- Android main manifest now declares `INTERNET` (release builds need it).
 
-### Not started
-- Retreat domain in JCFAdmin (models, migrations, seed, mobile API namespace).
-- Mobile auth (JWT) — no token auth exists in JCFAdmin at all today.
-- All real Flutter feature screens (registration, teachings, etc.).
-- Firebase/FCM, CI/CD, fonts bundling, store packaging.
+### Not done
+- **Live Now (design 24)**, the last redesign step. Depends on the streaming
+  backend (checklist Track 3).
+- **8 More-tab tiles go to `ComingSoonScreen`:** Membership Card, My Groups,
+  Guidance Request, Find a Centre, My Registrations, Shop, Downloads,
+  Settings. Backend already exists for **My Registrations**
+  (`registrations/mine/`, provider exists) and **My Groups** (`groups/`).
+- **Push notifications:** `engagement/push.py` is a stub (no firebase-admin);
+  the app never calls `devices/register/`. Blocked on a Firebase project.
+- **Paystack webhook** only records donations, not program registrations
+  (registrations confirm only when the app calls verify).
+- Practices and activities have no delete in the dashboard.
+- No offline cache (Hive unused), no in-app media player.
+- Fonts (Cormorant Garamond, Inter) not bundled; `jcf_ui` has only the theme,
+  no shared widgets, and many screens use inline `Color(0x…)` literals.
+- About 10 screens still have hardcoded English (register/donate sheets,
+  causes, programs, program detail, lessons, lesson detail, profile,
+  appointments, notifications), against the translation-first rule.
+- Tests: one widget test in `apps/mobile/test/widget_test.dart`; no package
+  tests.
+- No release signing: release builds use the debug key.
+- No CI.
 
 ## 4. Where we left off
 
-The last work was **session-handover + local verification**; there is **no mid-edit
-file** — both repos have clean trees, all committed and pushed.
+- Latest mobile work: global search (designs 30/31) and the guest Home rebuilt
+  on text-free brand assets (`90afdb1`), then the INTERNET permission fix
+  (`03da407`).
+- Latest backend work: global search API (`ec21be7`).
+- A **debug-signed release APK pointed at staging** was built on 2026-09-24 for
+  device testing (see §9).
+- No file is mid-edit; both working trees are clean.
 
-The agreed **next concrete step is Track A1: build the retreat domain in JCFAdmin** —
-a new `retreats` Django app with models `RetreatConfig`, `AccommodationTier`,
-`CostLineItem`, `RetreatRegistration`, plus migrations and a 2026 seed. This is BLOCKED
-only by user decisions D1–D4 (see §10). The user leans toward the deadline-safe path
-(Django-hosted registration page + guest registration) but had not finally confirmed.
+**Branch state:**
+- JCFMobile `feature/mobile-app` is 45 commits ahead of `main` (main is from
+  June).
+- JCFAdmin `feature/mobile-app` is 25 commits ahead of `origin/main`, and `main`
+  has 2 commits it lacks (`8ed872b`, `10eee5f`). Merge or rebase before the
+  next PR. `origin/staging` already includes this branch (PR #3).
 
-The user also asked about local/device workflow: this session runs in an ephemeral
-cloud container with NO access to the user's machine. To get a direct edit-and-run loop
-on their device they would run Claude Code locally; otherwise the flow is: edit + verify
-here → push to the feature branch → user pulls and tests on a device → merge to main.
+## 5. Next steps (suggested order)
 
-## 5. File map
+1. **My Registrations** and **My Groups** screens (backend is live), replacing
+   their Coming Soon tiles.
+2. Localize the remaining English-only screens.
+3. Find a Centre screen (search currently opens an info sheet for centres).
+4. Release signing (keystore + `key.properties`), then CI (analyze + test +
+   APK artifact).
+5. FCM push once a Firebase project exists.
+6. In-app media player and offline downloads (checklist Track 1B).
+7. Live Now (design 24) with the streaming backend (Track 3).
 
-### JCFMobile (this repo)
-- `apps/mobile/` — iOS+Android app (`jcf_mobile`). Entry: `lib/main.dart` (`JcfApp`,
-  `HomeScreen`, go_router `_router`). Test: `test/widget_test.dart`.
-- `apps/desktop/` — Windows/macOS/Linux admin app (`jcf_desktop`). Entry: `lib/main.dart`
-  (`JcfDesktopApp`, `AdminHomeScreen`). Test: `test/widget_test.dart`.
-- `packages/jcf_ui/lib/src/theme.dart` — `JcfColors`, `JcfRadii`, `JcfTypography`,
-  `JcfTheme.light()`. Barrel: `lib/jcf_ui.dart`.
-- `packages/jcf_models/lib/src/retreat_config.dart` — `RetreatConfig` (+ `fromJson`).
-- `packages/jcf_models/lib/src/accommodation_tier.dart` — `AccommodationTier`
-  (`isSoldOut`, `roomsAvailable`). Barrel: `lib/jcf_models.dart`.
-- `packages/jcf_api_client/lib/src/jcf_api_client_base.dart` — `JcfApiClient` (Dio,
-  baseUrl, timeouts).
-- `packages/jcf_api_client/lib/src/auth_interceptor.dart` — `AuthInterceptor` (Bearer).
-- `packages/jcf_api_client/lib/src/token_store.dart` — `TokenStore` (secure storage).
-- `.claude/hooks/session-start.sh` — installs Flutter on web sessions; `.claude/settings.json` registers it.
-- `docs/DEVELOPMENT_CHECKLIST.md` — the live TODO checklist.
-- `HANDOVER.md` — this file.
+Keep `docs/DEVELOPMENT_CHECKLIST.md` ticked as items land.
 
-### JCFAdmin (backend, separate repo at /home/user/JCFAdmin)
-- `config/settings.py` — DRF, CORS, R2 storage, Paystack, email/SMS config (all via env).
-- `config/urls.py` — routes; `path('api/', include('config.api_urls'))`.
-- `config/api_urls.py` — ALL existing API views + URL patterns (events, blog, centres,
-  causes, gallery/team/testimonials, form submissions, `donations/verify/`,
-  `webhook/paystack/`). **This is where the mobile API namespace gets added.**
-- `causes/paystack.py` — `verify_transaction()`, `validate_webhook_signature()` (reuse).
-- `causes/models.py` — `Cause`, `Donation` (Paystack idempotent on `paystack_reference`).
-- `members/models.py` — `Contact` (core person record), `DataFile`, `Inquiry`.
-- `accounts/models.py` — `User` (email login), `Profile` (roles).
-- `consultations/models.py` — `Consultation` (can extend for appointments).
-- `website/notifications.py` — `send_sms_arkesel()`, email helpers (reuse for confirmations).
-- `.env.example` — full env var template (no secret values).
+## 6. File map
 
-## 6. Next steps (prioritized)
+### JCFMobile (`apps/mobile/lib/`)
+- `main.dart`: app root, theme, l10n delegates.
+- `app/router.dart`: all routes; `StatefulShellRoute` for the 5 tabs. **No
+  route-level redirect** — screens gate themselves (`isLoggedInProvider`,
+  premium gate, sign-in prompts). Splash → `/home` if onboarding was seen, else
+  `/welcome`.
+- `app/shell.dart`: bottom navigation.
+- `core/config.dart`: `apiBaseUrl` from `--dart-define=API_BASE_URL`
+  (default `http://10.0.2.2:8000/api/mobile/v1/`, the Android emulator's host).
+- `core/providers.dart`: `apiClientProvider` (adds Accept-Language), session-
+  expired hook that routes to `/session-expired`.
+- `core/launch.dart` (external URLs), `core/brand.dart` (logo),
+  `core/coming_soon_screen.dart`.
+- `features/<domain>/`: `*_repository.dart` + screens for activities, auth,
+  donations, engagement, home, inspiration, lessons, more, onboarding,
+  practice, profile, programs, search. `home/home_widgets.dart` is the large
+  role-adaptive Home.
+- `l10n/`: ARB files + generated localizations.
 
-1. **Get D1–D4 answered** (§10) — they gate Track A.
-2. **Track A1 — retreat domain in JCFAdmin:** new `retreats` app; models
-   `RetreatConfig`, `AccommodationTier`, `CostLineItem`, `RetreatRegistration`;
-   `makemigrations` + `migrate`; register in Django admin; seed 2026 config + tiers.
-3. **Track A2 — mobile API + payment:** add `path('api/mobile/v1/', include('mobile_api.urls'))`;
-   `GET retreat/active`; `POST registrations/initiate` (ref `JCF-2026-#####`); extend the
-   Paystack webhook to handle registration charges (atomic txn, idempotent, atomic room
-   allocation `UPDATE ... WHERE rooms_confirmed < total_rooms`); send email/SMS + QR→R2.
-4. **Track A3 — registration surface** (Django page or Next.js per D1) for July 31.
-5. **Track A4 — test with Paystack test keys → switch to live → go live.**
-6. **Track B** (after/parallel): JWT auth, Flutter retreat flow (`RetreatConfigProvider`
-   + Hive 1h cache, 4-step form, cost summary, Paystack popup, confirmation/QR),
-   teachings, engagement/FCM, journey/service, packaging/CI/store release.
-- Full breakdown lives in `docs/DEVELOPMENT_CHECKLIST.md` — keep it ticked as you go.
+### Packages
+- `jcf_api_client`: `JcfApiClient` (Dio, timeouts), `AuthInterceptor`
+  (Bearer header, one refresh + retry on 401, then `onSessionExpired`),
+  `TokenStore` (secure storage). Endpoints live in the app's repositories.
+- `jcf_models`: `Member`, `AuthSession`, `Teaching`, `Paginated<T>`, `Cause`,
+  `Program`, `ProgramTier`, `CostLineItem`, `FormField`, `Registration`,
+  `Announcement`, `AppNotification`, `Appointment`. (`RetreatConfig` and
+  `AccommodationTier` are unused leftovers.) Newer models (inspiration,
+  practice, activity, search, continue-learning) sit in the repository files.
+- `jcf_ui`: `src/theme.dart` only — `JcfColors`, `JcfRadii`, `JcfTypography`,
+  `JcfTheme.light()`.
 
-## 7. Known issues & blockers
+### JCFAdmin
+- `config/urls.py` (dashboard + `/api/` + `/api/mobile/v1/`),
+  `config/api_urls.py` (website API + Paystack webhook).
+- `mobile_api/`: `urls.py`, views, `authentication.py`, `otp.py`,
+  `tests.py`, `test_search.py`.
+- Domain apps: `members` (`Contact` = app member identity), `teachings`,
+  `programs`, `causes`, `engagement` (incl. `push.py` stub), `groups`,
+  `practices`, `activities`, `consultations`, `innerspace`.
+- `CLAUDE.md`: dashboard and Innerspace notes (partly outdated on app list).
 
-- **Python version:** Django 6 needs Python ≥ 3.12. The container's default `python3` is
-  3.11 (too old); use `python3.13`. Verified working with a 3.13 venv.
-- **No Postgres server** in the cloud container (only the `psql` client) — local backend
-  verification used SQLite (`DATABASE_URL=sqlite:///db.sqlite3`). Use real Postgres on a
-  dev machine / production.
-- **No mobile auth yet:** DRF default is `AllowAny`; no JWT/token auth installed. Members
-  are `Contact` records, not auth users — the Contact↔app-user link must be designed.
-- **Flutter runs as root** in the cloud container (harmless warning). Cannot produce
-  signed iOS/Android builds here (no Xcode/Android SDK); analyze + test are the ceiling.
-- **Ephemeral container:** the Flutter SDK, `.venv`, `.env`, and `db.sqlite3` created here
-  do NOT persist. Only committed+pushed files survive. The SessionStart hook re-installs
-  Flutter next time.
-- Paystack package substitution (`flutter_paystack_max`, see §2) — intentional deviation.
+## 7. Known issues
+
+- **Signature mismatch on install:** debug builds from different machines use
+  different debug keys. Installing over a copy signed by another key fails
+  (`INSTALL_FAILED_UPDATE_INCOMPATIBLE`); uninstall first (this wipes app
+  data).
+- The first Gradle build on a machine takes 10+ minutes.
+- No production API URL exists in the app; always pass `API_BASE_URL`.
+- Django 6 needs Python ≥ 3.12.
 
 ## 8. Conventions
 
-- **Three-tier always:** Flutter → Django API → Postgres. Never Flutter → DB directly.
-- **Dynamic config, never hardcoded:** all fees/dates/tiers come from the API at runtime.
-  Zero hardcoded numbers in Flutter.
-- **Secrets server-only:** Paystack secret, R2 keys, JWT private key never in Flutter.
-  Public Paystack key is served via the retreat config (rotatable without a release).
-- **Mobile API isolation:** add a NEW `/api/mobile/v1/` namespace; leave the existing
-  website `/api/` untouched.
-- **Dart:** PascalCase classes (`RetreatConfig`), snake_case files (`retreat_config.dart`);
-  packages use `library;` barrels and `publish_to: 'none'`; path deps between packages.
-- **Django:** snake_case plural tables; reuse `causes/paystack.py` and
-  `website/notifications.py`; new domains as separate apps with migrations.
-- **Paystack reference format:** `JCF-{YEAR}-{5-digit-zero-padded-id}` e.g. `JCF-2026-00142`.
-- **Payments idempotent** via unique reference / `get_or_create`; webhook in one transaction.
-- **Git:** work on `claude/jcf-app-handoff-pgom2q` in BOTH repos; `git push -u origin`
-  with retry/backoff on network errors. Do NOT open PRs unless the user asks.
+- **API hand-in-hand:** build each feature's JCFAdmin API, dashboard page and
+  Django tests in the same pass as its Flutter screen, and test end to end
+  against the real endpoint.
+- **Translation-first:** every new screen ships with ARB strings for all
+  Wave-1 languages; direction-aware widgets only; server text honours
+  `Accept-Language`.
+- **Nothing hardcoded:** fees, dates, tiers and copy come from the API or l10n.
+- **Secrets server-only:** Paystack secret, R2 keys and signing keys never go
+  in Flutter. The public Paystack key is served by `payments/config/`.
+- **Payments idempotent:** unique references; webhook work in one transaction.
+  Registration reference format `JCF-{YEAR}-{5-digit id}`, e.g.
+  `JCF-2026-00142`.
+- **Guest-gated surfaces** always fall back to a sign-in invitation.
+- **Dart:** PascalCase classes, snake_case files, `library;` barrels.
+- **Django:** new domains as separate apps with migrations; run migrations on
+  the Neon `dev` branch before production.
+- **Git:** work on `feature/mobile-app` in both repos. Don't open PRs unless
+  asked. Keep `flutter analyze` + `flutter test` green.
 
 ## 9. How to run
 
-### Backend (JCFAdmin, at /home/user/JCFAdmin or your clone)
+### Backend (JCFAdmin)
 ```bash
-python3.12 -m venv .venv && source .venv/bin/activate   # Python 3.12+ REQUIRED
-pip install -r requirements.txt          # (uv pip install -r requirements.txt is faster)
-cp .env.example .env                      # then fill values; .env is gitignored
-#   quick local DB:  DATABASE_URL=sqlite:///db.sqlite3
-#   production-like:  DATABASE_URL=postgres://USER:PASS@localhost:5432/jcf_management
+python3.13 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env        # fill values; .env is gitignored
 python manage.py migrate
-python manage.py createsuperuser
-python manage.py check
-python manage.py runserver               # http://127.0.0.1:8000  (API /api/, admin /admin/)
+python manage.py runserver  # admin dashboard + /api/ + /api/mobile/v1/
+python manage.py test       # needs Postgres
 ```
-- Config/secrets: `.env` (local, gitignored) and host env vars (prod). Template:
-  `.env.example`. Keys: `SECRET_KEY`, `DATABASE_URL`, `CLOUDFLARE_R2_*`,
-  `EMAIL_HOST_USER/PASSWORD`, `ARKESEL_API_KEY`, `PAYSTACK_SECRET_KEY`,
-  `CORS_ALLOWED_ORIGINS`. **Never commit values.**
+Key env vars: `SECRET_KEY`, `DATABASE_URL`, `INNERSPACE_DATABASE_URL`,
+`CLOUDFLARE_R2_*`, `EMAIL_HOST_USER/PASSWORD`, `ARKESEL_API_KEY`,
+`PAYSTACK_SECRET_KEY`, `PAYSTACK_PUBLIC_KEY`, `CORS_ALLOWED_ORIGINS`.
+With `DEBUG=True`, request-code returns `dev_code` so you can sign in without
+SMS/email.
 
 ### Flutter app (JCFMobile)
 ```bash
-# Flutter stable 3.44+ (Dart 3.12). On Claude web sessions the SessionStart hook
-# installs it automatically; locally install Flutter yourself.
-cd apps/mobile && flutter pub get        # repeat per app/package as needed
-flutter analyze
-flutter test
-flutter run -d <android|ios|macos|windows|linux|chrome>
+export PATH=$HOME/development/flutter/bin:$PATH
+cd apps/mobile && flutter pub get
+flutter analyze && flutter test
+
+# Local backend (Android emulator; use http://localhost:8000 for iOS sim)
+flutter run --dart-define=API_BASE_URL=http://10.0.2.2:8000/api/mobile/v1/
+
+# Staging backend, on a connected device
+flutter run -d <device-id> \
+  --dart-define=API_BASE_URL=https://jcfadmin-staging.up.railway.app/api/mobile/v1/
+
+# Staging APK for testers (debug-signed until release signing exists)
+flutter build apk --release \
+  --dart-define=API_BASE_URL=https://jcfadmin-staging.up.railway.app/api/mobile/v1/
+# → build/app/outputs/flutter-apk/app-release.apk (~66 MB; add --split-per-abi for smaller files)
 ```
-- Emulator → local backend: Android `http://10.0.2.2:8000`, iOS/desktop `http://localhost:8000`.
 
-## 10. Open questions (awaiting user input)
+## 10. Open questions (for the project owner)
 
-- **D1 (blocks A3):** July-31 registration page on **JCFAdmin (Django template)** or on the
-  existing **Next.js website**? (Recommended: Django, for speed.)
-- **D2 (blocks A/critical path):** **Guest registration** (name/email/phone, no account —
-  faster, recommended) or **full JWT login** before July 31?
-- **D3 (blocks A1 seed):** Confirm 2026 values — adult GHS 400, child GHS 200, venue Windy
-  Lodge / Aquambias, dates Jul 31–Aug 9, and the full accommodation tier list (names,
-  price/person, room counts). The tier list is referenced but not enumerated.
-- **D4 (blocks A4 go-live):** Is the JCF Paystack live business account active, and are
-  both test + live secret/public keys available?
-- **D5 (blocks Track B only):** Owners of Firebase, Apple Developer ($99/yr), Google Play
-  ($25) accounts — for push notifications and store launch.
-- Email provider for transactional mail at scale (currently Gmail SMTP) — confirm or change.
+- **Release accounts:** who owns the Firebase project, Apple Developer and
+  Google Play accounts? Blocks push notifications and store release.
+- **Release signing:** where the Android upload keystore will live and who
+  holds it.
+- Owner decisions listed in the checklist and `JCF_App_Feature_Specification.pdf`:
+  roadmap priority, premium model, streaming/meeting platform (blocks Live
+  Now), shop delivery scope, translation sourcing.
+- Transactional email at scale: stay on Gmail SMTP or move to a provider.
