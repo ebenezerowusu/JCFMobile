@@ -428,5 +428,86 @@
   "retryLabel": "Retry",
   "sectionUnavailable": "This section couldn't load.",
   "notificationsTitle": "Notifications",
-  "profileTitle": "Profile"
+  "profileTitle": "Profile",
+  "studentChipLabel": "JCF Student",
+  "myProgramEyebrow": "MY PROGRAM",
+  "continueProgram": "Continue Program",
+  "viewAllPrograms": "View All Programs",
+  "todaysLearning": "Today's Learning",
+  "nextLiveClass": "Next Live Class",
+  "viewSchedule": "View Schedule",
+  "yourProgressTitle": "Your Progress",
+  "mentorSupport": "Mentor Support",
+  "importantUpdates": "Important Updates",
+  "startLesson": "Start Lesson",
+  "nextLesson": "Next Lesson",
+  "reviewLesson": "Review Lesson",
+  "beginPractice": "Begin Practice",
+  "reviewPractice": "Review Practice",
+  "completeNow": "Complete Now",
+  "allCaughtUp": "You're all caught up",
+  "joinClass": "Join Class",
+  "viewClassSummary": "View Class Summary",
+  "viewUpdate": "View Update",
+  "statusMissed": "Missed",
+  "statusCancelled": "Cancelled",
+  "statusReplay": "Replay",
+  "statusNotStarted": "Not started",
+  "statusInProgress": "In progress",
+  "statusCompleted": "Completed",
+  "statusDueSoon": "Due soon",
+  "statusOverdue": "Overdue",
+  "statusExcused": "Excused",
+  "priorityUrgent": "Urgent",
+  "priorityImportant": "Important",
+  "messageMentor": "Message Mentor",
+  "viewMentor": "View Mentor",
+  "noMentorAssigned": "No mentor assigned yet - programme support can help.",
+  "viewProgress": "View Progress",
+  "milestoneLocked": "Locked",
+  "milestoneAchieved": "Achieved",
+  "myCourses": "My Courses",
+  "scheduleLabel": "Schedule",
+  "assignmentsLabel": "Assignments",
+  "lessonsCompleted": "{done} of {total} lessons",
+  "@lessonsCompleted": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "practicesCompleted": "{done} of {total} practices",
+  "@practicesCompleted": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "programProgressSemantics": "Program progress, {percent} percent complete.",
+  "@programProgressSemantics": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "dueLabel": "Due {date}",
+  "@dueLabel": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "accessExpiredTitle": "Your access has expired",
+  "programPausedTitle": "This programme is paused",
+  "noProgramEnrolled": "You are not enrolled in a programme yet."
 }
