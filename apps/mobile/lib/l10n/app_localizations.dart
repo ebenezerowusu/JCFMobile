@@ -1789,6 +1789,288 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Profile'**
   String get profileTitle;
+
+  /// No description provided for @studentChipLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'JCF Student'**
+  String get studentChipLabel;
+
+  /// No description provided for @myProgramEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'MY PROGRAM'**
+  String get myProgramEyebrow;
+
+  /// No description provided for @continueProgram.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Program'**
+  String get continueProgram;
+
+  /// No description provided for @viewAllPrograms.
+  ///
+  /// In en, this message translates to:
+  /// **'View All Programs'**
+  String get viewAllPrograms;
+
+  /// No description provided for @todaysLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s Learning'**
+  String get todaysLearning;
+
+  /// No description provided for @nextLiveClass.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Live Class'**
+  String get nextLiveClass;
+
+  /// No description provided for @viewSchedule.
+  ///
+  /// In en, this message translates to:
+  /// **'View Schedule'**
+  String get viewSchedule;
+
+  /// No description provided for @yourProgressTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Progress'**
+  String get yourProgressTitle;
+
+  /// No description provided for @mentorSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Mentor Support'**
+  String get mentorSupport;
+
+  /// No description provided for @importantUpdates.
+  ///
+  /// In en, this message translates to:
+  /// **'Important Updates'**
+  String get importantUpdates;
+
+  /// No description provided for @startLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Lesson'**
+  String get startLesson;
+
+  /// No description provided for @nextLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Lesson'**
+  String get nextLesson;
+
+  /// No description provided for @reviewLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Review Lesson'**
+  String get reviewLesson;
+
+  /// No description provided for @beginPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin Practice'**
+  String get beginPractice;
+
+  /// No description provided for @reviewPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Review Practice'**
+  String get reviewPractice;
+
+  /// No description provided for @completeNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete Now'**
+  String get completeNow;
+
+  /// No description provided for @allCaughtUp.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re all caught up'**
+  String get allCaughtUp;
+
+  /// No description provided for @joinClass.
+  ///
+  /// In en, this message translates to:
+  /// **'Join Class'**
+  String get joinClass;
+
+  /// No description provided for @viewClassSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'View Class Summary'**
+  String get viewClassSummary;
+
+  /// No description provided for @viewUpdate.
+  ///
+  /// In en, this message translates to:
+  /// **'View Update'**
+  String get viewUpdate;
+
+  /// No description provided for @statusMissed.
+  ///
+  /// In en, this message translates to:
+  /// **'Missed'**
+  String get statusMissed;
+
+  /// No description provided for @statusCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get statusCancelled;
+
+  /// No description provided for @statusReplay.
+  ///
+  /// In en, this message translates to:
+  /// **'Replay'**
+  String get statusReplay;
+
+  /// No description provided for @statusNotStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Not started'**
+  String get statusNotStarted;
+
+  /// No description provided for @statusInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get statusInProgress;
+
+  /// No description provided for @statusCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get statusCompleted;
+
+  /// No description provided for @statusDueSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Due soon'**
+  String get statusDueSoon;
+
+  /// No description provided for @statusOverdue.
+  ///
+  /// In en, this message translates to:
+  /// **'Overdue'**
+  String get statusOverdue;
+
+  /// No description provided for @statusExcused.
+  ///
+  /// In en, this message translates to:
+  /// **'Excused'**
+  String get statusExcused;
+
+  /// No description provided for @priorityUrgent.
+  ///
+  /// In en, this message translates to:
+  /// **'Urgent'**
+  String get priorityUrgent;
+
+  /// No description provided for @priorityImportant.
+  ///
+  /// In en, this message translates to:
+  /// **'Important'**
+  String get priorityImportant;
+
+  /// No description provided for @messageMentor.
+  ///
+  /// In en, this message translates to:
+  /// **'Message Mentor'**
+  String get messageMentor;
+
+  /// No description provided for @viewMentor.
+  ///
+  /// In en, this message translates to:
+  /// **'View Mentor'**
+  String get viewMentor;
+
+  /// No description provided for @noMentorAssigned.
+  ///
+  /// In en, this message translates to:
+  /// **'No mentor assigned yet - programme support can help.'**
+  String get noMentorAssigned;
+
+  /// No description provided for @viewProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'View Progress'**
+  String get viewProgress;
+
+  /// No description provided for @milestoneLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Locked'**
+  String get milestoneLocked;
+
+  /// No description provided for @milestoneAchieved.
+  ///
+  /// In en, this message translates to:
+  /// **'Achieved'**
+  String get milestoneAchieved;
+
+  /// No description provided for @myCourses.
+  ///
+  /// In en, this message translates to:
+  /// **'My Courses'**
+  String get myCourses;
+
+  /// No description provided for @scheduleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule'**
+  String get scheduleLabel;
+
+  /// No description provided for @assignmentsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Assignments'**
+  String get assignmentsLabel;
+
+  /// No description provided for @lessonsCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total} lessons'**
+  String lessonsCompleted(int done, int total);
+
+  /// No description provided for @practicesCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total} practices'**
+  String practicesCompleted(int done, int total);
+
+  /// No description provided for @programProgressSemantics.
+  ///
+  /// In en, this message translates to:
+  /// **'Program progress, {percent} percent complete.'**
+  String programProgressSemantics(int percent);
+
+  /// No description provided for @dueLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Due {date}'**
+  String dueLabel(String date);
+
+  /// No description provided for @accessExpiredTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your access has expired'**
+  String get accessExpiredTitle;
+
+  /// No description provided for @programPausedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This programme is paused'**
+  String get programPausedTitle;
+
+  /// No description provided for @noProgramEnrolled.
+  ///
+  /// In en, this message translates to:
+  /// **'You are not enrolled in a programme yet.'**
+  String get noProgramEnrolled;
 }
 
 class _AppLocalizationsDelegate

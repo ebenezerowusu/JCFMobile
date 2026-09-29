@@ -921,4 +921,154 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get profileTitle => 'Perfil';
+
+  @override
+  String get studentChipLabel => 'Estudiante JCF';
+
+  @override
+  String get myProgramEyebrow => 'MI PROGRAMA';
+
+  @override
+  String get continueProgram => 'Continuar programa';
+
+  @override
+  String get viewAllPrograms => 'Ver todos los programas';
+
+  @override
+  String get todaysLearning => 'Aprendizaje de hoy';
+
+  @override
+  String get nextLiveClass => 'Próxima clase en vivo';
+
+  @override
+  String get viewSchedule => 'Ver horario';
+
+  @override
+  String get yourProgressTitle => 'Tu progreso';
+
+  @override
+  String get mentorSupport => 'Acompañamiento';
+
+  @override
+  String get importantUpdates => 'Avisos importantes';
+
+  @override
+  String get startLesson => 'Empezar lección';
+
+  @override
+  String get nextLesson => 'Siguiente lección';
+
+  @override
+  String get reviewLesson => 'Repasar lección';
+
+  @override
+  String get beginPractice => 'Empezar práctica';
+
+  @override
+  String get reviewPractice => 'Repasar práctica';
+
+  @override
+  String get completeNow => 'Completar ahora';
+
+  @override
+  String get allCaughtUp => 'Estás al día';
+
+  @override
+  String get joinClass => 'Unirse a la clase';
+
+  @override
+  String get viewClassSummary => 'Ver resumen';
+
+  @override
+  String get viewUpdate => 'Ver actualización';
+
+  @override
+  String get statusMissed => 'Perdida';
+
+  @override
+  String get statusCancelled => 'Cancelada';
+
+  @override
+  String get statusReplay => 'Repetición';
+
+  @override
+  String get statusNotStarted => 'Sin empezar';
+
+  @override
+  String get statusInProgress => 'En curso';
+
+  @override
+  String get statusCompleted => 'Completada';
+
+  @override
+  String get statusDueSoon => 'Vence pronto';
+
+  @override
+  String get statusOverdue => 'Vencida';
+
+  @override
+  String get statusExcused => 'Excusada';
+
+  @override
+  String get priorityUrgent => 'Urgente';
+
+  @override
+  String get priorityImportant => 'Importante';
+
+  @override
+  String get messageMentor => 'Escribir al mentor';
+
+  @override
+  String get viewMentor => 'Ver mentor';
+
+  @override
+  String get noMentorAssigned =>
+      'Aún no tienes mentor asignado; el equipo del programa puede ayudarte.';
+
+  @override
+  String get viewProgress => 'Ver progreso';
+
+  @override
+  String get milestoneLocked => 'Bloqueado';
+
+  @override
+  String get milestoneAchieved => 'Logrado';
+
+  @override
+  String get myCourses => 'Mis cursos';
+
+  @override
+  String get scheduleLabel => 'Horario';
+
+  @override
+  String get assignmentsLabel => 'Tareas';
+
+  @override
+  String lessonsCompleted(int done, int total) {
+    return '$done de $total lecciones';
+  }
+
+  @override
+  String practicesCompleted(int done, int total) {
+    return '$done de $total prácticas';
+  }
+
+  @override
+  String programProgressSemantics(int percent) {
+    return 'Progreso del programa, $percent por ciento.';
+  }
+
+  @override
+  String dueLabel(String date) {
+    return 'Vence el $date';
+  }
+
+  @override
+  String get accessExpiredTitle => 'Tu acceso ha caducado';
+
+  @override
+  String get programPausedTitle => 'Este programa está en pausa';
+
+  @override
+  String get noProgramEnrolled => 'Todavía no estás inscrito en un programa.';
 }

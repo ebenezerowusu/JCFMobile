@@ -133,6 +133,16 @@ prerequisites YES ("Complete Level 2 to unlock").
       layer yet (neither exists in the project); welcome copy is served
       from the API but has no dashboard editor yet; Downloads quick action
       withheld until offline downloads ship
+- [x] 10. Student Home rebuild (owner spec, Sep 2026): new `studies` Django
+      app (Enrolment, PracticeAssignment with derived statuses, Milestone,
+      Mentorship) + one dashboard page; GET /home/student/ aggregate with
+      server-computed programme progress, resume lesson, assignment states,
+      time-gated live-class join, milestone, mentor and priority updates;
+      StudentHomeBody with six packaged artworks behind CMS URLs. Notes:
+      assets are .webp not .png (see step 9); paused/expired/suspended
+      enrolments are explained in-screen rather than erroring; mentor
+      messaging routes to appointments until a messaging feature exists;
+      Downloads withheld; no offline cache or analytics layer yet
 
 ## 🟦 Track 1 — Learn & Practice (recommended lead pillar)
 
