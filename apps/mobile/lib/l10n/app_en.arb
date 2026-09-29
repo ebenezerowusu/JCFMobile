@@ -383,5 +383,50 @@
   "statusLive": "Live",
   "statusStartingSoon": "Starting soon",
   "statusUpcoming": "Upcoming",
-  "joinLive": "Join Live"
+  "joinLive": "Join Live",
+  "welcomeBackGeneric": "Welcome back",
+  "continueYourJourney": "Continue Your Journey",
+  "viewActivity": "View Activity",
+  "continueLearningCta": "Continue Learning",
+  "continuePracticeCta": "Continue Practice",
+  "forMembers": "For Members",
+  "memberExclusive": "MEMBER EXCLUSIVE",
+  "watchNow": "Watch Now",
+  "listenNow": "Listen Now",
+  "readNow": "Read Now",
+  "startCourse": "Start Course",
+  "exploreSeries": "Explore Series",
+  "communitySection": "Community",
+  "readUpdate": "Read Update",
+  "quickActionsTitle": "Quick Actions",
+  "myLibrary": "My Library",
+  "myPrograms": "My Programs",
+  "savedLabel": "Saved",
+  "downloadsLabel": "Downloads",
+  "lessonProgress": "{done} of {total} lessons",
+  "@lessonProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "remainingTime": "{minutes} min left",
+  "@remainingTime": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "watchReplay": "Watch Replay",
+  "noUpcomingEvents": "No upcoming events",
+  "offlineShowingSaved": "Offline — showing saved content",
+  "retryLabel": "Retry",
+  "sectionUnavailable": "This section couldn't load.",
+  "notificationsTitle": "Notifications",
+  "profileTitle": "Profile"
 }

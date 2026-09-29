@@ -124,6 +124,15 @@ prerequisites YES ("Complete Level 2 to unlock").
       exists; "Most Relevant" sort dropdown omitted (single relevance)
 - [ ] 8. Live Now (#24): rides Track 3 backend — player, Remind Me/Share/
       Give, moderated live chat, Submit a Question (500 chars)
+- [x] 9. Member Home rebuild (owner spec, Sep 2026): GET /home/member/
+      aggregate (summary, welcome, resumable learning+practice, member-
+      exclusive teaching, inspirations, next event, quick actions,
+      announcements, unread count) + MemberHomeBody with six packaged
+      artworks used as fallbacks behind CMS image URLs. Notes: assets ship
+      as .webp not .png (3.1MB -> 389KB); no offline cache or analytics
+      layer yet (neither exists in the project); welcome copy is served
+      from the API but has no dashboard editor yet; Downloads quick action
+      withheld until offline downloads ship
 
 ## 🟦 Track 1 — Learn & Practice (recommended lead pillar)
 

@@ -841,4 +841,92 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get joinLive => 'Rejoindre le direct';
+
+  @override
+  String get welcomeBackGeneric => 'Bon retour';
+
+  @override
+  String get continueYourJourney => 'Continuez votre chemin';
+
+  @override
+  String get viewActivity => 'Voir l\'activité';
+
+  @override
+  String get continueLearningCta => 'Continuer l\'apprentissage';
+
+  @override
+  String get continuePracticeCta => 'Continuer la pratique';
+
+  @override
+  String get forMembers => 'Pour les membres';
+
+  @override
+  String get memberExclusive => 'EXCLUSIVITÉ MEMBRE';
+
+  @override
+  String get watchNow => 'Regarder';
+
+  @override
+  String get listenNow => 'Écouter';
+
+  @override
+  String get readNow => 'Lire';
+
+  @override
+  String get startCourse => 'Commencer le cours';
+
+  @override
+  String get exploreSeries => 'Explorer la série';
+
+  @override
+  String get communitySection => 'Communauté';
+
+  @override
+  String get readUpdate => 'Lire l\'actualité';
+
+  @override
+  String get quickActionsTitle => 'Actions rapides';
+
+  @override
+  String get myLibrary => 'Ma bibliothèque';
+
+  @override
+  String get myPrograms => 'Mes programmes';
+
+  @override
+  String get savedLabel => 'Enregistrés';
+
+  @override
+  String get downloadsLabel => 'Téléchargements';
+
+  @override
+  String lessonProgress(int done, int total) {
+    return '$done sur $total leçons';
+  }
+
+  @override
+  String remainingTime(int minutes) {
+    return '$minutes min restantes';
+  }
+
+  @override
+  String get watchReplay => 'Voir le replay';
+
+  @override
+  String get noUpcomingEvents => 'Aucun événement à venir';
+
+  @override
+  String get offlineShowingSaved => 'Hors ligne — contenu enregistré';
+
+  @override
+  String get retryLabel => 'Réessayer';
+
+  @override
+  String get sectionUnavailable => 'Cette section n\'a pas pu se charger.';
+
+  @override
+  String get notificationsTitle => 'Notifications';
+
+  @override
+  String get profileTitle => 'Profil';
 }
