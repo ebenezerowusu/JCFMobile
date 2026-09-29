@@ -1621,6 +1621,174 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Join Live'**
   String get joinLive;
+
+  /// No description provided for @welcomeBackGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back'**
+  String get welcomeBackGeneric;
+
+  /// No description provided for @continueYourJourney.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Your Journey'**
+  String get continueYourJourney;
+
+  /// No description provided for @viewActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'View Activity'**
+  String get viewActivity;
+
+  /// No description provided for @continueLearningCta.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Learning'**
+  String get continueLearningCta;
+
+  /// No description provided for @continuePracticeCta.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Practice'**
+  String get continuePracticeCta;
+
+  /// No description provided for @forMembers.
+  ///
+  /// In en, this message translates to:
+  /// **'For Members'**
+  String get forMembers;
+
+  /// No description provided for @memberExclusive.
+  ///
+  /// In en, this message translates to:
+  /// **'MEMBER EXCLUSIVE'**
+  String get memberExclusive;
+
+  /// No description provided for @watchNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch Now'**
+  String get watchNow;
+
+  /// No description provided for @listenNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen Now'**
+  String get listenNow;
+
+  /// No description provided for @readNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Read Now'**
+  String get readNow;
+
+  /// No description provided for @startCourse.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Course'**
+  String get startCourse;
+
+  /// No description provided for @exploreSeries.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore Series'**
+  String get exploreSeries;
+
+  /// No description provided for @communitySection.
+  ///
+  /// In en, this message translates to:
+  /// **'Community'**
+  String get communitySection;
+
+  /// No description provided for @readUpdate.
+  ///
+  /// In en, this message translates to:
+  /// **'Read Update'**
+  String get readUpdate;
+
+  /// No description provided for @quickActionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Actions'**
+  String get quickActionsTitle;
+
+  /// No description provided for @myLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'My Library'**
+  String get myLibrary;
+
+  /// No description provided for @myPrograms.
+  ///
+  /// In en, this message translates to:
+  /// **'My Programs'**
+  String get myPrograms;
+
+  /// No description provided for @savedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get savedLabel;
+
+  /// No description provided for @downloadsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloads'**
+  String get downloadsLabel;
+
+  /// No description provided for @lessonProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total} lessons'**
+  String lessonProgress(int done, int total);
+
+  /// No description provided for @remainingTime.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min left'**
+  String remainingTime(int minutes);
+
+  /// No description provided for @watchReplay.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch Replay'**
+  String get watchReplay;
+
+  /// No description provided for @noUpcomingEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'No upcoming events'**
+  String get noUpcomingEvents;
+
+  /// No description provided for @offlineShowingSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Offline — showing saved content'**
+  String get offlineShowingSaved;
+
+  /// No description provided for @retryLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retryLabel;
+
+  /// No description provided for @sectionUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'This section couldn\'t load.'**
+  String get sectionUnavailable;
+
+  /// No description provided for @notificationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notificationsTitle;
+
+  /// No description provided for @profileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profileTitle;
 }
 
 class _AppLocalizationsDelegate

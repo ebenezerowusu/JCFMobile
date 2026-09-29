@@ -833,4 +833,92 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get joinLive => 'Unirse en vivo';
+
+  @override
+  String get welcomeBackGeneric => 'Bienvenido de nuevo';
+
+  @override
+  String get continueYourJourney => 'Continúa tu camino';
+
+  @override
+  String get viewActivity => 'Ver actividad';
+
+  @override
+  String get continueLearningCta => 'Seguir aprendiendo';
+
+  @override
+  String get continuePracticeCta => 'Seguir practicando';
+
+  @override
+  String get forMembers => 'Para miembros';
+
+  @override
+  String get memberExclusive => 'EXCLUSIVO PARA MIEMBROS';
+
+  @override
+  String get watchNow => 'Ver ahora';
+
+  @override
+  String get listenNow => 'Escuchar';
+
+  @override
+  String get readNow => 'Leer';
+
+  @override
+  String get startCourse => 'Empezar curso';
+
+  @override
+  String get exploreSeries => 'Explorar serie';
+
+  @override
+  String get communitySection => 'Comunidad';
+
+  @override
+  String get readUpdate => 'Leer novedad';
+
+  @override
+  String get quickActionsTitle => 'Acciones rápidas';
+
+  @override
+  String get myLibrary => 'Mi biblioteca';
+
+  @override
+  String get myPrograms => 'Mis programas';
+
+  @override
+  String get savedLabel => 'Guardados';
+
+  @override
+  String get downloadsLabel => 'Descargas';
+
+  @override
+  String lessonProgress(int done, int total) {
+    return '$done de $total lecciones';
+  }
+
+  @override
+  String remainingTime(int minutes) {
+    return '$minutes min restantes';
+  }
+
+  @override
+  String get watchReplay => 'Ver repetición';
+
+  @override
+  String get noUpcomingEvents => 'No hay eventos próximos';
+
+  @override
+  String get offlineShowingSaved => 'Sin conexión: contenido guardado';
+
+  @override
+  String get retryLabel => 'Reintentar';
+
+  @override
+  String get sectionUnavailable => 'Esta sección no se pudo cargar.';
+
+  @override
+  String get notificationsTitle => 'Notificaciones';
+
+  @override
+  String get profileTitle => 'Perfil';
 }

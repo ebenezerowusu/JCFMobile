@@ -13,6 +13,8 @@ import '../lessons/lessons_repository.dart';
 import '../practice/practice_repository.dart';
 import '../programs/programs_repository.dart';
 import 'home_widgets.dart';
+import 'member_home_repository.dart';
+import 'member_home_screen.dart';
 
 /// Role-adaptive Home: guest (design/19), member (design/20), student
 /// (design/21). One route, three layouts, chosen by auth state.
@@ -28,7 +30,7 @@ class HomeScreen extends ConsumerWidget {
     } else if (member.isStudent) {
       body = StudentHome(member: member);
     } else {
-      body = MemberHome(member: member);
+      body = const MemberHomeBody();
     }
     return Scaffold(
       backgroundColor: JcfColors.skySurface,
@@ -43,6 +45,7 @@ class HomeScreen extends ConsumerWidget {
             ref.invalidate(upcomingActivitiesProvider);
             ref.invalidate(continueLearningProvider);
             ref.invalidate(practiceSummaryProvider);
+            ref.invalidate(memberHomeProvider);
           },
           child: body,
         ),

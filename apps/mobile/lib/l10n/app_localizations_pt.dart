@@ -835,4 +835,92 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get joinLive => 'Entrar ao vivo';
+
+  @override
+  String get welcomeBackGeneric => 'Bem-vindo de volta';
+
+  @override
+  String get continueYourJourney => 'Continue a sua jornada';
+
+  @override
+  String get viewActivity => 'Ver atividade';
+
+  @override
+  String get continueLearningCta => 'Continuar a aprender';
+
+  @override
+  String get continuePracticeCta => 'Continuar a praticar';
+
+  @override
+  String get forMembers => 'Para membros';
+
+  @override
+  String get memberExclusive => 'EXCLUSIVO PARA MEMBROS';
+
+  @override
+  String get watchNow => 'Ver agora';
+
+  @override
+  String get listenNow => 'Ouvir agora';
+
+  @override
+  String get readNow => 'Ler agora';
+
+  @override
+  String get startCourse => 'Iniciar curso';
+
+  @override
+  String get exploreSeries => 'Explorar série';
+
+  @override
+  String get communitySection => 'Comunidade';
+
+  @override
+  String get readUpdate => 'Ler novidade';
+
+  @override
+  String get quickActionsTitle => 'Ações rápidas';
+
+  @override
+  String get myLibrary => 'A minha biblioteca';
+
+  @override
+  String get myPrograms => 'Os meus programas';
+
+  @override
+  String get savedLabel => 'Guardados';
+
+  @override
+  String get downloadsLabel => 'Transferências';
+
+  @override
+  String lessonProgress(int done, int total) {
+    return '$done de $total lições';
+  }
+
+  @override
+  String remainingTime(int minutes) {
+    return '$minutes min restantes';
+  }
+
+  @override
+  String get watchReplay => 'Ver repetição';
+
+  @override
+  String get noUpcomingEvents => 'Sem eventos próximos';
+
+  @override
+  String get offlineShowingSaved => 'Offline — conteúdo guardado';
+
+  @override
+  String get retryLabel => 'Tentar novamente';
+
+  @override
+  String get sectionUnavailable => 'Não foi possível carregar esta secção.';
+
+  @override
+  String get notificationsTitle => 'Notificações';
+
+  @override
+  String get profileTitle => 'Perfil';
 }

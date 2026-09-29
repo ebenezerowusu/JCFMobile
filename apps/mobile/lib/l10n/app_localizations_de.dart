@@ -839,4 +839,93 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get joinLive => 'Live beitreten';
+
+  @override
+  String get welcomeBackGeneric => 'Willkommen zurück';
+
+  @override
+  String get continueYourJourney => 'Setze deinen Weg fort';
+
+  @override
+  String get viewActivity => 'Aktivität ansehen';
+
+  @override
+  String get continueLearningCta => 'Weiterlernen';
+
+  @override
+  String get continuePracticeCta => 'Weiter üben';
+
+  @override
+  String get forMembers => 'Für Mitglieder';
+
+  @override
+  String get memberExclusive => 'NUR FÜR MITGLIEDER';
+
+  @override
+  String get watchNow => 'Jetzt ansehen';
+
+  @override
+  String get listenNow => 'Jetzt anhören';
+
+  @override
+  String get readNow => 'Jetzt lesen';
+
+  @override
+  String get startCourse => 'Kurs starten';
+
+  @override
+  String get exploreSeries => 'Serie entdecken';
+
+  @override
+  String get communitySection => 'Gemeinschaft';
+
+  @override
+  String get readUpdate => 'Update lesen';
+
+  @override
+  String get quickActionsTitle => 'Schnellaktionen';
+
+  @override
+  String get myLibrary => 'Meine Bibliothek';
+
+  @override
+  String get myPrograms => 'Meine Programme';
+
+  @override
+  String get savedLabel => 'Gespeichert';
+
+  @override
+  String get downloadsLabel => 'Downloads';
+
+  @override
+  String lessonProgress(int done, int total) {
+    return '$done von $total Lektionen';
+  }
+
+  @override
+  String remainingTime(int minutes) {
+    return 'Noch $minutes Min.';
+  }
+
+  @override
+  String get watchReplay => 'Aufzeichnung ansehen';
+
+  @override
+  String get noUpcomingEvents => 'Keine kommenden Veranstaltungen';
+
+  @override
+  String get offlineShowingSaved => 'Offline – gespeicherte Inhalte';
+
+  @override
+  String get retryLabel => 'Erneut versuchen';
+
+  @override
+  String get sectionUnavailable =>
+      'Dieser Bereich konnte nicht geladen werden.';
+
+  @override
+  String get notificationsTitle => 'Mitteilungen';
+
+  @override
+  String get profileTitle => 'Profil';
 }
