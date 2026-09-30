@@ -21,7 +21,7 @@ import '../features/onboarding/language_screen.dart';
 import '../features/practice/practice_screen.dart';
 import '../features/onboarding/path_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
-import '../features/onboarding/splash_screen.dart';
+import '../features/splash/startup_splash_screen.dart';
 import '../features/onboarding/stay_connected_screen.dart';
 import '../features/onboarding/welcome_screen.dart';
 import '../features/profile/profile_screen.dart';
@@ -45,7 +45,7 @@ GoRouter createRouter() {
   return GoRouter(
     initialLocation: '/splash',
     routes: [
-      GoRoute(path: '/splash', builder: (_, _) => const SplashScreen()),
+      GoRoute(path: '/splash', builder: (_, _) => const StartupSplashScreen()),
       GoRoute(path: '/welcome', builder: (_, _) => const WelcomeScreen()),
       GoRoute(path: '/onboarding', builder: (_, _) => const OnboardingScreen()),
       GoRoute(path: '/language', builder: (_, _) => const LanguageScreen()),

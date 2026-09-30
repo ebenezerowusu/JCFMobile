@@ -560,5 +560,21 @@
   "learnHistory": "Lernverlauf",
   "learnCompletedCourses": "Abgeschlossene Kurse",
   "learnHelp": "Hilfe",
-  "learnSemanticCourse": "{title}. {percent} Prozent abgeschlossen. Aktuelle Lektion: {lesson}."
+  "learnSemanticCourse": "{title}. {percent} Prozent abgeschlossen. Aktuelle Lektion: {lesson}.",
+  "splashFoundationName": "JAN COSMIC FOUNDATION",
+  "splashTagline": "Erwache. Lerne. Wandle dich.",
+  "splashPreparing": "Deine Erfahrung wird vorbereitet…",
+  "splashStillPreparing": "Noch einen Moment…",
+  "splashStartupFailed": "Die App konnte nicht gestartet werden.",
+  "splashCheckConnection": "Prüfe deine Verbindung und versuche es erneut.",
+  "splashTryAgain": "Erneut versuchen",
+  "splashContinueOffline": "Offline fortfahren",
+  "splashUpdateRequiredTitle": "Eine neue Version ist erforderlich",
+  "splashUpdateRequiredMessage": "Aktualisiere, um die App weiter zu nutzen. Diese Version wird nicht mehr unterstützt.",
+  "splashUpdateApp": "App aktualisieren",
+  "splashMaintenanceTitle": "Wir sind gleich zurück",
+  "splashMaintenanceMessage": "Die App ist kurz nicht verfügbar, während wir etwas verbessern.",
+  "splashGenericError": "Etwas ist schiefgelaufen.",
+  "splashLogoLabel": "Logo der Jan Cosmic Foundation",
+  "splashLoadingLabel": "Wird geladen"
 }

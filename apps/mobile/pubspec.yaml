@@ -93,6 +93,7 @@ flutter:
     - assets/images/live_now_player/
     - assets/images/upcoming_activities/
     - assets/images/continue_learning/
+    - assets/images/splash/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -122,12 +123,16 @@ flutter:
 
 # --- Branding asset generation ---
 flutter_native_splash:
-  # Same comp as the in-app SplashScreen -> pixel-identical launch frame.
-  background_image: assets/images/splash_bg.jpg
+  # Stage one: a static mark on the brand navy, shown by the OS before
+  # Flutter exists. Deliberately NOT the cosmic comp - a full-bleed
+  # photograph gets letterboxed differently on every aspect ratio, which
+  # is what produced the bands above and below the old launch frame.
+  # The branded composition is stage two, in StartupSplashScreen.
+  color: "#102454"
+  image: assets/images/splash/splash_brand_logo.png
   android_12:
-    # Android 12+ only allows an icon on a colour; match the comp's base.
-    color: "#060E4A"
-    image: assets/images/logo.png
+    color: "#102454"
+    image: assets/images/splash/splash_brand_logo.png
   android: true
   ios: true
 

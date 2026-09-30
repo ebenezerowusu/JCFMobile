@@ -246,6 +246,36 @@ prerequisites YES ("Complete Level 2 to unlock").
       none of the listed events are emitted. The old learning/continue/
       endpoint became learning/summary/, which is what it always was - the
       compact payload the home card reads.
+- [x] 15. Splash experience (owner spec + designs 48-49, Sep 2026):
+      two-stage. Stage one is the OS launch screen - a static logo on
+      #102454, regenerated via flutter_native_splash; it is deliberately
+      NOT the cosmic comp, because a full-bleed photograph is letterboxed
+      differently on every aspect ratio, which is what produced the bands
+      above and below the old launch frame. Stage two is
+      StartupSplashScreen at /splash: cosmic background, logo, and native
+      localized name/tagline/status - nothing is baked into the artwork.
+      GET /bootstrap/ added (version gate, maintenance, validated session,
+      allowlisted initial_route). 19 backend tests (suite 337 green), 30
+      app tests (suite 229 green), analyze clean, strings in all five
+      Wave-1 locales. Notes and decisions: the old hardcoded 2000ms delay
+      is gone - a fast launch is held only ~400ms so it does not flash,
+      and a slow one says "Still preparing..." after 4s rather than
+      spinning forever; a malformed X-App-Version sorts lowest so a bad
+      header cannot slip past the version gate, and a client sending no
+      header at all is not force-updated; initial_route and the store URL
+      are both checked against allowlists, so the API can never navigate
+      the app or open an arbitrary link; a first-run user with no network
+      goes to onboarding rather than an error, since they have nothing to
+      "continue offline" into and the gate re-applies next launch;
+      Continue Offline appears only when there is genuinely something
+      cached. Deviations: assets are .webp for the background only (121KB
+      against 1586KB as PNG) - the logo stays PNG because
+      flutter_native_splash generates the native drawables from it;
+      splash_screen_ui.png is NOT shipped, per the spec; no analytics
+      layer exists so none of the listed bootstrap events are emitted;
+      deep-link restoration is not implemented (nothing saves an intended
+      route yet); there is no integration-test target in this project, so
+      the listed integration cases are covered as widget tests instead.
 
 ## 🟦 Track 1 — Learn & Practice (recommended lead pillar)
 

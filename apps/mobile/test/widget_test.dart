@@ -3,21 +3,44 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:jcf_mobile/features/onboarding/splash_screen.dart';
+import 'package:jcf_mobile/features/splash/app_bootstrap_service.dart';
+import 'package:jcf_mobile/features/splash/splash_state.dart';
+import 'package:jcf_mobile/features/splash/startup_splash_screen.dart';
 import 'package:jcf_mobile/main.dart';
+
+/// Bootstrap without the network, so this test stays about the first-run
+/// flow rather than about how long a refused connection takes to fail.
+class _FirstRunBootstrap implements AppBootstrapService {
+  @override
+  Future<BootstrapResult> run() async => const BootstrapResult(
+        stage: SplashStage.ready,
+        destination: '/welcome',
+      );
+}
 
 void main() {
   testWidgets('first run: splash -> welcome -> Begin -> onboarding',
       (tester) async {
     SharedPreferences.setMockInitialValues({}); // onboarding not seen
 
-    await tester.pumpWidget(const ProviderScope(child: JcfApp()));
+    await tester.pumpWidget(ProviderScope(
+      overrides: [
+        appBootstrapServiceProvider
+            .overrideWithValue(_FirstRunBootstrap()),
+      ],
+      child: const JcfApp(),
+    ));
 
-    // Splash is visible first (the comp image carries the branding).
-    expect(find.byType(SplashScreen), findsOneWidget);
+    // Splash is visible first.
+    expect(find.byType(StartupSplashScreen), findsOneWidget);
 
-    // Advance past the splash delay -> welcome.
-    await tester.pump(const Duration(milliseconds: 2100));
+    // Bootstrap runs, finds no network and no completed onboarding, and
+    // sends a first-time user to welcome rather than to an error.
+    // Explicit pumps, not pumpAndSettle: the loading dots repeat forever
+    // by design, so nothing would ever settle while the splash is up.
+    for (var i = 0; i < 8; i++) {
+      await tester.pump(const Duration(milliseconds: 200));
+    }
     await tester.pumpAndSettle();
 
     expect(find.text('A Path of Freedom and Awareness'), findsOneWidget);

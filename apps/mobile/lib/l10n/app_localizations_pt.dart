@@ -1868,4 +1868,54 @@ class AppLocalizationsPt extends AppLocalizations {
   String learnSemanticCourse(String title, int percent, String lesson) {
     return '$title. $percent por cento concluído. Lição atual: $lesson.';
   }
+
+  @override
+  String get splashFoundationName => 'JAN COSMIC FOUNDATION';
+
+  @override
+  String get splashTagline => 'Desperte. Aprenda. Transforme.';
+
+  @override
+  String get splashPreparing => 'A preparar a sua experiência…';
+
+  @override
+  String get splashStillPreparing => 'Ainda a preparar…';
+
+  @override
+  String get splashStartupFailed => 'Não foi possível iniciar a aplicação.';
+
+  @override
+  String get splashCheckConnection => 'Verifique a ligação e tente novamente.';
+
+  @override
+  String get splashTryAgain => 'Tentar novamente';
+
+  @override
+  String get splashContinueOffline => 'Continuar offline';
+
+  @override
+  String get splashUpdateRequiredTitle => 'É necessária uma nova versão';
+
+  @override
+  String get splashUpdateRequiredMessage =>
+      'Atualize para continuar a usar a aplicação. Esta versão já não é suportada.';
+
+  @override
+  String get splashUpdateApp => 'Atualizar';
+
+  @override
+  String get splashMaintenanceTitle => 'Voltamos em breve';
+
+  @override
+  String get splashMaintenanceMessage =>
+      'A aplicação está indisponível por pouco tempo enquanto fazemos uma melhoria.';
+
+  @override
+  String get splashGenericError => 'Algo correu mal.';
+
+  @override
+  String get splashLogoLabel => 'Logótipo da Jan Cosmic Foundation';
+
+  @override
+  String get splashLoadingLabel => 'A carregar';
 }

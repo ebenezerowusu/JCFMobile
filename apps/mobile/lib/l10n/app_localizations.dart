@@ -3469,6 +3469,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{title}. {percent} percent complete. Current lesson: {lesson}.'**
   String learnSemanticCourse(String title, int percent, String lesson);
+
+  /// No description provided for @splashFoundationName.
+  ///
+  /// In en, this message translates to:
+  /// **'JAN COSMIC FOUNDATION'**
+  String get splashFoundationName;
+
+  /// No description provided for @splashTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Awaken. Learn. Transform.'**
+  String get splashTagline;
+
+  /// No description provided for @splashPreparing.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing your experience…'**
+  String get splashPreparing;
+
+  /// No description provided for @splashStillPreparing.
+  ///
+  /// In en, this message translates to:
+  /// **'Still preparing…'**
+  String get splashStillPreparing;
+
+  /// No description provided for @splashStartupFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t start the app.'**
+  String get splashStartupFailed;
+
+  /// No description provided for @splashCheckConnection.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your connection and try again.'**
+  String get splashCheckConnection;
+
+  /// No description provided for @splashTryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Try Again'**
+  String get splashTryAgain;
+
+  /// No description provided for @splashContinueOffline.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Offline'**
+  String get splashContinueOffline;
+
+  /// No description provided for @splashUpdateRequiredTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A new version is required'**
+  String get splashUpdateRequiredTitle;
+
+  /// No description provided for @splashUpdateRequiredMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Update to keep using the app. This version is no longer supported.'**
+  String get splashUpdateRequiredMessage;
+
+  /// No description provided for @splashUpdateApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Update App'**
+  String get splashUpdateApp;
+
+  /// No description provided for @splashMaintenanceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We’ll be back shortly'**
+  String get splashMaintenanceTitle;
+
+  /// No description provided for @splashMaintenanceMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'The app is briefly unavailable while we make an improvement.'**
+  String get splashMaintenanceMessage;
+
+  /// No description provided for @splashGenericError.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong.'**
+  String get splashGenericError;
+
+  /// No description provided for @splashLogoLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Jan Cosmic Foundation logo'**
+  String get splashLogoLabel;
+
+  /// No description provided for @splashLoadingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading'**
+  String get splashLoadingLabel;
 }
 
 class _AppLocalizationsDelegate

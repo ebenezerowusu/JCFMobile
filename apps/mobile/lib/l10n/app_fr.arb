@@ -560,5 +560,21 @@
   "learnHistory": "Historique d'apprentissage",
   "learnCompletedCourses": "Cours terminés",
   "learnHelp": "Aide",
-  "learnSemanticCourse": "{title}. {percent} pour cent terminé. Leçon en cours : {lesson}."
+  "learnSemanticCourse": "{title}. {percent} pour cent terminé. Leçon en cours : {lesson}.",
+  "splashFoundationName": "JAN COSMIC FOUNDATION",
+  "splashTagline": "Éveillez-vous. Apprenez. Transformez.",
+  "splashPreparing": "Préparation de votre expérience…",
+  "splashStillPreparing": "Toujours en préparation…",
+  "splashStartupFailed": "Impossible de démarrer l'application.",
+  "splashCheckConnection": "Vérifiez votre connexion et réessayez.",
+  "splashTryAgain": "Réessayer",
+  "splashContinueOffline": "Continuer hors ligne",
+  "splashUpdateRequiredTitle": "Une nouvelle version est requise",
+  "splashUpdateRequiredMessage": "Mettez à jour pour continuer. Cette version n'est plus prise en charge.",
+  "splashUpdateApp": "Mettre à jour",
+  "splashMaintenanceTitle": "Nous revenons très vite",
+  "splashMaintenanceMessage": "L'application est brièvement indisponible pendant une amélioration.",
+  "splashGenericError": "Une erreur s'est produite.",
+  "splashLogoLabel": "Logo de la Jan Cosmic Foundation",
+  "splashLoadingLabel": "Chargement"
 }

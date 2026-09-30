@@ -897,5 +897,21 @@
         "type": "String"
       }
     }
-  }
+  },
+  "splashFoundationName": "JAN COSMIC FOUNDATION",
+  "splashTagline": "Awaken. Learn. Transform.",
+  "splashPreparing": "Preparing your experience…",
+  "splashStillPreparing": "Still preparing…",
+  "splashStartupFailed": "We couldn't start the app.",
+  "splashCheckConnection": "Check your connection and try again.",
+  "splashTryAgain": "Try Again",
+  "splashContinueOffline": "Continue Offline",
+  "splashUpdateRequiredTitle": "A new version is required",
+  "splashUpdateRequiredMessage": "Update to keep using the app. This version is no longer supported.",
+  "splashUpdateApp": "Update App",
+  "splashMaintenanceTitle": "We’ll be back shortly",
+  "splashMaintenanceMessage": "The app is briefly unavailable while we make an improvement.",
+  "splashGenericError": "Something went wrong.",
+  "splashLogoLabel": "Jan Cosmic Foundation logo",
+  "splashLoadingLabel": "Loading"
 }
