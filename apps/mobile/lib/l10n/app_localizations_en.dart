@@ -1230,4 +1230,148 @@ class AppLocalizationsEn extends AppLocalizations {
   String shareCardPreviewLabel(String style, String format, String alignment) {
     return 'Share card preview. $style style, $format format, $alignment text.';
   }
+
+  @override
+  String get liveNow => 'Live Now';
+
+  @override
+  String get liveEvent => 'Live Event';
+
+  @override
+  String get replayTitle => 'Replay';
+
+  @override
+  String get statusScheduled => 'Scheduled';
+
+  @override
+  String get statusEnded => 'Ended';
+
+  @override
+  String get goLive => 'Go Live';
+
+  @override
+  String get reconnecting => 'Reconnecting…';
+
+  @override
+  String get chatTab => 'Chat';
+
+  @override
+  String get aboutTab => 'About';
+
+  @override
+  String get joinTheConversation => 'Join the conversation';
+
+  @override
+  String get signInToParticipate => 'Sign in to participate';
+
+  @override
+  String get chatReadOnly => 'Chat is read-only';
+
+  @override
+  String get chatClosed => 'Chat is closed';
+
+  @override
+  String get viewProfile => 'View Profile';
+
+  @override
+  String get followLabel => 'Follow';
+
+  @override
+  String get remindMe => 'Remind Me';
+
+  @override
+  String get addToCalendar => 'Add to Calendar';
+
+  @override
+  String get replayProcessing => 'Replay Processing';
+
+  @override
+  String get streamWillBeginHere => 'The stream will begin here';
+
+  @override
+  String get streamUnavailable => 'This stream is unavailable right now.';
+
+  @override
+  String get eventCancelled => 'This event was cancelled.';
+
+  @override
+  String get eventRescheduled => 'This event was rescheduled.';
+
+  @override
+  String get signInToWatch => 'Sign in to watch this session.';
+
+  @override
+  String get membersOnlyEvent => 'This session is for members and students.';
+
+  @override
+  String get studentsOnlyEvent => 'This session is for enrolled students.';
+
+  @override
+  String viewerCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count watching',
+      one: '1 watching',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get reportMessage => 'Report message';
+
+  @override
+  String get blockUser => 'Block user';
+
+  @override
+  String get messageReported => 'Reported to the moderators.';
+
+  @override
+  String get userBlocked => 'You will not see their messages.';
+
+  @override
+  String slowModeOn(int seconds) {
+    return 'Slow mode is on. Try again in ${seconds}s.';
+  }
+
+  @override
+  String get reactAppreciate => 'Appreciate';
+
+  @override
+  String get reactThanks => 'Thank you';
+
+  @override
+  String get reactInsight => 'Insightful';
+
+  @override
+  String get reactLabel => 'React';
+
+  @override
+  String get eventLanguage => 'Language';
+
+  @override
+  String get eventSchedule => 'Schedule';
+
+  @override
+  String get eventFacilitator => 'Facilitator';
+
+  @override
+  String get captionsLabel => 'Captions';
+
+  @override
+  String startsIn(String time) {
+    return 'Starts in $time';
+  }
+
+  @override
+  String get playLabel => 'Play';
+
+  @override
+  String get pauseLabel => 'Pause';
+
+  @override
+  String get readMore => 'Read more';
+
+  @override
+  String get readLess => 'Read less';
 }

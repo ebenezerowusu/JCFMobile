@@ -54,6 +54,9 @@ dependencies:
   # Saves the rendered share card to the device gallery, handling the
   # Android/iOS permission differences itself.
   gal: ^2.3.0
+  # HLS/DASH playback for live sessions and replays. Wrapped behind
+  # LivePlaybackController so the package never reaches the widgets.
+  video_player: ^2.9.2
   intl: ^0.20.2
 
 dev_dependencies:
@@ -87,6 +90,7 @@ flutter:
     - assets/images/student_home/
     - assets/images/daily_inspiration_detail/
     - assets/images/daily_inspiration_share_card/
+    - assets/images/live_now_player/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

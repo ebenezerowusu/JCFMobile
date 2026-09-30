@@ -12,6 +12,7 @@ import '../features/engagement/notifications_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/inspiration/inspiration_detail_screen.dart';
 import '../features/inspiration/share_card/share_card_screen.dart';
+import '../features/live/live_player_screen.dart';
 import '../features/lessons/continue_learning_screen.dart';
 import '../features/lessons/lesson_detail_screen.dart';
 import '../features/lessons/lessons_screen.dart';
@@ -62,6 +63,12 @@ GoRouter createRouter() {
       GoRoute(path: '/activities', builder: (_, _) => const ActivitiesScreen()),
       GoRoute(path: '/announcements', builder: (_, _) => const AnnouncementsScreen()),
       GoRoute(path: '/search', builder: (_, _) => const SearchScreen()),
+      // Focused live player; no bottom navigation on this route.
+      GoRoute(
+        path: '/live/:eventId',
+        builder: (_, state) => LivePlayerScreen(
+            eventId: int.tryParse(state.pathParameters['eventId'] ?? '') ?? 0),
+      ),
       // Accepts an id or a slug, so public deep links open the same screen.
       GoRoute(
         path: '/inspirations/:identifier',
