@@ -10,10 +10,9 @@ class LanguageSelectionAssets {
 
   /// Abstract multilingual header artwork.
   ///
-  /// Not yet supplied. The header falls back to a brand gradient when the
-  /// file is absent, so dropping it in needs no code change.
+  /// WebP: 146KB against 1568KB as a PNG, for artwork only Flutter draws.
   static const String header =
-      'assets/images/language_selection/language_selection_header.png';
+      'assets/images/language_selection/language_selection_header.webp';
 
   /// The same file the splash, welcome and onboarding screens use — one
   /// piece of artwork rather than four copies in the bundle.

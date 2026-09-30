@@ -96,6 +96,7 @@ flutter:
     - assets/images/splash/
     - assets/images/welcome/
     - assets/images/onboarding/
+    - assets/images/language_selection/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

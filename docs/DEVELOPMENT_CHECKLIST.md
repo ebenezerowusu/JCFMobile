@@ -343,9 +343,11 @@ prerequisites YES ("Complete Level 2 to unlock").
       /welcome -> home. This RESOLVES the orphaned /language screen
       flagged in steps 16-17; /path and /stay-connected remain orphaned
       (notification opt-in still appears nowhere). Notes and deviations:
-      NO HEADER ARTWORK WAS SUPPLIED - language_selection_header.png is
-      referenced and the header falls back to a brand gradient until the
-      file is dropped into assets/images/language_selection/; ARABIC AND
+      the header artwork arrived after the first pass and is now in place
+      as .webp (146KB against 1568KB as PNG); it is drawn with
+      Alignment.topCenter because the art is portrait and its globe sits
+      in the upper fifth - a default centre crop into a short header band
+      showed empty blue and lost the subject entirely; ARABIC AND
       SWAHILI ARE CONFIGURED BUT NOT SELECTABLE, because their ARB files
       do not exist and the spec forbids offering a language whose
       translations are unavailable - RTL support, the RTL badge and the

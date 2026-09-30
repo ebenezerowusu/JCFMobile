@@ -10,9 +10,8 @@ const _selectionBlue = Color(0xFF1769E8);
 
 /// The illustrated header.
 ///
-/// The artwork has not been supplied, so this falls back to a brand
-/// gradient. Dropping the file in needs no code change — and a missing
-/// asset must never be a blank rectangle where the logo should be.
+/// Falls back to a brand gradient if the artwork ever fails to load: a
+/// missing asset must never be a blank rectangle where the logo should be.
 class LanguageSelectionHeader extends StatelessWidget {
   const LanguageSelectionHeader({
     super.key,
@@ -38,6 +37,10 @@ class LanguageSelectionHeader extends StatelessWidget {
           Image.asset(
             LanguageSelectionAssets.header,
             fit: BoxFit.cover,
+            // Top, not the default centre. The artwork is portrait and
+            // its globe sits in the upper fifth, so a centred crop into a
+            // short header band shows empty blue and loses the subject.
+            alignment: Alignment.topCenter,
             excludeFromSemantics: true,
             errorBuilder: (_, _, _) => const DecoratedBox(
               decoration: BoxDecoration(
