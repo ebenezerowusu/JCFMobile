@@ -913,5 +913,38 @@
   "splashMaintenanceMessage": "The app is briefly unavailable while we make an improvement.",
   "splashGenericError": "Something went wrong.",
   "splashLogoLabel": "Jan Cosmic Foundation logo",
-  "splashLoadingLabel": "Loading"
+  "splashLoadingLabel": "Loading",
+  "welcomeEyebrow": "WELCOME",
+  "welcomeTitle": "Begin your journey within",
+  "welcomeDescription": "Explore timeless teachings, guided practices, and a community devoted to conscious living.",
+  "welcomeAccountAction": "Sign in or create account",
+  "welcomeGuestAction": "Continue as guest",
+  "welcomeAgreementPrefix": "By continuing, you agree to the",
+  "welcomeAgreementJoin": "and",
+  "welcomeTermsOfUse": "Terms of Use",
+  "welcomePrivacyPolicy": "Privacy Policy",
+  "welcomeLanguageSelector": "Language: {language}",
+  "@welcomeLanguageSelector": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "welcomeChooseLanguage": "Choose a language",
+  "welcomeGuestFailure": "We couldn't continue as a guest. Please try again.",
+  "welcomeLanguageFailure": "We couldn't change the language.",
+  "welcomeRetry": "Try again",
+  "legalUnavailableTitle": "Not published yet",
+  "legalUnavailableBody": "This document has not been published. Please check back, or contact the foundation.",
+  "legalLoadFailed": "We couldn't load this document.",
+  "legalLastUpdated": "Last updated {date}",
+  "@legalLastUpdated": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "legalShownInEnglish": "Shown in English; a translation is not yet available."
 }

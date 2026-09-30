@@ -43,7 +43,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   /// designed flow into the language chooser (which marks onboarding seen).
   Future<void> _skip() async {
     await ref.read(onboardingPrefsProvider).markSeen();
-    if (mounted) context.go('/home');
+    if (mounted) context.go('/welcome');
   }
 
   void _next() {

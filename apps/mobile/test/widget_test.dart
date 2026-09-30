@@ -14,12 +14,13 @@ class _FirstRunBootstrap implements AppBootstrapService {
   @override
   Future<BootstrapResult> run() async => const BootstrapResult(
         stage: SplashStage.ready,
-        destination: '/welcome',
+        destination: '/onboarding',
       );
 }
 
 void main() {
-  testWidgets('first run: splash -> welcome -> Begin -> onboarding',
+  testWidgets(
+      'first run: splash -> onboarding -> language -> welcome -> sign in',
       (tester) async {
     SharedPreferences.setMockInitialValues({}); // onboarding not seen
 
@@ -34,8 +35,8 @@ void main() {
     // Splash is visible first.
     expect(find.byType(StartupSplashScreen), findsOneWidget);
 
-    // Bootstrap runs, finds no network and no completed onboarding, and
-    // sends a first-time user to welcome rather than to an error.
+    // Bootstrap sends a first-time user straight to onboarding. Welcome
+    // now comes after it, not before.
     // Explicit pumps, not pumpAndSettle: the loading dots repeat forever
     // by design, so nothing would ever settle while the splash is up.
     for (var i = 0; i < 8; i++) {
@@ -43,13 +44,6 @@ void main() {
     }
     await tester.pumpAndSettle();
 
-    expect(find.text('A Path of Freedom and Awareness'), findsOneWidget);
-    expect(find.text('Begin'), findsOneWidget);
-    expect(find.text('Continue as Guest'), findsOneWidget);
-
-    // Begin -> onboarding carousel.
-    await tester.tap(find.text('Begin'));
-    await tester.pumpAndSettle();
     expect(find.text('Wisdom for the journey'), findsOneWidget);
     expect(find.text('1 of 3'), findsOneWidget);
     expect(find.text('Skip'), findsOneWidget);
@@ -86,16 +80,15 @@ void main() {
     expect(find.text('Coming soon'), findsWidgets);
     await tester.pumpAndSettle(); // let list momentum die before tapping
 
-    // Continue -> path chooser. Having picked Français, the app now renders
-    // in French — proving the l10n foundation end to end.
+    // Continue -> the Welcome screen. Having picked Français, the app now
+    // renders in French — proving the l10n foundation end to end.
     await tester.tap(find.text('Continue'));
     await tester.pumpAndSettle();
-    expect(find.text('Comment souhaitez-vous\ncontinuer ?'), findsOneWidget);
-    expect(find.text('Membre ou étudiant'), findsOneWidget);
-    expect(find.text('Continuer en invité'), findsOneWidget);
+    expect(find.text('Commencez votre voyage intérieur'), findsOneWidget);
+    expect(find.text("Continuer en tant qu'invité"), findsOneWidget);
 
-    // Sign In -> the sign-in options screen (design 9), in French.
-    await tester.tap(find.text('Se connecter'));
+    // The account action -> the sign-in options screen (design 9).
+    await tester.tap(find.text('Se connecter ou créer un compte'));
     await tester.pumpAndSettle();
     expect(find.text('Bon retour'), findsOneWidget);
     expect(find.text('Continuer avec le téléphone'), findsOneWidget);

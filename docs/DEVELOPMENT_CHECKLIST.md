@@ -276,6 +276,32 @@ prerequisites YES ("Complete Level 2 to unlock").
       deep-link restoration is not implemented (nothing saves an intended
       route yet); there is no integration-test target in this project, so
       the listed integration cases are covered as widget tests instead.
+- [x] 16. Welcome screen (owner spec + design 50, Sep 2026): hero with
+      logo and language pill over it, warm-white panel with the invitation,
+      two actions and separate Terms/Privacy links. LegalDocument model
+      (kind/version/language/published/effective_from) + admin + GET
+      /legal/<kind>/ with English fallback. 10 backend tests, 19 app tests
+      (suite 248 green), analyze clean, strings in all five Wave-1 locales.
+      FLOW CHANGE: the spec places Welcome AFTER onboarding, the reverse of
+      what shipped. The startup decision is now onboarding incomplete ->
+      /onboarding; signed in -> /home; guest already chosen -> /home;
+      otherwise -> /welcome. A new welcome.guest_chosen pref is what stops
+      Welcome reappearing every launch - deliberately separate from the
+      onboarding flag, since finishing the carousel and deciding how to
+      enter are different facts. The old pre-onboarding welcome screen is
+      deleted and /language now leads to /welcome. CONSEQUENCE: /path and
+      /stay-connected are no longer in the default first-run chain. Their
+      routes still work, but /stay-connected was the notification opt-in,
+      so that prompt no longer appears anywhere - worth an owner decision.
+      Notes: no legal text is invented; the screen renders only what staff
+      publish, and says "not published yet" otherwise. Guest mode is purely
+      local - no guest-session endpoint was added because guest access
+      grants nothing (every protected surface still asks the server), so
+      there is nothing to create or store. The logo points at the splash
+      asset rather than shipping the same artwork twice. Hero is .webp (see
+      step 9); welcome_screen_ui.png is not shipped. No analytics layer, so
+      none of the listed events are emitted; deep-link restoration is still
+      unimplemented.
 
 ## 🟦 Track 1 — Learn & Practice (recommended lead pillar)
 

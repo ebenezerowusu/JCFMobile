@@ -5,6 +5,7 @@ import 'package:jcf_models/jcf_models.dart';
 import '../../core/providers.dart';
 import '../auth/auth_controller.dart';
 import '../onboarding/onboarding_prefs.dart';
+import '../welcome/welcome_prefs.dart';
 import 'splash_state.dart';
 
 /// Everything that must be true before the app can show a real screen.
@@ -13,16 +14,19 @@ import 'splash_state.dart';
 /// that can wait until after navigation — analytics, preloading, content
 /// sync, notification registration — is deliberately not here.
 class AppBootstrapService {
-  AppBootstrapService(this._dio, this._onboarding, this._session);
+  AppBootstrapService(
+      this._dio, this._onboarding, this._welcome, this._session);
 
   final Dio _dio;
   final OnboardingPrefs _onboarding;
+  final WelcomePrefs _welcome;
 
   /// Reads the stored session. Returns the member, or null for a guest.
   final Future<Member?> Function() _session;
 
   Future<BootstrapResult> run() async {
     final seenOnboarding = await _onboarding.isSeen();
+    final guestChosen = await _welcome.guestChosen();
 
     Map<String, dynamic>? config;
     Object? networkError;
@@ -81,7 +85,7 @@ class AppBootstrapService {
       if (!seenOnboarding) {
         return BootstrapResult(
           stage: SplashStage.ready,
-          destination: '/welcome',
+          destination: '/onboarding',
           maintenance: maintenance,
           version: version,
         );
@@ -91,7 +95,8 @@ class AppBootstrapService {
       // because a request failed.
       return BootstrapResult(
         stage: SplashStage.recoverableError,
-        destination: _destinationFor(member, seenOnboarding, config),
+        destination:
+            _destinationFor(member, seenOnboarding, guestChosen, config),
         maintenance: maintenance,
         version: version,
         offlineEligible: true,
@@ -101,7 +106,8 @@ class AppBootstrapService {
 
     return BootstrapResult(
       stage: SplashStage.ready,
-      destination: _destinationFor(member, seenOnboarding, config),
+      destination:
+          _destinationFor(member, seenOnboarding, guestChosen, config),
       maintenance: maintenance,
       version: version,
       offlineEligible: seenOnboarding,
@@ -110,12 +116,18 @@ class AppBootstrapService {
 
   /// Where this launch should land.
   ///
-  /// Onboarding comes first for anyone who has not seen it. After that a
-  /// member and a guest both land on /home, which is itself role-adaptive
-  /// — the app has one home that renders differently, not three routes.
-  String _destinationFor(
-      Member? member, bool seenOnboarding, Map<String, dynamic>? config) {
-    if (!seenOnboarding) return '/welcome';
+  /// Onboarding first for anyone who has not finished it, then Welcome
+  /// for anyone who has not yet said how they want to enter. A signed-in
+  /// member skips Welcome entirely — they answered that question by
+  /// signing in — and so does anyone who already chose guest, which is
+  /// what stops Welcome reappearing on every launch.
+  ///
+  /// Members and guests both land on /home: it is one role-adaptive home
+  /// rather than three routes.
+  String _destinationFor(Member? member, bool seenOnboarding,
+      bool guestChosen, Map<String, dynamic>? config) {
+    if (!seenOnboarding) return '/onboarding';
+    if (member == null && !guestChosen) return '/welcome';
     // The server may suggest a route; it is checked against the allowlist
     // before it is used, and ignored entirely if it is not on it.
     return allowedRoute(config?['initial_route'] as String?) ?? '/home';
@@ -126,6 +138,7 @@ final appBootstrapServiceProvider = Provider<AppBootstrapService>((ref) {
   return AppBootstrapService(
     ref.watch(dioProvider),
     ref.watch(onboardingPrefsProvider),
+    ref.watch(welcomePrefsProvider),
     () => ref.read(authControllerProvider.future),
   );
 });

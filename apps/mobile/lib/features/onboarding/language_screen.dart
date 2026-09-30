@@ -62,7 +62,7 @@ class _LanguageScreenState extends ConsumerState<LanguageScreen> {
   Future<void> _continue() async {
     await ref.read(appLocaleProvider.notifier).set(Locale(_selected));
     await ref.read(onboardingPrefsProvider).markSeen();
-    if (mounted) context.go('/path');
+    if (mounted) context.go('/welcome');
   }
 
   @override

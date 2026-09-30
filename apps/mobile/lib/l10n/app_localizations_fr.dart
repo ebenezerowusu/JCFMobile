@@ -1933,4 +1933,69 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get splashLoadingLabel => 'Chargement';
+
+  @override
+  String get welcomeEyebrow => 'BIENVENUE';
+
+  @override
+  String get welcomeTitle => 'Commencez votre voyage intérieur';
+
+  @override
+  String get welcomeDescription =>
+      'Découvrez des enseignements intemporels, des pratiques guidées et une communauté dédiée à une vie consciente.';
+
+  @override
+  String get welcomeAccountAction => 'Se connecter ou créer un compte';
+
+  @override
+  String get welcomeGuestAction => 'Continuer en tant qu\'invité';
+
+  @override
+  String get welcomeAgreementPrefix => 'En continuant, vous acceptez les';
+
+  @override
+  String get welcomeAgreementJoin => 'et la';
+
+  @override
+  String get welcomeTermsOfUse => 'Conditions d\'utilisation';
+
+  @override
+  String get welcomePrivacyPolicy => 'Politique de confidentialité';
+
+  @override
+  String welcomeLanguageSelector(String language) {
+    return 'Langue : $language';
+  }
+
+  @override
+  String get welcomeChooseLanguage => 'Choisissez une langue';
+
+  @override
+  String get welcomeGuestFailure =>
+      'Impossible de continuer en tant qu\'invité. Veuillez réessayer.';
+
+  @override
+  String get welcomeLanguageFailure => 'Impossible de changer la langue.';
+
+  @override
+  String get welcomeRetry => 'Réessayer';
+
+  @override
+  String get legalUnavailableTitle => 'Pas encore publié';
+
+  @override
+  String get legalUnavailableBody =>
+      'Ce document n\'a pas été publié. Revenez plus tard ou contactez la fondation.';
+
+  @override
+  String get legalLoadFailed => 'Impossible de charger ce document.';
+
+  @override
+  String legalLastUpdated(String date) {
+    return 'Mis à jour le $date';
+  }
+
+  @override
+  String get legalShownInEnglish =>
+      'Affiché en anglais ; la traduction n\'est pas encore disponible.';
 }

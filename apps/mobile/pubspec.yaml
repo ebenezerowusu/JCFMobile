@@ -94,6 +94,7 @@ flutter:
     - assets/images/upcoming_activities/
     - assets/images/continue_learning/
     - assets/images/splash/
+    - assets/images/welcome/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

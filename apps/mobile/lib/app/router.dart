@@ -23,7 +23,8 @@ import '../features/onboarding/path_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../features/splash/startup_splash_screen.dart';
 import '../features/onboarding/stay_connected_screen.dart';
-import '../features/onboarding/welcome_screen.dart';
+import '../features/welcome/legal_screen.dart';
+import '../features/welcome/welcome_screen.dart';
 import '../features/profile/profile_screen.dart';
 import '../features/programs/program_detail_screen.dart';
 import '../features/programs/programs_screen.dart';
@@ -47,6 +48,8 @@ GoRouter createRouter() {
     routes: [
       GoRoute(path: '/splash', builder: (_, _) => const StartupSplashScreen()),
       GoRoute(path: '/welcome', builder: (_, _) => const WelcomeScreen()),
+      GoRoute(path: '/legal/terms', builder: (_, _) => const LegalScreen(kind: 'terms')),
+      GoRoute(path: '/legal/privacy', builder: (_, _) => const LegalScreen(kind: 'privacy')),
       GoRoute(path: '/onboarding', builder: (_, _) => const OnboardingScreen()),
       GoRoute(path: '/language', builder: (_, _) => const LanguageScreen()),
       GoRoute(path: '/path', builder: (_, _) => const PathScreen()),

@@ -3565,6 +3565,120 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Loading'**
   String get splashLoadingLabel;
+
+  /// No description provided for @welcomeEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'WELCOME'**
+  String get welcomeEyebrow;
+
+  /// No description provided for @welcomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin your journey within'**
+  String get welcomeTitle;
+
+  /// No description provided for @welcomeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore timeless teachings, guided practices, and a community devoted to conscious living.'**
+  String get welcomeDescription;
+
+  /// No description provided for @welcomeAccountAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in or create account'**
+  String get welcomeAccountAction;
+
+  /// No description provided for @welcomeGuestAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue as guest'**
+  String get welcomeGuestAction;
+
+  /// No description provided for @welcomeAgreementPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'By continuing, you agree to the'**
+  String get welcomeAgreementPrefix;
+
+  /// No description provided for @welcomeAgreementJoin.
+  ///
+  /// In en, this message translates to:
+  /// **'and'**
+  String get welcomeAgreementJoin;
+
+  /// No description provided for @welcomeTermsOfUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Use'**
+  String get welcomeTermsOfUse;
+
+  /// No description provided for @welcomePrivacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get welcomePrivacyPolicy;
+
+  /// No description provided for @welcomeLanguageSelector.
+  ///
+  /// In en, this message translates to:
+  /// **'Language: {language}'**
+  String welcomeLanguageSelector(String language);
+
+  /// No description provided for @welcomeChooseLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a language'**
+  String get welcomeChooseLanguage;
+
+  /// No description provided for @welcomeGuestFailure.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t continue as a guest. Please try again.'**
+  String get welcomeGuestFailure;
+
+  /// No description provided for @welcomeLanguageFailure.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t change the language.'**
+  String get welcomeLanguageFailure;
+
+  /// No description provided for @welcomeRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get welcomeRetry;
+
+  /// No description provided for @legalUnavailableTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Not published yet'**
+  String get legalUnavailableTitle;
+
+  /// No description provided for @legalUnavailableBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This document has not been published. Please check back, or contact the foundation.'**
+  String get legalUnavailableBody;
+
+  /// No description provided for @legalLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t load this document.'**
+  String get legalLoadFailed;
+
+  /// No description provided for @legalLastUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Last updated {date}'**
+  String legalLastUpdated(String date);
+
+  /// No description provided for @legalShownInEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'Shown in English; a translation is not yet available.'**
+  String get legalShownInEnglish;
 }
 
 class _AppLocalizationsDelegate

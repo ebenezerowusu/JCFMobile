@@ -1914,4 +1914,69 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get splashLoadingLabel => 'Loading';
+
+  @override
+  String get welcomeEyebrow => 'WELCOME';
+
+  @override
+  String get welcomeTitle => 'Begin your journey within';
+
+  @override
+  String get welcomeDescription =>
+      'Explore timeless teachings, guided practices, and a community devoted to conscious living.';
+
+  @override
+  String get welcomeAccountAction => 'Sign in or create account';
+
+  @override
+  String get welcomeGuestAction => 'Continue as guest';
+
+  @override
+  String get welcomeAgreementPrefix => 'By continuing, you agree to the';
+
+  @override
+  String get welcomeAgreementJoin => 'and';
+
+  @override
+  String get welcomeTermsOfUse => 'Terms of Use';
+
+  @override
+  String get welcomePrivacyPolicy => 'Privacy Policy';
+
+  @override
+  String welcomeLanguageSelector(String language) {
+    return 'Language: $language';
+  }
+
+  @override
+  String get welcomeChooseLanguage => 'Choose a language';
+
+  @override
+  String get welcomeGuestFailure =>
+      'We couldn\'t continue as a guest. Please try again.';
+
+  @override
+  String get welcomeLanguageFailure => 'We couldn\'t change the language.';
+
+  @override
+  String get welcomeRetry => 'Try again';
+
+  @override
+  String get legalUnavailableTitle => 'Not published yet';
+
+  @override
+  String get legalUnavailableBody =>
+      'This document has not been published. Please check back, or contact the foundation.';
+
+  @override
+  String get legalLoadFailed => 'We couldn\'t load this document.';
+
+  @override
+  String legalLastUpdated(String date) {
+    return 'Last updated $date';
+  }
+
+  @override
+  String get legalShownInEnglish =>
+      'Shown in English; a translation is not yet available.';
 }
