@@ -751,5 +751,151 @@
         "type": "int"
       }
     }
+  },
+  "learnHubTitle": "Continue Learning",
+  "learnResumeLabel": "RESUME WHERE YOU LEFT OFF",
+  "learnResumeSection": "Resume where you left off",
+  "learnStartLesson": "Start Lesson",
+  "learnContinue": "Continue",
+  "learnNextLesson": "Next Lesson",
+  "learnReviewLesson": "Review Lesson",
+  "learnJoinLive": "Join Live",
+  "learnRetryDownload": "Retry Download",
+  "learnViewAccess": "View Access",
+  "learnRemaining": "{minutes} min left",
+  "@learnRemaining": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "learnPercentComplete": "{percent}% complete",
+  "@learnPercentComplete": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "learnSummaryLessons": "Lessons completed",
+  "learnSummaryStreak": "Day streak",
+  "learnSummaryDownloads": "Downloaded",
+  "learnSummaryCourses": "Courses completed",
+  "learnActiveCourses": "Your Active Courses",
+  "learnSeeAll": "See All",
+  "learnStartCourse": "Start Course",
+  "learnReviewCourse": "Review Course",
+  "learnViewCourse": "View Course",
+  "learnUpNext": "Up Next",
+  "learnRecommended": "Recommended for You",
+  "learnLessonCount": "{modules,plural,=0{{lessons,plural,=1{1 lesson}other{{lessons} lessons}}}other{{modules,plural,=1{1 module}other{{modules} modules}}}}",
+  "@learnLessonCount": {
+    "placeholders": {
+      "modules": {
+        "type": "int"
+      },
+      "lessons": {
+        "type": "int"
+      }
+    }
+  },
+  "learnLessonsOnly": "{lessons,plural,=1{1 lesson}other{{lessons} lessons}}",
+  "@learnLessonsOnly": {
+    "placeholders": {
+      "lessons": {
+        "type": "int"
+      }
+    }
+  },
+  "learnTypeVideo": "Video",
+  "learnTypeAudio": "Audio",
+  "learnTypeWritten": "Written",
+  "learnTypeReflection": "Reflection",
+  "learnTypePractice": "Practice",
+  "learnTypeQuiz": "Quiz",
+  "learnTypeLive": "Live session",
+  "learnTypeResource": "Resource",
+  "learnStatusNotStarted": "Not started",
+  "learnStatusInProgress": "In progress",
+  "learnStatusCompleted": "Completed",
+  "learnStatusLocked": "Locked",
+  "learnStatusExpired": "Access expired",
+  "learnStatusPaused": "Paused",
+  "learnDownloadDownloaded": "Available offline",
+  "learnDownloadDownloading": "Downloading",
+  "learnDownloadQueued": "Queued",
+  "learnDownloadPaused": "Download paused",
+  "learnDownloadFailed": "Download failed",
+  "learnDownloadExpired": "Download expired",
+  "learnDownloadUpdate": "Update required",
+  "learnPrerequisiteTitle": "Finish this first",
+  "learnPrerequisiteBody": "Complete {title} to unlock this lesson.",
+  "@learnPrerequisiteBody": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "learnOpenPrerequisite": "Open {title}",
+  "@learnOpenPrerequisite": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "learnEmptyResumeTitle": "Nothing to resume yet",
+  "learnEmptyResumeBody": "Start a course and it will wait for you here.",
+  "learnEmptyResumeAction": "Start a Course",
+  "learnEmptyCoursesTitle": "You have no active courses",
+  "learnEmptyCoursesBody": "Browse the library or look through the programmes.",
+  "learnEmptyCoursesAction": "Browse Learning",
+  "learnEmptyUpNextTitle": "You're all caught up",
+  "learnEmptyUpNextBody": "Nothing is waiting. Explore what we recommend next.",
+  "learnErrorTitle": "We couldn't load your learning",
+  "learnErrorBody": "Check your connection and try again.",
+  "learnRetry": "Try again",
+  "learnOfflineNotice": "Showing a saved copy from {when}",
+  "@learnOfflineNotice": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "learnFiltersTitle": "Filter lessons",
+  "learnFilterStatus": "Progress",
+  "learnFilterType": "Lesson type",
+  "learnFilterDownloaded": "Downloaded only",
+  "learnFilterApply": "Show results",
+  "learnFilterClear": "Clear all",
+  "learnFilterAny": "Any",
+  "learnFilterCount": "{count,plural,=0{Filters}other{Filters ({count})}}",
+  "@learnFilterCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "learnMyDownloads": "My Downloads",
+  "learnHistory": "Learning History",
+  "learnCompletedCourses": "Completed Courses",
+  "learnHelp": "Help",
+  "learnSemanticCourse": "{title}. {percent} percent complete. Current lesson: {lesson}.",
+  "@learnSemanticCourse": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "percent": {
+        "type": "int"
+      },
+      "lesson": {
+        "type": "String"
+      }
+    }
   }
 }

@@ -1591,4 +1591,277 @@ class AppLocalizationsEn extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get learnHubTitle => 'Continue Learning';
+
+  @override
+  String get learnResumeLabel => 'RESUME WHERE YOU LEFT OFF';
+
+  @override
+  String get learnResumeSection => 'Resume where you left off';
+
+  @override
+  String get learnStartLesson => 'Start Lesson';
+
+  @override
+  String get learnContinue => 'Continue';
+
+  @override
+  String get learnNextLesson => 'Next Lesson';
+
+  @override
+  String get learnReviewLesson => 'Review Lesson';
+
+  @override
+  String get learnJoinLive => 'Join Live';
+
+  @override
+  String get learnRetryDownload => 'Retry Download';
+
+  @override
+  String get learnViewAccess => 'View Access';
+
+  @override
+  String learnRemaining(int minutes) {
+    return '$minutes min left';
+  }
+
+  @override
+  String learnPercentComplete(int percent) {
+    return '$percent% complete';
+  }
+
+  @override
+  String get learnSummaryLessons => 'Lessons completed';
+
+  @override
+  String get learnSummaryStreak => 'Day streak';
+
+  @override
+  String get learnSummaryDownloads => 'Downloaded';
+
+  @override
+  String get learnSummaryCourses => 'Courses completed';
+
+  @override
+  String get learnActiveCourses => 'Your Active Courses';
+
+  @override
+  String get learnSeeAll => 'See All';
+
+  @override
+  String get learnStartCourse => 'Start Course';
+
+  @override
+  String get learnReviewCourse => 'Review Course';
+
+  @override
+  String get learnViewCourse => 'View Course';
+
+  @override
+  String get learnUpNext => 'Up Next';
+
+  @override
+  String get learnRecommended => 'Recommended for You';
+
+  @override
+  String learnLessonCount(int modules, int lessons) {
+    String _temp0 = intl.Intl.pluralLogic(
+      modules,
+      locale: localeName,
+      other: '$modules modules',
+      one: '1 module',
+    );
+    String _temp1 = intl.Intl.pluralLogic(
+      lessons,
+      locale: localeName,
+      other: '$lessons lessons',
+      one: '1 lesson',
+    );
+    String _temp2 = intl.Intl.pluralLogic(
+      modules,
+      locale: localeName,
+      other: '$_temp0',
+      zero: '$_temp1',
+    );
+    return '$_temp2';
+  }
+
+  @override
+  String learnLessonsOnly(int lessons) {
+    String _temp0 = intl.Intl.pluralLogic(
+      lessons,
+      locale: localeName,
+      other: '$lessons lessons',
+      one: '1 lesson',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get learnTypeVideo => 'Video';
+
+  @override
+  String get learnTypeAudio => 'Audio';
+
+  @override
+  String get learnTypeWritten => 'Written';
+
+  @override
+  String get learnTypeReflection => 'Reflection';
+
+  @override
+  String get learnTypePractice => 'Practice';
+
+  @override
+  String get learnTypeQuiz => 'Quiz';
+
+  @override
+  String get learnTypeLive => 'Live session';
+
+  @override
+  String get learnTypeResource => 'Resource';
+
+  @override
+  String get learnStatusNotStarted => 'Not started';
+
+  @override
+  String get learnStatusInProgress => 'In progress';
+
+  @override
+  String get learnStatusCompleted => 'Completed';
+
+  @override
+  String get learnStatusLocked => 'Locked';
+
+  @override
+  String get learnStatusExpired => 'Access expired';
+
+  @override
+  String get learnStatusPaused => 'Paused';
+
+  @override
+  String get learnDownloadDownloaded => 'Available offline';
+
+  @override
+  String get learnDownloadDownloading => 'Downloading';
+
+  @override
+  String get learnDownloadQueued => 'Queued';
+
+  @override
+  String get learnDownloadPaused => 'Download paused';
+
+  @override
+  String get learnDownloadFailed => 'Download failed';
+
+  @override
+  String get learnDownloadExpired => 'Download expired';
+
+  @override
+  String get learnDownloadUpdate => 'Update required';
+
+  @override
+  String get learnPrerequisiteTitle => 'Finish this first';
+
+  @override
+  String learnPrerequisiteBody(String title) {
+    return 'Complete $title to unlock this lesson.';
+  }
+
+  @override
+  String learnOpenPrerequisite(String title) {
+    return 'Open $title';
+  }
+
+  @override
+  String get learnEmptyResumeTitle => 'Nothing to resume yet';
+
+  @override
+  String get learnEmptyResumeBody =>
+      'Start a course and it will wait for you here.';
+
+  @override
+  String get learnEmptyResumeAction => 'Start a Course';
+
+  @override
+  String get learnEmptyCoursesTitle => 'You have no active courses';
+
+  @override
+  String get learnEmptyCoursesBody =>
+      'Browse the library or look through the programmes.';
+
+  @override
+  String get learnEmptyCoursesAction => 'Browse Learning';
+
+  @override
+  String get learnEmptyUpNextTitle => 'You\'re all caught up';
+
+  @override
+  String get learnEmptyUpNextBody =>
+      'Nothing is waiting. Explore what we recommend next.';
+
+  @override
+  String get learnErrorTitle => 'We couldn\'t load your learning';
+
+  @override
+  String get learnErrorBody => 'Check your connection and try again.';
+
+  @override
+  String get learnRetry => 'Try again';
+
+  @override
+  String learnOfflineNotice(String when) {
+    return 'Showing a saved copy from $when';
+  }
+
+  @override
+  String get learnFiltersTitle => 'Filter lessons';
+
+  @override
+  String get learnFilterStatus => 'Progress';
+
+  @override
+  String get learnFilterType => 'Lesson type';
+
+  @override
+  String get learnFilterDownloaded => 'Downloaded only';
+
+  @override
+  String get learnFilterApply => 'Show results';
+
+  @override
+  String get learnFilterClear => 'Clear all';
+
+  @override
+  String get learnFilterAny => 'Any';
+
+  @override
+  String learnFilterCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Filters ($count)',
+      zero: 'Filters',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get learnMyDownloads => 'My Downloads';
+
+  @override
+  String get learnHistory => 'Learning History';
+
+  @override
+  String get learnCompletedCourses => 'Completed Courses';
+
+  @override
+  String get learnHelp => 'Help';
+
+  @override
+  String learnSemanticCourse(String title, int percent, String lesson) {
+    return '$title. $percent percent complete. Current lesson: $lesson.';
+  }
 }

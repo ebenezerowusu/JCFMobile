@@ -30,7 +30,7 @@ class LessonsRepository {
   }
 
   Future<ContinueLearning> continueLearning() async {
-    final res = await _dio.get<Map<String, dynamic>>('learning/continue/');
+    final res = await _dio.get<Map<String, dynamic>>('learning/summary/');
     return ContinueLearning.fromJson(res.data!);
   }
 }

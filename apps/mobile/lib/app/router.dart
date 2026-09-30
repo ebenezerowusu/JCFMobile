@@ -13,7 +13,7 @@ import '../features/home/home_screen.dart';
 import '../features/inspiration/inspiration_detail_screen.dart';
 import '../features/inspiration/share_card/share_card_screen.dart';
 import '../features/live/live_player_screen.dart';
-import '../features/lessons/continue_learning_screen.dart';
+import '../features/learning/continue_learning_screen.dart';
 import '../features/lessons/lesson_detail_screen.dart';
 import '../features/lessons/lessons_screen.dart';
 import '../features/more/quick_actions_screen.dart';
@@ -60,6 +60,7 @@ GoRouter createRouter() {
       GoRoute(path: '/give', builder: (_, _) => const CausesScreen()),
       GoRoute(path: '/profile', builder: (_, _) => const ProfileScreen()),
       GoRoute(path: '/learning', builder: (_, _) => const ContinueLearningScreen()),
+      GoRoute(path: '/learning/continue', builder: (_, _) => const ContinueLearningScreen()),
       GoRoute(path: '/activities', builder: (_, _) => const ActivitiesScreen()),
       GoRoute(path: '/announcements', builder: (_, _) => const AnnouncementsScreen()),
       GoRoute(path: '/search', builder: (_, _) => const SearchScreen()),

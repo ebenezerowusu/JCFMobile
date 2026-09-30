@@ -214,6 +214,38 @@ prerequisites YES ("Complete Level 2 to unlock").
       since nothing further needs fetching; assets are .webp (see step 9);
       no analytics layer yet, and only the unfiltered first page is
       cached offline
+- [x] 14. Continue Learning (owner spec + designs 43-47, Sep 2026):
+      TeachingSeries gained a category (which picks the packaged artwork),
+      a facilitator and a recommendation flag; TeachingModule added between
+      series and lesson; Teaching gained lesson_type (video/audio/written/
+      reflection/practice/quiz/live/resource, backfilled from media_kind),
+      a self-referencing prerequisite and a downloadable flag. GET
+      /learning/continue/ returns the resume item, an aggregate summary,
+      keyset-paginated active courses and up-next lessons, and
+      recommendations; POST /learning/lessons/<id>/progress/ records
+      position. App: /learning and /learning/continue open the rebuilt hub
+      with a resume hero, summary card, horizontal course rail, Up Next
+      rows, recommendations, prerequisite sheet, offline first page and
+      loading/empty/error states. 51 backend tests (suite 318 green), 41
+      app tests (suite 199 green), analyze clean, strings in all five
+      Wave-1 locales. Notes and deviations: assets are .webp (see step 9);
+      the server picks the resume lesson and owns all progress, and a
+      lapsed streak reads as zero rather than carrying forward; THERE IS
+      NO DOWNLOAD MANAGER - every download state is modelled, parsed and
+      rendered, but the server reports only not_downloaded/unavailable and
+      no file is ever fetched, so offline lesson playback, checksums,
+      encrypted storage and the pause/resume/retry actions are still to
+      build; likewise there is no offline write queue, so progress made
+      offline is not yet synced and conflict resolution is unexercised;
+      search and the advanced filter sheet are modelled in LearningFilter
+      and wired through the controller but have no UI on this screen yet
+      (the app bar's search opens the existing global search); the
+      overflow menu shows only Help, because My Downloads, Learning
+      History and Completed Courses have no screens and a menu entry that
+      opens nothing is worse than no entry; no analytics layer exists, so
+      none of the listed events are emitted. The old learning/continue/
+      endpoint became learning/summary/, which is what it always was - the
+      compact payload the home card reads.
 
 ## 🟦 Track 1 — Learn & Practice (recommended lead pillar)
 

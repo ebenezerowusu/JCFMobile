@@ -3025,6 +3025,450 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{count, plural, =0{Filters} =1{Filters (1)} other{Filters ({count})}}'**
   String activitiesFilterCount(int count);
+
+  /// No description provided for @learnHubTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Learning'**
+  String get learnHubTitle;
+
+  /// No description provided for @learnResumeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'RESUME WHERE YOU LEFT OFF'**
+  String get learnResumeLabel;
+
+  /// No description provided for @learnResumeSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume where you left off'**
+  String get learnResumeSection;
+
+  /// No description provided for @learnStartLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Lesson'**
+  String get learnStartLesson;
+
+  /// No description provided for @learnContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get learnContinue;
+
+  /// No description provided for @learnNextLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Lesson'**
+  String get learnNextLesson;
+
+  /// No description provided for @learnReviewLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Review Lesson'**
+  String get learnReviewLesson;
+
+  /// No description provided for @learnJoinLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Join Live'**
+  String get learnJoinLive;
+
+  /// No description provided for @learnRetryDownload.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry Download'**
+  String get learnRetryDownload;
+
+  /// No description provided for @learnViewAccess.
+  ///
+  /// In en, this message translates to:
+  /// **'View Access'**
+  String get learnViewAccess;
+
+  /// No description provided for @learnRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min left'**
+  String learnRemaining(int minutes);
+
+  /// No description provided for @learnPercentComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'{percent}% complete'**
+  String learnPercentComplete(int percent);
+
+  /// No description provided for @learnSummaryLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'Lessons completed'**
+  String get learnSummaryLessons;
+
+  /// No description provided for @learnSummaryStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Day streak'**
+  String get learnSummaryStreak;
+
+  /// No description provided for @learnSummaryDownloads.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloaded'**
+  String get learnSummaryDownloads;
+
+  /// No description provided for @learnSummaryCourses.
+  ///
+  /// In en, this message translates to:
+  /// **'Courses completed'**
+  String get learnSummaryCourses;
+
+  /// No description provided for @learnActiveCourses.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Active Courses'**
+  String get learnActiveCourses;
+
+  /// No description provided for @learnSeeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'See All'**
+  String get learnSeeAll;
+
+  /// No description provided for @learnStartCourse.
+  ///
+  /// In en, this message translates to:
+  /// **'Start Course'**
+  String get learnStartCourse;
+
+  /// No description provided for @learnReviewCourse.
+  ///
+  /// In en, this message translates to:
+  /// **'Review Course'**
+  String get learnReviewCourse;
+
+  /// No description provided for @learnViewCourse.
+  ///
+  /// In en, this message translates to:
+  /// **'View Course'**
+  String get learnViewCourse;
+
+  /// No description provided for @learnUpNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Up Next'**
+  String get learnUpNext;
+
+  /// No description provided for @learnRecommended.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended for You'**
+  String get learnRecommended;
+
+  /// No description provided for @learnLessonCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{modules,plural,=0{{lessons,plural,=1{1 lesson}other{{lessons} lessons}}}other{{modules,plural,=1{1 module}other{{modules} modules}}}}'**
+  String learnLessonCount(int modules, int lessons);
+
+  /// No description provided for @learnLessonsOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'{lessons,plural,=1{1 lesson}other{{lessons} lessons}}'**
+  String learnLessonsOnly(int lessons);
+
+  /// No description provided for @learnTypeVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Video'**
+  String get learnTypeVideo;
+
+  /// No description provided for @learnTypeAudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio'**
+  String get learnTypeAudio;
+
+  /// No description provided for @learnTypeWritten.
+  ///
+  /// In en, this message translates to:
+  /// **'Written'**
+  String get learnTypeWritten;
+
+  /// No description provided for @learnTypeReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflection'**
+  String get learnTypeReflection;
+
+  /// No description provided for @learnTypePractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice'**
+  String get learnTypePractice;
+
+  /// No description provided for @learnTypeQuiz.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiz'**
+  String get learnTypeQuiz;
+
+  /// No description provided for @learnTypeLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Live session'**
+  String get learnTypeLive;
+
+  /// No description provided for @learnTypeResource.
+  ///
+  /// In en, this message translates to:
+  /// **'Resource'**
+  String get learnTypeResource;
+
+  /// No description provided for @learnStatusNotStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Not started'**
+  String get learnStatusNotStarted;
+
+  /// No description provided for @learnStatusInProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get learnStatusInProgress;
+
+  /// No description provided for @learnStatusCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed'**
+  String get learnStatusCompleted;
+
+  /// No description provided for @learnStatusLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Locked'**
+  String get learnStatusLocked;
+
+  /// No description provided for @learnStatusExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Access expired'**
+  String get learnStatusExpired;
+
+  /// No description provided for @learnStatusPaused.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused'**
+  String get learnStatusPaused;
+
+  /// No description provided for @learnDownloadDownloaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Available offline'**
+  String get learnDownloadDownloaded;
+
+  /// No description provided for @learnDownloadDownloading.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading'**
+  String get learnDownloadDownloading;
+
+  /// No description provided for @learnDownloadQueued.
+  ///
+  /// In en, this message translates to:
+  /// **'Queued'**
+  String get learnDownloadQueued;
+
+  /// No description provided for @learnDownloadPaused.
+  ///
+  /// In en, this message translates to:
+  /// **'Download paused'**
+  String get learnDownloadPaused;
+
+  /// No description provided for @learnDownloadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Download failed'**
+  String get learnDownloadFailed;
+
+  /// No description provided for @learnDownloadExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'Download expired'**
+  String get learnDownloadExpired;
+
+  /// No description provided for @learnDownloadUpdate.
+  ///
+  /// In en, this message translates to:
+  /// **'Update required'**
+  String get learnDownloadUpdate;
+
+  /// No description provided for @learnPrerequisiteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish this first'**
+  String get learnPrerequisiteTitle;
+
+  /// No description provided for @learnPrerequisiteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete {title} to unlock this lesson.'**
+  String learnPrerequisiteBody(String title);
+
+  /// No description provided for @learnOpenPrerequisite.
+  ///
+  /// In en, this message translates to:
+  /// **'Open {title}'**
+  String learnOpenPrerequisite(String title);
+
+  /// No description provided for @learnEmptyResumeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing to resume yet'**
+  String get learnEmptyResumeTitle;
+
+  /// No description provided for @learnEmptyResumeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Start a course and it will wait for you here.'**
+  String get learnEmptyResumeBody;
+
+  /// No description provided for @learnEmptyResumeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Start a Course'**
+  String get learnEmptyResumeAction;
+
+  /// No description provided for @learnEmptyCoursesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You have no active courses'**
+  String get learnEmptyCoursesTitle;
+
+  /// No description provided for @learnEmptyCoursesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse the library or look through the programmes.'**
+  String get learnEmptyCoursesBody;
+
+  /// No description provided for @learnEmptyCoursesAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse Learning'**
+  String get learnEmptyCoursesAction;
+
+  /// No description provided for @learnEmptyUpNextTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re all caught up'**
+  String get learnEmptyUpNextTitle;
+
+  /// No description provided for @learnEmptyUpNextBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing is waiting. Explore what we recommend next.'**
+  String get learnEmptyUpNextBody;
+
+  /// No description provided for @learnErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t load your learning'**
+  String get learnErrorTitle;
+
+  /// No description provided for @learnErrorBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your connection and try again.'**
+  String get learnErrorBody;
+
+  /// No description provided for @learnRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get learnRetry;
+
+  /// No description provided for @learnOfflineNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Showing a saved copy from {when}'**
+  String learnOfflineNotice(String when);
+
+  /// No description provided for @learnFiltersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter lessons'**
+  String get learnFiltersTitle;
+
+  /// No description provided for @learnFilterStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress'**
+  String get learnFilterStatus;
+
+  /// No description provided for @learnFilterType.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson type'**
+  String get learnFilterType;
+
+  /// No description provided for @learnFilterDownloaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloaded only'**
+  String get learnFilterDownloaded;
+
+  /// No description provided for @learnFilterApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Show results'**
+  String get learnFilterApply;
+
+  /// No description provided for @learnFilterClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all'**
+  String get learnFilterClear;
+
+  /// No description provided for @learnFilterAny.
+  ///
+  /// In en, this message translates to:
+  /// **'Any'**
+  String get learnFilterAny;
+
+  /// No description provided for @learnFilterCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count,plural,=0{Filters}other{Filters ({count})}}'**
+  String learnFilterCount(int count);
+
+  /// No description provided for @learnMyDownloads.
+  ///
+  /// In en, this message translates to:
+  /// **'My Downloads'**
+  String get learnMyDownloads;
+
+  /// No description provided for @learnHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning History'**
+  String get learnHistory;
+
+  /// No description provided for @learnCompletedCourses.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed Courses'**
+  String get learnCompletedCourses;
+
+  /// No description provided for @learnHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Help'**
+  String get learnHelp;
+
+  /// No description provided for @learnSemanticCourse.
+  ///
+  /// In en, this message translates to:
+  /// **'{title}. {percent} percent complete. Current lesson: {lesson}.'**
+  String learnSemanticCourse(String title, int percent, String lesson);
 }
 
 class _AppLocalizationsDelegate
