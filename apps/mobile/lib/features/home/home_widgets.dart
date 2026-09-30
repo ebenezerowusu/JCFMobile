@@ -9,7 +9,6 @@ import 'package:jcf_ui/jcf_ui.dart';
 import '../../l10n/app_localizations.dart';
 import '../../core/brand.dart';
 import '../activities/activities_repository.dart';
-import '../inspiration/inspiration_detail_screen.dart';
 import '../inspiration/inspiration_repository.dart';
 
 const _sub = Color(0xFF54689B);
@@ -277,10 +276,7 @@ class InspirationHero extends StatelessWidget {
             FilledButton.icon(
               onPressed: inspiration == null
                   ? null
-                  : () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => InspirationDetailScreen(
-                            inspiration: inspiration!),
-                      )),
+                  : () => context.push('/inspirations/${inspiration!.id}'),
               icon: const Icon(Icons.chevron_right),
               iconAlignment: IconAlignment.end,
               label: Text(t.readReflection),
@@ -437,10 +433,7 @@ class _HeroSlide extends StatelessWidget {
                 FilledButton.icon(
                   onPressed: inspiration == null
                       ? null
-                      : () => Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) => InspirationDetailScreen(
-                                inspiration: inspiration!),
-                          )),
+                      : () => context.push('/inspirations/${inspiration!.id}'),
                   icon: const Icon(Icons.chevron_right, size: 18),
                   iconAlignment: IconAlignment.end,
                   label: Text(t.readReflection),

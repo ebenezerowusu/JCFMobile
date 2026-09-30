@@ -10,6 +10,7 @@ import '../features/engagement/announcements_screen.dart';
 import '../features/engagement/appointments_screen.dart';
 import '../features/engagement/notifications_screen.dart';
 import '../features/home/home_screen.dart';
+import '../features/inspiration/inspiration_detail_screen.dart';
 import '../features/lessons/continue_learning_screen.dart';
 import '../features/lessons/lesson_detail_screen.dart';
 import '../features/lessons/lessons_screen.dart';
@@ -60,6 +61,12 @@ GoRouter createRouter() {
       GoRoute(path: '/activities', builder: (_, _) => const ActivitiesScreen()),
       GoRoute(path: '/announcements', builder: (_, _) => const AnnouncementsScreen()),
       GoRoute(path: '/search', builder: (_, _) => const SearchScreen()),
+      // Accepts an id or a slug, so public deep links open the same screen.
+      GoRoute(
+        path: '/inspirations/:identifier',
+        builder: (_, state) => InspirationDetailScreen(
+            identifier: state.pathParameters['identifier']!),
+      ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) =>
             HomeShell(navigationShell: navigationShell),

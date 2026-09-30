@@ -2071,6 +2071,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You are not enrolled in a programme yet.'**
   String get noProgramEnrolled;
+
+  /// No description provided for @pauseAndReflect.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause and Reflect'**
+  String get pauseAndReflect;
+
+  /// No description provided for @markAsReflected.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as Reflected'**
+  String get markAsReflected;
+
+  /// No description provided for @reflectedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Reflected'**
+  String get reflectedLabel;
+
+  /// No description provided for @undoReflected.
+  ///
+  /// In en, this message translates to:
+  /// **'Undo'**
+  String get undoReflected;
+
+  /// No description provided for @saveForLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Save for Later'**
+  String get saveForLater;
+
+  /// No description provided for @savedLabel2.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get savedLabel2;
+
+  /// No description provided for @continueReflecting.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Reflecting'**
+  String get continueReflecting;
+
+  /// No description provided for @shareAsImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Share as Image'**
+  String get shareAsImage;
+
+  /// No description provided for @shareLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Share Link'**
+  String get shareLink;
+
+  /// No description provided for @copyLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Link'**
+  String get copyLink;
+
+  /// No description provided for @linkCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Link copied'**
+  String get linkCopied;
+
+  /// No description provided for @previewCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview Card'**
+  String get previewCard;
+
+  /// No description provided for @previousInspiration.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous'**
+  String get previousInspiration;
+
+  /// No description provided for @nextInspiration.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get nextInspiration;
+
+  /// No description provided for @backToHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Home'**
+  String get backToHome;
+
+  /// No description provided for @readingTime.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min read'**
+  String readingTime(int minutes);
+
+  /// No description provided for @inspirationUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'This inspiration is no longer available.'**
+  String get inspirationUnavailable;
+
+  /// No description provided for @exploreLatest.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore Latest Inspirations'**
+  String get exploreLatest;
+
+  /// No description provided for @signInToSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to save this inspiration.'**
+  String get signInToSave;
+
+  /// No description provided for @signInToReflect.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to record your reflection.'**
+  String get signInToReflect;
+
+  /// No description provided for @textSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Text Size'**
+  String get textSize;
+
+  /// No description provided for @openInBrowser.
+  ///
+  /// In en, this message translates to:
+  /// **'Open in Browser'**
+  String get openInBrowser;
+
+  /// No description provided for @listenToReflection.
+  ///
+  /// In en, this message translates to:
+  /// **'Listen to this reflection'**
+  String get listenToReflection;
 }
 
 class _AppLocalizationsDelegate

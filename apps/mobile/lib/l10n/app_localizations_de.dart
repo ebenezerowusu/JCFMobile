@@ -1079,4 +1079,77 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get noProgramEnrolled =>
       'Du bist noch in keinem Programm eingeschrieben.';
+
+  @override
+  String get pauseAndReflect => 'Innehalten und nachspüren';
+
+  @override
+  String get markAsReflected => 'Als reflektiert markieren';
+
+  @override
+  String get reflectedLabel => 'Reflektiert';
+
+  @override
+  String get undoReflected => 'Rückgängig';
+
+  @override
+  String get saveForLater => 'Merken';
+
+  @override
+  String get savedLabel2 => 'Gemerkt';
+
+  @override
+  String get continueReflecting => 'Weiter reflektieren';
+
+  @override
+  String get shareAsImage => 'Als Bild teilen';
+
+  @override
+  String get shareLink => 'Link teilen';
+
+  @override
+  String get copyLink => 'Link kopieren';
+
+  @override
+  String get linkCopied => 'Link kopiert';
+
+  @override
+  String get previewCard => 'Karte ansehen';
+
+  @override
+  String get previousInspiration => 'Zurück';
+
+  @override
+  String get nextInspiration => 'Weiter';
+
+  @override
+  String get backToHome => 'Zurück zur Startseite';
+
+  @override
+  String readingTime(int minutes) {
+    return '$minutes Min. Lesezeit';
+  }
+
+  @override
+  String get inspirationUnavailable =>
+      'Diese Inspiration ist nicht mehr verfügbar.';
+
+  @override
+  String get exploreLatest => 'Neueste Inspirationen entdecken';
+
+  @override
+  String get signInToSave => 'Melde dich an, um diese Inspiration zu merken.';
+
+  @override
+  String get signInToReflect =>
+      'Melde dich an, um deine Reflexion festzuhalten.';
+
+  @override
+  String get textSize => 'Textgröße';
+
+  @override
+  String get openInBrowser => 'Im Browser öffnen';
+
+  @override
+  String get listenToReflection => 'Diese Reflexion anhören';
 }

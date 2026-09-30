@@ -143,6 +143,20 @@ prerequisites YES ("Complete Level 2 to unlock").
       enrolments are explained in-screen rather than erroring; mentor
       messaging routes to appointments until a messaging feature exists;
       Downloads withheld; no offline cache or analytics layer yet
+- [x] 11. Daily Inspiration Detail rebuild (owner spec, Sep 2026):
+      DailyInspiration gains slug/category/title/share_excerpt/hero/prompt/
+      audio + InspirationBlock (structured body, no raw HTML) +
+      InspirationSave/InspirationReflection; GET /inspirations/<id-or-slug>/
+      is public (shared links open for anyone) with members-only save and
+      reflection endpoints; reading time computed server-side; previous/next
+      and related come from the server. App: focused reading route
+      /inspirations/:identifier with collapsing app bar, 16:9 hero, block
+      reader (unknown blocks skipped safely), pull quote, Pause and Reflect,
+      share sheet with a live-rendered 1080px card, related carousel and
+      end actions. Notes: assets are .webp (see step 9); audio opens in the
+      external handler until an in-app player exists; no offline cache or
+      analytics layer yet; deep links work in-app but the OS-level
+      https://…/inspirations/<slug> handler still needs store config
 
 ## 🟦 Track 1 — Learn & Practice (recommended lead pillar)
 

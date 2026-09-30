@@ -1080,4 +1080,78 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get noProgramEnrolled =>
       'Vous n\'êtes pas encore inscrit à un programme.';
+
+  @override
+  String get pauseAndReflect => 'Pause et réflexion';
+
+  @override
+  String get markAsReflected => 'Marquer comme médité';
+
+  @override
+  String get reflectedLabel => 'Médité';
+
+  @override
+  String get undoReflected => 'Annuler';
+
+  @override
+  String get saveForLater => 'Enregistrer';
+
+  @override
+  String get savedLabel2 => 'Enregistré';
+
+  @override
+  String get continueReflecting => 'Continuer la réflexion';
+
+  @override
+  String get shareAsImage => 'Partager en image';
+
+  @override
+  String get shareLink => 'Partager le lien';
+
+  @override
+  String get copyLink => 'Copier le lien';
+
+  @override
+  String get linkCopied => 'Lien copié';
+
+  @override
+  String get previewCard => 'Aperçu de la carte';
+
+  @override
+  String get previousInspiration => 'Précédent';
+
+  @override
+  String get nextInspiration => 'Suivant';
+
+  @override
+  String get backToHome => 'Retour à l\'accueil';
+
+  @override
+  String readingTime(int minutes) {
+    return '$minutes min de lecture';
+  }
+
+  @override
+  String get inspirationUnavailable =>
+      'Cette inspiration n\'est plus disponible.';
+
+  @override
+  String get exploreLatest => 'Découvrir les dernières inspirations';
+
+  @override
+  String get signInToSave =>
+      'Connectez-vous pour enregistrer cette inspiration.';
+
+  @override
+  String get signInToReflect =>
+      'Connectez-vous pour enregistrer votre réflexion.';
+
+  @override
+  String get textSize => 'Taille du texte';
+
+  @override
+  String get openInBrowser => 'Ouvrir dans le navigateur';
+
+  @override
+  String get listenToReflection => 'Écouter cette réflexion';
 }

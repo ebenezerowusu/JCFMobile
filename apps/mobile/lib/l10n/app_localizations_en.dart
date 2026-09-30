@@ -1068,4 +1068,76 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noProgramEnrolled => 'You are not enrolled in a programme yet.';
+
+  @override
+  String get pauseAndReflect => 'Pause and Reflect';
+
+  @override
+  String get markAsReflected => 'Mark as Reflected';
+
+  @override
+  String get reflectedLabel => 'Reflected';
+
+  @override
+  String get undoReflected => 'Undo';
+
+  @override
+  String get saveForLater => 'Save for Later';
+
+  @override
+  String get savedLabel2 => 'Saved';
+
+  @override
+  String get continueReflecting => 'Continue Reflecting';
+
+  @override
+  String get shareAsImage => 'Share as Image';
+
+  @override
+  String get shareLink => 'Share Link';
+
+  @override
+  String get copyLink => 'Copy Link';
+
+  @override
+  String get linkCopied => 'Link copied';
+
+  @override
+  String get previewCard => 'Preview Card';
+
+  @override
+  String get previousInspiration => 'Previous';
+
+  @override
+  String get nextInspiration => 'Next';
+
+  @override
+  String get backToHome => 'Back to Home';
+
+  @override
+  String readingTime(int minutes) {
+    return '$minutes min read';
+  }
+
+  @override
+  String get inspirationUnavailable =>
+      'This inspiration is no longer available.';
+
+  @override
+  String get exploreLatest => 'Explore Latest Inspirations';
+
+  @override
+  String get signInToSave => 'Sign in to save this inspiration.';
+
+  @override
+  String get signInToReflect => 'Sign in to record your reflection.';
+
+  @override
+  String get textSize => 'Text Size';
+
+  @override
+  String get openInBrowser => 'Open in Browser';
+
+  @override
+  String get listenToReflection => 'Listen to this reflection';
 }
