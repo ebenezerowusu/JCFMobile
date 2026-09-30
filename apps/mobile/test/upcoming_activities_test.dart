@@ -6,7 +6,6 @@ import 'package:go_router/go_router.dart';
 
 import 'package:jcf_mobile/features/auth/auth_controller.dart';
 
-import 'package:jcf_mobile/features/activities/activities_controller.dart';
 import 'package:jcf_mobile/features/activities/activities_repository.dart';
 import 'package:jcf_mobile/features/activities/activities_screen.dart';
 import 'package:jcf_mobile/features/activities/activity_models.dart';
@@ -759,11 +758,28 @@ void main() {
       expect(find.text('Live one'), findsOneWidget);
     });
 
-    testWidgets('the filter button counts the advanced filters that are on',
+    testWidgets('the filter button stays reachable and counts what is on',
         (tester) async {
-      await tester.pumpWidget(harness(FakeActivitiesRepository()));
+      final repository = FakeActivitiesRepository();
+      await tester.pumpWidget(harness(repository));
       await tester.pumpAndSettle();
-      expect(find.text('Filters'), findsOneWidget);
+      // Pinned beside the scrolling chips, so it is on screen without a
+      // gesture: hitTestable finds only what is actually visible.
+      expect(find.byIcon(Icons.tune_rounded).hitTestable(),
+          findsOneWidget);
+      final badge = find.descendant(
+        of: find.byKey(const ValueKey('activities-filter-button')),
+        matching: find.text('1'),
+      );
+      expect(badge, findsNothing);
+
+      await tester.tap(find.byIcon(Icons.tune_rounded));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Guided meditation (3)'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Show results'));
+      await tester.pumpAndSettle();
+      expect(badge, findsOneWidget);
     });
 
     testWidgets('the filter sheet only applies when confirmed',
@@ -773,7 +789,7 @@ void main() {
       await tester.pumpAndSettle();
       final before = repository.queries.length;
 
-      await tester.tap(find.text('Filters'));
+      await tester.tap(find.byIcon(Icons.tune_rounded));
       await tester.pumpAndSettle();
       await tester.tap(find.text('Guided meditation (3)'));
       await tester.pumpAndSettle();
@@ -792,7 +808,7 @@ void main() {
       await tester.pumpAndSettle();
       final before = repository.queries.length;
 
-      await tester.tap(find.text('Filters'));
+      await tester.tap(find.byIcon(Icons.tune_rounded));
       await tester.pumpAndSettle();
       await tester.tap(find.text('Guided meditation (3)'));
       await tester.pumpAndSettle();

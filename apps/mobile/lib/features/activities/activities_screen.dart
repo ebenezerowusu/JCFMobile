@@ -187,27 +187,46 @@ class _ActivitiesScreenState extends ConsumerState<ActivitiesScreen> {
       (PrimaryFilter.online, t.activitiesChipOnline),
       (PrimaryFilter.inPerson, t.activitiesChipInPerson),
     ];
+    // The four chips scroll; the filter button is pinned beside them.
+    // Letting it scroll off the edge hides the only way into the advanced
+    // filters behind a gesture nothing suggests.
     return SizedBox(
       height: 46,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
         children: [
-          for (final chip in chips) ...[
-            _filterChip(
-              label: chip.$2,
-              selected: state.query.primary == chip.$1,
-              onTap: () => ref
-                  .read(activitiesControllerProvider.notifier)
-                  .setPrimaryFilter(chip.$1),
+          Expanded(
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.only(left: 16),
+              children: [
+                for (final chip in chips) ...[
+                  _filterChip(
+                    label: chip.$2,
+                    selected: state.query.primary == chip.$1,
+                    onTap: () => ref
+                        .read(activitiesControllerProvider.notifier)
+                        .setPrimaryFilter(chip.$1),
+                  ),
+                  const SizedBox(width: 8),
+                ],
+              ],
             ),
-            const SizedBox(width: 8),
-          ],
-          _filterChip(
-            label: t.activitiesFilterCount(state.query.advancedCount),
-            selected: state.query.advancedCount > 0,
-            icon: Icons.tune_rounded,
-            onTap: () => _openFilters(state),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 4, right: 16),
+            child: KeyedSubtree(
+              key: const ValueKey('activities-filter-button'),
+              child: _filterChip(
+                label: state.query.advancedCount > 0
+                    ? '${state.query.advancedCount}'
+                    : '',
+                selected: state.query.advancedCount > 0,
+                icon: Icons.tune_rounded,
+                tooltip:
+                    t.activitiesFilterCount(state.query.advancedCount),
+                onTap: () => _openFilters(state),
+              ),
+            ),
           ),
         ],
       ),
@@ -219,43 +238,48 @@ class _ActivitiesScreenState extends ConsumerState<ActivitiesScreen> {
     required bool selected,
     required VoidCallback onTap,
     IconData? icon,
+    String? tooltip,
   }) =>
       Center(
         child: Semantics(
           selected: selected,
           button: true,
-          child: InkWell(
-            onTap: onTap,
-            borderRadius: BorderRadius.circular(999),
-            child: Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-              decoration: BoxDecoration(
-                color: selected ? JcfColors.skyPrimary : Colors.white,
-                borderRadius: BorderRadius.circular(999),
-                border: Border.all(
-                  color:
-                      selected ? JcfColors.skyPrimary : _hairline,
-                ),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (icon != null) ...[
-                    Icon(icon,
-                        size: 14,
-                        color: selected ? Colors.white : _muted),
-                    const SizedBox(width: 5),
-                  ],
-                  Text(
-                    label,
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w600,
-                      color: selected ? Colors.white : _muted,
-                    ),
+          label: tooltip,
+          child: Tooltip(
+            message: tooltip ?? label,
+            child: InkWell(
+              onTap: onTap,
+              borderRadius: BorderRadius.circular(999),
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                    horizontal: label.isEmpty ? 10 : 14, vertical: 8),
+                decoration: BoxDecoration(
+                  color: selected ? JcfColors.skyPrimary : Colors.white,
+                  borderRadius: BorderRadius.circular(999),
+                  border: Border.all(
+                    color: selected ? JcfColors.skyPrimary : _hairline,
                   ),
-                ],
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (icon != null)
+                      Icon(icon,
+                          size: 16,
+                          color: selected ? Colors.white : _muted),
+                    if (icon != null && label.isNotEmpty)
+                      const SizedBox(width: 5),
+                    if (label.isNotEmpty)
+                      Text(
+                        label,
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
+                          color: selected ? Colors.white : _muted,
+                        ),
+                      ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -290,10 +314,7 @@ class _ActivitiesScreenState extends ConsumerState<ActivitiesScreen> {
           const SizedBox(width: 6),
           Expanded(
             child: Text(
-              t.activitiesOfflineNotice(state.serverTime == null
-                  ? DateFormat.jm(locale).format(DateTime.now())
-                  : DateFormat('d MMM, ').add_jm().format(
-                      state.serverTime!)),
+              t.activitiesOfflineNotice(_savedAt(locale, state)),
               style: const TextStyle(
                   fontSize: 12, color: Color(0xFF8A4B00)),
             ),
@@ -301,6 +322,15 @@ class _ActivitiesScreenState extends ConsumerState<ActivitiesScreen> {
         ],
       ),
     );
+  }
+
+  /// When the copy on screen was saved, written as a time if that was
+  /// today and as a date otherwise.
+  String _savedAt(String locale, ActivitiesState state) {
+    final saved = state.cachedAt ?? DateTime.now();
+    return _sameDay(saved, _today)
+        ? DateFormat.jm(locale).format(saved)
+        : DateFormat('d MMM', locale).add_jm().format(saved);
   }
 
   void _selectDay(DateTime day) {
