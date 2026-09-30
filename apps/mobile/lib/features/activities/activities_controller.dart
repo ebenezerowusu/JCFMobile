@@ -29,6 +29,7 @@ class ActivitiesState {
     this.error,
     this.fromCache = false,
     this.cacheIsStale = false,
+    this.cachedAt,
     this.serverTime,
   });
 
@@ -51,6 +52,11 @@ class ActivitiesState {
   /// True while what is on screen came off disk rather than the network.
   final bool fromCache;
   final bool cacheIsStale;
+
+  /// When the copy on screen was written to disk. The notice names this,
+  /// not the current time — a saved copy that claims to be from "now" is
+  /// worse than no notice at all.
+  final DateTime? cachedAt;
   final DateTime? serverTime;
 
   bool get hasMore => nextCursor != null;
@@ -76,6 +82,7 @@ class ActivitiesState {
     bool clearError = false,
     bool? fromCache,
     bool? cacheIsStale,
+    DateTime? cachedAt,
     DateTime? serverTime,
   }) =>
       ActivitiesState(
@@ -90,6 +97,7 @@ class ActivitiesState {
         error: clearError ? null : (error ?? this.error),
         fromCache: fromCache ?? this.fromCache,
         cacheIsStale: cacheIsStale ?? this.cacheIsStale,
+        cachedAt: cachedAt ?? this.cachedAt,
         serverTime: serverTime ?? this.serverTime,
       );
 }
@@ -165,6 +173,7 @@ class ActivitiesController extends Notifier<ActivitiesState> {
       loading: false,
       fromCache: true,
       cacheIsStale: cached.isStale,
+      cachedAt: cached.cachedAt,
     );
   }
 

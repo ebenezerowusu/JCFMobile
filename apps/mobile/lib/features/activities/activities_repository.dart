@@ -36,13 +36,14 @@ class ActivitiesRepository {
     String? cursor,
     int limit = 20,
   }) async {
+    final params = <String, String>{
+      ...query.toParams(),
+      'limit': '$limit',
+    };
+    if (cursor != null) params['cursor'] = cursor;
     final res = await _dio.get<Map<String, dynamic>>(
       'activities/upcoming/',
-      queryParameters: {
-        ...query.toParams(),
-        'limit': '$limit',
-        if (cursor != null) 'cursor': cursor,
-      },
+      queryParameters: params,
     );
     final page = ActivityPage.fromJson(res.data ?? const {});
     // Only an unfiltered first page is worth keeping: it is what a cold
