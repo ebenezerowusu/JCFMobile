@@ -40,6 +40,7 @@ const splashRouteAllowlist = <String>{
   '/home',
   '/welcome',
   '/onboarding',
+  '/language-selection',
   '/lessons',
   '/practice',
   '/programs',

@@ -4,6 +4,7 @@ import 'package:jcf_models/jcf_models.dart';
 
 import '../../core/providers.dart';
 import '../auth/auth_controller.dart';
+import '../language_selection/language_selection_controller.dart';
 import '../onboarding/onboarding_prefs.dart';
 import '../welcome/welcome_prefs.dart';
 import 'splash_state.dart';
@@ -14,17 +15,19 @@ import 'splash_state.dart';
 /// that can wait until after navigation — analytics, preloading, content
 /// sync, notification registration — is deliberately not here.
 class AppBootstrapService {
-  AppBootstrapService(
-      this._dio, this._onboarding, this._welcome, this._session);
+  AppBootstrapService(this._dio, this._onboarding, this._welcome,
+      this._language, this._session);
 
   final Dio _dio;
   final OnboardingPrefs _onboarding;
   final WelcomePrefs _welcome;
+  final LanguageSelectionPrefs _language;
 
   /// Reads the stored session. Returns the member, or null for a guest.
   final Future<Member?> Function() _session;
 
   Future<BootstrapResult> run() async {
+    final chosenLanguage = await _language.isCompleted();
     final seenOnboarding = await _onboarding.isSeen();
     final guestChosen = await _welcome.guestChosen();
 
@@ -82,10 +85,11 @@ class AppBootstrapService {
       // welcome screens — the check applies again on the next launch that
       // does reach the server, and nothing here can be used offline
       // anyway.
-      if (!seenOnboarding) {
+      if (!chosenLanguage || !seenOnboarding) {
         return BootstrapResult(
           stage: SplashStage.ready,
-          destination: '/onboarding',
+          destination:
+              chosenLanguage ? '/onboarding' : '/language-selection',
           maintenance: maintenance,
           version: version,
         );
@@ -95,8 +99,8 @@ class AppBootstrapService {
       // because a request failed.
       return BootstrapResult(
         stage: SplashStage.recoverableError,
-        destination:
-            _destinationFor(member, seenOnboarding, guestChosen, config),
+        destination: _destinationFor(
+            member, chosenLanguage, seenOnboarding, guestChosen, config),
         maintenance: maintenance,
         version: version,
         offlineEligible: true,
@@ -106,8 +110,8 @@ class AppBootstrapService {
 
     return BootstrapResult(
       stage: SplashStage.ready,
-      destination:
-          _destinationFor(member, seenOnboarding, guestChosen, config),
+      destination: _destinationFor(
+          member, chosenLanguage, seenOnboarding, guestChosen, config),
       maintenance: maintenance,
       version: version,
       offlineEligible: seenOnboarding,
@@ -116,7 +120,8 @@ class AppBootstrapService {
 
   /// Where this launch should land.
   ///
-  /// Onboarding first for anyone who has not finished it, then Welcome
+  /// Language first, because every screen after it is written in one.
+  /// Then onboarding for anyone who has not finished it, then Welcome
   /// for anyone who has not yet said how they want to enter. A signed-in
   /// member skips Welcome entirely — they answered that question by
   /// signing in — and so does anyone who already chose guest, which is
@@ -124,8 +129,9 @@ class AppBootstrapService {
   ///
   /// Members and guests both land on /home: it is one role-adaptive home
   /// rather than three routes.
-  String _destinationFor(Member? member, bool seenOnboarding,
-      bool guestChosen, Map<String, dynamic>? config) {
+  String _destinationFor(Member? member, bool chosenLanguage,
+      bool seenOnboarding, bool guestChosen, Map<String, dynamic>? config) {
+    if (!chosenLanguage) return '/language-selection';
     if (!seenOnboarding) return '/onboarding';
     if (member == null && !guestChosen) return '/welcome';
     // The server may suggest a route; it is checked against the allowlist
@@ -139,6 +145,7 @@ final appBootstrapServiceProvider = Provider<AppBootstrapService>((ref) {
     ref.watch(dioProvider),
     ref.watch(onboardingPrefsProvider),
     ref.watch(welcomePrefsProvider),
+    ref.watch(languageSelectionPrefsProvider),
     () => ref.read(authControllerProvider.future),
   );
 });

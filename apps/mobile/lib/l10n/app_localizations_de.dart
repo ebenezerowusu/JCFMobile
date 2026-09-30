@@ -2048,4 +2048,79 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get onboardingCommunityDescription =>
       'Triff andere, nimm an bedeutsamen Programmen teil und mache inneres Wachstum zu mitfühlendem Handeln.';
+
+  @override
+  String get languageSelectionTitle => 'Wähle deine Sprache';
+
+  @override
+  String get languageSelectionDescription =>
+      'Du kannst dies später in den Einstellungen ändern.';
+
+  @override
+  String get languageSearchHint => 'Sprachen suchen';
+
+  @override
+  String get languageSearchClear => 'Suchfeld leeren';
+
+  @override
+  String get languageContinue => 'Weiter';
+
+  @override
+  String get languageNoResultsTitle => 'Keine Sprachen gefunden';
+
+  @override
+  String get languageNoResultsDescription =>
+      'Versuche einen anderen Sprachnamen oder Code.';
+
+  @override
+  String get languageClearSearch => 'Suche löschen';
+
+  @override
+  String get languageSelected => 'Ausgewählt';
+
+  @override
+  String get languageDirectionRtl => 'RTL';
+
+  @override
+  String get languageDirectionRtlLabel => 'Schrift von rechts nach links';
+
+  @override
+  String get languageSaveFailed =>
+      'Deine Sprache konnte nicht gespeichert werden. Bitte versuche es erneut.';
+
+  @override
+  String get languageRetry => 'Erneut versuchen';
+
+  @override
+  String languageResultCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Sprachen',
+      one: '1 Sprache',
+      zero: 'Keine Sprachen',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get languageEnglish => 'Englisch';
+
+  @override
+  String get languageFrench => 'Französisch';
+
+  @override
+  String get languageSpanish => 'Spanisch';
+
+  @override
+  String get languageGerman => 'Deutsch';
+
+  @override
+  String get languagePortuguese => 'Portugiesisch';
+
+  @override
+  String get languageArabic => 'Arabisch';
+
+  @override
+  String get languageSwahili => 'Suaheli';
 }

@@ -409,7 +409,7 @@ class WelcomeErrorMessage extends StatelessWidget {
   }
 }
 
-/// The language chooser. One list, from [appLanguages].
+/// The language chooser. One list, from [selectableLanguages].
 class LanguageSelectionSheet extends StatelessWidget {
   const LanguageSelectionSheet({
     super.key,
@@ -474,7 +474,7 @@ class LanguageSelectionSheet extends StatelessWidget {
               shrinkWrap: true,
               padding: const EdgeInsets.only(bottom: 12),
               children: [
-                for (final language in appLanguages)
+                for (final language in selectableLanguages)
                   ListTile(
                     // The name in its own script, so a reader who does
                     // not yet understand the current UI language can

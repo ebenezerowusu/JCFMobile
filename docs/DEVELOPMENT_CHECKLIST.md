@@ -326,6 +326,36 @@ prerequisites YES ("Complete Level 2 to unlock").
       splash asset rather than a fourth copy of the same artwork; no
       analytics layer, so the listed events are not emitted; completion
       is local-only and never blocks on the network.
+- [x] 18. Language Selection (owner spec, Sep 2026): /language-selection
+      (first launch, no Back) and /settings/language (Settings, Back
+      discards). Header, search, rows with code badge + native name +
+      localized name + RTL badge + check, empty state, sticky Continue
+      with inline save-failure retry. 39 app tests (suite 312 green),
+      analyze clean, strings in all five Wave-1 locales. SINGLE SOURCE:
+      the supported-language list existed in TWO places
+      (core/locale_prefs supportedAppLocales and welcome_state
+      appLanguages). Both now re-export
+      features/language_selection/supported_languages.dart, which the
+      delegate, the startup resolver, the Welcome picker and this screen
+      all read. A test asserts the delegate list and the selectable list
+      match exactly. FLOW: language selection now precedes onboarding, so
+      the chain is splash -> /language-selection -> /onboarding ->
+      /welcome -> home. This RESOLVES the orphaned /language screen
+      flagged in steps 16-17; /path and /stay-connected remain orphaned
+      (notification opt-in still appears nowhere). Notes and deviations:
+      NO HEADER ARTWORK WAS SUPPLIED - language_selection_header.png is
+      referenced and the header falls back to a brand gradient until the
+      file is dropped into assets/images/language_selection/; ARABIC AND
+      SWAHILI ARE CONFIGURED BUT NOT SELECTABLE, because their ARB files
+      do not exist and the spec forbids offering a language whose
+      translations are unavailable - RTL support, the RTL badge and the
+      resolver are all built and tested against Arabic's config, so
+      enabling it is adding app_ar.arb and flipping isFullyTranslated;
+      no country flags anywhere (a test counts flag code points and
+      asserts zero); the logo points at the splash asset rather than a
+      fifth copy; no analytics layer, so the listed events are not
+      emitted; profile sync to Django is not implemented (device choice
+      is authoritative and local-only).
 
 ## 🟦 Track 1 — Learn & Practice (recommended lead pillar)
 

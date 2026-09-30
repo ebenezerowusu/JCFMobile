@@ -3769,6 +3769,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Connect with others, join meaningful programs, and turn inner growth into compassionate action.'**
   String get onboardingCommunityDescription;
+
+  /// No description provided for @languageSelectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your language'**
+  String get languageSelectionTitle;
+
+  /// No description provided for @languageSelectionDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'You can change this later in Settings.'**
+  String get languageSelectionDescription;
+
+  /// No description provided for @languageSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search languages'**
+  String get languageSearchHint;
+
+  /// No description provided for @languageSearchClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear search field'**
+  String get languageSearchClear;
+
+  /// No description provided for @languageContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get languageContinue;
+
+  /// No description provided for @languageNoResultsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No languages found'**
+  String get languageNoResultsTitle;
+
+  /// No description provided for @languageNoResultsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Try a different language name or code.'**
+  String get languageNoResultsDescription;
+
+  /// No description provided for @languageClearSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear search'**
+  String get languageClearSearch;
+
+  /// No description provided for @languageSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected'**
+  String get languageSelected;
+
+  /// No description provided for @languageDirectionRtl.
+  ///
+  /// In en, this message translates to:
+  /// **'RTL'**
+  String get languageDirectionRtl;
+
+  /// No description provided for @languageDirectionRtlLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Right-to-left script'**
+  String get languageDirectionRtlLabel;
+
+  /// No description provided for @languageSaveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t save your language. Please try again.'**
+  String get languageSaveFailed;
+
+  /// No description provided for @languageRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get languageRetry;
+
+  /// No description provided for @languageResultCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No languages} =1{1 language} other{{count} languages}}'**
+  String languageResultCount(int count);
+
+  /// No description provided for @languageEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get languageEnglish;
+
+  /// No description provided for @languageFrench.
+  ///
+  /// In en, this message translates to:
+  /// **'French'**
+  String get languageFrench;
+
+  /// No description provided for @languageSpanish.
+  ///
+  /// In en, this message translates to:
+  /// **'Spanish'**
+  String get languageSpanish;
+
+  /// No description provided for @languageGerman.
+  ///
+  /// In en, this message translates to:
+  /// **'German'**
+  String get languageGerman;
+
+  /// No description provided for @languagePortuguese.
+  ///
+  /// In en, this message translates to:
+  /// **'Portuguese'**
+  String get languagePortuguese;
+
+  /// No description provided for @languageArabic.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic'**
+  String get languageArabic;
+
+  /// No description provided for @languageSwahili.
+  ///
+  /// In en, this message translates to:
+  /// **'Swahili'**
+  String get languageSwahili;
 }
 
 class _AppLocalizationsDelegate

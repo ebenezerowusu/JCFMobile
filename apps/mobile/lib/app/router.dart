@@ -17,7 +17,8 @@ import '../features/learning/continue_learning_screen.dart';
 import '../features/lessons/lesson_detail_screen.dart';
 import '../features/lessons/lessons_screen.dart';
 import '../features/more/quick_actions_screen.dart';
-import '../features/onboarding/language_screen.dart';
+import '../features/language_selection/language_selection_controller.dart';
+import '../features/language_selection/language_selection_screen.dart';
 import '../features/practice/practice_screen.dart';
 import '../features/onboarding/path_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
@@ -51,7 +52,15 @@ GoRouter createRouter() {
       GoRoute(path: '/legal/terms', builder: (_, _) => const LegalScreen(kind: 'terms')),
       GoRoute(path: '/legal/privacy', builder: (_, _) => const LegalScreen(kind: 'privacy')),
       GoRoute(path: '/onboarding', builder: (_, _) => const OnboardingScreen()),
-      GoRoute(path: '/language', builder: (_, _) => const LanguageScreen()),
+      // First launch has nowhere to go back to; Settings does.
+      GoRoute(
+          path: '/language-selection',
+          builder: (_, _) => const LanguageSelectionScreen(
+              mode: LanguageSelectionMode.firstLaunch)),
+      GoRoute(
+          path: '/settings/language',
+          builder: (_, _) => const LanguageSelectionScreen(
+              mode: LanguageSelectionMode.settings)),
       GoRoute(path: '/path', builder: (_, _) => const PathScreen()),
       GoRoute(path: '/stay-connected', builder: (_, _) => const StayConnectedScreen()),
       GoRoute(path: '/session-expired', builder: (_, _) => const SessionExpiredScreen()),

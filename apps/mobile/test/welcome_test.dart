@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jcf_mobile/core/locale_prefs.dart';
 import 'package:jcf_mobile/features/welcome/welcome_prefs.dart';
 import 'package:jcf_mobile/features/welcome/welcome_screen.dart';
-import 'package:jcf_mobile/features/welcome/welcome_state.dart';
+import 'package:jcf_mobile/features/language_selection/supported_languages.dart';
 import 'package:jcf_mobile/features/welcome/welcome_widgets.dart';
 import 'package:jcf_mobile/l10n/app_localizations.dart';
 
@@ -94,7 +94,7 @@ void main() {
     test('every shipped locale has a language entry', () {
       for (final locale in supportedAppLocales) {
         expect(
-          appLanguages.any((l) => l.code == locale.languageCode),
+          selectableLanguages.any((l) => l.code == locale.languageCode),
           isTrue,
           reason: 'no AppLanguage for ${locale.languageCode}',
         );
@@ -274,7 +274,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text('Choose a language'), findsOneWidget);
-      for (final language in appLanguages) {
+      for (final language in selectableLanguages) {
         expect(
           find.text(language.nativeName),
           findsWidgets,

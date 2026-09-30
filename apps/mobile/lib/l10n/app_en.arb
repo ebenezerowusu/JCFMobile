@@ -971,5 +971,33 @@
   "onboardingInnerSpaceDescription": "Build a personal practice with guided meditation, reflection, and tools for inner awareness.",
   "onboardingCommunityEyebrow": "COMMUNITY & SERVICE",
   "onboardingCommunityTitle": "Grow together. Serve with purpose.",
-  "onboardingCommunityDescription": "Connect with others, join meaningful programs, and turn inner growth into compassionate action."
+  "onboardingCommunityDescription": "Connect with others, join meaningful programs, and turn inner growth into compassionate action.",
+  "languageSelectionTitle": "Choose your language",
+  "languageSelectionDescription": "You can change this later in Settings.",
+  "languageSearchHint": "Search languages",
+  "languageSearchClear": "Clear search field",
+  "languageContinue": "Continue",
+  "languageNoResultsTitle": "No languages found",
+  "languageNoResultsDescription": "Try a different language name or code.",
+  "languageClearSearch": "Clear search",
+  "languageSelected": "Selected",
+  "languageDirectionRtl": "RTL",
+  "languageDirectionRtlLabel": "Right-to-left script",
+  "languageSaveFailed": "We couldn't save your language. Please try again.",
+  "languageRetry": "Try again",
+  "languageResultCount": "{count, plural, =0{No languages} =1{1 language} other{{count} languages}}",
+  "@languageResultCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "languageEnglish": "English",
+  "languageFrench": "French",
+  "languageSpanish": "Spanish",
+  "languageGerman": "German",
+  "languagePortuguese": "Portuguese",
+  "languageArabic": "Arabic",
+  "languageSwahili": "Swahili"
 }

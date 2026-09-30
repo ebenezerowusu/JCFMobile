@@ -2050,4 +2050,79 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get onboardingCommunityDescription =>
       'Rencontrez d\'autres personnes, rejoignez des programmes porteurs de sens et transformez la croissance intérieure en action bienveillante.';
+
+  @override
+  String get languageSelectionTitle => 'Choisissez votre langue';
+
+  @override
+  String get languageSelectionDescription =>
+      'Vous pourrez la modifier plus tard dans les Réglages.';
+
+  @override
+  String get languageSearchHint => 'Rechercher une langue';
+
+  @override
+  String get languageSearchClear => 'Effacer le champ de recherche';
+
+  @override
+  String get languageContinue => 'Continuer';
+
+  @override
+  String get languageNoResultsTitle => 'Aucune langue trouvée';
+
+  @override
+  String get languageNoResultsDescription =>
+      'Essayez un autre nom ou code de langue.';
+
+  @override
+  String get languageClearSearch => 'Effacer la recherche';
+
+  @override
+  String get languageSelected => 'Sélectionnée';
+
+  @override
+  String get languageDirectionRtl => 'RTL';
+
+  @override
+  String get languageDirectionRtlLabel => 'Écriture de droite à gauche';
+
+  @override
+  String get languageSaveFailed =>
+      'Impossible d\'enregistrer votre langue. Veuillez réessayer.';
+
+  @override
+  String get languageRetry => 'Réessayer';
+
+  @override
+  String languageResultCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count langues',
+      one: '1 langue',
+      zero: 'Aucune langue',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get languageEnglish => 'Anglais';
+
+  @override
+  String get languageFrench => 'Français';
+
+  @override
+  String get languageSpanish => 'Espagnol';
+
+  @override
+  String get languageGerman => 'Allemand';
+
+  @override
+  String get languagePortuguese => 'Portugais';
+
+  @override
+  String get languageArabic => 'Arabe';
+
+  @override
+  String get languageSwahili => 'Swahili';
 }

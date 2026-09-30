@@ -3,14 +3,13 @@ import 'dart:ui' show Locale;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// UI locales the app ships today (Wave 1). More arrive as translations land.
-const supportedAppLocales = [
-  Locale('en'),
-  Locale('fr'),
-  Locale('es'),
-  Locale('de'),
-  Locale('pt'),
-];
+import '../features/language_selection/supported_languages.dart';
+
+/// Re-exported so existing imports keep working. The list itself lives in
+/// supported_languages.dart, which is the single authoritative source —
+/// a second copy here drifted the first time a language was added.
+export '../features/language_selection/supported_languages.dart'
+    show supportedAppLocales, AppLanguage, languageFor;
 
 /// The chosen UI locale; null = follow the device locale.
 class AppLocaleNotifier extends Notifier<Locale?> {
@@ -23,15 +22,22 @@ class AppLocaleNotifier extends Notifier<Locale?> {
   }
 
   Future<void> _load() async {
-    final prefs = await SharedPreferences.getInstance();
-    final code = prefs.getString(_key);
-    if (code != null && code.isNotEmpty) state = Locale(code);
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      // Validated against the supported list: a corrupted or since-removed
+      // value must not start the app in a locale it cannot render.
+      final language = languageByTag(prefs.getString(_key));
+      if (language != null) state = language.locale;
+    } catch (_) {
+      // Leave the device locale in place.
+    }
   }
 
   Future<void> set(Locale locale) async {
-    state = locale;
+    final language = languageFor(locale);
+    state = language.locale;
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_key, locale.languageCode);
+    await prefs.setString(_key, language.tag);
   }
 }
 
