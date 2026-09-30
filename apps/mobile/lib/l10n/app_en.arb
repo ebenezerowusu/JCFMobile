@@ -581,5 +581,70 @@
         "type": "String"
       }
     }
-  }
+  },
+  "liveNow": "Live Now",
+  "liveEvent": "Live Event",
+  "replayTitle": "Replay",
+  "statusScheduled": "Scheduled",
+  "statusEnded": "Ended",
+  "goLive": "Go Live",
+  "reconnecting": "Reconnecting…",
+  "chatTab": "Chat",
+  "aboutTab": "About",
+  "joinTheConversation": "Join the conversation",
+  "signInToParticipate": "Sign in to participate",
+  "chatReadOnly": "Chat is read-only",
+  "chatClosed": "Chat is closed",
+  "viewProfile": "View Profile",
+  "followLabel": "Follow",
+  "remindMe": "Remind Me",
+  "addToCalendar": "Add to Calendar",
+  "replayProcessing": "Replay Processing",
+  "streamWillBeginHere": "The stream will begin here",
+  "streamUnavailable": "This stream is unavailable right now.",
+  "eventCancelled": "This event was cancelled.",
+  "eventRescheduled": "This event was rescheduled.",
+  "signInToWatch": "Sign in to watch this session.",
+  "membersOnlyEvent": "This session is for members and students.",
+  "studentsOnlyEvent": "This session is for enrolled students.",
+  "viewerCount": "{count, plural, =1{1 watching} other{{count} watching}}",
+  "@viewerCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "reportMessage": "Report message",
+  "blockUser": "Block user",
+  "messageReported": "Reported to the moderators.",
+  "userBlocked": "You will not see their messages.",
+  "slowModeOn": "Slow mode is on. Try again in {seconds}s.",
+  "@slowModeOn": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "reactAppreciate": "Appreciate",
+  "reactThanks": "Thank you",
+  "reactInsight": "Insightful",
+  "reactLabel": "React",
+  "eventLanguage": "Language",
+  "eventSchedule": "Schedule",
+  "eventFacilitator": "Facilitator",
+  "captionsLabel": "Captions",
+  "startsIn": "Starts in {time}",
+  "@startsIn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "playLabel": "Play",
+  "pauseLabel": "Pause",
+  "readMore": "Read more",
+  "readLess": "Read less"
 }

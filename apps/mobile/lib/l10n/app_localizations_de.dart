@@ -1243,4 +1243,150 @@ class AppLocalizationsDe extends AppLocalizations {
   String shareCardPreviewLabel(String style, String format, String alignment) {
     return 'Vorschau. Stil $style, Format $format, Text $alignment.';
   }
+
+  @override
+  String get liveNow => 'Jetzt live';
+
+  @override
+  String get liveEvent => 'Live-Veranstaltung';
+
+  @override
+  String get replayTitle => 'Aufzeichnung';
+
+  @override
+  String get statusScheduled => 'Geplant';
+
+  @override
+  String get statusEnded => 'Beendet';
+
+  @override
+  String get goLive => 'Zum Live-Punkt';
+
+  @override
+  String get reconnecting => 'Neu verbinden…';
+
+  @override
+  String get chatTab => 'Chat';
+
+  @override
+  String get aboutTab => 'Info';
+
+  @override
+  String get joinTheConversation => 'Sag etwas';
+
+  @override
+  String get signInToParticipate => 'Melde dich an, um mitzureden';
+
+  @override
+  String get chatReadOnly => 'Nur Lesen';
+
+  @override
+  String get chatClosed => 'Chat geschlossen';
+
+  @override
+  String get viewProfile => 'Profil ansehen';
+
+  @override
+  String get followLabel => 'Folgen';
+
+  @override
+  String get remindMe => 'Erinnere mich';
+
+  @override
+  String get addToCalendar => 'Zum Kalender';
+
+  @override
+  String get replayProcessing => 'Aufzeichnung wird erstellt';
+
+  @override
+  String get streamWillBeginHere => 'Der Stream beginnt hier';
+
+  @override
+  String get streamUnavailable => 'Dieser Stream ist gerade nicht verfügbar.';
+
+  @override
+  String get eventCancelled => 'Diese Veranstaltung wurde abgesagt.';
+
+  @override
+  String get eventRescheduled => 'Diese Veranstaltung wurde verschoben.';
+
+  @override
+  String get signInToWatch => 'Melde dich an, um zuzusehen.';
+
+  @override
+  String get membersOnlyEvent =>
+      'Diese Sitzung ist für Mitglieder und Studierende.';
+
+  @override
+  String get studentsOnlyEvent =>
+      'Diese Sitzung ist für eingeschriebene Studierende.';
+
+  @override
+  String viewerCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count schauen zu',
+      one: '1 schaut zu',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get reportMessage => 'Nachricht melden';
+
+  @override
+  String get blockUser => 'Blockieren';
+
+  @override
+  String get messageReported => 'An die Moderation gemeldet.';
+
+  @override
+  String get userBlocked => 'Du siehst ihre Nachrichten nicht mehr.';
+
+  @override
+  String slowModeOn(int seconds) {
+    return 'Langsamer Modus. Versuche es in $seconds s.';
+  }
+
+  @override
+  String get reactAppreciate => 'Dankbarkeit';
+
+  @override
+  String get reactThanks => 'Danke';
+
+  @override
+  String get reactInsight => 'Erhellend';
+
+  @override
+  String get reactLabel => 'Reagieren';
+
+  @override
+  String get eventLanguage => 'Sprache';
+
+  @override
+  String get eventSchedule => 'Zeitplan';
+
+  @override
+  String get eventFacilitator => 'Leitung';
+
+  @override
+  String get captionsLabel => 'Untertitel';
+
+  @override
+  String startsIn(String time) {
+    return 'Beginnt in $time';
+  }
+
+  @override
+  String get playLabel => 'Abspielen';
+
+  @override
+  String get pauseLabel => 'Pause';
+
+  @override
+  String get readMore => 'Mehr lesen';
+
+  @override
+  String get readLess => 'Weniger';
 }

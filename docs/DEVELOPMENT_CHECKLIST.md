@@ -122,8 +122,21 @@ prerequisites YES ("Complete Level 2 to unlock").
       category grid, popular list, typed result cards + kind filters.
       Notes: centres open an info sheet until a Find a Centre screen
       exists; "Most Relevant" sort dropdown omitted (single relevance)
-- [ ] 8. Live Now (#24): rides Track 3 backend — player, Remind Me/Share/
-      Give, moderated live chat, Submit a Question (500 chars)
+- [x] 8. Live Now (#24 + owner spec, Sep 2026): LiveSession on top of
+      Activity (stream/replay/chat/access/facilitator), moderated
+      LiveChatMessage with server-side sanitising, slow mode, mute, block
+      and report, LiveReaction, LiveViewerSession heartbeats, LiveSave;
+      GET /events/<id>/live/ withholds the playback URL until access is
+      confirmed and the join window opens. App: /live/:eventId focused
+      route with waiting room + countdown + backing-off status poll,
+      live/replay/ended/cancelled/processing/access states, player
+      controls behind a LivePlaybackController interface (video_player),
+      chat tab, about tab, reactions, save and canonical-link share.
+      DEFERRED, needs owner decisions: real-time chat needs Django
+      Channels + ASGI + Redis (polling for now, behind the same cursor
+      contract); Picture-in-Picture needs native platform channels;
+      quality selection needs an engine that exposes variants; no
+      streaming vendor chosen — staff paste any HLS URL
 - [x] 9. Member Home rebuild (owner spec, Sep 2026): GET /home/member/
       aggregate (summary, welcome, resumable learning+practice, member-
       exclusive teaching, inspirations, next event, quick actions,

@@ -1245,4 +1245,151 @@ class AppLocalizationsFr extends AppLocalizations {
   String shareCardPreviewLabel(String style, String format, String alignment) {
     return 'Aperçu de la carte. Style $style, format $format, texte $alignment.';
   }
+
+  @override
+  String get liveNow => 'En direct';
+
+  @override
+  String get liveEvent => 'Événement en direct';
+
+  @override
+  String get replayTitle => 'Rediffusion';
+
+  @override
+  String get statusScheduled => 'Programmé';
+
+  @override
+  String get statusEnded => 'Terminé';
+
+  @override
+  String get goLive => 'Revenir au direct';
+
+  @override
+  String get reconnecting => 'Reconnexion…';
+
+  @override
+  String get chatTab => 'Discussion';
+
+  @override
+  String get aboutTab => 'À propos';
+
+  @override
+  String get joinTheConversation => 'Rejoindre la discussion';
+
+  @override
+  String get signInToParticipate => 'Connectez-vous pour participer';
+
+  @override
+  String get chatReadOnly => 'Lecture seule';
+
+  @override
+  String get chatClosed => 'Discussion fermée';
+
+  @override
+  String get viewProfile => 'Voir le profil';
+
+  @override
+  String get followLabel => 'Suivre';
+
+  @override
+  String get remindMe => 'Me rappeler';
+
+  @override
+  String get addToCalendar => 'Ajouter au calendrier';
+
+  @override
+  String get replayProcessing => 'Rediffusion en préparation';
+
+  @override
+  String get streamWillBeginHere => 'La diffusion commencera ici';
+
+  @override
+  String get streamUnavailable =>
+      'Cette diffusion est indisponible pour le moment.';
+
+  @override
+  String get eventCancelled => 'Cet événement a été annulé.';
+
+  @override
+  String get eventRescheduled => 'Cet événement a été reporté.';
+
+  @override
+  String get signInToWatch => 'Connectez-vous pour regarder cette session.';
+
+  @override
+  String get membersOnlyEvent =>
+      'Cette session est réservée aux membres et étudiants.';
+
+  @override
+  String get studentsOnlyEvent =>
+      'Cette session est réservée aux étudiants inscrits.';
+
+  @override
+  String viewerCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count spectateurs',
+      one: '1 spectateur',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get reportMessage => 'Signaler le message';
+
+  @override
+  String get blockUser => 'Bloquer';
+
+  @override
+  String get messageReported => 'Signalé aux modérateurs.';
+
+  @override
+  String get userBlocked => 'Vous ne verrez plus ses messages.';
+
+  @override
+  String slowModeOn(int seconds) {
+    return 'Mode lent activé. Réessayez dans $seconds s.';
+  }
+
+  @override
+  String get reactAppreciate => 'Gratitude';
+
+  @override
+  String get reactThanks => 'Merci';
+
+  @override
+  String get reactInsight => 'Éclairant';
+
+  @override
+  String get reactLabel => 'Réagir';
+
+  @override
+  String get eventLanguage => 'Langue';
+
+  @override
+  String get eventSchedule => 'Horaire';
+
+  @override
+  String get eventFacilitator => 'Animateur';
+
+  @override
+  String get captionsLabel => 'Sous-titres';
+
+  @override
+  String startsIn(String time) {
+    return 'Commence dans $time';
+  }
+
+  @override
+  String get playLabel => 'Lecture';
+
+  @override
+  String get pauseLabel => 'Pause';
+
+  @override
+  String get readMore => 'Lire la suite';
+
+  @override
+  String get readLess => 'Réduire';
 }

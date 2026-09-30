@@ -2383,6 +2383,270 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Share card preview. {style} style, {format} format, {alignment} text.'**
   String shareCardPreviewLabel(String style, String format, String alignment);
+
+  /// No description provided for @liveNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Live Now'**
+  String get liveNow;
+
+  /// No description provided for @liveEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'Live Event'**
+  String get liveEvent;
+
+  /// No description provided for @replayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Replay'**
+  String get replayTitle;
+
+  /// No description provided for @statusScheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'Scheduled'**
+  String get statusScheduled;
+
+  /// No description provided for @statusEnded.
+  ///
+  /// In en, this message translates to:
+  /// **'Ended'**
+  String get statusEnded;
+
+  /// No description provided for @goLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Go Live'**
+  String get goLive;
+
+  /// No description provided for @reconnecting.
+  ///
+  /// In en, this message translates to:
+  /// **'Reconnecting…'**
+  String get reconnecting;
+
+  /// No description provided for @chatTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat'**
+  String get chatTab;
+
+  /// No description provided for @aboutTab.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get aboutTab;
+
+  /// No description provided for @joinTheConversation.
+  ///
+  /// In en, this message translates to:
+  /// **'Join the conversation'**
+  String get joinTheConversation;
+
+  /// No description provided for @signInToParticipate.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to participate'**
+  String get signInToParticipate;
+
+  /// No description provided for @chatReadOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat is read-only'**
+  String get chatReadOnly;
+
+  /// No description provided for @chatClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat is closed'**
+  String get chatClosed;
+
+  /// No description provided for @viewProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'View Profile'**
+  String get viewProfile;
+
+  /// No description provided for @followLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow'**
+  String get followLabel;
+
+  /// No description provided for @remindMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Remind Me'**
+  String get remindMe;
+
+  /// No description provided for @addToCalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to Calendar'**
+  String get addToCalendar;
+
+  /// No description provided for @replayProcessing.
+  ///
+  /// In en, this message translates to:
+  /// **'Replay Processing'**
+  String get replayProcessing;
+
+  /// No description provided for @streamWillBeginHere.
+  ///
+  /// In en, this message translates to:
+  /// **'The stream will begin here'**
+  String get streamWillBeginHere;
+
+  /// No description provided for @streamUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'This stream is unavailable right now.'**
+  String get streamUnavailable;
+
+  /// No description provided for @eventCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'This event was cancelled.'**
+  String get eventCancelled;
+
+  /// No description provided for @eventRescheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'This event was rescheduled.'**
+  String get eventRescheduled;
+
+  /// No description provided for @signInToWatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to watch this session.'**
+  String get signInToWatch;
+
+  /// No description provided for @membersOnlyEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'This session is for members and students.'**
+  String get membersOnlyEvent;
+
+  /// No description provided for @studentsOnlyEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'This session is for enrolled students.'**
+  String get studentsOnlyEvent;
+
+  /// No description provided for @viewerCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 watching} other{{count} watching}}'**
+  String viewerCount(int count);
+
+  /// No description provided for @reportMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Report message'**
+  String get reportMessage;
+
+  /// No description provided for @blockUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Block user'**
+  String get blockUser;
+
+  /// No description provided for @messageReported.
+  ///
+  /// In en, this message translates to:
+  /// **'Reported to the moderators.'**
+  String get messageReported;
+
+  /// No description provided for @userBlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'You will not see their messages.'**
+  String get userBlocked;
+
+  /// No description provided for @slowModeOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Slow mode is on. Try again in {seconds}s.'**
+  String slowModeOn(int seconds);
+
+  /// No description provided for @reactAppreciate.
+  ///
+  /// In en, this message translates to:
+  /// **'Appreciate'**
+  String get reactAppreciate;
+
+  /// No description provided for @reactThanks.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you'**
+  String get reactThanks;
+
+  /// No description provided for @reactInsight.
+  ///
+  /// In en, this message translates to:
+  /// **'Insightful'**
+  String get reactInsight;
+
+  /// No description provided for @reactLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'React'**
+  String get reactLabel;
+
+  /// No description provided for @eventLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get eventLanguage;
+
+  /// No description provided for @eventSchedule.
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule'**
+  String get eventSchedule;
+
+  /// No description provided for @eventFacilitator.
+  ///
+  /// In en, this message translates to:
+  /// **'Facilitator'**
+  String get eventFacilitator;
+
+  /// No description provided for @captionsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Captions'**
+  String get captionsLabel;
+
+  /// No description provided for @startsIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Starts in {time}'**
+  String startsIn(String time);
+
+  /// No description provided for @playLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Play'**
+  String get playLabel;
+
+  /// No description provided for @pauseLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get pauseLabel;
+
+  /// No description provided for @readMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Read more'**
+  String get readMore;
+
+  /// No description provided for @readLess.
+  ///
+  /// In en, this message translates to:
+  /// **'Read less'**
+  String get readLess;
 }
 
 class _AppLocalizationsDelegate
