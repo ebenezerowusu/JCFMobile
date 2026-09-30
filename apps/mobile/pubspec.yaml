@@ -134,6 +134,16 @@ flutter_launcher_icons:
   android: true
   ios: true
   remove_alpha_ios: true
-  image_path: "assets/images/logo.png"
-  adaptive_icon_background: "#060E4A"
-  adaptive_icon_foreground: "assets/images/logo.png"
+  # Sources live in branding/ rather than assets/images/, which is bundled
+  # wholesale — an icon source shipped inside the app is dead weight.
+  image_path: "branding/app_icon.png"
+  # The adaptive foreground is a wider crop of the same portrait: Android's
+  # mask shows only the central ~66%, so the head is re-centred there and
+  # the canvas extended. It is opaque and full-bleed, so the background
+  # colour below is only a fallback for launchers that composite oddly.
+  adaptive_icon_foreground: "branding/app_icon_foreground.png"
+  adaptive_icon_background: "#3F4638"
+  # The generator's default 16% inset would shrink a full-bleed photo and
+  # let the backdrop show around it on square-mask launchers. The crop is
+  # already sized for the mask, so it needs no inset.
+  adaptive_icon_foreground_inset: 0
