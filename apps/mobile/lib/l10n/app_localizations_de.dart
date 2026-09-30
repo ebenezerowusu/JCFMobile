@@ -1152,4 +1152,95 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get listenToReflection => 'Diese Reflexion anhören';
+
+  @override
+  String get createShareCard => 'Teilen-Karte erstellen';
+
+  @override
+  String get resetLabel => 'Zurücksetzen';
+
+  @override
+  String get formatSquare => 'Quadrat';
+
+  @override
+  String get formatStory => 'Story';
+
+  @override
+  String get chooseAStyle => 'Stil wählen';
+
+  @override
+  String get textAlignment => 'Textausrichtung';
+
+  @override
+  String get alignStart => 'Anfang';
+
+  @override
+  String get alignCenter => 'Mitte';
+
+  @override
+  String get alignEnd => 'Ende';
+
+  @override
+  String get textColor => 'Textfarbe';
+
+  @override
+  String get textLight => 'Hell';
+
+  @override
+  String get textDark => 'Dunkel';
+
+  @override
+  String get sizeSmall => 'Klein';
+
+  @override
+  String get sizeMedium => 'Mittel';
+
+  @override
+  String get sizeLarge => 'Groß';
+
+  @override
+  String get showLogo => 'Logo anzeigen';
+
+  @override
+  String get showSource => 'Quelle anzeigen';
+
+  @override
+  String get showWebsite => 'Website anzeigen';
+
+  @override
+  String get saveImage => 'Bild speichern';
+
+  @override
+  String get imageSaved => 'Bild in deiner Galerie gespeichert';
+
+  @override
+  String get unableToGenerate => 'Bild konnte nicht erstellt werden.';
+
+  @override
+  String get unableToSave => 'Bild konnte nicht gespeichert werden.';
+
+  @override
+  String get permissionDenied =>
+      'Fotozugriff verweigert. Erlaube ihn in den Einstellungen.';
+
+  @override
+  String get sharingNotAllowed =>
+      'Diese Inspiration kann nicht geteilt werden.';
+
+  @override
+  String get templateCosmic => 'Kosmisch';
+
+  @override
+  String get templateDawn => 'Morgen';
+
+  @override
+  String get templateStillness => 'Stille';
+
+  @override
+  String get templateLight => 'Licht';
+
+  @override
+  String shareCardPreviewLabel(String style, String format, String alignment) {
+    return 'Vorschau. Stil $style, Format $format, Text $alignment.';
+  }
 }

@@ -1143,4 +1143,94 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get listenToReflection => 'Escuchar esta reflexión';
+
+  @override
+  String get createShareCard => 'Crear tarjeta';
+
+  @override
+  String get resetLabel => 'Restablecer';
+
+  @override
+  String get formatSquare => 'Cuadrado';
+
+  @override
+  String get formatStory => 'Historia';
+
+  @override
+  String get chooseAStyle => 'Elige un estilo';
+
+  @override
+  String get textAlignment => 'Alineación del texto';
+
+  @override
+  String get alignStart => 'Inicio';
+
+  @override
+  String get alignCenter => 'Centro';
+
+  @override
+  String get alignEnd => 'Final';
+
+  @override
+  String get textColor => 'Color del texto';
+
+  @override
+  String get textLight => 'Claro';
+
+  @override
+  String get textDark => 'Oscuro';
+
+  @override
+  String get sizeSmall => 'Pequeño';
+
+  @override
+  String get sizeMedium => 'Mediano';
+
+  @override
+  String get sizeLarge => 'Grande';
+
+  @override
+  String get showLogo => 'Mostrar logo';
+
+  @override
+  String get showSource => 'Mostrar fuente';
+
+  @override
+  String get showWebsite => 'Mostrar sitio web';
+
+  @override
+  String get saveImage => 'Guardar imagen';
+
+  @override
+  String get imageSaved => 'Imagen guardada en tu galería';
+
+  @override
+  String get unableToGenerate => 'No se pudo generar la imagen.';
+
+  @override
+  String get unableToSave => 'No se pudo guardar la imagen.';
+
+  @override
+  String get permissionDenied =>
+      'Permiso de fotos denegado. Actívalo en Ajustes.';
+
+  @override
+  String get sharingNotAllowed => 'Esta inspiración no se puede compartir.';
+
+  @override
+  String get templateCosmic => 'Cósmico';
+
+  @override
+  String get templateDawn => 'Amanecer';
+
+  @override
+  String get templateStillness => 'Quietud';
+
+  @override
+  String get templateLight => 'Claridad';
+
+  @override
+  String shareCardPreviewLabel(String style, String format, String alignment) {
+    return 'Vista previa. Estilo $style, formato $format, texto $alignment.';
+  }
 }

@@ -1,4 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- gal needs this only on Android 9 and below to save to the gallery;
+         API 29+ uses scoped storage and requires no permission. -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
     <application
         android:label="Jan Cosmic Foundation"
         android:name="${applicationName}"

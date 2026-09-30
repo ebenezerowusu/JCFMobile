@@ -2209,6 +2209,180 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Listen to this reflection'**
   String get listenToReflection;
+
+  /// No description provided for @createShareCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Share Card'**
+  String get createShareCard;
+
+  /// No description provided for @resetLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get resetLabel;
+
+  /// No description provided for @formatSquare.
+  ///
+  /// In en, this message translates to:
+  /// **'Square'**
+  String get formatSquare;
+
+  /// No description provided for @formatStory.
+  ///
+  /// In en, this message translates to:
+  /// **'Story'**
+  String get formatStory;
+
+  /// No description provided for @chooseAStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a Style'**
+  String get chooseAStyle;
+
+  /// No description provided for @textAlignment.
+  ///
+  /// In en, this message translates to:
+  /// **'Text Alignment'**
+  String get textAlignment;
+
+  /// No description provided for @alignStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get alignStart;
+
+  /// No description provided for @alignCenter.
+  ///
+  /// In en, this message translates to:
+  /// **'Center'**
+  String get alignCenter;
+
+  /// No description provided for @alignEnd.
+  ///
+  /// In en, this message translates to:
+  /// **'End'**
+  String get alignEnd;
+
+  /// No description provided for @textColor.
+  ///
+  /// In en, this message translates to:
+  /// **'Text Color'**
+  String get textColor;
+
+  /// No description provided for @textLight.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get textLight;
+
+  /// No description provided for @textDark.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get textDark;
+
+  /// No description provided for @sizeSmall.
+  ///
+  /// In en, this message translates to:
+  /// **'Small'**
+  String get sizeSmall;
+
+  /// No description provided for @sizeMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get sizeMedium;
+
+  /// No description provided for @sizeLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'Large'**
+  String get sizeLarge;
+
+  /// No description provided for @showLogo.
+  ///
+  /// In en, this message translates to:
+  /// **'Show Logo'**
+  String get showLogo;
+
+  /// No description provided for @showSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Show Source'**
+  String get showSource;
+
+  /// No description provided for @showWebsite.
+  ///
+  /// In en, this message translates to:
+  /// **'Show Website'**
+  String get showWebsite;
+
+  /// No description provided for @saveImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Image'**
+  String get saveImage;
+
+  /// No description provided for @imageSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Image saved to your gallery'**
+  String get imageSaved;
+
+  /// No description provided for @unableToGenerate.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to generate the image.'**
+  String get unableToGenerate;
+
+  /// No description provided for @unableToSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to save the image.'**
+  String get unableToSave;
+
+  /// No description provided for @permissionDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo permission denied. Allow access in Settings to save.'**
+  String get permissionDenied;
+
+  /// No description provided for @sharingNotAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'This inspiration cannot be shared.'**
+  String get sharingNotAllowed;
+
+  /// No description provided for @templateCosmic.
+  ///
+  /// In en, this message translates to:
+  /// **'Cosmic'**
+  String get templateCosmic;
+
+  /// No description provided for @templateDawn.
+  ///
+  /// In en, this message translates to:
+  /// **'Dawn'**
+  String get templateDawn;
+
+  /// No description provided for @templateStillness.
+  ///
+  /// In en, this message translates to:
+  /// **'Stillness'**
+  String get templateStillness;
+
+  /// No description provided for @templateLight.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get templateLight;
+
+  /// No description provided for @shareCardPreviewLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Share card preview. {style} style, {format} format, {alignment} text.'**
+  String shareCardPreviewLabel(String style, String format, String alignment);
 }
 
 class _AppLocalizationsDelegate

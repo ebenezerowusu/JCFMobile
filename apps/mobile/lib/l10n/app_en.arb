@@ -539,5 +539,47 @@
   "signInToReflect": "Sign in to record your reflection.",
   "textSize": "Text Size",
   "openInBrowser": "Open in Browser",
-  "listenToReflection": "Listen to this reflection"
+  "listenToReflection": "Listen to this reflection",
+  "createShareCard": "Create Share Card",
+  "resetLabel": "Reset",
+  "formatSquare": "Square",
+  "formatStory": "Story",
+  "chooseAStyle": "Choose a Style",
+  "textAlignment": "Text Alignment",
+  "alignStart": "Start",
+  "alignCenter": "Center",
+  "alignEnd": "End",
+  "textColor": "Text Color",
+  "textLight": "Light",
+  "textDark": "Dark",
+  "sizeSmall": "Small",
+  "sizeMedium": "Medium",
+  "sizeLarge": "Large",
+  "showLogo": "Show Logo",
+  "showSource": "Show Source",
+  "showWebsite": "Show Website",
+  "saveImage": "Save Image",
+  "imageSaved": "Image saved to your gallery",
+  "unableToGenerate": "Unable to generate the image.",
+  "unableToSave": "Unable to save the image.",
+  "permissionDenied": "Photo permission denied. Allow access in Settings to save.",
+  "sharingNotAllowed": "This inspiration cannot be shared.",
+  "templateCosmic": "Cosmic",
+  "templateDawn": "Dawn",
+  "templateStillness": "Stillness",
+  "templateLight": "Light",
+  "shareCardPreviewLabel": "Share card preview. {style} style, {format} format, {alignment} text.",
+  "@shareCardPreviewLabel": {
+    "placeholders": {
+      "style": {
+        "type": "String"
+      },
+      "format": {
+        "type": "String"
+      },
+      "alignment": {
+        "type": "String"
+      }
+    }
+  }
 }

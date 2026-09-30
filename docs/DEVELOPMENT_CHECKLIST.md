@@ -157,6 +157,20 @@ prerequisites YES ("Complete Level 2 to unlock").
       external handler until an in-app player exists; no offline cache or
       analytics layer yet; deep links work in-app but the OS-level
       https://…/inspirations/<slug> handler still needs store config
+- [x] 12. Share Card composer (owner spec, Sep 2026): GET
+      /inspirations/<id-or-slug>/share-data/ (public) returns an
+      editorially trimmed excerpt, canonical URL, sharing flag and the
+      template registry; /inspirations/:id/share-card composer with square
+      and story formats, four styles, alignment/colour/size controls,
+      logo/source/website switches, Reset, and a preview that is the same
+      widget as the export (no upscaling). Save to gallery via `gal`
+      (permission asked only on Save; iOS Info.plist + Android manifest
+      configured); share sends the PNG plus the canonical link and falls
+      back to link-only when rendering fails. Notes: assets .webp (see
+      step 9); a template with no artwork for a format is hidden rather
+      than stretched; "Light" is both a style and a text colour per the
+      spec — section headings and semantic labels disambiguate; no
+      analytics layer yet
 
 ## 🟦 Track 1 — Learn & Practice (recommended lead pillar)
 
