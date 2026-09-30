@@ -11,6 +11,7 @@ import '../features/engagement/appointments_screen.dart';
 import '../features/engagement/notifications_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/inspiration/inspiration_detail_screen.dart';
+import '../features/inspiration/share_card/share_card_screen.dart';
 import '../features/lessons/continue_learning_screen.dart';
 import '../features/lessons/lesson_detail_screen.dart';
 import '../features/lessons/lessons_screen.dart';
@@ -66,6 +67,13 @@ GoRouter createRouter() {
         path: '/inspirations/:identifier',
         builder: (_, state) => InspirationDetailScreen(
             identifier: state.pathParameters['identifier']!),
+        routes: [
+          GoRoute(
+            path: 'share-card',
+            builder: (_, state) => ShareCardScreen(
+                identifier: state.pathParameters['identifier']!),
+          ),
+        ],
       ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) =>

@@ -1145,4 +1145,94 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get listenToReflection => 'Ouvir esta reflexão';
+
+  @override
+  String get createShareCard => 'Criar cartão';
+
+  @override
+  String get resetLabel => 'Repor';
+
+  @override
+  String get formatSquare => 'Quadrado';
+
+  @override
+  String get formatStory => 'Story';
+
+  @override
+  String get chooseAStyle => 'Escolha um estilo';
+
+  @override
+  String get textAlignment => 'Alinhamento do texto';
+
+  @override
+  String get alignStart => 'Início';
+
+  @override
+  String get alignCenter => 'Centro';
+
+  @override
+  String get alignEnd => 'Fim';
+
+  @override
+  String get textColor => 'Cor do texto';
+
+  @override
+  String get textLight => 'Claro';
+
+  @override
+  String get textDark => 'Escuro';
+
+  @override
+  String get sizeSmall => 'Pequeno';
+
+  @override
+  String get sizeMedium => 'Médio';
+
+  @override
+  String get sizeLarge => 'Grande';
+
+  @override
+  String get showLogo => 'Mostrar logótipo';
+
+  @override
+  String get showSource => 'Mostrar fonte';
+
+  @override
+  String get showWebsite => 'Mostrar site';
+
+  @override
+  String get saveImage => 'Guardar imagem';
+
+  @override
+  String get imageSaved => 'Imagem guardada na sua galeria';
+
+  @override
+  String get unableToGenerate => 'Não foi possível gerar a imagem.';
+
+  @override
+  String get unableToSave => 'Não foi possível guardar a imagem.';
+
+  @override
+  String get permissionDenied =>
+      'Acesso às fotos negado. Permita nas Definições.';
+
+  @override
+  String get sharingNotAllowed => 'Esta inspiração não pode ser partilhada.';
+
+  @override
+  String get templateCosmic => 'Cósmico';
+
+  @override
+  String get templateDawn => 'Amanhecer';
+
+  @override
+  String get templateStillness => 'Quietude';
+
+  @override
+  String get templateLight => 'Claridade';
+
+  @override
+  String shareCardPreviewLabel(String style, String format, String alignment) {
+    return 'Pré-visualização. Estilo $style, formato $format, texto $alignment.';
+  }
 }

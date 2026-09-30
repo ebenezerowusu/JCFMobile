@@ -1154,4 +1154,95 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get listenToReflection => 'Écouter cette réflexion';
+
+  @override
+  String get createShareCard => 'Créer une carte';
+
+  @override
+  String get resetLabel => 'Réinitialiser';
+
+  @override
+  String get formatSquare => 'Carré';
+
+  @override
+  String get formatStory => 'Story';
+
+  @override
+  String get chooseAStyle => 'Choisissez un style';
+
+  @override
+  String get textAlignment => 'Alignement du texte';
+
+  @override
+  String get alignStart => 'Début';
+
+  @override
+  String get alignCenter => 'Centre';
+
+  @override
+  String get alignEnd => 'Fin';
+
+  @override
+  String get textColor => 'Couleur du texte';
+
+  @override
+  String get textLight => 'Clair';
+
+  @override
+  String get textDark => 'Foncé';
+
+  @override
+  String get sizeSmall => 'Petite';
+
+  @override
+  String get sizeMedium => 'Moyenne';
+
+  @override
+  String get sizeLarge => 'Grande';
+
+  @override
+  String get showLogo => 'Afficher le logo';
+
+  @override
+  String get showSource => 'Afficher la source';
+
+  @override
+  String get showWebsite => 'Afficher le site';
+
+  @override
+  String get saveImage => 'Enregistrer l\'image';
+
+  @override
+  String get imageSaved => 'Image enregistrée dans votre galerie';
+
+  @override
+  String get unableToGenerate => 'Impossible de générer l\'image.';
+
+  @override
+  String get unableToSave => 'Impossible d\'enregistrer l\'image.';
+
+  @override
+  String get permissionDenied =>
+      'Accès aux photos refusé. Autorisez-le dans les Réglages.';
+
+  @override
+  String get sharingNotAllowed =>
+      'Cette inspiration ne peut pas être partagée.';
+
+  @override
+  String get templateCosmic => 'Cosmique';
+
+  @override
+  String get templateDawn => 'Aurore';
+
+  @override
+  String get templateStillness => 'Quiétude';
+
+  @override
+  String get templateLight => 'Clarté';
+
+  @override
+  String shareCardPreviewLabel(String style, String format, String alignment) {
+    return 'Aperçu de la carte. Style $style, format $format, texte $alignment.';
+  }
 }

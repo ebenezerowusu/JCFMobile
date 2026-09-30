@@ -1140,4 +1140,94 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get listenToReflection => 'Listen to this reflection';
+
+  @override
+  String get createShareCard => 'Create Share Card';
+
+  @override
+  String get resetLabel => 'Reset';
+
+  @override
+  String get formatSquare => 'Square';
+
+  @override
+  String get formatStory => 'Story';
+
+  @override
+  String get chooseAStyle => 'Choose a Style';
+
+  @override
+  String get textAlignment => 'Text Alignment';
+
+  @override
+  String get alignStart => 'Start';
+
+  @override
+  String get alignCenter => 'Center';
+
+  @override
+  String get alignEnd => 'End';
+
+  @override
+  String get textColor => 'Text Color';
+
+  @override
+  String get textLight => 'Light';
+
+  @override
+  String get textDark => 'Dark';
+
+  @override
+  String get sizeSmall => 'Small';
+
+  @override
+  String get sizeMedium => 'Medium';
+
+  @override
+  String get sizeLarge => 'Large';
+
+  @override
+  String get showLogo => 'Show Logo';
+
+  @override
+  String get showSource => 'Show Source';
+
+  @override
+  String get showWebsite => 'Show Website';
+
+  @override
+  String get saveImage => 'Save Image';
+
+  @override
+  String get imageSaved => 'Image saved to your gallery';
+
+  @override
+  String get unableToGenerate => 'Unable to generate the image.';
+
+  @override
+  String get unableToSave => 'Unable to save the image.';
+
+  @override
+  String get permissionDenied =>
+      'Photo permission denied. Allow access in Settings to save.';
+
+  @override
+  String get sharingNotAllowed => 'This inspiration cannot be shared.';
+
+  @override
+  String get templateCosmic => 'Cosmic';
+
+  @override
+  String get templateDawn => 'Dawn';
+
+  @override
+  String get templateStillness => 'Stillness';
+
+  @override
+  String get templateLight => 'Light';
+
+  @override
+  String shareCardPreviewLabel(String style, String format, String alignment) {
+    return 'Share card preview. $style style, $format format, $alignment text.';
+  }
 }

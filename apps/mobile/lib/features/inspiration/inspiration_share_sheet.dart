@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:jcf_ui/jcf_ui.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -206,9 +207,10 @@ Future<void> showInspirationShareSheet(
             _ShareOption(
               icon: Icons.image_rounded,
               label: t.shareAsImage,
-              onTap: () async {
+              onTap: () {
                 Navigator.of(sheetContext).pop();
-                await shareInspirationImage(context, detail);
+                // The composer lets the reader choose a style and format.
+                context.push('/inspirations/${detail.slug}/share-card');
               },
             ),
             _ShareOption(
