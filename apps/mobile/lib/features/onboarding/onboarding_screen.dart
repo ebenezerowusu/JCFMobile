@@ -1,27 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:jcf_ui/jcf_ui.dart';
 
 import '../../l10n/app_localizations.dart';
-
-import '../../core/brand.dart';
+import '../welcome/welcome_widgets.dart'
+    show WelcomeErrorMessage, warmWhite;
+import 'onboarding_pages.dart';
 import 'onboarding_prefs.dart';
+import 'onboarding_widgets.dart';
 
-class _Page {
-  const _Page(this.asset, this.title, this.body);
-  final String asset;
-  final String title;
-  final String body;
-}
-
-/// Onboarding carousel (designs/3-5): hero comp, headline, dots, Next/Skip.
-List<_Page> _buildPages(AppLocalizations t) => [
-      _Page('assets/images/onboard_wisdom.jpg', t.onboardTitle1, t.onboardBody1),
-      _Page('assets/images/onboard_innerspace.jpg', t.onboardTitle2, t.onboardBody2),
-      _Page('assets/images/onboard_serve.jpg', t.onboardTitle3, t.onboardBody3),
-    ];
-
+/// The three-page onboarding sequence (owner spec + designs 51–53).
+///
+/// One PageView, not three routes: the pages are a single experience, and
+/// the reader must be able to swipe between them.
 class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key});
 
@@ -32,6 +23,10 @@ class OnboardingScreen extends ConsumerStatefulWidget {
 class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   final _controller = PageController();
   int _index = 0;
+  bool _completing = false;
+  bool _failed = false;
+
+  static const _pageDuration = Duration(milliseconds: 300);
 
   @override
   void dispose() {
@@ -39,186 +34,192 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     super.dispose();
   }
 
-  /// Skip drops straight to home; finishing the carousel continues the
-  /// designed flow into the language chooser (which marks onboarding seen).
-  Future<void> _skip() async {
-    await ref.read(onboardingPrefsProvider).markSeen();
-    if (mounted) context.go('/welcome');
-  }
+  bool get _isLast => _index == onboardingPages.length - 1;
 
-  void _next() {
-    if (_index == 2) {
-      context.go('/language');
+  bool get _reduceMotion => MediaQuery.disableAnimationsOf(context);
+
+  void _goTo(int page) {
+    if (_reduceMotion) {
+      _controller.jumpToPage(page);
     } else {
-      _controller.nextPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeOut,
-      );
+      _controller.animateToPage(page,
+          duration: _pageDuration, curve: Curves.easeOut);
     }
   }
 
-  void _back() {
-    _controller.previousPage(
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeOut,
-    );
+  Future<void> _finish({required String method}) async {
+    // One completion only: a second tap must not write again or start a
+    // second navigation.
+    if (_completing) return;
+    setState(() {
+      _completing = true;
+      _failed = false;
+    });
+    try {
+      await ref.read(onboardingPrefsProvider).markSeen(method: method);
+      if (!mounted) return;
+      // Replace, so neither the system Back button nor the router can
+      // return to onboarding — or, behind it, to the splash.
+      context.go('/welcome');
+    } catch (_) {
+      if (!mounted) return;
+      // Nothing is persisted, so navigating would show onboarding again
+      // on the next launch. Better to stay and say so.
+      setState(() {
+        _completing = false;
+        _failed = true;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
-    final pages = _buildPages(t);
-    final isLast = _index == pages.length - 1;
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: [
-            // Top bar: brand mark left, page counter right.
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
-              child: Row(
-                children: [
-                  const JcfLogo(size: 44),
-                  const SizedBox(width: 10),
-                  const Text(
-                    'Jan Cosmic\nFoundation',
-                    style: TextStyle(
-                      color: JcfColors.inkOnLight,
-                      fontFamily: JcfTypography.bodyFamily,
-                      fontSize: 15,
-                      height: 1.15,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const Spacer(),
-                  Text(
-                    t.pageCounter(_index + 1, pages.length),
-                    style: const TextStyle(
-                      color: JcfColors.inkOnLight,
-                      fontFamily: JcfTypography.bodyFamily,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: PageView.builder(
-                controller: _controller,
-                onPageChanged: (i) => setState(() => _index = i),
-                itemCount: pages.length,
-                itemBuilder: (context, i) {
-                  final p = pages[i];
-                  return Column(
-                    children: [
-                      // Full-bleed hero, top-anchored — the comps run
-                      // edge to edge with no framing whitespace.
-                      Expanded(
-                        child: ClipRect(
-                          child: SizedBox.expand(
-                            child: Image.asset(
-                              p.asset,
-                              fit: BoxFit.cover,
-                              alignment: Alignment.topCenter,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 28),
-                        child: Column(
-                          children: [
-                            Text(
-                              p.title,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                color: JcfColors.inkOnLight,
-                                fontFamily: JcfTypography.bodyFamily,
-                                fontSize: 30,
-                                fontWeight: FontWeight.w800,
-                                height: 1.15,
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              p.body,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                color: Color(0xFF54689B),
-                                fontFamily: JcfTypography.bodyFamily,
-                                fontSize: 16,
-                                height: 1.4,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                    ],
-                  );
-                },
-              ),
-            ),
-            // Dots.
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+
+    return PopScope(
+      // Back walks the pages; only on the first does it leave, which the
+      // platform handles as it would from any entry screen.
+      canPop: _index == 0,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop && _index > 0) _goTo(_index - 1);
+      },
+      child: Scaffold(
+        backgroundColor: warmWhite,
+        body: LayoutBuilder(
+          builder: (context, constraints) {
+            final height = constraints.maxHeight;
+            final short = height < 680;
+            final heroHeight = height * (short ? 0.48 : 0.56);
+
+            return Stack(
+              fit: StackFit.expand,
               children: [
-                for (var i = 0; i < pages.length; i++)
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 250),
-                    margin: const EdgeInsets.symmetric(horizontal: 4),
-                    height: 9,
-                    width: i == _index ? 9 : 9,
-                    decoration: BoxDecoration(
-                      color: i == _index
-                          ? JcfColors.skyPrimary
-                          : const Color(0xFFC6D6F2),
-                      borderRadius: BorderRadius.circular(5),
+                // The hero belongs to the page, so it swipes with it.
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  height: heroHeight + 40,
+                  child: PageView.builder(
+                    controller: _controller,
+                    // Swiping is disabled while completing, so the reader
+                    // cannot leave the page whose button is working.
+                    physics: _completing
+                        ? const NeverScrollableScrollPhysics()
+                        : const PageScrollPhysics(),
+                    onPageChanged: (index) =>
+                        setState(() => _index = index),
+                    itemCount: onboardingPages.length,
+                    itemBuilder: (context, index) => OnboardingHero(
+                      asset: onboardingPages[index].imageAsset,
+                      height: heroHeight + 40,
                     ),
                   ),
+                ),
+                Positioned.fill(
+                  child: SafeArea(
+                    child: Column(
+                      children: [
+                        OnboardingTopBar(
+                          // Gone on the last page: there is nothing left
+                          // to skip past.
+                          showSkip: !_isLast && !_completing,
+                          onSkip: () => _finish(method: 'skipped'),
+                        ),
+                        const Spacer(),
+                        _panel(t, constraints, short),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _panel(
+      AppLocalizations t, BoxConstraints constraints, bool short) {
+    return Container(
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        color: warmWhite,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+        boxShadow: [
+          BoxShadow(
+              color: Color(0x1A102454),
+              blurRadius: 24,
+              offset: Offset(0, -6)),
+        ],
+      ),
+      // Bounded and scrollable, so large text or a long translation
+      // cannot push the navigation off the bottom.
+      constraints: BoxConstraints(
+          maxHeight: constraints.maxHeight * (short ? 0.74 : 0.62)),
+      child: SingleChildScrollView(
+        padding:
+            EdgeInsets.fromLTRB(24, short ? 20 : 26, 24, short ? 16 : 22),
+        child: Center(
+          child: ConstrainedBox(
+            // A readable measure on a tablet rather than one wide line.
+            constraints: const BoxConstraints(maxWidth: 480),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // Keyed by page id so a page change swaps the words
+                // rather than mutating one widget in place.
+                OnboardingPageContent(
+                  key: ValueKey(onboardingPages[_index].id),
+                  page: onboardingPages[_index],
+                  compact: short,
+                ),
+                SizedBox(height: short ? 18 : 24),
+                OnboardingPageIndicator(
+                    current: _index, total: onboardingPages.length),
+                SizedBox(height: short ? 16 : 22),
+                if (_failed) ...[
+                  WelcomeErrorMessage(
+                    message: t.onboardingCompletionFailed,
+                    onRetry: () => _finish(
+                        method: _isLast ? 'completed' : 'skipped'),
+                  ),
+                  const SizedBox(height: 14),
+                ],
+                Row(
+                  children: [
+                    // Hidden, not disabled, on the first page: nothing
+                    // should invite a tap that cannot do anything.
+                    if (_index > 0) ...[
+                      OnboardingBackButton(
+                        onPressed: _completing
+                            ? null
+                            : () => _goTo(_index - 1),
+                      ),
+                      const SizedBox(width: 12),
+                    ],
+                    Expanded(
+                      child: OnboardingPrimaryButton(
+                        label: _isLast
+                            ? t.onboardingGetStarted
+                            : t.onboardingNext,
+                        loading: _completing,
+                        onPressed: () {
+                          if (_isLast) {
+                            _finish(method: 'completed');
+                          } else {
+                            _goTo(_index + 1);
+                          }
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
-            // CTA + secondary action.
-            Padding(
-              padding: const EdgeInsets.fromLTRB(24, 18, 24, 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  FilledButton(
-                    onPressed: _next,
-                    style: FilledButton.styleFrom(
-                      backgroundColor: JcfColors.skyPrimary,
-                      foregroundColor: Colors.white,
-                      minimumSize: const Size.fromHeight(56),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(28),
-                      ),
-                      textStyle: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: JcfTypography.bodyFamily,
-                      ),
-                    ),
-                    child: Text(isLast ? t.continueLabel : t.next),
-                  ),
-                  TextButton(
-                    onPressed: isLast ? _back : _skip,
-                    child: Text(
-                      isLast ? t.back : t.skip,
-                      style: const TextStyle(
-                        color: JcfColors.skyPrimary,
-                        fontFamily: JcfTypography.bodyFamily,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

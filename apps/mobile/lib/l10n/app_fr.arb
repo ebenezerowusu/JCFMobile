@@ -595,5 +595,20 @@
   "legalUnavailableBody": "Ce document n'a pas été publié. Revenez plus tard ou contactez la fondation.",
   "legalLoadFailed": "Impossible de charger ce document.",
   "legalLastUpdated": "Mis à jour le {date}",
-  "legalShownInEnglish": "Affiché en anglais ; la traduction n'est pas encore disponible."
+  "legalShownInEnglish": "Affiché en anglais ; la traduction n'est pas encore disponible.",
+  "onboardingSkip": "Passer",
+  "onboardingBack": "Retour",
+  "onboardingNext": "Suivant",
+  "onboardingGetStarted": "Commencer",
+  "onboardingPagePosition": "Page {current} sur {total}",
+  "onboardingCompletionFailed": "Impossible d'enregistrer votre progression. Veuillez réessayer.",
+  "onboardingTeachingsEyebrow": "ENSEIGNEMENTS",
+  "onboardingTeachingsTitle": "Découvrez des enseignements intemporels",
+  "onboardingTeachingsDescription": "Explorez la sagesse à travers des enseignements vidéo, audio et écrits, pensés pour la vie quotidienne.",
+  "onboardingInnerSpaceEyebrow": "INNERSPACE",
+  "onboardingInnerSpaceTitle": "Allez plus loin en vous",
+  "onboardingInnerSpaceDescription": "Construisez une pratique personnelle avec la méditation guidée, la réflexion et des outils de conscience intérieure.",
+  "onboardingCommunityEyebrow": "COMMUNAUTÉ ET SERVICE",
+  "onboardingCommunityTitle": "Grandir ensemble. Servir avec sens.",
+  "onboardingCommunityDescription": "Rencontrez d'autres personnes, rejoignez des programmes porteurs de sens et transformez la croissance intérieure en action bienveillante."
 }

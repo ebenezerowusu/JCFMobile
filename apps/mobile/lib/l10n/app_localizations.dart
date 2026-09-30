@@ -3679,6 +3679,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Shown in English; a translation is not yet available.'**
   String get legalShownInEnglish;
+
+  /// No description provided for @onboardingSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get onboardingSkip;
+
+  /// No description provided for @onboardingBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get onboardingBack;
+
+  /// No description provided for @onboardingNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get onboardingNext;
+
+  /// No description provided for @onboardingGetStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Get started'**
+  String get onboardingGetStarted;
+
+  /// No description provided for @onboardingPagePosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Page {current} of {total}'**
+  String onboardingPagePosition(int current, int total);
+
+  /// No description provided for @onboardingCompletionFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t save your progress. Please try again.'**
+  String get onboardingCompletionFailed;
+
+  /// No description provided for @onboardingTeachingsEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'TEACHINGS'**
+  String get onboardingTeachingsEyebrow;
+
+  /// No description provided for @onboardingTeachingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover timeless teachings'**
+  String get onboardingTeachingsTitle;
+
+  /// No description provided for @onboardingTeachingsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore wisdom through video, audio, and written teachings designed for everyday life.'**
+  String get onboardingTeachingsDescription;
+
+  /// No description provided for @onboardingInnerSpaceEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'INNERSPACE'**
+  String get onboardingInnerSpaceEyebrow;
+
+  /// No description provided for @onboardingInnerSpaceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Go deeper within'**
+  String get onboardingInnerSpaceTitle;
+
+  /// No description provided for @onboardingInnerSpaceDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Build a personal practice with guided meditation, reflection, and tools for inner awareness.'**
+  String get onboardingInnerSpaceDescription;
+
+  /// No description provided for @onboardingCommunityEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'COMMUNITY & SERVICE'**
+  String get onboardingCommunityEyebrow;
+
+  /// No description provided for @onboardingCommunityTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Grow together. Serve with purpose.'**
+  String get onboardingCommunityTitle;
+
+  /// No description provided for @onboardingCommunityDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect with others, join meaningful programs, and turn inner growth into compassionate action.'**
+  String get onboardingCommunityDescription;
 }
 
 class _AppLocalizationsDelegate

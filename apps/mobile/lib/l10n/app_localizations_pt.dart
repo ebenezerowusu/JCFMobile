@@ -1983,4 +1983,56 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get legalShownInEnglish =>
       'Apresentado em inglês; a tradução ainda não está disponível.';
+
+  @override
+  String get onboardingSkip => 'Ignorar';
+
+  @override
+  String get onboardingBack => 'Voltar';
+
+  @override
+  String get onboardingNext => 'Seguinte';
+
+  @override
+  String get onboardingGetStarted => 'Começar';
+
+  @override
+  String onboardingPagePosition(int current, int total) {
+    return 'Página $current de $total';
+  }
+
+  @override
+  String get onboardingCompletionFailed =>
+      'Não foi possível guardar o seu progresso. Tente novamente.';
+
+  @override
+  String get onboardingTeachingsEyebrow => 'ENSINAMENTOS';
+
+  @override
+  String get onboardingTeachingsTitle => 'Descubra ensinamentos intemporais';
+
+  @override
+  String get onboardingTeachingsDescription =>
+      'Explore sabedoria em vídeo, áudio e texto, pensada para o dia a dia.';
+
+  @override
+  String get onboardingInnerSpaceEyebrow => 'INNERSPACE';
+
+  @override
+  String get onboardingInnerSpaceTitle => 'Vá mais fundo dentro de si';
+
+  @override
+  String get onboardingInnerSpaceDescription =>
+      'Construa uma prática pessoal com meditação guiada, reflexão e ferramentas de consciência interior.';
+
+  @override
+  String get onboardingCommunityEyebrow => 'COMUNIDADE E SERVIÇO';
+
+  @override
+  String get onboardingCommunityTitle =>
+      'Crescer juntos. Servir com propósito.';
+
+  @override
+  String get onboardingCommunityDescription =>
+      'Ligue-se a outras pessoas, participe em programas com significado e transforme o crescimento interior em ação compassiva.';
 }

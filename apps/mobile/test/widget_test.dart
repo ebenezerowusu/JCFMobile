@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,8 +18,7 @@ class _FirstRunBootstrap implements AppBootstrapService {
 }
 
 void main() {
-  testWidgets(
-      'first run: splash -> onboarding -> language -> welcome -> sign in',
+  testWidgets('first run: splash -> onboarding -> welcome -> sign in',
       (tester) async {
     SharedPreferences.setMockInitialValues({}); // onboarding not seen
 
@@ -44,104 +42,37 @@ void main() {
     }
     await tester.pumpAndSettle();
 
-    expect(find.text('Wisdom for the journey'), findsOneWidget);
-    expect(find.text('1 of 3'), findsOneWidget);
+    // Page 1 of the rebuilt carousel.
+    expect(find.text('TEACHINGS'), findsOneWidget);
+    expect(find.text('Discover timeless teachings'), findsOneWidget);
     expect(find.text('Skip'), findsOneWidget);
-    expect(find.text('Continue'), findsNothing); // not on the first page
+    expect(find.text('Back'), findsNothing); // nothing to go back to
 
-    // Walk to the last page: Next label becomes Continue, Skip becomes Back.
+    // Next -> InnerSpace, which can go back.
     await tester.tap(find.text('Next'));
     await tester.pumpAndSettle();
+    expect(find.text('Go deeper within'), findsOneWidget);
+
+    // Next -> Community & Service: no Skip, and the primary action
+    // becomes Get started.
     await tester.tap(find.text('Next'));
     await tester.pumpAndSettle();
-    expect(find.text('Learn, gather and serve'), findsOneWidget);
-    expect(find.text('3 of 3'), findsOneWidget);
-    expect(find.text('Continue'), findsOneWidget);
-    expect(find.text('Back'), findsOneWidget);
+    expect(find.text('Grow together. Serve with purpose.'), findsOneWidget);
+    expect(find.text('Skip'), findsNothing);
+    expect(find.text('Get started'), findsOneWidget);
 
-    // Continue -> language chooser.
-    await tester.tap(find.text('Continue'));
+    // Get started -> Welcome.
+    await tester.tap(find.text('Get started'));
     await tester.pumpAndSettle();
-    expect(find.text('Choose your language'), findsOneWidget);
-    expect(find.text('English'), findsOneWidget);
-
-    // Select Français; it becomes the highlighted choice.
-    await tester.tap(find.text('Français'));
-    await tester.pump();
-    expect(find.byIcon(Icons.check), findsOneWidget);
-
-    // More languages reveals the coming-soon set (scroll down to it).
-    await tester.tap(find.text('More languages'));
-    await tester.pump();
-    await tester.dragUntilVisible(
-        find.text('Twi'), find.byType(ListView), const Offset(0, -200));
-    await tester.pump();
-    expect(find.text('Twi'), findsOneWidget);
-    expect(find.text('Coming soon'), findsWidgets);
-    await tester.pumpAndSettle(); // let list momentum die before tapping
-
-    // Continue -> the Welcome screen. Having picked Français, the app now
-    // renders in French — proving the l10n foundation end to end.
-    await tester.tap(find.text('Continue'));
-    await tester.pumpAndSettle();
-    expect(find.text('Commencez votre voyage intérieur'), findsOneWidget);
-    expect(find.text("Continuer en tant qu'invité"), findsOneWidget);
+    expect(find.text('Begin your journey within'), findsOneWidget);
+    expect(find.text('Continue as guest'), findsOneWidget);
 
     // The account action -> the sign-in options screen (design 9).
-    await tester.tap(find.text('Se connecter ou créer un compte'));
+    await tester.tap(find.text('Sign in or create account'));
     await tester.pumpAndSettle();
-    expect(find.text('Bon retour'), findsOneWidget);
-    expect(find.text('Continuer avec le téléphone'), findsOneWidget);
-
-    // Continue with Email -> OTP entry with the email field.
-    await tester.ensureVisible(find.text("Continuer avec l'e-mail"));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text("Continuer avec l'e-mail"));
-    await tester.pumpAndSettle();
-    expect(find.text('Adresse e-mail'), findsOneWidget);
-    expect(find.text('Envoyer le code'), findsOneWidget);
-
-    // Switch to the phone screen: country dial code + phone field.
-    await tester.ensureVisible(find.text('Utiliser le téléphone'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Utiliser le téléphone'));
-    await tester.pumpAndSettle();
-    expect(find.text('+233'), findsOneWidget);
-    expect(find.text('Numéro de téléphone'), findsOneWidget);
-    expect(find.text('Utiliser l\'e-mail'), findsOneWidget);
-
-    // Back out to the path chooser.
-    await tester.tap(find.byIcon(Icons.arrow_back));
-    await tester.pumpAndSettle();
-    await tester.tap(find.byIcon(Icons.arrow_back));
-    await tester.pumpAndSettle();
-
-    // Continue as Guest -> notification opt-in (scroll it into view first).
-    await tester.ensureVisible(find.text('Continuer en invité'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Continuer en invité'));
-    await tester.pumpAndSettle();
-    expect(find.text('Restez connecté'), findsOneWidget);
-    expect(find.text('Inspiration quotidienne'), findsOneWidget);
-    expect(find.text('Rappels de pratique'), findsOneWidget);
-    expect(find.text('Actualités des programmes'), findsOneWidget);
-    expect(find.text('Activer les notifications'), findsOneWidget);
-    expect(find.text('Pas maintenant'), findsOneWidget);
-
-    // Not Now -> the new role-adaptive guest Home (design 19) in the new
-    // 5-tab shell (Home · Learn · Practice · Programs · More).
-    await tester.ensureVisible(find.text('Pas maintenant'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Pas maintenant'));
-    await tester.pumpAndSettle();
-    expect(find.text('Commencez votre voyage'), findsOneWidget);
-    expect(find.text('Pratique'), findsOneWidget); // tab
-    expect(find.text('Plus'), findsOneWidget); // tab
-
-    // More tab -> Quick Actions (design 29).
-    await tester.tap(find.text('Plus'));
-    await tester.pumpAndSettle();
-    expect(find.text('Actions rapides'), findsOneWidget);
-    expect(find.text('Boutique'), findsOneWidget);
+    expect(find.text('Welcome back'), findsOneWidget);
+    expect(find.text('Continue with Phone'), findsOneWidget);
+    // The journey ends here: what happens inside authentication is the
+    // auth tests' subject, not this one's.
   });
 }

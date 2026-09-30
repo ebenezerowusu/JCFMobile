@@ -1979,4 +1979,55 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get legalShownInEnglish =>
       'Shown in English; a translation is not yet available.';
+
+  @override
+  String get onboardingSkip => 'Skip';
+
+  @override
+  String get onboardingBack => 'Back';
+
+  @override
+  String get onboardingNext => 'Next';
+
+  @override
+  String get onboardingGetStarted => 'Get started';
+
+  @override
+  String onboardingPagePosition(int current, int total) {
+    return 'Page $current of $total';
+  }
+
+  @override
+  String get onboardingCompletionFailed =>
+      'We couldn\'t save your progress. Please try again.';
+
+  @override
+  String get onboardingTeachingsEyebrow => 'TEACHINGS';
+
+  @override
+  String get onboardingTeachingsTitle => 'Discover timeless teachings';
+
+  @override
+  String get onboardingTeachingsDescription =>
+      'Explore wisdom through video, audio, and written teachings designed for everyday life.';
+
+  @override
+  String get onboardingInnerSpaceEyebrow => 'INNERSPACE';
+
+  @override
+  String get onboardingInnerSpaceTitle => 'Go deeper within';
+
+  @override
+  String get onboardingInnerSpaceDescription =>
+      'Build a personal practice with guided meditation, reflection, and tools for inner awareness.';
+
+  @override
+  String get onboardingCommunityEyebrow => 'COMMUNITY & SERVICE';
+
+  @override
+  String get onboardingCommunityTitle => 'Grow together. Serve with purpose.';
+
+  @override
+  String get onboardingCommunityDescription =>
+      'Connect with others, join meaningful programs, and turn inner growth into compassionate action.';
 }

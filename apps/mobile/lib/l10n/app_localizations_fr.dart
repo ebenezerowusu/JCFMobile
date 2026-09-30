@@ -1998,4 +1998,56 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get legalShownInEnglish =>
       'Affiché en anglais ; la traduction n\'est pas encore disponible.';
+
+  @override
+  String get onboardingSkip => 'Passer';
+
+  @override
+  String get onboardingBack => 'Retour';
+
+  @override
+  String get onboardingNext => 'Suivant';
+
+  @override
+  String get onboardingGetStarted => 'Commencer';
+
+  @override
+  String onboardingPagePosition(int current, int total) {
+    return 'Page $current sur $total';
+  }
+
+  @override
+  String get onboardingCompletionFailed =>
+      'Impossible d\'enregistrer votre progression. Veuillez réessayer.';
+
+  @override
+  String get onboardingTeachingsEyebrow => 'ENSEIGNEMENTS';
+
+  @override
+  String get onboardingTeachingsTitle =>
+      'Découvrez des enseignements intemporels';
+
+  @override
+  String get onboardingTeachingsDescription =>
+      'Explorez la sagesse à travers des enseignements vidéo, audio et écrits, pensés pour la vie quotidienne.';
+
+  @override
+  String get onboardingInnerSpaceEyebrow => 'INNERSPACE';
+
+  @override
+  String get onboardingInnerSpaceTitle => 'Allez plus loin en vous';
+
+  @override
+  String get onboardingInnerSpaceDescription =>
+      'Construisez une pratique personnelle avec la méditation guidée, la réflexion et des outils de conscience intérieure.';
+
+  @override
+  String get onboardingCommunityEyebrow => 'COMMUNAUTÉ ET SERVICE';
+
+  @override
+  String get onboardingCommunityTitle => 'Grandir ensemble. Servir avec sens.';
+
+  @override
+  String get onboardingCommunityDescription =>
+      'Rencontrez d\'autres personnes, rejoignez des programmes porteurs de sens et transformez la croissance intérieure en action bienveillante.';
 }

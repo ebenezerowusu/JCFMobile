@@ -1997,4 +1997,55 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get legalShownInEnglish =>
       'Auf Englisch angezeigt; eine Übersetzung liegt noch nicht vor.';
+
+  @override
+  String get onboardingSkip => 'Überspringen';
+
+  @override
+  String get onboardingBack => 'Zurück';
+
+  @override
+  String get onboardingNext => 'Weiter';
+
+  @override
+  String get onboardingGetStarted => 'Loslegen';
+
+  @override
+  String onboardingPagePosition(int current, int total) {
+    return 'Seite $current von $total';
+  }
+
+  @override
+  String get onboardingCompletionFailed =>
+      'Dein Fortschritt konnte nicht gespeichert werden. Bitte versuche es erneut.';
+
+  @override
+  String get onboardingTeachingsEyebrow => 'LEHREN';
+
+  @override
+  String get onboardingTeachingsTitle => 'Entdecke zeitlose Lehren';
+
+  @override
+  String get onboardingTeachingsDescription =>
+      'Erkunde Weisheit in Video, Audio und Text — für den Alltag gedacht.';
+
+  @override
+  String get onboardingInnerSpaceEyebrow => 'INNERSPACE';
+
+  @override
+  String get onboardingInnerSpaceTitle => 'Geh tiefer nach innen';
+
+  @override
+  String get onboardingInnerSpaceDescription =>
+      'Baue eine eigene Praxis auf – mit geführter Meditation, Reflexion und Werkzeugen für inneres Gewahrsein.';
+
+  @override
+  String get onboardingCommunityEyebrow => 'GEMEINSCHAFT & DIENST';
+
+  @override
+  String get onboardingCommunityTitle => 'Gemeinsam wachsen. Sinnvoll dienen.';
+
+  @override
+  String get onboardingCommunityDescription =>
+      'Triff andere, nimm an bedeutsamen Programmen teil und mache inneres Wachstum zu mitfühlendem Handeln.';
 }

@@ -595,5 +595,20 @@
   "legalUnavailableBody": "Este documento ainda não foi publicado. Volte mais tarde ou contacte a fundação.",
   "legalLoadFailed": "Não foi possível carregar este documento.",
   "legalLastUpdated": "Atualizado a {date}",
-  "legalShownInEnglish": "Apresentado em inglês; a tradução ainda não está disponível."
+  "legalShownInEnglish": "Apresentado em inglês; a tradução ainda não está disponível.",
+  "onboardingSkip": "Ignorar",
+  "onboardingBack": "Voltar",
+  "onboardingNext": "Seguinte",
+  "onboardingGetStarted": "Começar",
+  "onboardingPagePosition": "Página {current} de {total}",
+  "onboardingCompletionFailed": "Não foi possível guardar o seu progresso. Tente novamente.",
+  "onboardingTeachingsEyebrow": "ENSINAMENTOS",
+  "onboardingTeachingsTitle": "Descubra ensinamentos intemporais",
+  "onboardingTeachingsDescription": "Explore sabedoria em vídeo, áudio e texto, pensada para o dia a dia.",
+  "onboardingInnerSpaceEyebrow": "INNERSPACE",
+  "onboardingInnerSpaceTitle": "Vá mais fundo dentro de si",
+  "onboardingInnerSpaceDescription": "Construa uma prática pessoal com meditação guiada, reflexão e ferramentas de consciência interior.",
+  "onboardingCommunityEyebrow": "COMUNIDADE E SERVIÇO",
+  "onboardingCommunityTitle": "Crescer juntos. Servir com propósito.",
+  "onboardingCommunityDescription": "Ligue-se a outras pessoas, participe em programas com significado e transforme o crescimento interior em ação compassiva."
 }

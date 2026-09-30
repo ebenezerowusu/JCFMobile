@@ -302,6 +302,30 @@ prerequisites YES ("Complete Level 2 to unlock").
       step 9); welcome_screen_ui.png is not shipped. No analytics layer, so
       none of the listed events are emitted; deep-link restoration is still
       unimplemented.
+- [x] 17. Onboarding rebuilt (owner spec + designs 51-53, Sep 2026): three
+      pages (Teachings / InnerSpace / Community & Service) in one PageView
+      with per-page hero, logo and Skip over it, warm-white panel, animated
+      three-dot indicator, Back hidden on page 1, Skip hidden on page 3,
+      Get started on page 3. 25 app tests (suite 273 green), analyze clean,
+      strings in all five Wave-1 locales. VERSIONED COMPLETION: the old
+      `onboarding_seen` boolean is replaced by `onboarding_seen_version`
+      against `currentOnboardingVersion = 1`, so a materially new
+      onboarding can be shown later without clearing app data. The old
+      boolean is still read and treated as "saw version 1", so nobody who
+      already onboarded is asked again; a stored version NEWER than the
+      current one also counts as seen, so a downgrade does not drag
+      someone back through it. Raise the constant only for genuinely new
+      content, never for wording. CONSEQUENCE: onboarding now goes
+      straight to /welcome, so /language has left the default chain too -
+      joining /path and /stay-connected as orphaned routes. The Welcome
+      screen carries a language selector, so language is still reachable
+      before sign-in, but the dedicated chooser and the notification
+      opt-in now appear nowhere. Worth one owner decision covering all
+      three. Notes: heroes are .webp (see step 9); the three
+      *_screen_ui.png references are not shipped; the logo points at the
+      splash asset rather than a fourth copy of the same artwork; no
+      analytics layer, so the listed events are not emitted; completion
+      is local-only and never blocks on the network.
 
 ## 🟦 Track 1 — Learn & Practice (recommended lead pillar)
 

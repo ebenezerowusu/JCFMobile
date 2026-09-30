@@ -946,5 +946,30 @@
       }
     }
   },
-  "legalShownInEnglish": "Shown in English; a translation is not yet available."
+  "legalShownInEnglish": "Shown in English; a translation is not yet available.",
+  "onboardingSkip": "Skip",
+  "onboardingBack": "Back",
+  "onboardingNext": "Next",
+  "onboardingGetStarted": "Get started",
+  "onboardingPagePosition": "Page {current} of {total}",
+  "@onboardingPagePosition": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "onboardingCompletionFailed": "We couldn't save your progress. Please try again.",
+  "onboardingTeachingsEyebrow": "TEACHINGS",
+  "onboardingTeachingsTitle": "Discover timeless teachings",
+  "onboardingTeachingsDescription": "Explore wisdom through video, audio, and written teachings designed for everyday life.",
+  "onboardingInnerSpaceEyebrow": "INNERSPACE",
+  "onboardingInnerSpaceTitle": "Go deeper within",
+  "onboardingInnerSpaceDescription": "Build a personal practice with guided meditation, reflection, and tools for inner awareness.",
+  "onboardingCommunityEyebrow": "COMMUNITY & SERVICE",
+  "onboardingCommunityTitle": "Grow together. Serve with purpose.",
+  "onboardingCommunityDescription": "Connect with others, join meaningful programs, and turn inner growth into compassionate action."
 }
