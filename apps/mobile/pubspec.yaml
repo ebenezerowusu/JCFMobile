@@ -91,6 +91,7 @@ flutter:
     - assets/images/daily_inspiration_detail/
     - assets/images/daily_inspiration_share_card/
     - assets/images/live_now_player/
+    - assets/images/upcoming_activities/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

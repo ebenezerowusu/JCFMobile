@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:jcf_ui/jcf_ui.dart';
 
 import '../../l10n/app_localizations.dart';
-import '../activities/activities_repository.dart';
+import '../activities/home_feed.dart';
 import 'home_widgets.dart';
 import 'student_home_repository.dart';
 import 'student_home_widgets.dart';
@@ -177,20 +177,13 @@ class StudentHomeBody extends ConsumerWidget {
     final t = AppLocalizations.of(context)!;
     final messenger = ScaffoldMessenger.of(context);
     try {
-      final item = ActivityItem(
-        kind: 'live',
-        title: liveClass.title,
-        description: '',
-        startsAt: liveClass.startsAt,
-        allDay: false,
-        venue: liveClass.venue,
-        audience: 'students',
-        liveSoon: false,
-        reminderSet: liveClass.reminderEnabled,
-        activityId: liveClass.sessionId,
-      );
-      final on =
-          await ref.read(activitiesRepositoryProvider).toggleReminder(item);
+      final on = await ref
+          .read(activitiesRepositoryProvider)
+          .toggleReminder(
+            // A student's live class is always an Activity — `session_id`
+            // is that activity's id, never a programme slug.
+            activityId: liveClass.sessionId,
+          );
       ref.invalidate(studentHomeProvider);
       ref.invalidate(upcomingActivitiesProvider);
       messenger.showSnackBar(

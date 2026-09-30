@@ -184,6 +184,36 @@ prerequisites YES ("Complete Level 2 to unlock").
       than stretched; "Light" is both a style and a text colour per the
       spec — section headings and semantic labels disambiguate; no
       analytics layer yet
+- [x] 13. Upcoming Activities (owner spec + designs 37-41, Sep 2026):
+      Activity extended with activity_type, activity_format, city/country,
+      online_platform, facilitator, language, artwork, fee and the
+      registration fields; ActivityRegistration (seats + waitlist) and
+      ActivitySave (a bookmark that holds no seat) added. GET
+      /activities/upcoming/ rebuilt as a keyset page over (starts_at, id)
+      with from/to day bounds, the four primary chips, type/language/fee/
+      access filters, search, window-wide facet counts and a
+      server-selected featured_activity; GET /activities/calendar/?month=
+      returns per-day density; /activities/save/ and /activities/register/
+      added. App: /activities rebuilt with a locale-aware week selector,
+      list/calendar toggle persisted locally, a draft-state filter sheet,
+      debounced search, cursor pagination with id dedup and a cursor reset
+      on every filter change, optimistic reminder and save, a
+      non-optimistic registration, offline first page from disk, and
+      empty/loading/error states. 73 backend tests (suite 261 green), 52
+      app tests (suite 158 green), analyze clean. Notes and deviations:
+      hybrid activities answer to BOTH the Online and the In person chip,
+      since they genuinely are both; visibility is a ladder rather than a
+      filter (a guest sees members-only activities locked, a member sees
+      students-only ones locked, a student sees everything open) but the
+      featured banner never advertises something the reader cannot open;
+      programmes left this feed, because a union of two tables cannot be
+      keyset-paged and a programme is a course rather than a dated card
+      with a seat and a format - programmes keep their own screen and
+      reminders on them still work; a non-live card opens a detail sheet
+      built from the row already in hand rather than a separate screen,
+      since nothing further needs fetching; assets are .webp (see step 9);
+      no analytics layer yet, and only the unfiltered first page is
+      cached offline
 
 ## 🟦 Track 1 — Learn & Practice (recommended lead pillar)
 

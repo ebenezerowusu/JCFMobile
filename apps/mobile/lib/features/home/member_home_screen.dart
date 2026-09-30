@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:jcf_ui/jcf_ui.dart';
 
 import '../../l10n/app_localizations.dart';
-import '../activities/activities_repository.dart';
+import '../activities/home_feed.dart';
 import 'home_widgets.dart';
 import 'member_home_repository.dart';
 import 'member_home_widgets.dart';
@@ -166,21 +166,10 @@ class MemberHomeBody extends ConsumerWidget {
     final t = AppLocalizations.of(context)!;
     final messenger = ScaffoldMessenger.of(context);
     try {
-      final item = ActivityItem(
-        kind: 'live',
-        title: event.title,
-        description: '',
-        startsAt: event.startsAt,
-        allDay: event.allDay,
-        venue: event.format,
-        audience: 'members',
-        liveSoon: false,
-        reminderSet: event.reminderEnabled,
-        activityId: event.activityId,
-        programSlug: event.programSlug,
-      );
-      final on =
-          await ref.read(activitiesRepositoryProvider).toggleReminder(item);
+      final on = await ref
+          .read(activitiesRepositoryProvider)
+          .toggleReminder(
+            activityId: event.activityId, programSlug: event.programSlug);
       ref.invalidate(memberHomeProvider);
       ref.invalidate(upcomingActivitiesProvider);
       messenger.showSnackBar(

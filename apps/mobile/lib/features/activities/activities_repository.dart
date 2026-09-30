@@ -1,66 +1,29 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/providers.dart';
-import '../auth/auth_controller.dart';
+import 'activity_models.dart';
 
-/// One row of the unified Upcoming Activities feed (design 25): a scheduled
-/// activity or a published programme.
-class ActivityItem {
-  const ActivityItem({
-    required this.kind,
-    required this.title,
-    required this.description,
-    required this.startsAt,
-    required this.allDay,
-    required this.venue,
-    required this.audience,
-    required this.liveSoon,
-    required this.reminderSet,
-    this.durationMinutes,
-    this.activityId,
-    this.programSlug,
-  });
+/// The first page of the unfiltered list, kept on disk so the schedule is
+/// readable on a cold start with no network. Only page one is cached:
+/// further pages are cheap to refetch and a stale cursor is worse than none.
+const _cacheKey = 'activities.upcoming.page1.v1';
+const _cacheStampKey = 'activities.upcoming.page1.stamp.v1';
 
-  final String kind; // live | practice | gathering | programme
-  final String title;
-  final String description;
-  final DateTime startsAt;
-  final bool allDay;
-  final String venue;
-  final String audience; // public | members | students
-  final bool liveSoon;
-  final bool reminderSet;
-  final int? durationMinutes;
-  final int? activityId;
-  final String? programSlug;
+/// How long a cached page may be shown before it is labelled as stale.
+const cacheFreshness = Duration(hours: 6);
 
-  /// live | starting_soon | upcoming — derived, so a cached item can never
-  /// claim to be live after it has ended.
-  String status(DateTime now) {
-    // All-day items (programmes) are dated, not broadcast — never "live".
-    if (allDay) return 'upcoming';
-    final ends =
-        startsAt.add(Duration(minutes: durationMinutes ?? 60));
-    if (!now.isBefore(startsAt) && now.isBefore(ends)) return 'live';
-    if (liveSoon && now.isBefore(startsAt)) return 'starting_soon';
-    return 'upcoming';
-  }
+class CachedActivityPage {
+  const CachedActivityPage(this.page, this.cachedAt);
 
-  factory ActivityItem.fromJson(Map<String, dynamic> json) => ActivityItem(
-        kind: json['kind'] as String,
-        title: json['title'] as String,
-        description: json['description'] as String? ?? '',
-        startsAt: DateTime.parse(json['starts_at'] as String).toLocal(),
-        allDay: json['all_day'] as bool? ?? false,
-        venue: json['venue'] as String? ?? '',
-        audience: json['audience'] as String? ?? 'public',
-        liveSoon: json['live_soon'] as bool? ?? false,
-        reminderSet: json['reminder_set'] as bool? ?? false,
-        durationMinutes: json['duration_minutes'] as int?,
-        activityId: json['activity_id'] as int?,
-        programSlug: json['program_slug'] as String?,
-      );
+  final ActivityPage page;
+  final DateTime cachedAt;
+
+  bool get isStale =>
+      DateTime.now().difference(cachedAt) > cacheFreshness;
 }
 
 class ActivitiesRepository {
@@ -68,32 +31,108 @@ class ActivitiesRepository {
 
   final Dio _dio;
 
-  Future<List<ActivityItem>> upcoming() async {
-    final res = await _dio.get<Map<String, dynamic>>('activities/upcoming/');
+  Future<ActivityPage> browse({
+    ActivityQuery query = const ActivityQuery(),
+    String? cursor,
+    int limit = 20,
+  }) async {
+    final res = await _dio.get<Map<String, dynamic>>(
+      'activities/upcoming/',
+      queryParameters: {
+        ...query.toParams(),
+        'limit': '$limit',
+        if (cursor != null) 'cursor': cursor,
+      },
+    );
+    final page = ActivityPage.fromJson(res.data ?? const {});
+    // Only an unfiltered first page is worth keeping: it is what a cold
+    // start shows before anything is chosen.
+    if (cursor == null && !query.hasAnyFilter && query.from == null) {
+      await _writeCache(res.data);
+    }
+    return page;
+  }
+
+  Future<List<CalendarDay>> calendar({
+    required DateTime month,
+    ActivityQuery query = const ActivityQuery(),
+  }) async {
+    final res = await _dio.get<Map<String, dynamic>>(
+      'activities/calendar/',
+      queryParameters: {
+        ...query.toParams()..remove('from')..remove('to'),
+        'month': '${month.year.toString().padLeft(4, '0')}-'
+            '${month.month.toString().padLeft(2, '0')}',
+      },
+    );
     return [
-      for (final row in (res.data?['results'] as List? ?? []))
-        ActivityItem.fromJson(row as Map<String, dynamic>)
+      for (final row in (res.data?['days'] as List? ?? []))
+        CalendarDay.fromJson(row as Map<String, dynamic>)
     ];
   }
 
-  /// Toggles a "remind me" on one feed item; returns the new state.
-  Future<bool> toggleReminder(ActivityItem item) async {
+  /// Toggles a "remind me" on an activity or a programme; returns the new
+  /// state. Programmes still take reminders even though they left the
+  /// browse list.
+  Future<bool> toggleReminder({int? activityId, String? programSlug}) async {
     final res = await _dio.post<Map<String, dynamic>>(
       'activities/reminder/',
-      data: item.activityId != null
-          ? {'activity_id': item.activityId}
-          : {'program_slug': item.programSlug},
+      data: activityId != null
+          ? {'activity_id': activityId}
+          : {'program_slug': programSlug},
     );
     return res.data?['reminder_set'] as bool? ?? false;
+  }
+
+  Future<bool> toggleSave(int activityId) async {
+    final res = await _dio.post<Map<String, dynamic>>(
+      'activities/save/',
+      data: {'activity_id': activityId},
+    );
+    return res.data?['saved'] as bool? ?? false;
+  }
+
+  /// Takes or releases a place. Returns the server's account of the seat —
+  /// the app never guesses whether a registration became a waitlist entry.
+  Future<ActivityRegistrationInfo> register(
+    int activityId, {
+    bool cancel = false,
+  }) async {
+    final res = await _dio.post<Map<String, dynamic>>(
+      'activities/register/',
+      data: {'activity_id': activityId, if (cancel) 'cancel': true},
+    );
+    return ActivityRegistrationInfo.fromJson(
+        res.data?['registration'] as Map<String, dynamic>?);
+  }
+
+  Future<void> _writeCache(Map<String, dynamic>? body) async {
+    if (body == null) return;
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(_cacheKey, jsonEncode(body));
+      await prefs.setString(
+          _cacheStampKey, DateTime.now().toIso8601String());
+    } catch (_) {
+      // A cache that cannot be written is not a reason to fail the load.
+    }
+  }
+
+  Future<CachedActivityPage?> cachedFirstPage() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final raw = prefs.getString(_cacheKey);
+      if (raw == null) return null;
+      final stamp = DateTime.tryParse(prefs.getString(_cacheStampKey) ?? '');
+      return CachedActivityPage(
+        ActivityPage.fromJson(jsonDecode(raw) as Map<String, dynamic>),
+        stamp ?? DateTime.now(),
+      );
+    } catch (_) {
+      return null;
+    }
   }
 }
 
 final activitiesRepositoryProvider = Provider<ActivitiesRepository>(
     (ref) => ActivitiesRepository(ref.watch(dioProvider)));
-
-/// The unified feed; refetches on sign-in/out so audience items appear.
-final upcomingActivitiesProvider =
-    FutureProvider.autoDispose<List<ActivityItem>>((ref) {
-  ref.watch(authControllerProvider);
-  return ref.watch(activitiesRepositoryProvider).upcoming();
-});

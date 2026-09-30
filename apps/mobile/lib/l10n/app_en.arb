@@ -646,5 +646,110 @@
   "playLabel": "Play",
   "pauseLabel": "Pause",
   "readMore": "Read more",
-  "readLess": "Read less"
+  "readLess": "Read less",
+  "activitiesListView": "List view",
+  "activitiesCalendarView": "Calendar view",
+  "activitiesSearchHint": "Search activities",
+  "activitiesFilterButton": "Filters",
+  "activitiesFiltersTitle": "Filter activities",
+  "activitiesFilterTypeGroup": "Activity type",
+  "activitiesFilterLanguageGroup": "Language",
+  "activitiesFilterFeeGroup": "Cost",
+  "activitiesFilterAccessGroup": "Access",
+  "activitiesFilterFeeAny": "Any",
+  "activitiesFilterFeeFree": "Free",
+  "activitiesFilterFeePaid": "Paid",
+  "activitiesFilterOpenToMe": "Only what I can join",
+  "activitiesFilterApply": "Show results",
+  "activitiesFilterClearAll": "Clear all",
+  "activitiesChipAll": "All",
+  "activitiesChipLive": "Live",
+  "activitiesChipOnline": "Online",
+  "activitiesChipInPerson": "In person",
+  "activitiesFeaturedEyebrow": "Featured",
+  "activitiesToday": "Today",
+  "activitiesTomorrow": "Tomorrow",
+  "activitiesThisWeek": "This week",
+  "activitiesAllDay": "All day",
+  "activitiesFormatOnline": "Online",
+  "activitiesFormatInPerson": "In person",
+  "activitiesFormatHybrid": "In person & online",
+  "activitiesFree": "Free",
+  "activitiesRegister": "Register",
+  "activitiesRegistered": "You're registered",
+  "activitiesJoinWaitlist": "Join waitlist",
+  "activitiesWaitlisted": "You're on the waitlist",
+  "activitiesRegistrationFull": "Fully booked",
+  "activitiesRegistrationClosed": "Registration closed",
+  "activitiesRegistrationOpensOn": "Opens {date}",
+  "@activitiesRegistrationOpensOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "activitiesRegisterExternally": "Register on the website",
+  "activitiesCancelRegistration": "Cancel my place",
+  "activitiesSeatsLeft": "{count, plural, =1{1 place left} other{{count} places left}}",
+  "@activitiesSeatsLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "activitiesCancelled": "Cancelled",
+  "activitiesRescheduled": "Rescheduled",
+  "activitiesMembersOnly": "Members only",
+  "activitiesStudentsOnly": "Students only",
+  "activitiesSignInToJoin": "Sign in to join",
+  "activitiesNothingScheduled": "Nothing scheduled",
+  "activitiesNothingScheduledBody": "There are no activities on this day yet. Try another week.",
+  "activitiesNoMatches": "No activities match",
+  "activitiesNoMatchesBody": "Try a different filter or clear them all.",
+  "activitiesLoadFailed": "We couldn't load the schedule",
+  "activitiesLoadFailedBody": "Check your connection and try again.",
+  "activitiesRetry": "Try again",
+  "activitiesOfflineNotice": "Showing a saved copy from {when}",
+  "@activitiesOfflineNotice": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "activitiesRegistrationFailed": "We couldn't complete that. Please try again.",
+  "activitiesRegistrationConfirmed": "You're registered for {title}",
+  "@activitiesRegistrationConfirmed": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "activitiesWaitlistConfirmed": "You're on the waitlist for {title}",
+  "@activitiesWaitlistConfirmed": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "activitiesPlaceReleased": "Your place has been released",
+  "activitiesSavedSnack": "Saved to your list",
+  "activitiesUnsavedSnack": "Removed from your list",
+  "activitiesPreviousWeek": "Previous week",
+  "activitiesNextWeek": "Next week",
+  "activitiesPreviousMonth": "Previous month",
+  "activitiesNextMonth": "Next month",
+  "activitiesClearDay": "Show all dates",
+  "activitiesFilterCount": "{count, plural, =0{Filters} =1{Filters (1)} other{Filters ({count})}}",
+  "@activitiesFilterCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

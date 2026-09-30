@@ -1389,4 +1389,222 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get readLess => 'Weniger';
+
+  @override
+  String get activitiesListView => 'Listenansicht';
+
+  @override
+  String get activitiesCalendarView => 'Kalenderansicht';
+
+  @override
+  String get activitiesSearchHint => 'Aktivitäten suchen';
+
+  @override
+  String get activitiesFilterButton => 'Filter';
+
+  @override
+  String get activitiesFiltersTitle => 'Aktivitäten filtern';
+
+  @override
+  String get activitiesFilterTypeGroup => 'Art der Aktivität';
+
+  @override
+  String get activitiesFilterLanguageGroup => 'Sprache';
+
+  @override
+  String get activitiesFilterFeeGroup => 'Kosten';
+
+  @override
+  String get activitiesFilterAccessGroup => 'Zugang';
+
+  @override
+  String get activitiesFilterFeeAny => 'Alle';
+
+  @override
+  String get activitiesFilterFeeFree => 'Kostenlos';
+
+  @override
+  String get activitiesFilterFeePaid => 'Kostenpflichtig';
+
+  @override
+  String get activitiesFilterOpenToMe => 'Nur was ich besuchen kann';
+
+  @override
+  String get activitiesFilterApply => 'Ergebnisse anzeigen';
+
+  @override
+  String get activitiesFilterClearAll => 'Alle zurücksetzen';
+
+  @override
+  String get activitiesChipAll => 'Alle';
+
+  @override
+  String get activitiesChipLive => 'Live';
+
+  @override
+  String get activitiesChipOnline => 'Online';
+
+  @override
+  String get activitiesChipInPerson => 'Vor Ort';
+
+  @override
+  String get activitiesFeaturedEyebrow => 'Empfohlen';
+
+  @override
+  String get activitiesToday => 'Heute';
+
+  @override
+  String get activitiesTomorrow => 'Morgen';
+
+  @override
+  String get activitiesThisWeek => 'Diese Woche';
+
+  @override
+  String get activitiesAllDay => 'Ganztägig';
+
+  @override
+  String get activitiesFormatOnline => 'Online';
+
+  @override
+  String get activitiesFormatInPerson => 'Vor Ort';
+
+  @override
+  String get activitiesFormatHybrid => 'Vor Ort und online';
+
+  @override
+  String get activitiesFree => 'Kostenlos';
+
+  @override
+  String get activitiesRegister => 'Anmelden';
+
+  @override
+  String get activitiesRegistered => 'Du bist angemeldet';
+
+  @override
+  String get activitiesJoinWaitlist => 'Auf die Warteliste';
+
+  @override
+  String get activitiesWaitlisted => 'Du stehst auf der Warteliste';
+
+  @override
+  String get activitiesRegistrationFull => 'Ausgebucht';
+
+  @override
+  String get activitiesRegistrationClosed => 'Anmeldung geschlossen';
+
+  @override
+  String activitiesRegistrationOpensOn(String date) {
+    return 'Öffnet am $date';
+  }
+
+  @override
+  String get activitiesRegisterExternally => 'Auf der Website anmelden';
+
+  @override
+  String get activitiesCancelRegistration => 'Platz freigeben';
+
+  @override
+  String activitiesSeatsLeft(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Noch $count Plätze frei',
+      one: 'Noch 1 Platz frei',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get activitiesCancelled => 'Abgesagt';
+
+  @override
+  String get activitiesRescheduled => 'Verschoben';
+
+  @override
+  String get activitiesMembersOnly => 'Nur für Mitglieder';
+
+  @override
+  String get activitiesStudentsOnly => 'Nur für Studierende';
+
+  @override
+  String get activitiesSignInToJoin => 'Zum Teilnehmen anmelden';
+
+  @override
+  String get activitiesNothingScheduled => 'Nichts geplant';
+
+  @override
+  String get activitiesNothingScheduledBody =>
+      'An diesem Tag gibt es noch keine Aktivitäten. Versuche eine andere Woche.';
+
+  @override
+  String get activitiesNoMatches => 'Keine passenden Aktivitäten';
+
+  @override
+  String get activitiesNoMatchesBody =>
+      'Versuche einen anderen Filter oder setze alle zurück.';
+
+  @override
+  String get activitiesLoadFailed => 'Der Kalender konnte nicht geladen werden';
+
+  @override
+  String get activitiesLoadFailedBody =>
+      'Prüfe deine Verbindung und versuche es erneut.';
+
+  @override
+  String get activitiesRetry => 'Erneut versuchen';
+
+  @override
+  String activitiesOfflineNotice(String when) {
+    return 'Gespeicherte Fassung vom $when';
+  }
+
+  @override
+  String get activitiesRegistrationFailed =>
+      'Das hat nicht geklappt. Bitte versuche es erneut.';
+
+  @override
+  String activitiesRegistrationConfirmed(String title) {
+    return 'Du bist für $title angemeldet';
+  }
+
+  @override
+  String activitiesWaitlistConfirmed(String title) {
+    return 'Du stehst auf der Warteliste für $title';
+  }
+
+  @override
+  String get activitiesPlaceReleased => 'Dein Platz wurde freigegeben';
+
+  @override
+  String get activitiesSavedSnack => 'Zu deiner Liste hinzugefügt';
+
+  @override
+  String get activitiesUnsavedSnack => 'Von deiner Liste entfernt';
+
+  @override
+  String get activitiesPreviousWeek => 'Vorherige Woche';
+
+  @override
+  String get activitiesNextWeek => 'Nächste Woche';
+
+  @override
+  String get activitiesPreviousMonth => 'Vorheriger Monat';
+
+  @override
+  String get activitiesNextMonth => 'Nächster Monat';
+
+  @override
+  String get activitiesClearDay => 'Alle Termine anzeigen';
+
+  @override
+  String activitiesFilterCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Filter ($count)',
+      one: 'Filter (1)',
+      zero: 'Filter',
+    );
+    return '$_temp0';
+  }
 }
