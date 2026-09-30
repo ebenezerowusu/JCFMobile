@@ -1073,4 +1073,76 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get noProgramEnrolled => 'Ainda não está inscrito num programa.';
+
+  @override
+  String get pauseAndReflect => 'Pare e reflita';
+
+  @override
+  String get markAsReflected => 'Marcar como refletido';
+
+  @override
+  String get reflectedLabel => 'Refletido';
+
+  @override
+  String get undoReflected => 'Anular';
+
+  @override
+  String get saveForLater => 'Guardar';
+
+  @override
+  String get savedLabel2 => 'Guardado';
+
+  @override
+  String get continueReflecting => 'Continue a refletir';
+
+  @override
+  String get shareAsImage => 'Partilhar como imagem';
+
+  @override
+  String get shareLink => 'Partilhar ligacão';
+
+  @override
+  String get copyLink => 'Copiar ligação';
+
+  @override
+  String get linkCopied => 'Ligação copiada';
+
+  @override
+  String get previewCard => 'Pré-visualizar';
+
+  @override
+  String get previousInspiration => 'Anterior';
+
+  @override
+  String get nextInspiration => 'Seguinte';
+
+  @override
+  String get backToHome => 'Voltar ao início';
+
+  @override
+  String readingTime(int minutes) {
+    return '$minutes min de leitura';
+  }
+
+  @override
+  String get inspirationUnavailable =>
+      'Esta inspiração já não está disponível.';
+
+  @override
+  String get exploreLatest => 'Ver as inspirações mais recentes';
+
+  @override
+  String get signInToSave => 'Inicie sessão para guardar esta inspiração.';
+
+  @override
+  String get signInToReflect => 'Inicie sessão para registar a sua reflexão.';
+
+  @override
+  String get textSize => 'Tamanho do texto';
+
+  @override
+  String get openInBrowser => 'Abrir no navegador';
+
+  @override
+  String get listenToReflection => 'Ouvir esta reflexão';
 }

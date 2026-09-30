@@ -509,5 +509,35 @@
   },
   "accessExpiredTitle": "Your access has expired",
   "programPausedTitle": "This programme is paused",
-  "noProgramEnrolled": "You are not enrolled in a programme yet."
+  "noProgramEnrolled": "You are not enrolled in a programme yet.",
+  "pauseAndReflect": "Pause and Reflect",
+  "markAsReflected": "Mark as Reflected",
+  "reflectedLabel": "Reflected",
+  "undoReflected": "Undo",
+  "saveForLater": "Save for Later",
+  "savedLabel2": "Saved",
+  "continueReflecting": "Continue Reflecting",
+  "shareAsImage": "Share as Image",
+  "shareLink": "Share Link",
+  "copyLink": "Copy Link",
+  "linkCopied": "Link copied",
+  "previewCard": "Preview Card",
+  "previousInspiration": "Previous",
+  "nextInspiration": "Next",
+  "backToHome": "Back to Home",
+  "readingTime": "{minutes} min read",
+  "@readingTime": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "inspirationUnavailable": "This inspiration is no longer available.",
+  "exploreLatest": "Explore Latest Inspirations",
+  "signInToSave": "Sign in to save this inspiration.",
+  "signInToReflect": "Sign in to record your reflection.",
+  "textSize": "Text Size",
+  "openInBrowser": "Open in Browser",
+  "listenToReflection": "Listen to this reflection"
 }

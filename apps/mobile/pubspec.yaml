@@ -82,6 +82,7 @@ flutter:
     - assets/images/
     - assets/images/member_home/
     - assets/images/student_home/
+    - assets/images/daily_inspiration_detail/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
