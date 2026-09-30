@@ -5,7 +5,7 @@ import 'package:jcf_models/jcf_models.dart';
 import 'package:jcf_ui/jcf_ui.dart';
 
 import '../../l10n/app_localizations.dart';
-import '../activities/activities_repository.dart';
+import '../activities/home_feed.dart';
 import '../auth/auth_controller.dart';
 import '../engagement/engagement_repository.dart';
 import '../inspiration/inspiration_repository.dart';

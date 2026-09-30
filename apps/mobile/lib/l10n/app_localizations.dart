@@ -2647,6 +2647,384 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Read less'**
   String get readLess;
+
+  /// No description provided for @activitiesListView.
+  ///
+  /// In en, this message translates to:
+  /// **'List view'**
+  String get activitiesListView;
+
+  /// No description provided for @activitiesCalendarView.
+  ///
+  /// In en, this message translates to:
+  /// **'Calendar view'**
+  String get activitiesCalendarView;
+
+  /// No description provided for @activitiesSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search activities'**
+  String get activitiesSearchHint;
+
+  /// No description provided for @activitiesFilterButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Filters'**
+  String get activitiesFilterButton;
+
+  /// No description provided for @activitiesFiltersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter activities'**
+  String get activitiesFiltersTitle;
+
+  /// No description provided for @activitiesFilterTypeGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity type'**
+  String get activitiesFilterTypeGroup;
+
+  /// No description provided for @activitiesFilterLanguageGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get activitiesFilterLanguageGroup;
+
+  /// No description provided for @activitiesFilterFeeGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Cost'**
+  String get activitiesFilterFeeGroup;
+
+  /// No description provided for @activitiesFilterAccessGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Access'**
+  String get activitiesFilterAccessGroup;
+
+  /// No description provided for @activitiesFilterFeeAny.
+  ///
+  /// In en, this message translates to:
+  /// **'Any'**
+  String get activitiesFilterFeeAny;
+
+  /// No description provided for @activitiesFilterFeeFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Free'**
+  String get activitiesFilterFeeFree;
+
+  /// No description provided for @activitiesFilterFeePaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get activitiesFilterFeePaid;
+
+  /// No description provided for @activitiesFilterOpenToMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Only what I can join'**
+  String get activitiesFilterOpenToMe;
+
+  /// No description provided for @activitiesFilterApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Show results'**
+  String get activitiesFilterApply;
+
+  /// No description provided for @activitiesFilterClearAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear all'**
+  String get activitiesFilterClearAll;
+
+  /// No description provided for @activitiesChipAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get activitiesChipAll;
+
+  /// No description provided for @activitiesChipLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Live'**
+  String get activitiesChipLive;
+
+  /// No description provided for @activitiesChipOnline.
+  ///
+  /// In en, this message translates to:
+  /// **'Online'**
+  String get activitiesChipOnline;
+
+  /// No description provided for @activitiesChipInPerson.
+  ///
+  /// In en, this message translates to:
+  /// **'In person'**
+  String get activitiesChipInPerson;
+
+  /// No description provided for @activitiesFeaturedEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Featured'**
+  String get activitiesFeaturedEyebrow;
+
+  /// No description provided for @activitiesToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get activitiesToday;
+
+  /// No description provided for @activitiesTomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomorrow'**
+  String get activitiesTomorrow;
+
+  /// No description provided for @activitiesThisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'This week'**
+  String get activitiesThisWeek;
+
+  /// No description provided for @activitiesAllDay.
+  ///
+  /// In en, this message translates to:
+  /// **'All day'**
+  String get activitiesAllDay;
+
+  /// No description provided for @activitiesFormatOnline.
+  ///
+  /// In en, this message translates to:
+  /// **'Online'**
+  String get activitiesFormatOnline;
+
+  /// No description provided for @activitiesFormatInPerson.
+  ///
+  /// In en, this message translates to:
+  /// **'In person'**
+  String get activitiesFormatInPerson;
+
+  /// No description provided for @activitiesFormatHybrid.
+  ///
+  /// In en, this message translates to:
+  /// **'In person & online'**
+  String get activitiesFormatHybrid;
+
+  /// No description provided for @activitiesFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Free'**
+  String get activitiesFree;
+
+  /// No description provided for @activitiesRegister.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get activitiesRegister;
+
+  /// No description provided for @activitiesRegistered.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re registered'**
+  String get activitiesRegistered;
+
+  /// No description provided for @activitiesJoinWaitlist.
+  ///
+  /// In en, this message translates to:
+  /// **'Join waitlist'**
+  String get activitiesJoinWaitlist;
+
+  /// No description provided for @activitiesWaitlisted.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re on the waitlist'**
+  String get activitiesWaitlisted;
+
+  /// No description provided for @activitiesRegistrationFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Fully booked'**
+  String get activitiesRegistrationFull;
+
+  /// No description provided for @activitiesRegistrationClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration closed'**
+  String get activitiesRegistrationClosed;
+
+  /// No description provided for @activitiesRegistrationOpensOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Opens {date}'**
+  String activitiesRegistrationOpensOn(String date);
+
+  /// No description provided for @activitiesRegisterExternally.
+  ///
+  /// In en, this message translates to:
+  /// **'Register on the website'**
+  String get activitiesRegisterExternally;
+
+  /// No description provided for @activitiesCancelRegistration.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel my place'**
+  String get activitiesCancelRegistration;
+
+  /// No description provided for @activitiesSeatsLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 place left} other{{count} places left}}'**
+  String activitiesSeatsLeft(int count);
+
+  /// No description provided for @activitiesCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get activitiesCancelled;
+
+  /// No description provided for @activitiesRescheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'Rescheduled'**
+  String get activitiesRescheduled;
+
+  /// No description provided for @activitiesMembersOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Members only'**
+  String get activitiesMembersOnly;
+
+  /// No description provided for @activitiesStudentsOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Students only'**
+  String get activitiesStudentsOnly;
+
+  /// No description provided for @activitiesSignInToJoin.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to join'**
+  String get activitiesSignInToJoin;
+
+  /// No description provided for @activitiesNothingScheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing scheduled'**
+  String get activitiesNothingScheduled;
+
+  /// No description provided for @activitiesNothingScheduledBody.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no activities on this day yet. Try another week.'**
+  String get activitiesNothingScheduledBody;
+
+  /// No description provided for @activitiesNoMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'No activities match'**
+  String get activitiesNoMatches;
+
+  /// No description provided for @activitiesNoMatchesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Try a different filter or clear them all.'**
+  String get activitiesNoMatchesBody;
+
+  /// No description provided for @activitiesLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t load the schedule'**
+  String get activitiesLoadFailed;
+
+  /// No description provided for @activitiesLoadFailedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your connection and try again.'**
+  String get activitiesLoadFailedBody;
+
+  /// No description provided for @activitiesRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get activitiesRetry;
+
+  /// No description provided for @activitiesOfflineNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Showing a saved copy from {when}'**
+  String activitiesOfflineNotice(String when);
+
+  /// No description provided for @activitiesRegistrationFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t complete that. Please try again.'**
+  String get activitiesRegistrationFailed;
+
+  /// No description provided for @activitiesRegistrationConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re registered for {title}'**
+  String activitiesRegistrationConfirmed(String title);
+
+  /// No description provided for @activitiesWaitlistConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re on the waitlist for {title}'**
+  String activitiesWaitlistConfirmed(String title);
+
+  /// No description provided for @activitiesPlaceReleased.
+  ///
+  /// In en, this message translates to:
+  /// **'Your place has been released'**
+  String get activitiesPlaceReleased;
+
+  /// No description provided for @activitiesSavedSnack.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved to your list'**
+  String get activitiesSavedSnack;
+
+  /// No description provided for @activitiesUnsavedSnack.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed from your list'**
+  String get activitiesUnsavedSnack;
+
+  /// No description provided for @activitiesPreviousWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous week'**
+  String get activitiesPreviousWeek;
+
+  /// No description provided for @activitiesNextWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Next week'**
+  String get activitiesNextWeek;
+
+  /// No description provided for @activitiesPreviousMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous month'**
+  String get activitiesPreviousMonth;
+
+  /// No description provided for @activitiesNextMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Next month'**
+  String get activitiesNextMonth;
+
+  /// No description provided for @activitiesClearDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Show all dates'**
+  String get activitiesClearDay;
+
+  /// No description provided for @activitiesFilterCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{Filters} =1{Filters (1)} other{Filters ({count})}}'**
+  String activitiesFilterCount(int count);
 }
 
 class _AppLocalizationsDelegate

@@ -8,7 +8,7 @@ import 'package:jcf_ui/jcf_ui.dart';
 
 import '../../l10n/app_localizations.dart';
 import '../../core/brand.dart';
-import '../activities/activities_repository.dart';
+import '../activities/home_feed.dart';
 import '../inspiration/inspiration_repository.dart';
 
 const _sub = Color(0xFF54689B);

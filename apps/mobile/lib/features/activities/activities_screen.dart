@@ -3,26 +3,25 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:jcf_ui/jcf_ui.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../l10n/app_localizations.dart';
 import '../auth/auth_controller.dart';
-import 'activities_repository.dart';
+import 'activities_controller.dart';
+import 'activities_filter_sheet.dart';
+import 'activity_detail_sheet.dart';
+import 'activity_models.dart';
+import 'activity_widgets.dart';
 
-const _sub = Color(0xFF54689B);
+const _muted = Color(0xFF54689B);
+const _hairline = Color(0xFFE3EAF7);
 
-(IconData, Color, Color) _kindLook(String kind) => switch (kind) {
-      'live' => (Icons.people_alt_rounded, const Color(0xFFF08A24),
-          const Color(0xFFFDEED9)),
-      'practice' => (Icons.self_improvement_rounded, const Color(0xFF2E9E5B),
-          const Color(0xFFDDF3E4)),
-      'programme' => (Icons.calendar_month_rounded, JcfColors.skyPrimary,
-          const Color(0xFFE3EEFF)),
-      _ => (Icons.groups_rounded, const Color(0xFF7B5BD6),
-          const Color(0xFFEAE3FA)),
-    };
-
-/// Upcoming Activities (design/25): programmes, live sessions and group
-/// practices in one dated schedule with per-item reminders.
+/// Upcoming Activities (designs 37–41).
+///
+/// A week selector and four chips above a dated, infinitely scrolling list,
+/// with a calendar view behind a toggle. Everything about an activity's
+/// state — whether it is live, whether registration is open, whether the
+/// reader may attend — comes from the server; this screen renders it.
 class ActivitiesScreen extends ConsumerStatefulWidget {
   const ActivitiesScreen({super.key});
 
@@ -31,435 +30,633 @@ class ActivitiesScreen extends ConsumerStatefulWidget {
 }
 
 class _ActivitiesScreenState extends ConsumerState<ActivitiesScreen> {
-  String _filter = 'all';
+  final _scrollController = ScrollController();
+  final _searchController = TextEditingController();
+  bool _searching = false;
+  DateTime? _weekStart;
+  late DateTime _calendarMonth = _firstOfThisMonth();
 
-  bool _matches(ActivityItem item) => switch (_filter) {
-        'programme' => item.kind == 'programme',
-        'live' => item.kind == 'live',
-        'practice' => item.kind == 'practice',
-        _ => true,
-      };
+  static DateTime _firstOfThisMonth() {
+    final now = DateTime.now();
+    return DateTime(now.year, now.month, 1);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (!_scrollController.hasClients) return;
+    final position = _scrollController.position;
+    // Fetch a screenful early so the list rarely shows its own spinner.
+    if (position.pixels >= position.maxScrollExtent - 600) {
+      ref.read(activitiesControllerProvider.notifier).loadMore();
+    }
+  }
+
+  DateTime get _today {
+    final now = DateTime.now();
+    return DateTime(now.year, now.month, now.day);
+  }
 
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
-    final feed = ref.watch(upcomingActivitiesProvider);
+    final state = ref.watch(activitiesControllerProvider);
+    final view = ref.watch(activitiesViewProvider);
+    _weekStart ??= WeekSelector.startOfWeek(context, _today);
 
     return Scaffold(
       backgroundColor: JcfColors.skySurface,
-      appBar: AppBar(
-        backgroundColor: JcfColors.skySurface,
-        elevation: 0,
-        foregroundColor: JcfColors.inkOnLight,
-        title: Text(
-          t.upcomingActivitiesTitle,
-          style: const TextStyle(
-            color: JcfColors.inkOnLight,
-            fontFamily: JcfTypography.bodyFamily,
-            fontWeight: FontWeight.w800,
-          ),
-        ),
-      ),
-      body: feed.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (_, _) => Center(
-          child: FilledButton(
-            onPressed: () => ref.invalidate(upcomingActivitiesProvider),
-            child: Text(t.genericError),
-          ),
-        ),
-        data: (items) => _buildBody(context, t, items),
-      ),
-    );
-  }
-
-  Widget _buildBody(
-      BuildContext context, AppLocalizations t, List<ActivityItem> items) {
-    final locale = Localizations.localeOf(context).toString();
-    final visible = items.where(_matches).toList();
-
-    final today = DateUtils.dateOnly(DateTime.now());
-    final tomorrow = today.add(const Duration(days: 1));
-    // Design 25 groups by Monday-based week, matching the practice summary.
-    final weekEnd = today.add(Duration(days: 7 - today.weekday));
-
-    final todayItems = <ActivityItem>[];
-    final tomorrowItems = <ActivityItem>[];
-    final weekItems = <ActivityItem>[];
-    final laterItems = <ActivityItem>[];
-    for (final item in visible) {
-      final day = DateUtils.dateOnly(item.startsAt);
-      if (day == today) {
-        todayItems.add(item);
-      } else if (day == tomorrow) {
-        tomorrowItems.add(item);
-      } else if (!day.isAfter(weekEnd)) {
-        weekItems.add(item);
-      } else {
-        laterItems.add(item);
-      }
-    }
-
-    final dateFmt = DateFormat('EEE, d MMM yyyy', locale);
-    final rangeFmt = DateFormat('d MMM', locale);
-    final weekStart = weekEnd.subtract(const Duration(days: 6));
-
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(20, 4, 20, 24),
-      children: [
-        Text(
-          t.upcomingActivitiesTagline,
-          style: const TextStyle(
-            color: _sub,
-            fontFamily: JcfTypography.bodyFamily,
-            fontSize: 16,
-          ),
-        ),
-        const SizedBox(height: 14),
-        _FilterRow(
-          value: _filter,
-          onChanged: (v) => setState(() => _filter = v),
-        ),
-        if (visible.isEmpty) ...[
-          const SizedBox(height: 60),
-          const Center(
-            child: CircleAvatar(
-              radius: 44,
-              backgroundColor: Color(0xFFE3EEFF),
-              child: Icon(Icons.event_available_rounded,
-                  size: 40, color: JcfColors.skyPrimary),
-            ),
-          ),
-          const SizedBox(height: 16),
-          Center(
-            child: Text(
-              t.noUpcoming,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: _sub,
-                fontFamily: JcfTypography.bodyFamily,
-                fontSize: 15,
-              ),
-            ),
-          ),
-        ],
-        if (todayItems.isNotEmpty)
-          _Section(
-              title: t.todaySection,
-              dateLabel: dateFmt.format(today),
-              items: todayItems),
-        if (tomorrowItems.isNotEmpty)
-          _Section(
-              title: t.tomorrowSection,
-              dateLabel: dateFmt.format(tomorrow),
-              items: tomorrowItems),
-        if (weekItems.isNotEmpty)
-          _Section(
-              title: t.thisWeekTitle,
-              dateLabel:
-                  '${rangeFmt.format(weekStart)} – ${rangeFmt.format(weekEnd)}',
-              items: weekItems),
-        if (laterItems.isNotEmpty)
-          _Section(title: t.laterSection, dateLabel: '', items: laterItems),
-      ],
-    );
-  }
-}
-
-class _FilterRow extends StatelessWidget {
-  const _FilterRow({required this.value, required this.onChanged});
-
-  final String value;
-  final ValueChanged<String> onChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    final t = AppLocalizations.of(context)!;
-    final options = [
-      ('all', t.filterAll),
-      ('programme', t.filterProgrammes),
-      ('live', t.filterLive),
-      ('practice', t.filterPractice),
-    ];
-    return Container(
-      padding: const EdgeInsets.all(4),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: .7),
-        borderRadius: BorderRadius.circular(26),
-      ),
-      child: Row(
-        children: [
-          for (final (key, label) in options)
-            Expanded(
-              child: GestureDetector(
-                onTap: () => onChanged(key),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  decoration: BoxDecoration(
-                    color: value == key ? JcfColors.skyPrimary : null,
-                    borderRadius: BorderRadius.circular(22),
-                  ),
-                  child: Text(
-                    label,
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color:
-                          value == key ? Colors.white : JcfColors.inkOnLight,
-                      fontFamily: JcfTypography.bodyFamily,
-                      fontSize: 13.5,
-                      fontWeight:
-                          value == key ? FontWeight.w800 : FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-        ],
-      ),
-    );
-  }
-}
-
-class _Section extends StatelessWidget {
-  const _Section(
-      {required this.title, required this.dateLabel, required this.items});
-
-  final String title;
-  final String dateLabel;
-  final List<ActivityItem> items;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(height: 22),
-        Row(
+      body: SafeArea(
+        bottom: false,
+        child: Column(
           children: [
+            _header(t, view),
+            _chipRow(t, state),
+            if (view == ActivitiesView.list)
+              WeekSelector(
+                weekStart: _weekStart!,
+                selected: state.query.from,
+                today: _today,
+                onSelect: _selectDay,
+                onPreviousWeek: () => setState(() => _weekStart =
+                    _weekStart!.subtract(const Duration(days: 7))),
+                onNextWeek: () => setState(() =>
+                    _weekStart = _weekStart!.add(const Duration(days: 7))),
+              ),
+            if (state.fromCache) _cacheNotice(t, state),
             Expanded(
-              child: Text(
-                title,
-                style: const TextStyle(
-                  color: JcfColors.inkOnLight,
-                  fontFamily: JcfTypography.bodyFamily,
-                  fontSize: 21,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-            ),
-            Text(
-              dateLabel,
-              style: const TextStyle(
-                color: _sub,
-                fontFamily: JcfTypography.bodyFamily,
-                fontSize: 13.5,
-              ),
+              child: view == ActivitiesView.calendar
+                  ? _calendarView(t, state)
+                  : _listView(t, state),
             ),
           ],
         ),
-        const SizedBox(height: 10),
-        for (final item in items) ...[
-          _ActivityCard(item: item),
-          const SizedBox(height: 12),
-        ],
-      ],
+      ),
     );
   }
-}
 
-class _ActivityCard extends ConsumerWidget {
-  const _ActivityCard({required this.item});
+  // --- chrome ----------------------------------------------------------
 
-  final ActivityItem item;
-
-  (String, Color, Color) _audienceLook(AppLocalizations t) =>
-      switch (item.audience) {
-        'members' => (t.audienceMembers, const Color(0xFF7B5BD6),
-            const Color(0xFFEAE3FA)),
-        'students' => (t.audienceStudents, const Color(0xFFF08A24),
-            const Color(0xFFFDEED9)),
-        _ => (t.audiencePublic, JcfColors.skyPrimary,
-            const Color(0xFFE3EEFF)),
-      };
-
-  String _whenLabel(BuildContext context, AppLocalizations t) {
-    final locale = Localizations.localeOf(context).toString();
-    final today = DateUtils.dateOnly(DateTime.now());
-    final day = DateUtils.dateOnly(item.startsAt);
-    final sameOrNextDay =
-        day == today || day == today.add(const Duration(days: 1));
-    final parts = <String>[
-      if (!sameOrNextDay) DateFormat('EEE, d MMM', locale).format(item.startsAt),
-      if (!item.allDay) DateFormat.jm(locale).format(item.startsAt),
-      item.venue.isEmpty ? t.onlineLabel : item.venue,
-    ];
-    return parts.join('  ·  ');
-  }
-
-  Future<void> _toggleReminder(BuildContext context, WidgetRef ref) async {
-    final t = AppLocalizations.of(context)!;
-    final messenger = ScaffoldMessenger.of(context);
-    if (!ref.read(isLoggedInProvider)) {
-      messenger.showSnackBar(SnackBar(content: Text(t.signInForReminders)));
-      return;
-    }
-    try {
-      final on =
-          await ref.read(activitiesRepositoryProvider).toggleReminder(item);
-      ref.invalidate(upcomingActivitiesProvider);
-      messenger.showSnackBar(
-          SnackBar(content: Text(on ? t.reminderOnSnack : t.reminderOffSnack)));
-    } catch (_) {
-      messenger.showSnackBar(SnackBar(content: Text(t.genericError)));
-    }
-  }
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final t = AppLocalizations.of(context)!;
-    final (icon, tint, bg) = _kindLook(item.kind);
-    final (audienceLabel, audienceTint, audienceBg) = _audienceLook(t);
-
-    return Material(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(20),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(20),
-        onTap: item.programSlug == null
-            ? null
-            : () => context.push('/programs/${item.programSlug}'),
-        child: Padding(
-          padding: const EdgeInsets.all(14),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: 58,
-                height: 58,
-                decoration: BoxDecoration(
-                  color: bg,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Icon(icon, color: tint, size: 30),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Text(
-                            item.title,
-                            style: const TextStyle(
-                              color: JcfColors.inkOnLight,
-                              fontFamily: JcfTypography.bodyFamily,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w800,
-                            ),
-                          ),
-                        ),
-                        if (item.liveSoon)
-                          Container(
-                            margin: const EdgeInsetsDirectional.only(start: 6),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 4),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFE25563),
-                              borderRadius: BorderRadius.circular(14),
-                            ),
-                            child: Text(
-                              t.liveSoonBadge,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontFamily: JcfTypography.bodyFamily,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w800,
-                              ),
-                            ),
-                          ),
-                      ],
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      _whenLabel(context, t),
+  Widget _header(AppLocalizations t, ActivitiesView view) => Padding(
+        padding: const EdgeInsets.fromLTRB(8, 6, 8, 2),
+        child: Row(
+          children: [
+            IconButton(
+              onPressed: () =>
+                  context.canPop() ? context.pop() : context.go('/'),
+              icon: const Icon(Icons.arrow_back_rounded),
+              color: JcfColors.inkOnLight,
+            ),
+            Expanded(
+              child: _searching
+                  ? _searchField(t)
+                  : Text(
+                      t.upcomingActivitiesTitle,
                       style: const TextStyle(
-                        color: JcfColors.inkOnLight,
-                        fontFamily: JcfTypography.bodyFamily,
-                        fontSize: 14,
+                        fontSize: 18,
                         fontWeight: FontWeight.w700,
+                        color: JcfColors.inkOnLight,
                       ),
                     ),
-                    if (item.description.isNotEmpty) ...[
-                      const SizedBox(height: 4),
-                      Text(
-                        item.description,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          color: _sub,
-                          fontFamily: JcfTypography.bodyFamily,
-                          fontSize: 14,
-                          height: 1.35,
-                        ),
-                      ),
-                    ],
-                    const SizedBox(height: 8),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Align(
-                            alignment: AlignmentDirectional.centerStart,
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                              decoration: BoxDecoration(
-                                color: audienceBg,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Text(
-                                audienceLabel,
-                                style: TextStyle(
-                                  color: audienceTint,
-                                  fontFamily: JcfTypography.bodyFamily,
-                                  fontSize: 12.5,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          borderRadius: BorderRadius.circular(22),
-                          onTap: () => _toggleReminder(context, ref),
-                          child: CircleAvatar(
-                            radius: 20,
-                            backgroundColor: item.reminderSet
-                                ? JcfColors.skyPrimary
-                                : const Color(0xFFE3EEFF),
-                            child: Icon(
-                              item.reminderSet
-                                  ? Icons.notifications_active_rounded
-                                  : Icons.notifications_none_rounded,
-                              size: 21,
-                              color: item.reminderSet
-                                  ? Colors.white
-                                  : JcfColors.skyPrimary,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+            ),
+            IconButton(
+              onPressed: _toggleSearch,
+              tooltip: t.activitiesSearchHint,
+              icon: Icon(_searching
+                  ? Icons.close_rounded
+                  : Icons.search_rounded),
+              color: JcfColors.inkOnLight,
+            ),
+            IconButton(
+              onPressed: () => ref
+                  .read(activitiesViewProvider.notifier)
+                  .set(view == ActivitiesView.list
+                      ? ActivitiesView.calendar
+                      : ActivitiesView.list),
+              tooltip: view == ActivitiesView.list
+                  ? t.activitiesCalendarView
+                  : t.activitiesListView,
+              icon: Icon(view == ActivitiesView.list
+                  ? Icons.calendar_month_rounded
+                  : Icons.view_agenda_rounded),
+              color: JcfColors.inkOnLight,
+            ),
+          ],
+        ),
+      );
+
+  Widget _searchField(AppLocalizations t) => TextField(
+        controller: _searchController,
+        autofocus: true,
+        textInputAction: TextInputAction.search,
+        onChanged: (value) =>
+            ref.read(activitiesControllerProvider.notifier).search(value),
+        style: const TextStyle(fontSize: 15),
+        decoration: InputDecoration(
+          hintText: t.activitiesSearchHint,
+          isDense: true,
+          border: InputBorder.none,
+          hintStyle: const TextStyle(color: _muted, fontSize: 15),
+        ),
+      );
+
+  void _toggleSearch() {
+    setState(() => _searching = !_searching);
+    if (!_searching) {
+      _searchController.clear();
+      ref.read(activitiesControllerProvider.notifier).search('');
+    }
+  }
+
+  Widget _chipRow(AppLocalizations t, ActivitiesState state) {
+    final chips = <(PrimaryFilter, String)>[
+      (PrimaryFilter.all, t.activitiesChipAll),
+      (PrimaryFilter.live, t.activitiesChipLive),
+      (PrimaryFilter.online, t.activitiesChipOnline),
+      (PrimaryFilter.inPerson, t.activitiesChipInPerson),
+    ];
+    return SizedBox(
+      height: 46,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        children: [
+          for (final chip in chips) ...[
+            _filterChip(
+              label: chip.$2,
+              selected: state.query.primary == chip.$1,
+              onTap: () => ref
+                  .read(activitiesControllerProvider.notifier)
+                  .setPrimaryFilter(chip.$1),
+            ),
+            const SizedBox(width: 8),
+          ],
+          _filterChip(
+            label: t.activitiesFilterCount(state.query.advancedCount),
+            selected: state.query.advancedCount > 0,
+            icon: Icons.tune_rounded,
+            onTap: () => _openFilters(state),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _filterChip({
+    required String label,
+    required bool selected,
+    required VoidCallback onTap,
+    IconData? icon,
+  }) =>
+      Center(
+        child: Semantics(
+          selected: selected,
+          button: true,
+          child: InkWell(
+            onTap: onTap,
+            borderRadius: BorderRadius.circular(999),
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+              decoration: BoxDecoration(
+                color: selected ? JcfColors.skyPrimary : Colors.white,
+                borderRadius: BorderRadius.circular(999),
+                border: Border.all(
+                  color:
+                      selected ? JcfColors.skyPrimary : _hairline,
+                ),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (icon != null) ...[
+                    Icon(icon,
+                        size: 14,
+                        color: selected ? Colors.white : _muted),
+                    const SizedBox(width: 5),
                   ],
+                  Text(
+                    label,
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: selected ? Colors.white : _muted,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+
+  Future<void> _openFilters(ActivitiesState state) async {
+    final chosen = await ActivitiesFilterSheet.show(
+      context,
+      initial: state.query,
+      available: state.availableFilters,
+    );
+    if (chosen == null || !mounted) return;
+    ref.read(activitiesControllerProvider.notifier)
+        .setAdvancedFilters(chosen);
+  }
+
+  Widget _cacheNotice(AppLocalizations t, ActivitiesState state) {
+    final locale = Localizations.localeOf(context).toString();
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.fromLTRB(16, 4, 16, 0),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: const Color(0xFFFDEED9),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        children: [
+          const Icon(Icons.cloud_off_rounded,
+              size: 15, color: Color(0xFF8A4B00)),
+          const SizedBox(width: 6),
+          Expanded(
+            child: Text(
+              t.activitiesOfflineNotice(state.serverTime == null
+                  ? DateFormat.jm(locale).format(DateTime.now())
+                  : DateFormat('d MMM, ').add_jm().format(
+                      state.serverTime!)),
+              style: const TextStyle(
+                  fontSize: 12, color: Color(0xFF8A4B00)),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _selectDay(DateTime day) {
+    final controller = ref.read(activitiesControllerProvider.notifier);
+    final current = ref.read(activitiesControllerProvider).query.from;
+    // Tapping the chosen day again clears it, which is the only way back
+    // to the full schedule without hunting for a "show all" control.
+    if (current != null && _sameDay(current, day)) {
+      controller.selectDay(null);
+    } else {
+      controller.selectDay(day);
+    }
+  }
+
+  static bool _sameDay(DateTime a, DateTime b) =>
+      a.year == b.year && a.month == b.month && a.day == b.day;
+
+  // --- list ------------------------------------------------------------
+
+  Widget _listView(AppLocalizations t, ActivitiesState state) {
+    if (state.loading && state.items.isEmpty) {
+      return ListView.separated(
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, 28),
+        itemCount: 4,
+        separatorBuilder: (_, _) => const SizedBox(height: 12),
+        itemBuilder: (_, _) => const ActivitySkeleton(),
+      );
+    }
+    if (state.isFatalError) {
+      return ListView(
+        children: [
+          ActivityPlaceholder(
+            icon: Icons.wifi_off_rounded,
+            title: t.activitiesLoadFailed,
+            body: t.activitiesLoadFailedBody,
+            actionLabel: t.activitiesRetry,
+            onAction: () =>
+                ref.read(activitiesControllerProvider.notifier).load(),
+          ),
+        ],
+      );
+    }
+    if (state.isEmpty) {
+      final filtered = state.query.hasAnyFilter;
+      return RefreshIndicator(
+        onRefresh: () => ref
+            .read(activitiesControllerProvider.notifier)
+            .load(refresh: true),
+        child: ListView(
+          children: [
+            ActivityPlaceholder(
+              icon: filtered
+                  ? Icons.filter_alt_off_rounded
+                  : Icons.event_available_rounded,
+              title: filtered
+                  ? t.activitiesNoMatches
+                  : t.activitiesNothingScheduled,
+              body: filtered
+                  ? t.activitiesNoMatchesBody
+                  : t.activitiesNothingScheduledBody,
+              actionLabel:
+                  filtered ? t.activitiesFilterClearAll : null,
+              onAction: filtered
+                  ? () {
+                      _searchController.clear();
+                      ref
+                          .read(activitiesControllerProvider.notifier)
+                          .clearAllFilters();
+                    }
+                  : null,
+            ),
+          ],
+        ),
+      );
+    }
+
+    final rows = _buildRows(t, state);
+    return RefreshIndicator(
+      onRefresh: () => ref
+          .read(activitiesControllerProvider.notifier)
+          .load(refresh: true),
+      child: ListView.builder(
+        controller: _scrollController,
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, 28),
+        itemCount: rows.length + (state.hasMore ? 1 : 0),
+        itemBuilder: (context, index) {
+          if (index >= rows.length) {
+            return const Padding(
+              padding: EdgeInsets.symmetric(vertical: 20),
+              child: Center(
+                child: SizedBox(
+                  width: 22,
+                  height: 22,
+                  child: CircularProgressIndicator(strokeWidth: 2.4),
+                ),
+              ),
+            );
+          }
+          return rows[index];
+        },
+      ),
+    );
+  }
+
+  /// Flattens the page into featured card, day headings and cards.
+  List<Widget> _buildRows(AppLocalizations t, ActivitiesState state) {
+    final locale = Localizations.localeOf(context).toString();
+    final rows = <Widget>[];
+    if (state.featured != null) {
+      rows
+        ..add(FeaturedActivityCard(
+          activity: state.featured!,
+          onOpen: () => _open(state.featured!),
+        ))
+        ..add(const SizedBox(height: 18));
+    }
+    DateTime? currentDay;
+    for (final activity in state.items) {
+      if (currentDay == null || !_sameDay(currentDay, activity.localDay)) {
+        currentDay = activity.localDay;
+        rows.add(Padding(
+          padding: EdgeInsets.only(
+              top: rows.isEmpty ? 0 : 18, bottom: 10),
+          child: Row(
+            children: [
+              ActivityDateBlock(
+                date: currentDay,
+                dimmed: currentDay.isBefore(_today),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  dayHeading(t, locale, currentDay, DateTime.now()),
+                  style: const TextStyle(
+                    fontSize: 14.5,
+                    fontWeight: FontWeight.w700,
+                    color: JcfColors.inkOnLight,
+                  ),
                 ),
               ),
             ],
           ),
+        ));
+      } else {
+        rows.add(const SizedBox(height: 12));
+      }
+      rows.add(ActivityCard(
+        key: ValueKey('activity-${activity.id}'),
+        activity: activity,
+        onOpen: () => _open(activity),
+        onReminder: () => _toggleReminder(activity),
+        onSave: () => _toggleSave(activity),
+        onRegister: () => _register(activity),
+      ));
+    }
+    return rows;
+  }
+
+  // --- calendar --------------------------------------------------------
+
+  Widget _calendarView(AppLocalizations t, ActivitiesState state) {
+    final locale = Localizations.localeOf(context).toString();
+    final days = ref.watch(activityCalendarProvider(_calendarMonth));
+    final selected = state.query.from;
+    final onDay = selected == null
+        ? const <Activity>[]
+        : [
+            for (final activity in state.items)
+              if (_sameDay(activity.localDay, selected)) activity
+          ];
+
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 28),
+      children: [
+        Container(
+          padding: const EdgeInsets.fromLTRB(8, 8, 8, 12),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(18),
+            border: Border.all(color: _hairline),
+          ),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () => setState(() => _calendarMonth =
+                        DateTime(_calendarMonth.year,
+                            _calendarMonth.month - 1, 1)),
+                    tooltip: t.activitiesPreviousMonth,
+                    icon: const Icon(Icons.chevron_left_rounded),
+                    color: _muted,
+                  ),
+                  Expanded(
+                    child: Text(
+                      DateFormat('MMMM yyyy', locale)
+                          .format(_calendarMonth),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 14.5,
+                        fontWeight: FontWeight.w700,
+                        color: JcfColors.inkOnLight,
+                      ),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () => setState(() => _calendarMonth =
+                        DateTime(_calendarMonth.year,
+                            _calendarMonth.month + 1, 1)),
+                    tooltip: t.activitiesNextMonth,
+                    icon: const Icon(Icons.chevron_right_rounded),
+                    color: _muted,
+                  ),
+                ],
+              ),
+              ActivityCalendarGrid(
+                month: _calendarMonth,
+                days: days.asData?.value ?? const [],
+                selected: selected,
+                today: _today,
+                onSelect: _selectDay,
+              ),
+            ],
+          ),
         ),
-      ),
+        const SizedBox(height: 16),
+        if (selected == null)
+          ActivityPlaceholder(
+            icon: Icons.touch_app_rounded,
+            title: t.activitiesCalendarView,
+            body: t.activitiesNothingScheduledBody,
+          )
+        else if (state.loading)
+          const ActivitySkeleton()
+        else if (onDay.isEmpty)
+          ActivityPlaceholder(
+            icon: Icons.event_available_rounded,
+            title: t.activitiesNothingScheduled,
+            body: t.activitiesNothingScheduledBody,
+            actionLabel: t.activitiesClearDay,
+            onAction: () => ref
+                .read(activitiesControllerProvider.notifier)
+                .selectDay(null),
+          )
+        else
+          for (final activity in onDay) ...[
+            ActivityCard(
+              key: ValueKey('calendar-activity-${activity.id}'),
+              activity: activity,
+              onOpen: () => _open(activity),
+              onReminder: () => _toggleReminder(activity),
+              onSave: () => _toggleSave(activity),
+              onRegister: () => _register(activity),
+            ),
+            const SizedBox(height: 12),
+          ],
+      ],
     );
   }
+
+  // --- actions ---------------------------------------------------------
+
+  void _open(Activity activity) {
+    final t = AppLocalizations.of(context)!;
+    if (!activity.access.allowed) {
+      if (activity.access.signInRequired) {
+        context.push('/login');
+      } else {
+        _snack(activity.access.reason == 'students_only'
+            ? t.activitiesStudentsOnly
+            : t.activitiesMembersOnly);
+      }
+      return;
+    }
+    // The server names a destination; the app owns the route. A live
+    // session opens the player; anything else opens a sheet built from the
+    // row already in hand, which costs no request and keeps the reader's
+    // place in the schedule.
+    if (activity.destination.type == 'live') {
+      context.push('/live/${activity.destination.eventId}');
+      return;
+    }
+    ActivityDetailSheet.show(
+      context,
+      activity: activity,
+      onReminder: () => _toggleReminder(activity),
+      onSave: () => _toggleSave(activity),
+      onRegister: () => _register(activity),
+    );
+  }
+
+  bool _requireSignIn() {
+    if (!ref.read(isLoggedInProvider)) {
+      context.push('/login');
+      return true;
+    }
+    return false;
+  }
+
+  Future<void> _toggleReminder(Activity activity) async {
+    if (_requireSignIn()) return;
+    final t = AppLocalizations.of(context)!;
+    final wasOn = activity.reminderSet;
+    final ok = await ref
+        .read(activitiesControllerProvider.notifier)
+        .toggleReminder(activity);
+    if (!mounted) return;
+    _snack(ok
+        ? (wasOn ? t.reminderOffSnack : t.reminderOnSnack)
+        : t.genericError);
+  }
+
+  Future<void> _toggleSave(Activity activity) async {
+    if (_requireSignIn()) return;
+    final t = AppLocalizations.of(context)!;
+    final wasSaved = activity.saved;
+    final ok = await ref
+        .read(activitiesControllerProvider.notifier)
+        .toggleSave(activity);
+    if (!mounted) return;
+    _snack(ok
+        ? (wasSaved ? t.activitiesUnsavedSnack : t.activitiesSavedSnack)
+        : t.genericError);
+  }
+
+  Future<void> _register(Activity activity) async {
+    final t = AppLocalizations.of(context)!;
+    if (activity.registration.state == RegistrationState.external) {
+      final url = Uri.tryParse(activity.registration.externalUrl);
+      if (url != null) {
+        await launchUrl(url, mode: LaunchMode.externalApplication);
+      }
+      return;
+    }
+    if (_requireSignIn()) return;
+
+    final cancelling =
+        activity.registration.mine != MyRegistration.none &&
+            activity.registration.mine != MyRegistration.cancelled;
+    final info = await ref
+        .read(activitiesControllerProvider.notifier)
+        .register(activity, cancel: cancelling);
+    if (!mounted) return;
+    if (info == null) {
+      _snack(t.activitiesRegistrationFailed);
+      return;
+    }
+    _snack(switch (info.mine) {
+      MyRegistration.registered =>
+        t.activitiesRegistrationConfirmed(activity.title),
+      MyRegistration.waitlisted =>
+        t.activitiesWaitlistConfirmed(activity.title),
+      _ => t.activitiesPlaceReleased,
+    });
+  }
+
+  void _snack(String message) => ScaffoldMessenger.of(context)
+      .showSnackBar(SnackBar(content: Text(message)));
 }
