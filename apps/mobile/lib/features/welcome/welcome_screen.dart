@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/locale_prefs.dart';
 import '../../l10n/app_localizations.dart';
+import '../notifications/notification_primer_prefs.dart';
 import 'welcome_controller.dart';
 import 'welcome_state.dart';
 import 'welcome_widgets.dart';
@@ -258,8 +259,14 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen>
     final controller = ref.read(welcomeControllerProvider.notifier);
     final ok = await controller.continueAsGuest();
     if (!mounted || !ok) return;
+    // The notification primer sits here, at the end of the first run —
+    // after the reader has seen what the app is for, and only if they
+    // have not already answered it.
+    final askAboutNotifications =
+        await ref.read(notificationPrimerPrefsProvider).shouldShow();
+    if (!mounted) return;
     // Replace, so the welcome cannot be reached again with back.
-    context.go('/home');
+    context.go(askAboutNotifications ? '/notification-permission' : '/home');
   }
 
   Future<void> _chooseLanguage(AppLanguage current) async {

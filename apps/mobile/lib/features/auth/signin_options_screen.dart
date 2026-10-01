@@ -103,7 +103,7 @@ class SignInOptionsScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               TextButton(
-                onPressed: () => context.go('/stay-connected'),
+                onPressed: () => context.go('/notification-permission'),
                 child: Text(
                   t.continueAsGuest,
                   style: const TextStyle(

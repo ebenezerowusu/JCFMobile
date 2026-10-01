@@ -17,7 +17,7 @@ class PathScreen extends ConsumerWidget {
     // Back from the login flow: if the code was verified, continue the
     // designed flow into the notification opt-in.
     if (context.mounted && ref.read(isLoggedInProvider)) {
-      context.go('/stay-connected');
+      context.go('/notification-permission');
     }
   }
 
@@ -113,7 +113,7 @@ class PathScreen extends ConsumerWidget {
                 title: t.guest,
                 body: t.guestCardBody,
                 button: OutlinedButton.icon(
-                  onPressed: () => context.go('/stay-connected'),
+                  onPressed: () => context.go('/notification-permission'),
                   icon: const Icon(Icons.arrow_forward, size: 20),
                   iconAlignment: IconAlignment.end,
                   label: Text(t.continueAsGuest,

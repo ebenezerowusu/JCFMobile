@@ -3895,6 +3895,186 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Swahili'**
   String get languageSwahili;
+
+  /// No description provided for @notificationPermissionEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'STAY CONNECTED'**
+  String get notificationPermissionEyebrow;
+
+  /// No description provided for @notificationPermissionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep your journey in reach'**
+  String get notificationPermissionTitle;
+
+  /// No description provided for @notificationPermissionDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow notifications for live sessions, practice reminders, program updates, and important announcements.'**
+  String get notificationPermissionDescription;
+
+  /// No description provided for @notificationBenefitLiveSessions.
+  ///
+  /// In en, this message translates to:
+  /// **'Live session reminders'**
+  String get notificationBenefitLiveSessions;
+
+  /// No description provided for @notificationBenefitPractice.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily practice prompts'**
+  String get notificationBenefitPractice;
+
+  /// No description provided for @notificationBenefitUpdates.
+  ///
+  /// In en, this message translates to:
+  /// **'Important updates'**
+  String get notificationBenefitUpdates;
+
+  /// No description provided for @notificationPermissionEnable.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable notifications'**
+  String get notificationPermissionEnable;
+
+  /// No description provided for @notificationPermissionNotNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get notificationPermissionNotNow;
+
+  /// No description provided for @notificationPermissionControlMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re in control. Change this anytime in Settings.'**
+  String get notificationPermissionControlMessage;
+
+  /// No description provided for @notificationPermissionRequesting.
+  ///
+  /// In en, this message translates to:
+  /// **'Asking your device…'**
+  String get notificationPermissionRequesting;
+
+  /// No description provided for @notificationPermissionEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are enabled'**
+  String get notificationPermissionEnabled;
+
+  /// No description provided for @notificationPermissionDeniedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are off'**
+  String get notificationPermissionDeniedTitle;
+
+  /// No description provided for @notificationPermissionDeniedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You can turn them on anytime in Settings. Everything else in the app works as usual.'**
+  String get notificationPermissionDeniedMessage;
+
+  /// No description provided for @notificationPermissionBlockedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are blocked'**
+  String get notificationPermissionBlockedTitle;
+
+  /// No description provided for @notificationPermissionBlockedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Your device is blocking notifications for this app. You can allow them in Settings.'**
+  String get notificationPermissionBlockedMessage;
+
+  /// No description provided for @notificationPermissionRestrictedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are restricted on this device and can\'t be turned on from here.'**
+  String get notificationPermissionRestrictedMessage;
+
+  /// No description provided for @notificationPermissionUnsupportedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This device doesn\'t support notifications. Everything else in the app works as usual.'**
+  String get notificationPermissionUnsupportedMessage;
+
+  /// No description provided for @notificationPermissionNotReachableMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Permission granted. Sending notifications isn\'t switched on in this version of the app yet, so none will arrive for now.'**
+  String get notificationPermissionNotReachableMessage;
+
+  /// No description provided for @notificationPermissionRegistrationFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Permission granted, but this device couldn\'t be registered, so notifications won\'t arrive yet.'**
+  String get notificationPermissionRegistrationFailed;
+
+  /// No description provided for @notificationPermissionRequestFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t ask for permission. Please try again.'**
+  String get notificationPermissionRequestFailed;
+
+  /// No description provided for @notificationPermissionSaveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t save your choice. Please try again.'**
+  String get notificationPermissionSaveFailed;
+
+  /// No description provided for @notificationPermissionSettingsUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t open Settings. Open your device Settings, find Jan Cosmic Foundation, and allow notifications there.'**
+  String get notificationPermissionSettingsUnavailable;
+
+  /// No description provided for @notificationPermissionOpenSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Settings'**
+  String get notificationPermissionOpenSettings;
+
+  /// No description provided for @notificationPermissionContinueWithout.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue without notifications'**
+  String get notificationPermissionContinueWithout;
+
+  /// No description provided for @notificationPermissionContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get notificationPermissionContinue;
+
+  /// No description provided for @notificationPermissionDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get notificationPermissionDone;
+
+  /// No description provided for @notificationPermissionRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get notificationPermissionRetry;
+
+  /// No description provided for @notificationPermissionBellLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Illustration of a notification bell'**
+  String get notificationPermissionBellLabel;
+
+  /// No description provided for @notificationSettingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notificationSettingsTitle;
+
+  /// No description provided for @notificationSettingsSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose what this app may send you'**
+  String get notificationSettingsSub;
 }
 
 class _AppLocalizationsDelegate

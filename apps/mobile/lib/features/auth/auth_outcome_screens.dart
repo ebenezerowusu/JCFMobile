@@ -42,7 +42,7 @@ class RecordNotFoundScreen extends StatelessWidget {
               const SizedBox(height: 12),
               AuthOutlinedButton(
                 label: t.continueAsGuest,
-                onPressed: () => context.go('/stay-connected'),
+                onPressed: () => context.go('/notification-permission'),
               ),
               const SizedBox(height: 10),
               AuthLink(
@@ -238,7 +238,7 @@ class _ApprovalPendingScreenState extends ConsumerState<ApprovalPendingScreen> {
               const SizedBox(height: 20),
               AuthPrimaryButton(
                 label: t.continueAsGuest,
-                onPressed: () => context.go('/stay-connected'),
+                onPressed: () => context.go('/notification-permission'),
               ),
               const SizedBox(height: 12),
               AuthOutlinedButton(

@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:jcf_ui/jcf_ui.dart';
 
 import '../../l10n/app_localizations.dart';
-import '../onboarding/notification_prefs.dart';
+import '../notifications/notification_primer_prefs.dart';
 
 import 'auth_controller.dart';
 import 'auth_widgets.dart';
@@ -80,10 +80,10 @@ class _VerifyCodeScreenState extends ConsumerState<VerifyCodeScreen> {
           .verify(widget.identifier, _code.text);
       if (!mounted) return;
       if (ref.read(isLoggedInProvider)) {
-        final prompted =
-            await ref.read(notificationPrefsProvider).wasPrompted();
+        final askAboutNotifications =
+            await ref.read(notificationPrimerPrefsProvider).shouldShow();
         if (!mounted) return;
-        if (prompted) {
+        if (!askAboutNotifications) {
           // Post-first-run sign-in (e.g. the premium gate): unwind the auth
           // stack — verify, identifier, then the /login options route — so
           // the user lands back where they started.
@@ -92,7 +92,7 @@ class _VerifyCodeScreenState extends ConsumerState<VerifyCodeScreen> {
           if (nav.canPop()) nav.pop();
           if (context.canPop()) context.pop();
         } else {
-          context.go('/stay-connected');
+          context.go('/notification-permission');
         }
       } else {
         setState(() => _error = AppLocalizations.of(context)!.invalidCode);

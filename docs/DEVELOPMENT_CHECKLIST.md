@@ -358,6 +358,50 @@ prerequisites YES ("Complete Level 2 to unlock").
       fifth copy; no analytics layer, so the listed events are not
       emitted; profile sync to Django is not implemented (device choice
       is authoritative and local-only).
+- [x] 19. Notification Permission Primer (owner spec, Oct 2026):
+      /notification-permission (end of the first run) and
+      /settings/notifications (More tab). An explanation, never a fake
+      system dialog: the OS is asked only from Enable notifications, and
+      Not now records a versioned deferral without touching the platform
+      at all. Bell over a soft blue glow, gold eyebrow, three compact
+      benefit rows, result states for granted / denied / blocked /
+      restricted / unsupported, Settings guidance where asking again
+      would do nothing, retryable failure line. 49 new tests (suite 362
+      green, 306 backend green), analyze clean, strings in all five
+      Wave-1 locales. THIS RESOLVES the orphaned /stay-connected flagged
+      in steps 16-18: that screen is DELETED, along with its
+      notification_prefs stub, because it wrote notify_opted_in = true
+      without ever asking the operating system - consent recorded that
+      the system never received. /stay-connected now redirects to the
+      primer, and the four call sites (verify-code success, the two auth
+      outcome screens, sign-in options) point at it directly. /path
+      remains orphaned. BACKEND (same pass): DeviceToken gains
+      registration_key / locale / timezone / app_version /
+      permission_status (migration 0006); DeviceRegisterView accepts
+      them through an explicit allowlist, retires the previous row on
+      token rotation so one install cannot hold two active
+      registrations, and now answers DELETE keyed on the registration
+      key - the token-in-the-path endpoint is kept for older clients but
+      documented as the wrong one to use, since request paths persist in
+      access logs and crash reports. Notes and deviations: PERMISSION IS
+      NOT DELIVERY, and the screen says so - there is no Firebase/APNs
+      in this project, so PushTokenProvider has one implementation that
+      returns null, registration reports noProvider, and a granted
+      permission shows "sending notifications isn't switched on in this
+      version of the app yet" rather than claiming push works; the
+      registration key is 16 bytes from Random.secure() kept in
+      preferences, not a hardware identifier, because it is the handle
+      that can deactivate a registration; app_version is NOT sent (the
+      app has no version source of its own yet - add it with the
+      force-upgrade check, which needs the same value); bell shipped as
+      .webp (117KB against 1340KB as PNG) and the logo points at the
+      splash asset rather than a sixth copy; no Podfile exists yet and
+      permission_handler_apple compiles notifications in by default, so
+      iOS needed no native change; Android declares POST_NOTIFICATIONS;
+      no analytics layer, so the listed events are not emitted; in-app
+      notification categories (NotificationPreferences) are NOT built -
+      OS permission is deliberately not treated as consent to daily
+      reminders, and the reminder-time screen is still owed.
 
 ## 🟦 Track 1 — Learn & Practice (recommended lead pillar)
 

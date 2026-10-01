@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:jcf_mobile/core/locale_prefs.dart';
+import 'package:jcf_mobile/features/notifications/notification_primer_prefs.dart';
 import 'package:jcf_mobile/features/welcome/welcome_prefs.dart';
 import 'package:jcf_mobile/features/welcome/welcome_screen.dart';
 import 'package:jcf_mobile/features/language_selection/supported_languages.dart';
@@ -57,6 +58,7 @@ Widget harness({
           for (final path in [
             '/home',
             '/login',
+            '/notification-permission',
             '/legal/terms',
             '/legal/privacy',
           ])
@@ -195,7 +197,8 @@ void main() {
   });
 
   group('the guest action', () {
-    testWidgets('records the choice and opens home', (tester) async {
+    testWidgets('records the choice and offers the notification primer',
+        (tester) async {
       await setSurface(tester, const Size(390, 844));
       final prefs = FakeWelcomePrefs();
       final visited = <String>[];
@@ -206,7 +209,29 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(prefs.chosen, isTrue);
+      // The primer sits at the end of the first run, once the reader has
+      // seen what the app is for.
+      expect(visited, contains('/notification-permission'));
+    });
+
+    testWidgets('a reader who already answered goes straight home',
+        (tester) async {
+      await setSurface(tester, const Size(390, 844));
+      SharedPreferences.setMockInitialValues({
+        'notification_primer_version': currentNotificationPrimerVersion,
+        'notification_primer_decision': 'deferred',
+        'notification_primer_decided_at': DateTime.now().toIso8601String(),
+      });
+      final prefs = FakeWelcomePrefs();
+      final visited = <String>[];
+      await tester.pumpWidget(harness(prefs: prefs, visited: visited));
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.text('Continue as guest'));
+      await tester.pumpAndSettle();
+
       expect(visited, contains('/home'));
+      expect(visited, isNot(contains('/notification-permission')));
     });
 
     testWidgets('a failure explains itself and offers a retry', (tester) async {

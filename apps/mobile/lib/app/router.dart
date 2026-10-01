@@ -9,6 +9,8 @@ import '../features/donations/causes_screen.dart';
 import '../features/engagement/announcements_screen.dart';
 import '../features/engagement/appointments_screen.dart';
 import '../features/engagement/notifications_screen.dart';
+import '../features/notifications/notification_permission_screen.dart';
+import '../features/notifications/notification_permission_state.dart';
 import '../features/home/home_screen.dart';
 import '../features/inspiration/inspiration_detail_screen.dart';
 import '../features/inspiration/share_card/share_card_screen.dart';
@@ -23,7 +25,7 @@ import '../features/practice/practice_screen.dart';
 import '../features/onboarding/path_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../features/splash/startup_splash_screen.dart';
-import '../features/onboarding/stay_connected_screen.dart';
+
 import '../features/welcome/legal_screen.dart';
 import '../features/welcome/welcome_screen.dart';
 import '../features/profile/profile_screen.dart';
@@ -62,7 +64,26 @@ GoRouter createRouter() {
           builder: (_, _) => const LanguageSelectionScreen(
               mode: LanguageSelectionMode.settings)),
       GoRoute(path: '/path', builder: (_, _) => const PathScreen()),
-      GoRoute(path: '/stay-connected', builder: (_, _) => const StayConnectedScreen()),
+      // The notification primer. `next` is validated against an allowlist
+      // inside the screen, so a deep link cannot aim it anywhere.
+      GoRoute(
+        path: '/notification-permission',
+        builder: (_, state) => NotificationPermissionScreen(
+          entryPoint: NotificationPermissionEntryPoint.onboarding,
+          returnRoute: state.uri.queryParameters['next'],
+        ),
+      ),
+      GoRoute(
+        path: '/settings/notifications',
+        builder: (_, _) => const NotificationPermissionScreen(
+            entryPoint: NotificationPermissionEntryPoint.settings),
+      ),
+      // The former opt-in screen, which recorded a "yes" without ever
+      // asking the operating system. Kept as a redirect so stored links
+      // still land somewhere sensible.
+      GoRoute(
+          path: '/stay-connected',
+          redirect: (_, _) => '/notification-permission'),
       GoRoute(path: '/session-expired', builder: (_, _) => const SessionExpiredScreen()),
       GoRoute(path: '/login', builder: (_, _) => const SignInOptionsScreen()),
       GoRoute(path: '/login/phone', builder: (_, _) => const SignInIdentifierScreen(isPhone: true)),

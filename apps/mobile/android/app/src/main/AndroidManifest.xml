@@ -1,5 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Android 13 (API 33) and later ask for this at runtime; declaring it
+         is what makes the request possible at all. Earlier versions have no
+         runtime prompt, so the app offers Settings instead. Requested only
+         when the reader taps Enable notifications. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <!-- gal needs this only on Android 9 and below to save to the gallery;
          API 29+ uses scoped storage and requires no permission. -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"

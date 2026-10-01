@@ -2125,4 +2125,112 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get languageSwahili => 'Swahili';
+
+  @override
+  String get notificationPermissionEyebrow => 'RESTEZ CONNECTÉ';
+
+  @override
+  String get notificationPermissionTitle =>
+      'Gardez votre chemin à portée de main';
+
+  @override
+  String get notificationPermissionDescription =>
+      'Autorisez les notifications pour les sessions en direct, les rappels de pratique, les mises à jour des programmes et les annonces importantes.';
+
+  @override
+  String get notificationBenefitLiveSessions => 'Rappels de sessions en direct';
+
+  @override
+  String get notificationBenefitPractice =>
+      'Invitations à la pratique quotidienne';
+
+  @override
+  String get notificationBenefitUpdates => 'Mises à jour importantes';
+
+  @override
+  String get notificationPermissionEnable => 'Activer les notifications';
+
+  @override
+  String get notificationPermissionNotNow => 'Pas maintenant';
+
+  @override
+  String get notificationPermissionControlMessage =>
+      'Vous gardez le contrôle. Modifiable à tout moment dans les Réglages.';
+
+  @override
+  String get notificationPermissionRequesting => 'Demande en cours…';
+
+  @override
+  String get notificationPermissionEnabled => 'Les notifications sont activées';
+
+  @override
+  String get notificationPermissionDeniedTitle =>
+      'Les notifications sont désactivées';
+
+  @override
+  String get notificationPermissionDeniedMessage =>
+      'Vous pouvez les activer à tout moment dans les Réglages. Tout le reste de l\'application fonctionne normalement.';
+
+  @override
+  String get notificationPermissionBlockedTitle =>
+      'Les notifications sont bloquées';
+
+  @override
+  String get notificationPermissionBlockedMessage =>
+      'Votre appareil bloque les notifications de cette application. Vous pouvez les autoriser dans les Réglages.';
+
+  @override
+  String get notificationPermissionRestrictedMessage =>
+      'Les notifications sont restreintes sur cet appareil et ne peuvent pas être activées ici.';
+
+  @override
+  String get notificationPermissionUnsupportedMessage =>
+      'Cet appareil ne prend pas en charge les notifications. Tout le reste de l\'application fonctionne normalement.';
+
+  @override
+  String get notificationPermissionNotReachableMessage =>
+      'Autorisation accordée. L\'envoi des notifications n\'est pas encore activé dans cette version de l\'application : vous n\'en recevrez donc pas pour le moment.';
+
+  @override
+  String get notificationPermissionRegistrationFailed =>
+      'Autorisation accordée, mais cet appareil n\'a pas pu être enregistré : les notifications n\'arriveront pas encore.';
+
+  @override
+  String get notificationPermissionRequestFailed =>
+      'Nous n\'avons pas pu demander l\'autorisation. Veuillez réessayer.';
+
+  @override
+  String get notificationPermissionSaveFailed =>
+      'Nous n\'avons pas pu enregistrer votre choix. Veuillez réessayer.';
+
+  @override
+  String get notificationPermissionSettingsUnavailable =>
+      'Impossible d\'ouvrir les Réglages. Ouvrez les Réglages de votre appareil, trouvez Jan Cosmic Foundation et autorisez-y les notifications.';
+
+  @override
+  String get notificationPermissionOpenSettings => 'Ouvrir les Réglages';
+
+  @override
+  String get notificationPermissionContinueWithout =>
+      'Continuer sans notifications';
+
+  @override
+  String get notificationPermissionContinue => 'Continuer';
+
+  @override
+  String get notificationPermissionDone => 'Terminé';
+
+  @override
+  String get notificationPermissionRetry => 'Réessayer';
+
+  @override
+  String get notificationPermissionBellLabel =>
+      'Illustration d\'une cloche de notification';
+
+  @override
+  String get notificationSettingsTitle => 'Notifications';
+
+  @override
+  String get notificationSettingsSub =>
+      'Choisissez ce que cette application peut vous envoyer';
 }
