@@ -11,38 +11,64 @@ const _softGold = Color(0xFFD5A62E);
 bool reducedMotion(BuildContext context) =>
     MediaQuery.disableAnimationsOf(context);
 
+/// The navy the native launch screen is painted in (`color` under
+/// `flutter_native_splash` in pubspec.yaml). Stage two starts on exactly
+/// this colour so the handover from the OS is invisible.
+const splashNativeNavy = Color(0xFF102454);
+
+/// The logo's width on the native launch screen: the mdpi drawable is
+/// 190x154 px, i.e. 190 logical pixels, centred in the window.
+const splashNativeLogoWidth = 190.0;
+
+/// Width over height of [SplashAssets.brandLogo] (760x616).
+const splashLogoAspect = 760 / 616;
+
 /// The cosmic artwork behind everything, with a restrained navy scrim so
 /// text meets contrast wherever the image happens to be bright.
+///
+/// Sits on [splashNativeNavy]; [reveal] fades the artwork in over it, so
+/// the screen reads as the native launch frame gaining its background.
 class SplashBackground extends StatelessWidget {
-  const SplashBackground({super.key, required this.child});
+  const SplashBackground({super.key, required this.child, this.reveal});
 
   final Widget child;
+
+  /// Opacity of the artwork and scrim. Null shows them at full strength.
+  final Animation<double>? reveal;
 
   @override
   Widget build(BuildContext context) => Stack(
         fit: StackFit.expand,
         children: [
-          // Decorative: excluded from semantics so a screen reader does
-          // not announce the wallpaper.
-          Image.asset(
-            SplashAssets.cosmicBackground,
-            fit: BoxFit.cover,
-            excludeFromSemantics: true,
-            errorBuilder: (_, _, _) =>
-                const ColoredBox(color: JcfColors.cosmicDeep),
-          ),
-          const DecoratedBox(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color(0x1A102454),
-                  Color(0x66102454),
-                  Color(0xD9102454),
-                ],
-                stops: [0, 0.55, 1],
-              ),
+          const ColoredBox(color: splashNativeNavy),
+          FadeTransition(
+            opacity: reveal ?? kAlwaysCompleteAnimation,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                // Decorative: excluded from semantics so a screen reader
+                // does not announce the wallpaper.
+                Image.asset(
+                  SplashAssets.cosmicBackground,
+                  fit: BoxFit.cover,
+                  excludeFromSemantics: true,
+                  errorBuilder: (_, _, _) => const SizedBox.shrink(),
+                ),
+                const DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Color(0x1A102454),
+                        Color(0x66102454),
+                        Color(0xD9102454),
+                      ],
+                      stops: [0, 0.55, 1],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           child,
@@ -50,93 +76,79 @@ class SplashBackground extends StatelessWidget {
       );
 }
 
-/// Logo, foundation name and tagline. All three are native text and a
-/// native image — nothing here is baked into the artwork.
-class SplashBrandContent extends StatefulWidget {
-  const SplashBrandContent({super.key, this.compact = false});
+/// The brand mark. Contain, always: it must never be cropped or
+/// stretched, whatever the box it lands in.
+class SplashLogoImage extends StatelessWidget {
+  const SplashLogoImage({super.key, this.width, this.semanticLabel});
 
-  final bool compact;
+  final double? width;
+
+  /// Null marks the image decorative.
+  final String? semanticLabel;
 
   @override
-  State<SplashBrandContent> createState() => _SplashBrandContentState();
+  Widget build(BuildContext context) => Image.asset(
+        SplashAssets.brandLogo,
+        width: width,
+        fit: BoxFit.contain,
+        semanticLabel: semanticLabel,
+        excludeFromSemantics: semanticLabel == null,
+        errorBuilder: (_, _, _) => SizedBox(
+            width: width,
+            height: width == null ? null : width! / splashLogoAspect),
+      );
 }
 
-class _SplashBrandContentState extends State<SplashBrandContent>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-  bool _started = false;
+/// Logo, foundation name and tagline. All three are native text and a
+/// native image — nothing here is baked into the artwork.
+///
+/// Animation belongs to the splash screen's handover: [showLogo] is false
+/// while a stand-in logo travels from the native launch position into
+/// [logoKey]'s box, and [textOpacity] brings the words in after it.
+class SplashBrandContent extends StatelessWidget {
+  const SplashBrandContent({
+    super.key,
+    this.compact = false,
+    this.logoKey,
+    this.showLogo = true,
+    this.textOpacity,
+  });
 
-  @override
-  void initState() {
-    super.initState();
-    // Constructed here, not lazily: a `late final` initializer only runs
-    // on first access, and dispose() touching it would then build a
-    // controller against a deactivated element.
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 650),
-    );
-  }
+  final bool compact;
+  final Key? logoKey;
+  final bool showLogo;
+  final Animation<double>? textOpacity;
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (_started) return;
-    _started = true;
-    if (reducedMotion(context)) {
-      // Straight to the end: no scale, no fade, nothing to sit through.
-      _controller.value = 1;
-    } else {
-      _controller.forward();
-    }
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  /// 190–220 logical pixels on a phone, capped on a tablet so the logo
+  /// never grows to fill the screen.
+  static double logoWidthFor(BuildContext context, {bool compact = false}) =>
+      compact
+          ? 150.0
+          : (MediaQuery.sizeOf(context).width * 0.54).clamp(170.0, 220.0);
 
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
-    final width = MediaQuery.sizeOf(context).width;
-    // 190–220 logical pixels on a phone, capped on a tablet so the logo
-    // never grows to fill the screen.
-    final logoWidth = widget.compact
-        ? 150.0
-        : (width * 0.54).clamp(170.0, 220.0);
-
-    final logoFade = CurvedAnimation(
-      parent: _controller,
-      curve: const Interval(0, 0.6, curve: Curves.easeOut),
-    );
-    final textFade = CurvedAnimation(
-      parent: _controller,
-      curve: const Interval(0.35, 1, curve: Curves.easeOut),
-    );
+    final logoWidth = logoWidthFor(context, compact: compact);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        FadeTransition(
-          opacity: logoFade,
-          child: ScaleTransition(
-            scale: Tween<double>(begin: 0.96, end: 1).animate(logoFade),
-            child: Image.asset(
-              SplashAssets.brandLogo,
-              width: logoWidth,
-              // Contain, always: the mark must never be cropped or
-              // stretched, whatever the box it lands in.
-              fit: BoxFit.contain,
-              semanticLabel: t.splashLogoLabel,
-              errorBuilder: (_, _, _) => SizedBox(height: logoWidth * 0.8),
-            ),
+        // A fixed box, so the layout — and the handover's target — does
+        // not depend on whether the image has decoded yet.
+        SizedBox(
+          key: logoKey,
+          width: logoWidth,
+          height: logoWidth / splashLogoAspect,
+          child: Opacity(
+            opacity: showLogo ? 1 : 0,
+            child: SplashLogoImage(
+                width: logoWidth, semanticLabel: t.splashLogoLabel),
           ),
         ),
-        SizedBox(height: widget.compact ? 16 : 24),
+        SizedBox(height: compact ? 16 : 24),
         FadeTransition(
-          opacity: textFade,
+          opacity: textOpacity ?? kAlwaysCompleteAnimation,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -146,21 +158,21 @@ class _SplashBrandContentState extends State<SplashBrandContent>
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  fontSize: widget.compact ? 16 : 18,
+                  fontSize: compact ? 16 : 18,
                   height: 1.25,
                   fontWeight: FontWeight.w600,
                   letterSpacing: 2.2,
                   color: _warmWhite,
                 ),
               ),
-              SizedBox(height: widget.compact ? 8 : 12),
+              SizedBox(height: compact ? 8 : 12),
               Text(
                 t.splashTagline,
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  fontSize: widget.compact ? 13 : 14.5,
+                  fontSize: compact ? 13 : 14.5,
                   height: 1.35,
                   fontWeight: FontWeight.w500,
                   color: _softGold,

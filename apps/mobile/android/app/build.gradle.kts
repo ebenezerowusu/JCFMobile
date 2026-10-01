@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "org.jancosmicfoundation.jcf_mobile"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 37 // permission_handler_android 14.1+ requires API 37
     ndkVersion = flutter.ndkVersion
 
     compileOptions {

@@ -291,6 +291,47 @@ void main() {
     });
   });
 
+  // --- native handover -------------------------------------------------
+
+  group('the handover from the native launch screen', () {
+    testWidgets('the first frame is the native frame: navy, logo centred',
+        (tester) async {
+      await setSurface(tester, const Size(360, 740));
+      await tester.pumpWidget(harness(
+          FakeBootstrap([ready()], delay: const Duration(seconds: 10))));
+
+      final scaffold = tester.widget<Scaffold>(find.byType(Scaffold));
+      expect(scaffold.backgroundColor, splashNativeNavy);
+
+      // The stand-in is the last logo in the tree, painted over the layout.
+      final standIn = tester.getRect(find.byType(SplashLogoImage).last);
+      expect(standIn.center, const Offset(180, 370));
+      expect(standIn.width, splashNativeLogoWidth);
+      await tester.pump(const Duration(seconds: 11));
+    });
+
+    testWidgets('ends with a single logo, in the layout', (tester) async {
+      await tester.pumpWidget(harness(
+          FakeBootstrap([ready()], delay: const Duration(seconds: 10))));
+      await tester.pump();
+      expect(find.byType(SplashLogoImage), findsNWidgets(2));
+      await tester.pump(const Duration(milliseconds: 1500));
+      expect(find.byType(SplashLogoImage), findsOneWidget);
+      await tester.pump(const Duration(seconds: 11));
+    });
+
+    testWidgets('reduced motion skips the handover entirely',
+        (tester) async {
+      await tester.pumpWidget(harness(
+        FakeBootstrap([ready()], delay: const Duration(seconds: 10)),
+        reduceMotion: true,
+      ));
+      await tester.pump();
+      expect(find.byType(SplashLogoImage), findsOneWidget);
+      await tester.pump(const Duration(seconds: 11));
+    });
+  });
+
   // --- error, update, maintenance --------------------------------------
 
   group('recoverable error', () {
