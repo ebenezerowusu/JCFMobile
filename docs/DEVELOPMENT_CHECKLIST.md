@@ -366,9 +366,16 @@ prerequisites YES ("Complete Level 2 to unlock").
       at all. Bell over a soft blue glow, gold eyebrow, three compact
       benefit rows, result states for granted / denied / blocked /
       restricted / unsupported, Settings guidance where asking again
-      would do nothing, retryable failure line. 49 new tests (suite 362
+      would do nothing, retryable failure line. The explanation scrolls
+      and the decision does not: both actions and the "change this
+      anytime" line are pinned, because a simulator run showed that line
+      falling below the fold on a 390x844 phone and nobody should have
+      to scroll to learn that saying no is easy. 50 new tests (suite 363
       green, 306 backend green), analyze clean, strings in all five
-      Wave-1 locales. THIS RESOLVES the orphaned /stay-connected flagged
+      Wave-1 locales. Verified on the iPhone 16e simulator: the system
+      prompt appears only on Enable, a Don't Allow answer lands on the
+      blocked state with Settings guidance, and a clean install returns
+      to Enable / Not now. THIS RESOLVES the orphaned /stay-connected flagged
       in steps 16-18: that screen is DELETED, along with its
       notification_prefs stub, because it wrote notify_opted_in = true
       without ever asking the operating system - consent recorded that
@@ -395,9 +402,12 @@ prerequisites YES ("Complete Level 2 to unlock").
       app has no version source of its own yet - add it with the
       force-upgrade check, which needs the same value); bell shipped as
       .webp (117KB against 1340KB as PNG) and the logo points at the
-      splash asset rather than a sixth copy; no Podfile exists yet and
-      permission_handler_apple compiles notifications in by default, so
-      iOS needed no native change; Android declares POST_NOTIFICATIONS;
+      splash asset rather than a sixth copy; iOS needed no native change
+      because this project links plugins with SWIFT PACKAGE MANAGER, not
+      CocoaPods - there is no Podfile at all, permission_handler_apple
+      9.6.2 is a dependency of the generated
+      FlutterGeneratedPluginSwiftPackage, and the PERMISSION_X=0 Podfile
+      macros do not apply; Android declares POST_NOTIFICATIONS;
       no analytics layer, so the listed events are not emitted; in-app
       notification categories (NotificationPreferences) are NOT built -
       OS permission is deliberately not treated as consent to daily

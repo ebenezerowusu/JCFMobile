@@ -845,6 +845,21 @@ void main() {
       expect(tester.takeException(), isNull);
     });
 
+    testWidgets('the privacy line is visible without scrolling on a 390x844 '
+        'phone', (tester) async {
+      // Caught on the simulator, not in the tests: the reassurance that
+      // this can be changed later is what makes Not now an easy choice,
+      // so it has to sit beside the actions rather than below the fold.
+      await setSurface(tester, const Size(390, 844));
+      await tester
+          .pumpWidget(harness(permissions: FakePermissionService()));
+      await tester.pumpAndSettle();
+
+      final note = tester.getRect(find.text(
+          "You're in control. Change this anytime in Settings."));
+      expect(note.bottom, lessThanOrEqualTo(844));
+    });
+
     testWidgets('large text does not overflow', (tester) async {
       await setSurface(tester, const Size(390, 844));
       await tester.pumpWidget(harness(

@@ -101,9 +101,9 @@ class _NotificationPermissionScreenState
     final t = AppLocalizations.of(context)!;
     final state = ref.watch(notificationPermissionControllerProvider);
     final media = MediaQuery.of(context);
-    // On a short screen the illustration yields space first; the two
-    // actions must stay reachable without hunting.
-    final illustration = media.size.height < 680 ? 150.0 : 210.0;
+    // The illustration yields space first on a short device; the pinned
+    // footer below means it is never competing with the actions.
+    final illustration = media.size.height < 680 ? 150.0 : 200.0;
 
     return Scaffold(
       backgroundColor: warmWhite,
@@ -120,42 +120,73 @@ class _NotificationPermissionScreenState
         // to; from Settings, back is ordinary.
         canPop: !_isOnboarding,
         child: NotificationPermissionCanvas(
-          child: SafeArea(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(24, 8, 24, 20),
-              child: Column(
-                children: [
-                  if (_isOnboarding) ...[
-                    const NotificationPermissionLogo(),
-                    const SizedBox(height: 4),
-                  ],
-                  NotificationPermissionIllustration(size: illustration),
-                  const SizedBox(height: 4),
-                  const NotificationPermissionIntro(),
-                  const SizedBox(height: 18),
-                  if (state.hasResult)
-                    _outcome(t, state)
-                  else
-                    const NotificationBenefitList(),
-                  const SizedBox(height: 18),
-                  if (_failureMessage(t, state) case final message?) ...[
-                    NotificationPermissionError(
-                      message: message,
-                      onRetry: _retryable(state)
-                          ? () => ref
-                              .read(notificationPermissionControllerProvider
-                                  .notifier)
-                              .retry()
-                          : null,
+          // The explanation scrolls; the decision does not. Both actions
+          // and the line promising this can be changed later stay on
+          // screen at every size and text scale — a reader must never
+          // have to scroll to find out that saying no is easy.
+          child: Column(
+            children: [
+              Expanded(
+                child: SafeArea(
+                  bottom: false,
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.fromLTRB(24, 8, 24, 8),
+                    child: Column(
+                      children: [
+                        if (_isOnboarding) ...[
+                          const NotificationPermissionLogo(),
+                          const SizedBox(height: 4),
+                        ],
+                        NotificationPermissionIllustration(
+                            size: illustration),
+                        const SizedBox(height: 4),
+                        const NotificationPermissionIntro(),
+                        const SizedBox(height: 16),
+                        if (state.hasResult)
+                          _outcome(t, state)
+                        else
+                          const NotificationBenefitList(),
+                      ],
                     ),
-                    const SizedBox(height: 12),
-                  ],
-                  _actions(t, state),
-                  const SizedBox(height: 14),
-                  const NotificationPermissionControlNote(),
-                ],
+                  ),
+                ),
               ),
-            ),
+              // A hairline, so content scrolling under the footer reads as
+              // "there is more above" rather than as a clipped row.
+              DecoratedBox(
+                decoration: const BoxDecoration(
+                  color: warmWhite,
+                  border: Border(top: BorderSide(color: Color(0xFFE3E6EC))),
+                ),
+                child: SafeArea(
+                  top: false,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(24, 12, 24, 10),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (_failureMessage(t, state) case final message?) ...[
+                          NotificationPermissionError(
+                            message: message,
+                            onRetry: _retryable(state)
+                                ? () => ref
+                                    .read(
+                                        notificationPermissionControllerProvider
+                                            .notifier)
+                                    .retry()
+                                : null,
+                          ),
+                          const SizedBox(height: 12),
+                        ],
+                        _actions(t, state),
+                        const SizedBox(height: 10),
+                        const NotificationPermissionControlNote(),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
