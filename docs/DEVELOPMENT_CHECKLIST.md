@@ -413,6 +413,47 @@ prerequisites YES ("Complete Level 2 to unlock").
       OS permission is deliberately not treated as consent to daily
       reminders, and the reminder-time screen is still owed.
 
+- [x] 20. Two tiers: guest and student (owner decision, Oct 2026). The
+      member tier is gone from the app. BUT `Contact.is_member` STAYS —
+      it is a JCFAdmin CRM flag, written by the public website at
+      registration (website/views.py) and counted on the dashboard, and
+      it still marks an approved contact. Anyone approved by either flag
+      gets the student experience, so nobody who could use the app
+      yesterday is locked out and no CRM data was rewritten. Backend:
+      new mobile_api/tiers.py owns the rules, which were previously
+      re-derived in six modules, each slightly differently; IsMember was
+      never a tier test (it only asked whether a token was present) and
+      is honestly named IsSignedIn; IsStudent and IsStudentOrMember were
+      the same question twice and are one class. The `members` audience
+      value is removed from announcements, programmes, activities,
+      practices and live sessions, with DATA MIGRATIONS moving those
+      rows to `students` — not cosmetic, because once `members` is not a
+      valid choice the API filters on ['public','students'] and a row
+      left behind would not have become public, it would have stopped
+      being returned at all. home/member/ is DELETED; home/student/ is
+      the home for everyone signed in. ONE DELIBERATE BEHAVIOUR CHANGE:
+      a guest used to see member-tier content locked as a reason to sign
+      in, while students-only content was hidden outright; with one
+      gated tier those merged and this takes the strict side, so a guest
+      is never told gated content exists and the locked-teaser prompt is
+      gone from the feed (access.allowed still carries the locked state
+      for a direct link or a lapsed contact). Flutter: member_home
+      screen/widgets/repository deleted along with the dead MemberHome
+      and StudentHome layouts in home_screen; MemberImage was NOT
+      member-specific - six other features import it - so it is
+      lib/core/remote_image.dart as RemoteImage; Member.hasPremiumAccess
+      is Member.isApproved; the student home gained the daily
+      inspiration section the member home had (the only thing it lacked)
+      and now hides Progress and Mentor when there is no enrolment,
+      because a 0% bar and an empty mentor card read as a broken screen
+      rather than an empty one. 10 dead ARB keys removed and 10 reworded
+      across all five locales. 356 backend tests and 359 app tests
+      green, analyze clean. Still open: `membership_card` strings are
+      kept on purpose (a membership card is a JCF record, not an app
+      tier); the Dart model class is still named `Member` because it
+      mirrors the API's MemberSerializer, and renaming it is a separate
+      sweep.
+
 ## 🟦 Track 1 — Learn & Practice (recommended lead pillar)
 
 ### 1A. Teachings depth (backend + JCFAdmin)

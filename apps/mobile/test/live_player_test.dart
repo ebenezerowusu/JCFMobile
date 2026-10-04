@@ -318,16 +318,16 @@ void main() {
       expect(find.text('LIVE'), findsNothing);
     });
 
-    testWidgets('a members-only session gates a guest', (tester) async {
+    testWidgets('a gated session asks a guest to sign in', (tester) async {
       usePhone(tester);
       await tester.pumpWidget(harness(event(
         access: const LiveAccess(
-            allowed: false, requiredTier: 'members', signInRequired: true),
+            allowed: false, requiredTier: 'students', signInRequired: true),
         // The server sends no stream when access is refused.
         stream: null,
       )));
       await tester.pumpAndSettle();
-      expect(find.text('This session is for members and students.'),
+      expect(find.text('This session is for enrolled students.'),
           findsOneWidget);
       expect(find.text('Sign In'), findsWidgets);
       expect(find.text('LIVE'), findsNothing);

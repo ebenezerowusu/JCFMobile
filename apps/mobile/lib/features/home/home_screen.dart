@@ -13,27 +13,24 @@ import '../lessons/lessons_repository.dart';
 import '../practice/practice_repository.dart';
 import '../programs/programs_repository.dart';
 import 'home_widgets.dart';
-import 'member_home_repository.dart';
-import 'member_home_screen.dart';
 import 'student_home_repository.dart';
 import 'student_home_screen.dart';
 
-/// Role-adaptive Home: guest (design/19), member (design/20), student
-/// (design/21). One route, three layouts, chosen by auth state.
+/// Home, in two forms: guest (design/19) and signed in (design/21).
+///
+/// There used to be three, with a separate member layout between them.
+/// The app has two tiers now, so anyone signed in gets the student home
+/// whether or not they are enrolled on a course.
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final member = ref.watch(authControllerProvider).asData?.value;
-    final Widget body;
-    if (member == null) {
-      body = const GuestHome();
-    } else if (member.isStudent) {
-      body = const StudentHomeBody();
-    } else {
-      body = const MemberHomeBody();
-    }
+    // Signed in or not. Nothing here branches on which approval flag the
+    // server set — see Member.isApproved.
+    final Widget body =
+        member == null ? const GuestHome() : const StudentHomeBody();
     return Scaffold(
       backgroundColor: JcfColors.skySurface,
       body: SafeArea(
@@ -47,7 +44,6 @@ class HomeScreen extends ConsumerWidget {
             ref.invalidate(upcomingActivitiesProvider);
             ref.invalidate(continueLearningProvider);
             ref.invalidate(practiceSummaryProvider);
-            ref.invalidate(memberHomeProvider);
             ref.invalidate(studentHomeProvider);
           },
           child: body,
@@ -164,151 +160,4 @@ class GuestHome extends ConsumerWidget {
       ],
     );
   }
-}
-
-// ---------------------------------------------------------------------------
-// Member (design/20)
-// ---------------------------------------------------------------------------
-
-class MemberHome extends ConsumerWidget {
-  const MemberHome({super.key, required this.member});
-
-  final Member member;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final t = AppLocalizations.of(context)!;
-    final announcements = ref.watch(announcementsProvider);
-    final lessons = ref.watch(lessonsListProvider);
-    final programs = ref.watch(programsListProvider);
-    final inspiration = ref.watch(inspirationTodayProvider).asData?.value;
-
-    final latestLesson = lessons.asData?.value.results
-        .cast<Teaching?>()
-        .firstWhere((_) => true, orElse: () => null);
-    final learning = ref.watch(continueLearningProvider).asData?.value;
-    final featuredSeries =
-        (learning?.series.isNotEmpty ?? false) ? learning!.series.first : null;
-    final nextProgram = programs.asData?.value.results
-        .cast<Program?>()
-        .firstWhere((_) => true, orElse: () => null);
-    final announcement = announcements.asData?.value.results
-        .cast<Announcement?>()
-        .firstWhere((_) => true, orElse: () => null);
-
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
-      children: [
-        MemberHeader(member: member, chip: t.memberChip),
-        const SizedBox(height: 12),
-        GreetingBlock(name: _firstName(member), tagline: t.memberTagline),
-        const SizedBox(height: 14),
-        InspirationHero(compact: true, inspiration: inspiration),
-        const SizedBox(height: 14),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: EyebrowCard(
-                eyebrow: t.continueLearningEyebrow,
-                icon: Icons.menu_book_rounded,
-                title: featuredSeries?.title ?? latestLesson?.topic ?? t.tabLearn,
-                ctaLabel: t.resume,
-                onTap: () => featuredSeries != null
-                    ? context.push('/learning')
-                    : latestLesson == null
-                        ? context.go('/lessons')
-                        : context.push('/lessons/${latestLesson.slug}'),
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: EyebrowCard(
-                eyebrow: t.upcomingEyebrow,
-                icon: Icons.calendar_month_rounded,
-                title: nextProgram?.title ?? t.upcomingActivitiesTitle,
-                ctaLabel: t.seeAll,
-                onTap: () => context.push('/activities'),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 18),
-        QuickActionRow(items: [
-          QuickAction(Icons.badge_rounded, const Color(0xFF2E6BF0),
-              const Color(0xFFE3EEFF), t.myCard, t.myCardSub,
-              () => context.go('/more')),
-          QuickAction(Icons.people_alt_rounded, const Color(0xFFF08A24),
-              const Color(0xFFFDEED9), t.consultationAction, t.consultationSub,
-              () => context.push('/appointments')),
-          QuickAction(Icons.favorite_rounded, const Color(0xFF2E9E5B),
-              const Color(0xFFDDF3E4), t.giveAction, t.giveSub,
-              () => context.push('/give')),
-          QuickAction(Icons.groups_rounded, const Color(0xFF7B5BD6),
-              const Color(0xFFEAE3FA), t.myGroups, t.myGroupsSub,
-              () => context.go('/more')),
-        ]),
-        if (announcement != null) ...[
-          const SizedBox(height: 18),
-          AnnouncementCard(announcement: announcement),
-        ],
-      ],
-    );
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Student (design/21) — journey hero fills with real data in later slices.
-// ---------------------------------------------------------------------------
-
-class StudentHome extends ConsumerWidget {
-  const StudentHome({super.key, required this.member});
-
-  final Member member;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final t = AppLocalizations.of(context)!;
-    final announcements = ref.watch(announcementsProvider);
-    final announcement = announcements.asData?.value.results
-        .cast<Announcement?>()
-        .firstWhere((_) => true, orElse: () => null);
-    final practice = ref.watch(practiceSummaryProvider).asData?.value;
-
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
-      children: [
-        MemberHeader(member: member, chip: t.studentChip, studentStyle: true),
-        const SizedBox(height: 12),
-        GreetingBlock(
-          name: '',
-          headline: t.welcomeBackName(_firstName(member)),
-          tagline: t.studentTagline,
-        ),
-        const SizedBox(height: 14),
-        JourneyHero(
-          eyebrow: t.innerspaceJourneyEyebrow,
-          cta: t.continueLesson,
-          onTap: () => context.push('/learning'),
-        ),
-        const SizedBox(height: 14),
-        TodaysPracticeCard(
-          title: practice?.todaysPractice?.title ?? t.todaysPractice,
-          streakLabel:
-              practice == null ? null : t.dayStreak(practice.streakDays),
-          cta: t.startLabel,
-          onTap: () => context.go('/practice'),
-        ),
-        if (announcement != null) ...[
-          const SizedBox(height: 14),
-          AnnouncementCard(announcement: announcement),
-        ],
-      ],
-    );
-  }
-}
-
-String _firstName(Member member) {
-  final parts = member.fullName.trim().split(' ');
-  return parts.isEmpty ? member.fullName : parts.first;
 }

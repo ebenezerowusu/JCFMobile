@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:jcf_ui/jcf_ui.dart';
 
 import '../../l10n/app_localizations.dart';
-import '../home/member_home_widgets.dart' show MemberImage;
+import '../../core/remote_image.dart' show RemoteImage;
 import 'activity_models.dart';
 import 'activity_widgets.dart';
 
@@ -74,7 +74,7 @@ class ActivityDetailSheet extends StatelessWidget {
                   ClipRRect(
                     borderRadius: const BorderRadius.vertical(
                         top: Radius.circular(24)),
-                    child: MemberImage(
+                    child: RemoteImage(
                       url: activity.imageUrl,
                       asset: activityAsset(
                           activity.imageKey, activity.activityType),

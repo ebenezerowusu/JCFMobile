@@ -106,67 +106,6 @@ class _HeaderIconButton extends StatelessWidget {
   }
 }
 
-/// Member/student header: avatar + role chip + bell (designs 20/21).
-class MemberHeader extends StatelessWidget {
-  const MemberHeader(
-      {super.key, required this.member, required this.chip,
-      this.studentStyle = false});
-
-  final Member member;
-  final String chip;
-  final bool studentStyle;
-
-  @override
-  Widget build(BuildContext context) {
-    final initial =
-        member.fullName.isEmpty ? '•' : member.fullName[0].toUpperCase();
-    return Row(
-      children: [
-        const JcfLogo(size: 48),
-        const Spacer(),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-          decoration: BoxDecoration(
-            color: const Color(0xFFE3EEFF),
-            borderRadius: BorderRadius.circular(18),
-          ),
-          child: Row(
-            children: [
-              Icon(studentStyle ? Icons.school_rounded : Icons.person_rounded,
-                  size: 17, color: JcfColors.skyPrimary),
-              const SizedBox(width: 6),
-              Text(
-                chip,
-                style: const TextStyle(
-                  color: JcfColors.skyPrimary,
-                  fontFamily: JcfTypography.bodyFamily,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(width: 10),
-        IconButton(
-          onPressed: () => context.push('/notifications'),
-          icon: const Icon(Icons.notifications_none_rounded,
-              color: JcfColors.inkOnLight),
-        ),
-        GestureDetector(
-          onTap: () => context.push('/profile'),
-          child: CircleAvatar(
-            radius: 20,
-            backgroundColor: JcfColors.skyPrimary,
-            child: Text(initial,
-                style: const TextStyle(
-                    color: Colors.white, fontWeight: FontWeight.w800)),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 class GreetingBlock extends StatelessWidget {
   const GreetingBlock(
       {super.key, required this.name, required this.tagline, this.headline});

@@ -56,10 +56,11 @@ class ProfileScreen extends ConsumerWidget {
               ListTile(
                 leading: const Icon(Icons.badge),
                 title: const Text('Status'),
-                subtitle: Text([
-                  if (member.isMember) 'Member',
-                  if (member.isStudent) 'Student',
-                ].join(' · ')),
+                // One signed-in tier. Which approval flag the server set
+                // is a JCFAdmin detail and is not the reader's business.
+                subtitle: Text(member.isApproved
+                    ? AppLocalizations.of(context)!.studentChip
+                    : ''),
               ),
               const Divider(),
               ListTile(

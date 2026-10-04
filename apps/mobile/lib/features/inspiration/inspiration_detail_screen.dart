@@ -7,7 +7,7 @@ import 'package:jcf_ui/jcf_ui.dart';
 import '../../core/launch.dart';
 import '../../l10n/app_localizations.dart';
 import '../auth/auth_controller.dart';
-import '../home/member_home_widgets.dart' show MemberImage;
+import '../../core/remote_image.dart' show RemoteImage;
 import 'inspiration_detail_repository.dart';
 import 'inspiration_share_sheet.dart';
 
@@ -339,7 +339,7 @@ class _HeroBlock extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          MemberImage(
+          RemoteImage(
             url: detail.heroImageUrl,
             asset: '$_assets/daily_inspiration_detail_hero.webp',
             width: MediaQuery.sizeOf(context).width,
@@ -492,7 +492,7 @@ class _Block extends StatelessWidget {
               borderRadius: BorderRadius.circular(18),
               child: AspectRatio(
                 aspectRatio: 16 / 9,
-                child: MemberImage(
+                child: RemoteImage(
                   url: block.imageUrl,
                   asset: '$_assets/daily_inspiration_reflection.webp',
                   width: MediaQuery.sizeOf(context).width,
@@ -813,7 +813,7 @@ class RelatedInspirationCard extends StatelessWidget {
                 borderRadius: const BorderRadius.vertical(
                   top: Radius.circular(18),
                 ),
-                child: MemberImage(
+                child: RemoteImage(
                   url: summary.imageUrl,
                   asset: fallbackAsset,
                   width: double.infinity,

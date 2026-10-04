@@ -122,12 +122,6 @@ abstract class AppLocalizations {
   /// **'Sign In'**
   String get signIn;
 
-  /// No description provided for @alreadyMemberPrompt.
-  ///
-  /// In en, this message translates to:
-  /// **'Already a member or student?'**
-  String get alreadyMemberPrompt;
-
   /// No description provided for @welcomeHeadline.
   ///
   /// In en, this message translates to:
@@ -251,13 +245,13 @@ abstract class AppLocalizations {
   /// No description provided for @pathSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Explore public teachings as a guest, or sign in\nfor your member or student experience.'**
+  /// **'Explore public teachings as a guest, or sign in\nfor your student experience.'**
   String get pathSubtitle;
 
   /// No description provided for @memberOrStudent.
   ///
   /// In en, this message translates to:
-  /// **'Member or Student'**
+  /// **'Student'**
   String get memberOrStudent;
 
   /// No description provided for @memberCardBody.
@@ -461,13 +455,13 @@ abstract class AppLocalizations {
   /// No description provided for @phoneMatchNote.
   ///
   /// In en, this message translates to:
-  /// **'Your number must match your JCF membership\nor student record.'**
+  /// **'Your number must match your approved\nJCF record.'**
   String get phoneMatchNote;
 
   /// No description provided for @emailMatchNote.
   ///
   /// In en, this message translates to:
-  /// **'Your email must match your JCF membership\nor student record.'**
+  /// **'Your email must match your approved\nJCF record.'**
   String get emailMatchNote;
 
   /// No description provided for @enterVerificationCode.
@@ -539,7 +533,7 @@ abstract class AppLocalizations {
   /// No description provided for @recordNotFoundSub.
   ///
   /// In en, this message translates to:
-  /// **'The phone number or email you entered is not\nlinked to an approved JCF member or student record.'**
+  /// **'The phone number or email you entered is not\nlinked to an approved JCF record.'**
   String get recordNotFoundSub;
 
   /// No description provided for @tryAnotherDetail.
@@ -563,7 +557,7 @@ abstract class AppLocalizations {
   /// No description provided for @accessReviewSub.
   ///
   /// In en, this message translates to:
-  /// **'Your contact was found, but your member or\nstudent access has not been approved yet.'**
+  /// **'Your contact was found, but your access\nhas not been approved yet.'**
   String get accessReviewSub;
 
   /// No description provided for @browseWhileWaiting.
@@ -587,7 +581,7 @@ abstract class AppLocalizations {
   /// No description provided for @memberStudentContent.
   ///
   /// In en, this message translates to:
-  /// **'MEMBER & STUDENT CONTENT'**
+  /// **'STUDENT CONTENT'**
   String get memberStudentContent;
 
   /// No description provided for @signInToContinue.
@@ -599,7 +593,7 @@ abstract class AppLocalizations {
   /// No description provided for @premiumTeachingSub.
   ///
   /// In en, this message translates to:
-  /// **'This teaching is available to approved\nJCF members and students.'**
+  /// **'This teaching is available to approved\nJCF students.'**
   String get premiumTeachingSub;
 
   /// No description provided for @returnToPublicTeachings.
@@ -635,7 +629,7 @@ abstract class AppLocalizations {
   /// No description provided for @signOutWarning.
   ///
   /// In en, this message translates to:
-  /// **'You\'ll need a new verification code\nto access your member or student\naccount again.'**
+  /// **'You\'ll need a new verification code\nto access your account again.'**
   String get signOutWarning;
 
   /// No description provided for @signOutConfirm.
@@ -761,7 +755,7 @@ abstract class AppLocalizations {
   /// No description provided for @signInBanner.
   ///
   /// In en, this message translates to:
-  /// **'Sign in for your member or student experience'**
+  /// **'Sign in for your student experience'**
   String get signInBanner;
 
   /// No description provided for @signInBannerSub.
@@ -794,23 +788,11 @@ abstract class AppLocalizations {
   /// **'Welcome back,\n{name}'**
   String welcomeBackName(String name);
 
-  /// No description provided for @memberChip.
-  ///
-  /// In en, this message translates to:
-  /// **'Member'**
-  String get memberChip;
-
   /// No description provided for @studentChip.
   ///
   /// In en, this message translates to:
   /// **'Student'**
   String get studentChip;
-
-  /// No description provided for @memberTagline.
-  ///
-  /// In en, this message translates to:
-  /// **'A more conscious you creates a brighter tomorrow.'**
-  String get memberTagline;
 
   /// No description provided for @studentTagline.
   ///
@@ -859,12 +841,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'My Card'**
   String get myCard;
-
-  /// No description provided for @myCardSub.
-  ///
-  /// In en, this message translates to:
-  /// **'Your membership'**
-  String get myCardSub;
 
   /// No description provided for @consultationAction.
   ///
@@ -1376,12 +1352,6 @@ abstract class AppLocalizations {
   /// **'All are welcome'**
   String get audiencePublic;
 
-  /// No description provided for @audienceMembers.
-  ///
-  /// In en, this message translates to:
-  /// **'Members & students'**
-  String get audienceMembers;
-
   /// No description provided for @audienceStudents.
   ///
   /// In en, this message translates to:
@@ -1429,12 +1399,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'General'**
   String get chipGeneral;
-
-  /// No description provided for @chipMembers.
-  ///
-  /// In en, this message translates to:
-  /// **'Members'**
-  String get chipMembers;
 
   /// No description provided for @chipStudents.
   ///
@@ -1651,18 +1615,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Continue Practice'**
   String get continuePracticeCta;
-
-  /// No description provided for @forMembers.
-  ///
-  /// In en, this message translates to:
-  /// **'For Members'**
-  String get forMembers;
-
-  /// No description provided for @memberExclusive.
-  ///
-  /// In en, this message translates to:
-  /// **'MEMBER EXCLUSIVE'**
-  String get memberExclusive;
 
   /// No description provided for @watchNow.
   ///
@@ -2522,12 +2474,6 @@ abstract class AppLocalizations {
   /// **'Sign in to watch this session.'**
   String get signInToWatch;
 
-  /// No description provided for @membersOnlyEvent.
-  ///
-  /// In en, this message translates to:
-  /// **'This session is for members and students.'**
-  String get membersOnlyEvent;
-
   /// No description provided for @studentsOnlyEvent.
   ///
   /// In en, this message translates to:
@@ -2887,12 +2833,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Rescheduled'**
   String get activitiesRescheduled;
-
-  /// No description provided for @activitiesMembersOnly.
-  ///
-  /// In en, this message translates to:
-  /// **'Members only'**
-  String get activitiesMembersOnly;
 
   /// No description provided for @activitiesStudentsOnly.
   ///

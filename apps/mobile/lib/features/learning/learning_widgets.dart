@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jcf_ui/jcf_ui.dart';
 
 import '../../l10n/app_localizations.dart';
-import '../home/member_home_widgets.dart' show MemberImage;
+import '../../core/remote_image.dart' show RemoteImage;
 import 'learning_models.dart';
 
 const muted = Color(0xFF667085);
@@ -160,7 +160,7 @@ class ResumeLearningHero extends StatelessWidget {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  MemberImage(
+                  RemoteImage(
                     url: lesson.courseImageUrl.isNotEmpty
                         ? lesson.courseImageUrl
                         : lesson.imageUrl,
@@ -448,7 +448,7 @@ class ActiveCourseCard extends StatelessWidget {
                   ClipRRect(
                     borderRadius: const BorderRadius.vertical(
                         top: Radius.circular(16)),
-                    child: MemberImage(
+                    child: RemoteImage(
                       url: course.imageUrl,
                       asset: learningAsset(course.category),
                       width: 248,
@@ -755,7 +755,7 @@ class UpNextLessonTile extends StatelessWidget {
     if (lesson.imageUrl.isNotEmpty) {
       return ClipRRect(
         borderRadius: BorderRadius.circular(10),
-        child: MemberImage(
+        child: RemoteImage(
           url: lesson.imageUrl,
           asset: learningAsset(lesson.courseCategory),
           width: 56,
@@ -825,7 +825,7 @@ class RecommendationCard extends StatelessWidget {
                 ClipRRect(
                   borderRadius:
                       const BorderRadius.vertical(top: Radius.circular(16)),
-                  child: MemberImage(
+                  child: RemoteImage(
                     url: recommendation.imageUrl,
                     asset: learningAsset(recommendation.category),
                     width: 214,

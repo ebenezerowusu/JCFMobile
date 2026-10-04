@@ -7,6 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jcf_ui/jcf_ui.dart';
 
+import 'package:jcf_mobile/features/inspiration/inspiration_repository.dart';
 import 'package:jcf_mobile/features/home/student_home_repository.dart';
 import 'package:jcf_mobile/features/home/student_home_screen.dart';
 import 'package:jcf_mobile/features/home/student_home_widgets.dart';
@@ -25,6 +26,7 @@ StudentHomePayload payload({
   ProgressSummary? progress,
   StudentMilestone? milestone,
   StudentMentor? mentor,
+  List<Inspiration> inspirations = const [],
   List<StudentUpdate> updates = const [],
   List<StudentQuickAction> quickActions = const [],
   int unread = 0,
@@ -47,6 +49,7 @@ StudentHomePayload payload({
             requiredPractices: 8,
             currentStreak: 5,
           ),
+      inspirations: inspirations,
       updates: updates,
       quickActions: quickActions,
       unreadNotificationCount: unread,
@@ -536,6 +539,56 @@ void main() {
           primary: enrolment(), course: course(),
           practices: [assignment()])),
     ));
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+  });
+
+  // --- the signed-in home, without a course ------------------------------
+  //
+  // This screen became the home for everyone signed in when the member
+  // home was removed, so it has to work for someone who is approved but
+  // enrolled on nothing.
+
+  testWidgets('no enrolment hides progress rather than showing zeroes',
+      (tester) async {
+    useTallPhone(tester);
+    await tester.pumpWidget(harness(payload()));
+    await tester.pumpAndSettle();
+    expect(find.text('Your progress'), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('no enrolment hides the mentor section', (tester) async {
+    // Nobody is assigned a mentor before they have a course; promising
+    // one would be worse than saying nothing.
+    useTallPhone(tester);
+    await tester.pumpWidget(harness(payload()));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('No mentor assigned yet'), findsNothing);
+  });
+
+  testWidgets('daily inspiration survives for someone with no course',
+      (tester) async {
+    // The one section carried over from the member home, and the only
+    // one an unenrolled reader is sure to see.
+    useTallPhone(tester);
+    await tester.pumpWidget(harness(payload(inspirations: [
+      Inspiration(
+        id: 1,
+        date: DateTime(2026, 10, 4),
+        quote: 'Freedom begins with awareness.',
+        author: 'Dr. Baffour Jan',
+        reflection: '',
+      ),
+    ])));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('Freedom begins with awareness'),
+        findsOneWidget);
+  });
+
+  testWidgets('an unenrolled home still renders cleanly', (tester) async {
+    useTallPhone(tester);
+    await tester.pumpWidget(harness(payload()));
     await tester.pumpAndSettle();
     expect(tester.takeException(), isNull);
   });

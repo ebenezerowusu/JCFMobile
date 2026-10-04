@@ -18,9 +18,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get signIn => 'Anmelden';
 
   @override
-  String get alreadyMemberPrompt => 'Bereits Mitglied oder Student?';
-
-  @override
   String get welcomeHeadline => 'Ein Weg der Freiheit und des Bewusstseins';
 
   @override
@@ -89,10 +86,10 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get pathSubtitle =>
-      'Erkunde öffentliche Lehren als Gast oder melde dich an\nfür dein Mitglieder- oder Studentenerlebnis.';
+      'Entdecke öffentliche Lehren als Gast, oder melde dich an\nfür deinen Studienbereich.';
 
   @override
-  String get memberOrStudent => 'Mitglied oder Student';
+  String get memberOrStudent => 'Studierende';
 
   @override
   String get memberCardBody =>
@@ -202,11 +199,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get phoneMatchNote =>
-      'Deine Nummer muss mit deinem JCF-Mitglieds-\noder Studentendatensatz übereinstimmen.';
+      'Deine Nummer muss mit deinem\nbestätigten JCF-Eintrag übereinstimmen.';
 
   @override
   String get emailMatchNote =>
-      'Deine E-Mail muss mit deinem JCF-Mitglieds-\noder Studentendatensatz übereinstimmen.';
+      'Deine E-Mail muss mit deinem\nbestätigten JCF-Eintrag übereinstimmen.';
 
   @override
   String get enterVerificationCode => 'Gib den Bestätigungscode ein';
@@ -249,7 +246,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get recordNotFoundSub =>
-      'Die eingegebene Telefonnummer oder E-Mail ist mit\nkeinem genehmigten JCF-Datensatz verknüpft.';
+      'Die eingegebene Nummer oder E-Mail ist mit keinem\nbestätigten JCF-Eintrag verknüpft.';
 
   @override
   String get tryAnotherDetail => 'Andere Angabe versuchen';
@@ -262,7 +259,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get accessReviewSub =>
-      'Dein Kontakt wurde gefunden, aber dein Mitglieds-\noder Studentenzugang wurde noch nicht genehmigt.';
+      'Dein Kontakt wurde gefunden, aber dein Zugang\nwurde noch nicht freigegeben.';
 
   @override
   String get browseWhileWaiting =>
@@ -275,14 +272,14 @@ class AppLocalizationsDe extends AppLocalizations {
   String get stillPending => 'Noch ausstehend — bitte später erneut prüfen.';
 
   @override
-  String get memberStudentContent => 'INHALTE FÜR MITGLIEDER & STUDENTEN';
+  String get memberStudentContent => 'INHALTE FÜR STUDIERENDE';
 
   @override
   String get signInToContinue => 'Melde dich an, um fortzufahren';
 
   @override
   String get premiumTeachingSub =>
-      'Diese Lehre ist genehmigten JCF-Mitgliedern\nund -Studenten vorbehalten.';
+      'Diese Lehre steht bestätigten\nJCF-Studierenden offen.';
 
   @override
   String get returnToPublicTeachings => 'Zurück zu den öffentlichen Lehren';
@@ -302,7 +299,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get signOutWarning =>
-      'Du benötigst einen neuen Bestätigungscode,\num wieder auf dein Mitglieds- oder\nStudentenkonto zuzugreifen.';
+      'Du brauchst einen neuen Bestätigungscode,\num wieder auf dein Konto zuzugreifen.';
 
   @override
   String get signOutConfirm => 'Abmelden';
@@ -366,8 +363,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get latestPublicTeachings => 'Neueste öffentliche Lehren';
 
   @override
-  String get signInBanner =>
-      'Melde dich für dein Mitglieds- oder Studentenerlebnis an';
+  String get signInBanner => 'Melde dich für deinen Studienbereich an';
 
   @override
   String get signInBannerSub =>
@@ -394,13 +390,7 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get memberChip => 'Mitglied';
-
-  @override
   String get studentChip => 'Student';
-
-  @override
-  String get memberTagline => 'Ein bewussteres Du schafft ein besseres Morgen.';
 
   @override
   String get studentTagline => 'Ein ruhigerer Geist. Ein strahlenderes Du.';
@@ -425,9 +415,6 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get myCard => 'Meine Karte';
-
-  @override
-  String get myCardSub => 'Deine Mitgliedschaft';
 
   @override
   String get consultationAction => 'Beratung';
@@ -705,9 +692,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get audiencePublic => 'Alle sind willkommen';
 
   @override
-  String get audienceMembers => 'Mitglieder & Studierende';
-
-  @override
   String get audienceStudents => 'Nur Studierende';
 
   @override
@@ -732,9 +716,6 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get chipGeneral => 'Allgemein';
-
-  @override
-  String get chipMembers => 'Mitglieder';
 
   @override
   String get chipStudents => 'Studierende';
@@ -854,12 +835,6 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get continuePracticeCta => 'Weiter üben';
-
-  @override
-  String get forMembers => 'Für Mitglieder';
-
-  @override
-  String get memberExclusive => 'NUR FÜR MITGLIEDER';
 
   @override
   String get watchNow => 'Jetzt ansehen';
@@ -1314,10 +1289,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get signInToWatch => 'Melde dich an, um zuzusehen.';
 
   @override
-  String get membersOnlyEvent =>
-      'Diese Sitzung ist für Mitglieder und Studierende.';
-
-  @override
   String get studentsOnlyEvent =>
       'Diese Sitzung ist für eingeschriebene Studierende.';
 
@@ -1519,9 +1490,6 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get activitiesRescheduled => 'Verschoben';
-
-  @override
-  String get activitiesMembersOnly => 'Nur für Mitglieder';
 
   @override
   String get activitiesStudentsOnly => 'Nur für Studierende';

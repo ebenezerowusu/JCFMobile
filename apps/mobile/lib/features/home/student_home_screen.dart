@@ -117,13 +117,17 @@ class StudentHomeBody extends ConsumerWidget {
             ],
 
             // --- Progress ---
-            const SizedBox(height: 26),
-            SectionTitle(
-              title: t.yourProgressTitle,
-              onSeeAll: () => context.push('/learning'),
-            ),
-            const SizedBox(height: 10),
-            StudentProgressSummary(progress: payload.progress),
+            // Only with a course. A 0% bar for someone who never enrolled
+            // reads as a broken screen, not as an empty one.
+            if (enrolment != null) ...[
+              const SizedBox(height: 26),
+              SectionTitle(
+                title: t.yourProgressTitle,
+                onSeeAll: () => context.push('/learning'),
+              ),
+              const SizedBox(height: 10),
+              StudentProgressSummary(progress: payload.progress),
+            ],
 
             // --- Milestone ---
             if (payload.nextMilestone case final milestone?) ...[
@@ -135,14 +139,28 @@ class StudentHomeBody extends ConsumerWidget {
             ],
 
             // --- Mentor ---
-            const SizedBox(height: 26),
-            SectionTitle(title: t.mentorSupport),
-            const SizedBox(height: 10),
-            StudentMentorCard(
-              mentor: payload.mentor,
-              onMessage: () => context.push('/appointments'),
-              onView: () => context.push('/appointments'),
-            ),
+            // Keyed on the enrolment, not on the mentor: a student on a
+            // course with nobody assigned yet is told so, which is the
+            // honest empty state the card already handles. Someone with
+            // no course has no mentorship to report on at all.
+            if (enrolment != null) ...[
+              const SizedBox(height: 26),
+              SectionTitle(title: t.mentorSupport),
+              const SizedBox(height: 10),
+              StudentMentorCard(
+                mentor: payload.mentor,
+                onMessage: () => context.push('/appointments'),
+                onView: () => context.push('/appointments'),
+              ),
+            ],
+
+            // --- Daily inspiration ---
+            if (payload.inspirations.isNotEmpty) ...[
+              const SizedBox(height: 26),
+              SectionTitle(title: t.dailyInspiration),
+              const SizedBox(height: 10),
+              InspirationHeroCarousel(items: payload.inspirations),
+            ],
 
             // --- Updates ---
             if (payload.updates.isNotEmpty) ...[

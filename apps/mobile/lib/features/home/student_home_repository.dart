@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/providers.dart';
+import '../inspiration/inspiration_repository.dart';
 
 /// Destination identifiers the API may send. Mapped to app routes; a raw
 /// route string from the server is never navigated to.
@@ -466,6 +467,7 @@ class StudentHomePayload {
     required this.activeEnrolments,
     required this.assignedPractices,
     required this.progress,
+    required this.inspirations,
     required this.updates,
     required this.quickActions,
     required this.unreadNotificationCount,
@@ -481,6 +483,10 @@ class StudentHomePayload {
   final List<ProgramEnrolment> activeEnrolments;
   final List<PracticeAssignment> assignedPractices;
   final ProgressSummary progress;
+  /// Carried over when the member home merged into this one. For a
+  /// signed-in person with no course it is often the only section with
+  /// anything in it, which is exactly why it came across.
+  final List<Inspiration> inspirations;
   final List<StudentUpdate> updates;
   final List<StudentQuickAction> quickActions;
   final int unreadNotificationCount;
@@ -515,6 +521,7 @@ class StudentHomePayload {
       assignedPractices:
           list('assigned_practices', PracticeAssignment.fromJson),
       progress: ProgressSummary.fromJson(obj('progress_summary') ?? const {}),
+      inspirations: list('daily_inspirations', Inspiration.fromJson),
       updates: list('updates', StudentUpdate.fromJson),
       quickActions: list('quick_actions', StudentQuickAction.fromJson)
         ..sort((a, b) => a.sortOrder.compareTo(b.sortOrder)),

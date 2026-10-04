@@ -106,7 +106,7 @@ class QuickActionsScreen extends ConsumerWidget {
                   icon: const Icon(Icons.person_rounded,
                       color: JcfColors.skyPrimary),
                   label: Text(
-                    AppLocalizations.of(context)!.memberChip,
+                    AppLocalizations.of(context)!.studentChip,
                     style: const TextStyle(
                       color: JcfColors.skyPrimary,
                       fontFamily: JcfTypography.bodyFamily,

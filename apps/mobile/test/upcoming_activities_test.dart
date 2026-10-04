@@ -554,18 +554,20 @@ void main() {
 
     testWidgets('a locked activity carries a lock, not a hidden row',
         (tester) async {
+      // Reached by a direct link, or held by a contact whose approval
+      // lapsed — the guest feed no longer lists gated items at all.
       await tester.pumpWidget(harness(FakeActivitiesRepository(pages: [
         pageJson(results: [
           activityJson(access: {
             'allowed': false,
-            'required_audience': 'members',
+            'required_audience': 'students',
             'sign_in_required': false,
-            'reason': 'members_only',
+            'reason': 'students_only',
           }),
         ]),
       ])));
       await tester.pumpAndSettle();
-      expect(find.text('Members only'), findsOneWidget);
+      expect(find.text('Students only'), findsOneWidget);
       expect(find.byIcon(Icons.lock_rounded), findsOneWidget);
     });
 

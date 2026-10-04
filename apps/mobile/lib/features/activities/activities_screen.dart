@@ -601,7 +601,7 @@ class _ActivitiesScreenState extends ConsumerState<ActivitiesScreen> {
       } else {
         _snack(activity.access.reason == 'students_only'
             ? t.activitiesStudentsOnly
-            : t.activitiesMembersOnly);
+            : t.activitiesStudentsOnly);
       }
       return;
     }

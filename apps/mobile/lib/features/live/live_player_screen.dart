@@ -11,7 +11,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../l10n/app_localizations.dart';
 import '../auth/auth_controller.dart';
-import '../home/member_home_widgets.dart' show MemberImage;
+import '../../core/remote_image.dart' show RemoteImage;
 import 'live_chat_panel.dart';
 import 'live_models.dart';
 import 'live_playback_controller.dart';
@@ -437,7 +437,7 @@ class _Stage extends StatelessWidget {
               if (state?.initialized ?? false)
                 player!.buildSurface()
               else
-                MemberImage(
+                RemoteImage(
                   url: event.posterUrl,
                   asset: event.isReplay
                       ? '$_assets/live_now_player_replay_thumbnail.webp'
@@ -554,7 +554,7 @@ class _StageFrame extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          MemberImage(
+          RemoteImage(
             url: posterUrl,
             asset: asset,
             width: MediaQuery.sizeOf(context).width,
@@ -680,7 +680,6 @@ class _AccessGate extends StatelessWidget {
     final t = AppLocalizations.of(context)!;
     final message = switch (access.requiredTier) {
       'students' => t.studentsOnlyEvent,
-      'members' => t.membersOnlyEvent,
       _ => t.signInToWatch,
     };
     return Column(
@@ -941,7 +940,7 @@ class _EventInfoState extends State<_EventInfo> {
                 // never a stock face.
                 if (facilitator.avatarUrl.isNotEmpty)
                   ClipOval(
-                    child: MemberImage(
+                    child: RemoteImage(
                       url: facilitator.avatarUrl,
                       asset:
                           '$_assets/live_now_player_facilitator_fallback.webp',

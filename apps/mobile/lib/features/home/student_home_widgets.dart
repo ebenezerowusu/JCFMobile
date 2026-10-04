@@ -5,7 +5,7 @@ import 'package:jcf_ui/jcf_ui.dart';
 
 import '../../core/brand.dart';
 import '../../l10n/app_localizations.dart';
-import 'member_home_widgets.dart' show MemberImage;
+import '../../core/remote_image.dart' show RemoteImage;
 import 'student_home_repository.dart';
 
 const _sub = Color(0xFF667085);
@@ -210,7 +210,7 @@ class StudentProgramHero extends StatelessWidget {
         child: Stack(
           children: [
             Positioned.fill(
-              child: MemberImage(
+              child: RemoteImage(
                 url: enrolment.imageUrl,
                 asset: '$_assetRoot/student_home_program_hero.webp',
                 width: MediaQuery.sizeOf(context).width,
@@ -412,7 +412,7 @@ class StudentTaskCard extends StatelessWidget {
                   ClipRRect(
                     borderRadius: const BorderRadius.vertical(
                         top: Radius.circular(18)),
-                    child: MemberImage(
+                    child: RemoteImage(
                       url: imageUrl,
                       asset: asset,
                       width: double.infinity,
@@ -621,7 +621,7 @@ class StudentLiveClassCard extends StatelessWidget {
             child: Stack(
               children: [
                 Positioned.fill(
-                  child: MemberImage(
+                  child: RemoteImage(
                     url: liveClass.imageUrl,
                     asset: '$_assetRoot/student_home_live_class.webp',
                     width: MediaQuery.sizeOf(context).width,
@@ -902,7 +902,7 @@ class StudentMilestoneCard extends StatelessWidget {
             child: Stack(
               children: [
                 Positioned.fill(
-                  child: MemberImage(
+                  child: RemoteImage(
                     url: milestone.imageUrl,
                     asset:
                         '$_assetRoot/student_home_progress_milestone.webp',
@@ -1121,7 +1121,7 @@ class StudentMentorCard extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(14),
-                child: MemberImage(
+                child: RemoteImage(
                   // The section artwork is only a backdrop; it is never
                   // presented as a photograph of this named mentor.
                   url: m.avatarUrl,

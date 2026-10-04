@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:jcf_ui/jcf_ui.dart';
 
 import '../../l10n/app_localizations.dart';
-import '../home/member_home_widgets.dart' show MemberImage;
+import '../../core/remote_image.dart' show RemoteImage;
 import 'activity_models.dart';
 
 const _muted = Color(0xFF54689B);
@@ -194,9 +194,11 @@ List<Widget> activityBadges(AppLocalizations t, Activity activity) {
   ));
   if (!activity.access.allowed) {
     badges.add(ActivityBadge(
-      label: activity.access.reason == 'students_only'
-          ? t.activitiesStudentsOnly
-          : t.activitiesMembersOnly,
+      // One gated tier: locked always means "sign in", except for a
+      // signed-in contact whose approval has lapsed.
+      label: activity.access.signInRequired
+          ? t.activitiesSignInToJoin
+          : t.activitiesStudentsOnly,
       foreground: const Color(0xFF6B4A00),
       background: const Color(0xFFFBF0D5),
       icon: Icons.lock_rounded,
@@ -323,7 +325,7 @@ class ActivityCard extends StatelessWidget {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(14),
-                        child: MemberImage(
+                        child: RemoteImage(
                           url: activity.imageUrl,
                           asset: activityAsset(
                               activity.imageKey, activity.activityType),
@@ -559,9 +561,9 @@ class ActivityCard extends StatelessWidget {
       formatLabel(t, activity.format),
       if (activity.cancelled) t.activitiesCancelled,
       if (!activity.access.allowed)
-        activity.access.reason == 'students_only'
-            ? t.activitiesStudentsOnly
-            : t.activitiesMembersOnly,
+        activity.access.signInRequired
+            ? t.activitiesSignInToJoin
+            : t.activitiesStudentsOnly,
     ];
     return parts.join('. ');
   }
@@ -601,7 +603,7 @@ class FeaturedActivityCard extends StatelessWidget {
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  MemberImage(
+                  RemoteImage(
                     url: activity.imageUrl,
                     asset: activityAsset(
                         activity.imageKey, activity.activityType),
