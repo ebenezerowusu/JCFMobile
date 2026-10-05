@@ -453,6 +453,33 @@ prerequisites YES ("Complete Level 2 to unlock").
       tier); the Dart model class is still named `Member` because it
       mirrors the API's MemberSerializer, and renaming it is a separate
       sweep.
+- [x] 21. Align the approval flag with the web (owner decision, Oct 2026).
+      WHAT THE WEB ACTUALLY DOES, checked before changing anything:
+      `is_member` is the ONLY flag any automated web flow writes —
+      approving a join-centre request on the website sets it
+      (website/views.py:392,403). NOTHING sets `is_student`: staff tick a
+      checkbox on the contact form, and legacy rows came from
+      import_data.py. Two things that looked like they would set it and
+      do not — creating a `studies.Enrolment` never touched the contact,
+      and the Innerspace platform (drbaffourjan.com) gates on its own
+      `users.accessLevel` / `Membership` in a separate Prisma database and
+      never writes back to Contact. JCFAdmin keeps the two as distinct
+      populations: separate list pages at /contacts/members/ and
+      /contacts/students/, separate dashboard counts. SO: `is_member` is
+      now THE approval flag in tiers.is_approved, `is_student` is read
+      only as a documented TEMPORARY BRIDGE for hand-flagged contacts
+      (delete the second half of is_approved once those are reconciled),
+      and the app's interface still says "Student" — the label is the
+      product's word for the reader, the flag is the database's word for
+      the approval, and they do not have to match. The predicate had
+      three copies (tiers, otp.is_approved, IsStudent.has_permission);
+      there is one now and the other two call it. GAP CLOSED: enrolling
+      someone now sets is_member in Enrolment.save, because a person
+      could previously hold a programme, a curriculum, assignments and a
+      mentor and still be refused at the sign-in screen for want of a
+      ticked box. Only on creation, and only that flag — re-saving must
+      not re-admit someone staff unflagged since, and is_active is their
+      decision to make. 361 backend tests green.
 
 ## 🟦 Track 1 — Learn & Practice (recommended lead pillar)
 

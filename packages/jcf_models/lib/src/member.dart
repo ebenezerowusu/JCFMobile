@@ -23,11 +23,16 @@ class Member {
   final bool isStudent;
   final String? centre;
 
-  /// Whether JCF has approved this person, by either flag.
+  /// Whether JCF has approved this person.
   ///
-  /// The only tier question the app asks. The server decides access
-  /// regardless; this is for choosing what to draw, never for granting
-  /// anything.
+  /// [isMember] is the flag: the website sets it when a join-centre
+  /// request is approved, and enrolling someone on a programme sets it
+  /// too. [isStudent] is read only as a bridge for contacts a member of
+  /// staff ticked by hand before that rule existed, and comes out once
+  /// those are reconciled.
+  ///
+  /// The only tier question the app asks, and the server decides access
+  /// regardless — this chooses what to draw, it never grants anything.
   bool get isApproved => isMember || isStudent;
 
   factory Member.fromJson(Map<String, dynamic> json) => Member(
