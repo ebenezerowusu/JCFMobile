@@ -86,10 +86,10 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get pathSubtitle =>
-      'Explora las enseñanzas públicas como invitado, o inicia\nsesión para tu experiencia de estudiante.';
+      'Explora las enseñanzas públicas como invitado, o inicia sesión\npara tu experiencia de miembro o estudiante.';
 
   @override
-  String get memberOrStudent => 'Estudiante';
+  String get memberOrStudent => 'Miembro o estudiante';
 
   @override
   String get memberCardBody => 'Accede a tu aprendizaje, práctica y actividad.';
@@ -360,7 +360,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get latestPublicTeachings => 'Últimas enseñanzas públicas';
 
   @override
-  String get signInBanner => 'Inicia sesión para tu experiencia de estudiante';
+  String get signInBanner =>
+      'Inicia sesión en tu experiencia de miembro o estudiante';
 
   @override
   String get signInBannerSub =>
@@ -2184,4 +2185,19 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get notificationSettingsSub =>
       'Elige qué puede enviarte esta aplicación';
+
+  @override
+  String get memberChip => 'Miembro';
+
+  @override
+  String get chipMembers => 'Miembros';
+
+  @override
+  String get audienceMembers => 'Miembros y estudiantes';
+
+  @override
+  String get membersOnlyEvent => 'Esta sesión es para miembros y estudiantes.';
+
+  @override
+  String get activitiesMembersOnly => 'Solo miembros';
 }

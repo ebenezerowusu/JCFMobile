@@ -194,11 +194,11 @@ List<Widget> activityBadges(AppLocalizations t, Activity activity) {
   ));
   if (!activity.access.allowed) {
     badges.add(ActivityBadge(
-      // One gated tier: locked always means "sign in", except for a
-      // signed-in contact whose approval has lapsed.
       label: activity.access.signInRequired
           ? t.activitiesSignInToJoin
-          : t.activitiesStudentsOnly,
+          : activity.access.requiredAudience == 'students'
+              ? t.activitiesStudentsOnly
+              : t.activitiesMembersOnly,
       foreground: const Color(0xFF6B4A00),
       background: const Color(0xFFFBF0D5),
       icon: Icons.lock_rounded,
@@ -563,7 +563,9 @@ class ActivityCard extends StatelessWidget {
       if (!activity.access.allowed)
         activity.access.signInRequired
             ? t.activitiesSignInToJoin
-            : t.activitiesStudentsOnly,
+            : activity.access.requiredAudience == 'students'
+                ? t.activitiesStudentsOnly
+                : t.activitiesMembersOnly,
     ];
     return parts.join('. ');
   }

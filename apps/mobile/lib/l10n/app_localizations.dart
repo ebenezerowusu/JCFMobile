@@ -245,13 +245,13 @@ abstract class AppLocalizations {
   /// No description provided for @pathSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Explore public teachings as a guest, or sign in\nfor your student experience.'**
+  /// **'Explore public teachings as a guest, or sign in\nfor your member or student experience.'**
   String get pathSubtitle;
 
   /// No description provided for @memberOrStudent.
   ///
   /// In en, this message translates to:
-  /// **'Student'**
+  /// **'Member or Student'**
   String get memberOrStudent;
 
   /// No description provided for @memberCardBody.
@@ -755,7 +755,7 @@ abstract class AppLocalizations {
   /// No description provided for @signInBanner.
   ///
   /// In en, this message translates to:
-  /// **'Sign in for your student experience'**
+  /// **'Sign in for your member or student experience'**
   String get signInBanner;
 
   /// No description provided for @signInBannerSub.
@@ -4015,6 +4015,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Choose what this app may send you'**
   String get notificationSettingsSub;
+
+  /// No description provided for @memberChip.
+  ///
+  /// In en, this message translates to:
+  /// **'Member'**
+  String get memberChip;
+
+  /// No description provided for @chipMembers.
+  ///
+  /// In en, this message translates to:
+  /// **'Members'**
+  String get chipMembers;
+
+  /// No description provided for @audienceMembers.
+  ///
+  /// In en, this message translates to:
+  /// **'Members & students'**
+  String get audienceMembers;
+
+  /// No description provided for @membersOnlyEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'This session is for members and students.'**
+  String get membersOnlyEvent;
+
+  /// No description provided for @activitiesMembersOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Members only'**
+  String get activitiesMembersOnly;
 }
 
 class _AppLocalizationsDelegate

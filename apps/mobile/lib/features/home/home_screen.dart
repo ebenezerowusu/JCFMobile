@@ -27,8 +27,8 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final member = ref.watch(authControllerProvider).asData?.value;
-    // Signed in or not. Nothing here branches on which approval flag the
-    // server set — see Member.isApproved.
+    // Signed in or not. The member/student distinction decides what the
+    // server returns, not which home is drawn.
     final Widget body =
         member == null ? const GuestHome() : const StudentHomeBody();
     return Scaffold(

@@ -548,6 +548,8 @@ class _ResultCard extends ConsumerWidget {
 
   (String, Color, Color) _audienceLook(AppLocalizations t) =>
       switch (result.audience) {
+        'members' => (t.audienceMembers, const Color(0xFF7B5BD6),
+            const Color(0xFFEAE3FA)),
         'students' => (t.audienceStudents, const Color(0xFFF08A24),
             const Color(0xFFFDEED9)),
         _ => (t.allLevelsChip, JcfColors.skyPrimary,

@@ -680,6 +680,7 @@ class _AccessGate extends StatelessWidget {
     final t = AppLocalizations.of(context)!;
     final message = switch (access.requiredTier) {
       'students' => t.studentsOnlyEvent,
+      'members' => t.membersOnlyEvent,
       _ => t.signInToWatch,
     };
     return Column(

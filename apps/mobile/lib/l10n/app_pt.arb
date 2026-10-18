@@ -23,8 +23,8 @@
   "fewerLanguages": "Menos idiomas",
   "comingSoon": "Em breve",
   "howToContinue": "Como você deseja\ncontinuar?",
-  "pathSubtitle": "Explore os ensinamentos públicos como convidado, ou entre\npara a sua experiência de estudante.",
-  "memberOrStudent": "Estudante",
+  "pathSubtitle": "Explore os ensinamentos públicos como convidado, ou entre\npara a sua experiência de membro ou estudante.",
+  "memberOrStudent": "Membro ou estudante",
   "memberCardBody": "Acesse o seu aprendizado, prática e atividade.",
   "guest": "Convidado",
   "guestCardBody": "Navegue por ensinamentos e programas públicos.",
@@ -108,7 +108,7 @@
   "findProgrammeSub": "Vá mais fundo\nno seu ritmo",
   "liveUpcoming": "Ao vivo e em breve",
   "latestPublicTeachings": "Últimos ensinamentos públicos",
-  "signInBanner": "Entre para a sua experiência de estudante",
+  "signInBanner": "Entre na sua experiência de membro ou estudante",
   "signInBannerSub": "Acesse práticas guiadas, programas, eventos ao vivo e mais.",
   "greetingMorning": "Bom dia, {name}",
   "greetingAfternoon": "Boa tarde, {name}",
@@ -651,5 +651,10 @@
   "notificationPermissionRetry": "Tentar novamente",
   "notificationPermissionBellLabel": "Ilustração de um sino de notificação",
   "notificationSettingsTitle": "Notificações",
-  "notificationSettingsSub": "Escolha o que este aplicativo pode lhe enviar"
+  "notificationSettingsSub": "Escolha o que este aplicativo pode lhe enviar",
+  "memberChip": "Membro",
+  "chipMembers": "Membros",
+  "audienceMembers": "Membros e estudantes",
+  "membersOnlyEvent": "Esta sessão é para membros e estudantes.",
+  "activitiesMembersOnly": "Apenas membros"
 }

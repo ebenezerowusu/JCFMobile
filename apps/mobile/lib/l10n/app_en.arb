@@ -33,8 +33,8 @@
   "fewerLanguages": "Fewer languages",
   "comingSoon": "Coming soon",
   "howToContinue": "How would you like\nto continue?",
-  "pathSubtitle": "Explore public teachings as a guest, or sign in\nfor your student experience.",
-  "memberOrStudent": "Student",
+  "pathSubtitle": "Explore public teachings as a guest, or sign in\nfor your member or student experience.",
+  "memberOrStudent": "Member or Student",
   "memberCardBody": "Access your learning, practice and activity.",
   "guest": "Guest",
   "guestCardBody": "Browse public teachings and programmes.",
@@ -132,7 +132,7 @@
   "findProgrammeSub": "Go deeper\nat your own pace",
   "liveUpcoming": "Live & Upcoming",
   "latestPublicTeachings": "Latest Public Teachings",
-  "signInBanner": "Sign in for your student experience",
+  "signInBanner": "Sign in for your member or student experience",
   "signInBannerSub": "Access guided practices, programmes, live events and more.",
   "greetingMorning": "Good morning, {name}",
   "@greetingMorning": {
@@ -1019,5 +1019,10 @@
   "notificationPermissionRetry": "Try again",
   "notificationPermissionBellLabel": "Illustration of a notification bell",
   "notificationSettingsTitle": "Notifications",
-  "notificationSettingsSub": "Choose what this app may send you"
+  "notificationSettingsSub": "Choose what this app may send you",
+  "memberChip": "Member",
+  "chipMembers": "Members",
+  "audienceMembers": "Members & students",
+  "membersOnlyEvent": "This session is for members and students.",
+  "activitiesMembersOnly": "Members only"
 }

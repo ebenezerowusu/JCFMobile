@@ -130,6 +130,7 @@ class _FilterRow extends StatelessWidget {
     final options = [
       ('all', t.filterAll),
       ('public', t.chipGeneral),
+      ('members', t.chipMembers),
       ('students', t.chipStudents),
     ];
     return Row(
@@ -177,6 +178,8 @@ class _AnnouncementCard extends ConsumerWidget {
 
   (String, Color, Color) _audienceLook(AppLocalizations t) =>
       switch (announcement.audience) {
+        'members' => (t.chipMembers, const Color(0xFF7B5BD6),
+            const Color(0xFFEAE3FA)),
         'students' => (t.chipStudents, const Color(0xFF2E9E5B),
             const Color(0xFFDDF3E4)),
         _ => (t.chipGeneral, const Color(0xFFF08A24),
