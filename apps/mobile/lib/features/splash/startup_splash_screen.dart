@@ -41,9 +41,12 @@ class _StartupSplashScreenState extends ConsumerState<StartupSplashScreen>
   // OS to Flutter shows as a jump. From there one controller moves the
   // logo into the layout, fades the artwork in behind it, then the words.
   late final AnimationController _handoff;
-  late final Animation<double> _photoFade;
-  late final Animation<double> _logoTravel;
-  late final Animation<double> _textFade;
+  // Typed as CurvedAnimation, not Animation, so they can be disposed:
+  // each holds a status listener on the controller.
+  late final CurvedAnimation _photoFade;
+  late final CurvedAnimation _logoTravel;
+  late final CurvedAnimation _textFade;
+  late final CurvedAnimation _orbitDraw;
   final _stackKey = GlobalKey();
   final _logoKey = GlobalKey();
   Timer? _photoWait;
@@ -69,6 +72,13 @@ class _StartupSplashScreenState extends ConsumerState<StartupSplashScreen>
       parent: _handoff,
       curve: const Interval(0.55, 1, curve: Curves.easeOut),
     );
+    _orbitDraw = CurvedAnimation(
+      parent: _handoff,
+      // Starts exactly where the travel ends. The logo lands, then the
+      // orbit ignites around it, using the window the logo already
+      // spends parked - so the handover is not a millisecond longer.
+      curve: const Interval(0.7, 1, curve: Curves.easeOutCubic),
+    );
   }
 
   @override
@@ -90,6 +100,12 @@ class _StartupSplashScreenState extends ConsumerState<StartupSplashScreen>
   @override
   void dispose() {
     _photoWait?.cancel();
+    // Curved animations hold a status listener on their parent, so they
+    // are disposed before it.
+    _logoTravel.dispose();
+    _photoFade.dispose();
+    _textFade.dispose();
+    _orbitDraw.dispose();
     _handoff.dispose();
     super.dispose();
   }
@@ -235,6 +251,10 @@ class _StartupSplashScreenState extends ConsumerState<StartupSplashScreen>
             logoKey: _logoKey,
             showLogo: _handoffDone,
             textOpacity: _textFade,
+            orbitDraw: _orbitDraw,
+            // No drift until the handover is done: startup gets the
+            // frames until then.
+            orbitAmbient: _handoffDone,
           ),
           const Spacer(flex: 3),
           FadeTransition(opacity: _textFade, child: _statusPanel(t, state)),

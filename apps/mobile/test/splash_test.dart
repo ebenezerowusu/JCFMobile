@@ -536,4 +536,101 @@ void main() {
       await tester.pump(const Duration(seconds: 11));
     });
   });
+
+  // --- the orbit ---------------------------------------------------------
+
+  group('the orbit', () {
+    test('stays inside the logo box at every width the app uses', () {
+      // The whole no-layout-change design rests on this: the ring is
+      // painted inside a RepaintBoundary the size of the logo box, so
+      // anything outside would be clipped rather than drawn. Widening
+      // splashOrbitRadiusX past the safe range fails here instead of
+      // shipping a cut-off ring.
+      for (final width in [150.0, 170.0, 194.4, 220.0]) {
+        final box = Size(width, width / splashLogoAspect);
+        final bounds = splashOrbitBounds(box);
+        expect((Offset.zero & box).contains(bounds.topLeft), isTrue,
+            reason: 'top-left escapes at $width');
+        expect((Offset.zero & box).contains(bounds.bottomRight), isTrue,
+            reason: 'bottom-right escapes at $width');
+      }
+    });
+
+    testWidgets('adds nothing to the native first frame', (tester) async {
+      await setSurface(tester, const Size(360, 740));
+      await tester.pumpWidget(harness(
+          FakeBootstrap([ready()], delay: const Duration(seconds: 10))));
+
+      final orbit = tester.widget<SplashOrbitTrack>(
+          find.byType(SplashOrbitTrack));
+      expect(orbit.draw!.value, 0.0);
+      await tester.pump(const Duration(seconds: 11));
+    });
+
+    testWidgets('traces itself only once the logo has landed',
+        (tester) async {
+      await tester.pumpWidget(harness(
+          FakeBootstrap([ready()], delay: const Duration(seconds: 10))));
+      await tester.pump();
+
+      SplashOrbitTrack orbit() =>
+          tester.widget<SplashOrbitTrack>(find.byType(SplashOrbitTrack));
+
+      // The travel owns 0-560ms; the orbit owns what is left.
+      await tester.pump(const Duration(milliseconds: 500));
+      expect(orbit().draw!.value, 0.0);
+      await tester.pump(const Duration(milliseconds: 200));
+      expect(orbit().draw!.value, greaterThan(0.0));
+      await tester.pump(const Duration(milliseconds: 1500));
+      expect(orbit().draw!.value, 1.0);
+      await tester.pump(const Duration(seconds: 11));
+    });
+
+    testWidgets('does not drift while startup is still working',
+        (tester) async {
+      // The governing principle, pinned: ambient motion must never spend
+      // frames that bootstrap is competing for.
+      await tester.pumpWidget(harness(
+          FakeBootstrap([ready()], delay: const Duration(seconds: 10))));
+      await tester.pump();
+
+      SplashOrbitTrackState state() =>
+          tester.state<SplashOrbitTrackState>(find.byType(SplashOrbitTrack));
+
+      expect(state().isOrbiting, isFalse);
+      await tester.pump(const Duration(milliseconds: 1500));
+      expect(state().isOrbiting, isTrue);
+      await tester.pump(const Duration(seconds: 11));
+    });
+
+    testWidgets('is drawn, but still, under reduced motion', (tester) async {
+      await tester.pumpWidget(harness(
+        FakeBootstrap([ready()], delay: const Duration(seconds: 10)),
+        reduceMotion: true,
+      ));
+      await tester.pump();
+
+      // Fully drawn on the first frame, because the handover has already
+      // snapped to its end - so the brand composition is complete, just
+      // not moving.
+      expect(
+          tester.widget<SplashOrbitTrack>(find.byType(SplashOrbitTrack))
+              .draw!.value,
+          1.0);
+      expect(
+          tester.state<SplashOrbitTrackState>(find.byType(SplashOrbitTrack))
+              .isOrbiting,
+          isFalse);
+      await tester.pump(const Duration(seconds: 11));
+    });
+
+    testWidgets('leaves nothing running once the splash is gone',
+        (tester) async {
+      await tester.pumpWidget(harness(FakeBootstrap([ready()])));
+      await advance(tester);
+
+      expect(find.byType(SplashOrbitTrack), findsNothing);
+      expect(tester.takeException(), isNull);
+    });
+  });
 }

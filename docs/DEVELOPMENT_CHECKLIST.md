@@ -481,6 +481,37 @@ prerequisites YES ("Complete Level 2 to unlock").
       not re-admit someone staff unflagged since, and is_active is their
       decision to make. 361 backend tests green.
 
+- [x] 22. Splash brand motion (owner request, Oct 2026). The splash
+      already animated — fd3237c made it an 800 ms three-phase handover
+      from the native launch frame — so this adds a brand moment WITHOUT
+      spending more startup time. A second, outer orbit traces itself
+      around the mark as the logo lands, then drifts while startup
+      finishes. GOVERNING RULE: entrance motion costs every launch,
+      ambient motion costs nothing because the reader is already waiting.
+      So the trace rides the existing _handoff controller in the 560-800
+      ms window the logo already spent parked (Interval(0.7, 1)), and the
+      drift loop does not start until _handoffDone. _handoffDuration is
+      unchanged; time-to-first-screen is unchanged. GEOMETRY: the ring is
+      concentric with the mark's own, tilted -30.2 and sized to fit
+      INSIDE the existing logo box (12-17 px margin at every logo width),
+      which is why there is no layout change and the handover's measured
+      target does not move — splashOrbitBounds and its test hold that
+      line. Two painters sandwich the logo so the planet occludes the
+      travelling point as it passes behind. Two RepaintBoundaries, image
+      between them, so the mark is never re-rasterised; no blur, no
+      shadow, no saveLayer, no shader — the frames here are contested by
+      bootstrap. Reduced motion falls out for free: the handover already
+      snaps to its end, so the ring is drawn complete and the point parks
+      at the visible tip. TWO THINGS FOUND BY LOOKING, not by testing:
+      the track sweep was tied to the spin angle, so after tracing it
+      collapsed to a short arc chasing the point instead of persisting;
+      and gold at any readable alpha vanished into a nebula that is
+      itself gold and blue, so the ring is warm white, echoing the mark's
+      own ring, with the gold kept for the travelling point. Verified on
+      the iPhone 16e against a blackholed host so the splash held: ring
+      visible, point moving, "Still preparing..." at 4 s. 371 tests green
+      (6 new), analyze clean. First CustomPaint in the app.
+
 ## 🟦 Track 1 — Learn & Practice (recommended lead pillar)
 
 ### 1A. Teachings depth (backend + JCFAdmin)
